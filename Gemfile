@@ -23,3 +23,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+#add rubyracer as js engine for heroku
+group :production do
+    gem 'therubyracer-heroku', '0.8.1.pre3'
+end
