@@ -7,6 +7,7 @@ gem 'rails', '3.1.0.rc4'
 
 gem 'pg'
 
+
 gem 'rake', '0.8.7'
 
 # Asset template engines
@@ -28,4 +29,13 @@ gem 'jquery-rails'
 #add rubyracer as js engine for heroku
 group :production do
     gem 'therubyracer-heroku', '0.8.1.pre3'
+end
+
+group :development do
+    gem 'rspec-rails'
+end
+
+group :test do
+    gem 'rspec'
+    gem 'webrat'
 end
