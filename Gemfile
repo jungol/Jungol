@@ -7,7 +7,7 @@ gem 'rails', '3.1.0.rc4'
 
 gem 'pg'
 
-
+gem 'gravatar_image_tag'
 gem 'rake', '0.8.7'
 
 # Asset template engines
@@ -37,6 +37,7 @@ group :development do
 end
 
 group :test do
-    gem 'rspec'
-    gem 'webrat'
+  gem 'rspec'
+  gem 'webrat'
+  gem 'factory_girl_rails'
 end
