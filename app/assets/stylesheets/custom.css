@@ -40,3 +40,12 @@ a.signup_button { margin-left: auto; margin-right: auto; display: block; text-al
     -webkit-border-radius: 10px;
     border-radius:  10px
 }
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
