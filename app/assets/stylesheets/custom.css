@@ -20,6 +20,16 @@ section {
 section h1 {
     font-size: 200%;
 }
+footer {
+  text-align:center;
+  width:710px;
+  margin: 10px auto 0px;
+}
+
+footer nav{
+  float: none;
+}
+
 /* Links */
 a{
   color: #09c;
