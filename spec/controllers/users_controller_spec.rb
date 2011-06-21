@@ -13,7 +13,27 @@ describe UsersController do
         get :new
         response.should have_selector("title", :content => "Sign up")
     end
-  end
+
+    it "should have a name field" do
+      get :new
+      response.should have_selector("input[id='user_name'][type='text']")
+    end
+    
+    it "should have a email field" do
+      get :new
+      response.should have_selector("input[id='user_email'][type='text']")
+    end
+     
+    it "should have a password field" do
+      get :new
+      response.should have_selector("input[id='user_password'][type='password']")
+    end
+
+    it "should have a password confirmation field" do
+      get :new
+      response.should have_selector("input[id='user_password_confirmation'][type='password']")
+    end
+ end
 
   describe "GET 'show'" do
     before(:each) do
