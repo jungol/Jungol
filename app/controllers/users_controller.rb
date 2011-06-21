@@ -11,10 +11,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
+    if @user.save     #WE SAVED THE USER TO THE DB
+      sign_in @user
       flash[:success] = "Welcome to Jungol!"
       redirect_to @user
-    else
+    else              #RELOAD THE SIGNUP PAGE
       @title = "Sign up"
       render :new
     end
