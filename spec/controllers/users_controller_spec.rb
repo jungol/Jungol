@@ -124,40 +124,27 @@ describe UsersController do
   end #POST create
 
   describe "GET 'edit'" do
+  
     before(:each) do
       @user = Factory(:user)
+      test_sign_in(@user)
     end
-
-    describe "denied" do
-      it "should fail" do
-        get :edit, :id => @user
-        response.should_not be_success
-      end
-
+ 
+    it "should be successful" do
+      get :edit, :id => @user
+      response.should be_success
     end
-
-    describe "allowed" do
-  
-      before(:each) do
-        test_sign_in(@user)
-      end
-  
-      it "should be successful" do
-        get :edit, :id => @user
-        response.should be_success
-      end
-  
-      it "should have the right title" do
-        get :edit, :id => @user
-        response.should have_selector( "title",  :content => "Edit user" )
-      end
-   
-      it "should have a link to change the Gravatar" do
-        get :edit, :id => @user
-        gravatar_url = "http://en.gravatar.com/emails"
-        response.should have_selector( "a", :href => gravatar_url,
-                                      :content => "change" )
-      end
+ 
+    it "should have the right title" do
+      get :edit, :id => @user
+      response.should have_selector( "title",  :content => "Edit user" )
+    end
+ 
+    it "should have a link to change the Gravatar" do
+      get :edit, :id => @user
+      gravatar_url = "http://en.gravatar.com/emails"
+      response.should have_selector( "a", :href => gravatar_url,
+                                    :content => "change" )
     end
   end
 
@@ -205,6 +192,42 @@ describe UsersController do
       it "should have a flash message" do
         put :update, :id => @user, :user => @attr
         flash[:success].should =~ /updated/
+      end
+    end
+  end
+
+  describe "authentication of edit/update pages" do
+    before(:each) do
+      @user = Factory(:user)
+    end
+
+    describe "for non-signed-in users" do
+      
+      it "should deny access to 'edit'" do
+        get :edit, :id => @user
+        response.should redirect_to(signin_path)
+      end
+
+      it "should deny access to 'update'" do
+        get :update, :id => @user, :user => {}
+        response.should redirect_to(signin_path)
+      end
+    end
+
+    describe "for signed-in users" do
+      before(:each) do
+        wrong_user = Factory(:user, :email => "user@example.net")
+        test_sign_in(wrong_user)
+      end
+
+      it "should require matching users for 'edit'" do
+        get :edit, :id => @user
+        response.should redirect_to(root_path)
+      end
+
+      it "should require matching users for 'update'" do
+        get :update, :id => @user, :user => {}
+        response.should redirect_to(root_path)
       end
     end
   end
