@@ -280,4 +280,20 @@ describe UsersController do
     end
   end
 
+  describe "redirect signed-in on new/create" do
+    before(:each) do
+      @user = test_sign_in(Factory(:user))
+    end
+
+    it "should redirect on new" do
+      get :new
+      response.should redirect_to(root_path)
+    end
+
+    it "should redirect on create" do
+      post :create, :user => {}
+      response.should redirect_to(root_path)
+    end
+  end
+
 end

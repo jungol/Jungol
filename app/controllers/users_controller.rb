@@ -8,8 +8,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    @title = "Sign up"
-    @user = User.new
+    if signed_in? 
+      redirect_to(root_path)
+    else
+      @title = "Sign up"
+      @user = User.new
+    end
   end
 
   def show
@@ -18,14 +22,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    if @user.save     #WE SAVED THE USER TO THE DB
-      sign_in @user
-      flash[:success] = "Welcome to Jungol!"
-      redirect_to @user
-    else              #RELOAD THE SIGNUP PAGE
-      @title = "Sign up"
-      render :new
+    if signed_in?
+      redirect_to(root_path)
+    else
+      @user = User.new(params[:user])
+      if @user.save     #WE SAVED THE USER TO THE DB
+        sign_in @user
+        flash[:success] = "Welcome to Jungol!"
+        redirect_to @user
+      else              #RELOAD THE SIGNUP PAGE
+        @title = "Sign up"
+        render :new
+      end
     end
   end
 
