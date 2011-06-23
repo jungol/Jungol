@@ -4,6 +4,54 @@ describe UsersController do
 
   render_views
 
+  describe "GET 'index'" do
+    describe "for non-signed-in users" do
+      it "should deny access" do
+        get :index
+        response.should redirect_to(signin_path)
+        flash[:notice].should =~ /sign in/i
+      end
+    end
+
+    describe "for signed-in users" do
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+        second = Factory(:user, :email => "another@example.com")
+        third = Factory(:user, :email => "another2@example.com")
+        @users = [@user, second, third]
+        30.times do
+          @users << Factory(:user, :email => Factory.next(:email))
+        end
+      end
+
+      it "should be successful" do
+        get :index
+        response.should be_success
+      end
+
+      it "should have the right title" do
+        get :index
+        response.should have_selector("title", :content => "All users")
+      end
+
+      it "should have an element for each user" do
+        get :index
+        @users[0..2].each do |user|
+          response.should have_selector("li", :content => user.name)
+        end
+      end
+
+      it "should paginate users" do
+        get :index
+        response.should have_selector("div.pagination")
+        response.should have_selector("span.disabled", :content => "Previous")
+        response.should have_selector("a", :href => "/users?escape=false&page=2", :content => "2")
+        response.should have_selector("a", :href => "/users?escape=false&page=2", :content => "Next")
+      end
+
+    end
+  end
+  
   describe "GET 'new'" do
     it "should be successful" do
       get :new
@@ -231,4 +279,5 @@ describe UsersController do
       end
     end
   end
+
 end

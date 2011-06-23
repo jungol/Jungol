@@ -8,6 +8,7 @@ gem 'rails', '3.1.0.rc4'
 gem 'pg'
 
 gem 'gravatar_image_tag'
+gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
 gem 'rake', '0.8.7'
 
 # Asset template engines
@@ -34,6 +35,7 @@ end
 group :development do
   gem 'rspec-rails'
   gem 'annotate-models'
+  gem 'faker'
 end
 
 group :test do
