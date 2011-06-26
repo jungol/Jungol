@@ -13,16 +13,10 @@
 # gem 'pg'
 #
 
-<%
- branch = `git symbolic-ref HEAD 2>/dev/null`.chomp.sub('refs/heads/', '')
- suffix = `git config --bool branch.#{branch}.database`.chomp== 'true' ? "_#{branch}" : ""
-
-%>
-
 development:
   adapter: postgresql
   encoding: unicode
-  database: jungola_development<%= suffix %>
+  database: jungola_development
   pool: 5
   username: jungola
   password:
