@@ -67,4 +67,67 @@ describe GroupsController do
       end
     end
   end
+
+
+  describe "GET 'edit'" do
+    before(:each) do
+      @attr = {:name => "Test Group",
+                :about => "about us",
+                :announcement => "NEW"}
+
+      @group = @user.groups.create(@attr)
+    end
+
+    it "should redirect a non-creator" do
+      test_sign_in(Factory(:user, :email => Factory.next(:email)))
+      get :edit, :id => @group
+      response.should redirect_to(root_path)
+    end
+
+
+    it "should be successful" do
+      get :edit, :id => @group
+      response.should be_success
+    end
+
+    it "should have the right title" do
+      get :edit, :id => @group
+      response.should have_selector( "title", :content => "Edit Group")
+    end
+
+  end
+
+  describe "PUT 'update'" do
+    before(:each) do
+      @attr = {:name => "Test Group",
+                :about => "about us",
+                :announcement => "NEW"}
+
+      @group = @user.groups.create(@attr)
+    end
+
+    describe "failure" do
+      before(:each) do
+        @attr = { :name => "", :about => ""}
+      end
+
+      it "should redirect a non-creator" do
+        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        put :update, :id => @group, :group => @attr
+        response.should redirect_to(root_path)
+      end
+
+      it "should render the 'edit' page" do
+        put :update, :id => @group, :group => @attr
+        response.should render_template(:edit)
+      end
+
+      it "should render the 'edit' page" do
+        put :update, :id => @group, :group => @attr
+        response.should have_selector("title", :content => "Edit Group")
+      end
+
+    end
+  end
+
 end

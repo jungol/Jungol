@@ -37,13 +37,28 @@ class GroupsController < ApplicationController
     end
   end
 
+  def edit
+    @title = "Edit Group"
+  end
+
+  def update
+    if(@group.update_attributes(params[:group]))
+      flash[:success] = "Group updated."
+      redirect_to @group
+    else
+      @title = "Edit Group"
+      render :edit
+    end
+  end
+
   private
     def authenticate
       deny_access unless signed_in?
     end
 
     def priveleged_user
-      @user = User.find(Group.find(params[:id]).memberships.find_by_role(1).user_id)
+      @group = Group.find(params[:id])
+      @user = User.find(@group.memberships.find_by_role(1).user_id)
       redirect_to(root_path) unless current_user?(@user)
     end
 

@@ -6,6 +6,12 @@ Factory.define :user do |user|
   user.password_confirmation "foobar"
 end
 
+Factory.define :group do |group|
+  group.name    "Test Group"
+  group.about   "About us"
+  group.announcement "Announcement!"
+end
+
 Factory.sequence :email do |n|
   "person-#{n}@ry-land.com"
 end

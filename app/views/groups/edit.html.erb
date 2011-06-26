@@ -1,0 +1,9 @@
+<h1>Edit Group</h1>
+
+<%= form_for(@group) do |f| %>
+  <%= render 'fields', :f => f %>
+   <div class='actions'>
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
