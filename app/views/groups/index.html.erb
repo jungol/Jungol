@@ -1,0 +1,12 @@
+<%= link_to "Create Group", 'groups/new', :class => 'create_button round' %>
+
+<h1>All groups</h1>
+
+<%= will_paginate %>
+
+
+<ul class='groups'>
+    <%= render @groups %>
+</ul>
+
+<%= will_paginate %>

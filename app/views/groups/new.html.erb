@@ -1,0 +1,13 @@
+<h1>Create Group</h1>
+
+<%= form_for(@group) do |f| %>
+  <%= render 'fields', :f => f %>
+  <div class='field'>
+    <%= f.label :agreement %> <br />
+    <%= f.check_box :agreement %>
+  </div>
+  <div class='actions'>
+    <%= f.submit "Create Group" %>
+  </div>
+<% end %>
+

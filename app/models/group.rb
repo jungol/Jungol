@@ -13,13 +13,16 @@
 
 class Group < ActiveRecord::Base
 
-  attr_accessible :name, :announcement, :about
+  attr_accessor :agreement
+
+  attr_accessible :name, :announcement, :about, :agreement
 
   validates(:name, :presence => true,
             :length => {:maximum => 50},
             :uniqueness => { :case_sensitive => false })
   validates :about, :presence => true
 
+  validates_acceptance_of :agreement
 
   #MEMBERSHIPS
   has_many :memberships

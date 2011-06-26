@@ -1,0 +1,13 @@
+<div class='group_profile'>
+  <h1>
+    <%= @group.name %>
+  </h1>
+
+  <strong>Name</strong> <%= @group.name %><br />
+  <strong>About</strong> <%= @group.about %><br />
+  <strong>Announcement</strong> <%= @group.announcement %><br />
+  <strong>URL</strong> <%= link_to group_path(@group), @group %><br />
+
+  <strong>Members</strong> <%= render @group.users %>
+
+</div>
