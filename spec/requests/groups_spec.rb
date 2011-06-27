@@ -54,5 +54,17 @@ describe "Groups" do
 
       end
     end
+
+    it "should join a group" do
+      lambda do
+        user = Factory(:user)
+        integration_sign_in(user)
+        group = Factory(:group)
+        visit group_path(group)
+        click_link "join_button"
+        response.should have_selector('div.flash.success', :content => "joined")
+        response.should render_template('groups/show')
+      end.should change(Membership, :count).by(1)
+    end
   end
 end

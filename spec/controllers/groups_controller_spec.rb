@@ -126,8 +126,27 @@ describe GroupsController do
         put :update, :id => @group, :group => @attr
         response.should have_selector("title", :content => "Edit Group")
       end
-
     end
+
+    describe "success" do
+      it "should update a group's attributes" do
+        @attr = @attr.merge :name => "New Name"
+        put :update, :id => @group, :group  => @attr
+        @group.reload
+        @group.name.should == @attr[:name]
+      end
+
+      it "should redirect to the group show page" do
+        put :update, :id => @group, :group => @attr
+        response.should redirect_to(group_path(@group))
+      end
+
+      it "should have a flash message" do
+        put :update, :id => @group, :group => @attr
+        flash[:success].should =~ /updated/i
+      end
+    end
+
   end
 
 end

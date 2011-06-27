@@ -9,31 +9,37 @@ class GroupsController < ApplicationController
   end
 
   def new
-    if !signed_in?
-      redirect_to root_path
-    else
-      @title = "Create Group"
-      @group = Group.new
-    end
+    @title = "Create Group"
+    @group = Group.new
   end
 
   def show
     @group = Group.find(params[:id])
+    @member = @group.users.include?(current_user)
     @title = @group.name
   end
 
-  def create
-    if !signed_in?
-      redirect_to root_path
+  def join
+    @member = true
+    @group = Group.find(params[:id])
+    if !@group.users.include?(current_user)
+      @group.users << current_user
+      flash[:success] = "Congrats! You joined #{@group.name}."
+      redirect_to @group
     else
-      @group = current_user.groups.create(params[:group])
-      if current_user.groups.exists?(@group.id) #success
-        flash[:success] = "Group Created."
-        redirect_to @group
-      else
-        @title = "Create Group"
-        render :new
-      end
+      flash[:error] = "Error joining #{@group.name}. Please try again."
+      redirect_to @group
+    end
+  end
+
+  def create
+    @group = current_user.groups.create(params[:group])
+    if current_user.groups.exists?(@group.id) #success
+      flash[:success] = "Group Created."
+      redirect_to @group
+    else
+      @title = "Create Group"
+      render :new
     end
   end
 
