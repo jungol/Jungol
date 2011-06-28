@@ -1,7 +1,9 @@
 Jungola::Application.routes.draw do
 
-  match 'groups/:id/join', :controller => 'groups', :action => 'join'
+  match 'groups/:id/join', :controller => :groups, :action => :join, :via => :post, :as => "join"
+
   resources :users, :groups
+
   resources :sessions, :only => [:new, :create, :destroy]
 
   match '/signup', :to => 'users#new'

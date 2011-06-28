@@ -22,12 +22,16 @@ class GroupsController < ApplicationController
   def join
     @member = true
     @group = Group.find(params[:id])
-    if !@group.users.include?(current_user)
-      @group.users << current_user
-      flash[:success] = "Congrats! You joined #{@group.name}."
-      redirect_to @group
+    if request.post?
+      if !@group.users.include?(current_user)
+        @group.users << current_user
+        flash[:success] = "Congrats! You joined #{@group.name}."
+        redirect_to @group
+      else
+        flash[:error] = "Error joining #{@group.name}. Please try again."
+        redirect_to @group
+      end
     else
-      flash[:error] = "Error joining #{@group.name}. Please try again."
       redirect_to @group
     end
   end

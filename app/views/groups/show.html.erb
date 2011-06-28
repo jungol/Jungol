@@ -1,5 +1,9 @@
-<%= link_to "Join Group", group_url+'/join', :class => 'join_button round', :id => 'join_button' unless @member %>
+<%#= link_to("Join Group", join_path(@group,
+            :method => :post,
+            :class => 'join_button round',
+            :id => 'join_button') %>
 
+<%= button_to "Join Group", {:action => "join", :id => @group.id}, :class => "join_button round"%>
 <div class='group_profile'>
   <h1>
     <%= @group.name %>
