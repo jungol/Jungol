@@ -1,0 +1,10 @@
+<h1>Invite Users</h1>
+
+<%= form_tag do %>
+  <%= label_tag(:invitees, "Please enter a list of emails separated by commas:") %><br />
+  <%= text_area_tag(:invitees) %>
+  <div class='actions'>
+    <%= submit_tag "Invite" %>
+  </div>
+
+<% end %>

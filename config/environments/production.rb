@@ -42,6 +42,19 @@ Jungola::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :authentication => :plain,
+    :domain => 'jungolhq.com',
+    :tls => true,
+    :user_name => 'mailer@jungolhq.com',
+    :password => ENV['MAIL_KEY']
+  }
+
   # Enable threaded mode
   # config.threadsafe!
 

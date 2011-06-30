@@ -31,7 +31,8 @@ class GroupsController < ApplicationController
         flash[:error] = "Error joining #{@group.name}. Please try again."
         redirect_to @group
       end
-    else
+    else #it fell back to GET (no js)
+      flash[:error] = "Please enable javascript to join."
       redirect_to @group
     end
   end

@@ -84,7 +84,7 @@ a.signup_button {
   padding: 20px;
 }
 
-a.create_button, input.join_button {
+a.create_button,a.join_button, input.join_button {
  color:#fff;
  background: #006400;
  font-weight:bold;
