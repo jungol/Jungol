@@ -15,7 +15,8 @@ class PagesController < ApplicationController
       email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
       @recipients.each do |email|
-        if email =~ email_regex
+        email = email.strip
+        if email_regex =~ email
           Notifier.invite(@user, email).deliver
           flash[:success] ||= "<p>Emails delivered:</p><ul>"
           flash[:success] << "<li>"+ email + "</li>"
