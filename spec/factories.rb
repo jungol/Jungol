@@ -9,7 +9,6 @@ end
 Factory.define :group do |group|
   group.name    "Test Group"
   group.about   "About us"
-  group.announcement "Announcement!"
 end
 
 Factory.sequence :email do |n|

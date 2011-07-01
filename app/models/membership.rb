@@ -40,7 +40,7 @@ class Membership < ActiveRecord::Base
       if self.group_id && Group.find(self.group_id).memberships.empty?
         self.role = 1
       else
-        self.role ||= 3
+        self.role ||= 2
       end
     end
 

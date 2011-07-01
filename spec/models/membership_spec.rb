@@ -3,15 +3,14 @@ require 'spec_helper'
 describe Membership do
   before(:each) do
     @user = Factory(:user)
-    @group = Group.create!(
+    @group = @user.created_groups.create!(
       :name => "Test Group",
       :about => "About Us",
-      :announcement => "Announcement"
     )
     @attr = {
       :user_id => @user.id,
       :group_id => @group.id,
-      :role => 3
+      :role => 2
     }
   end
 

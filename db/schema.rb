@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(:version => 20110624164937) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.text     "announcement"
     t.text     "about"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

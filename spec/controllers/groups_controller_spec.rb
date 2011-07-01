@@ -24,7 +24,7 @@ describe GroupsController do
     before(:each) do
       @attr = { :name => "",
                 :about => "",
-                :announcement => "" }
+                }
     end
 
     it "should not create a group" do
@@ -46,7 +46,7 @@ describe GroupsController do
     describe "success" do
 
       before(:each) do
-        @attr = {:name => "Test Group", :about => "A Sweet Group", :announcement => "it worked!"}
+        @attr = {:name => "Test Group", :about => "A Sweet Group"}
       end
 
       it "should create a group" do
@@ -72,10 +72,9 @@ describe GroupsController do
   describe "GET 'edit'" do
     before(:each) do
       @attr = {:name => "Test Group",
-                :about => "about us",
-                :announcement => "NEW"}
+                :about => "about us" }
 
-      @group = @user.groups.create(@attr)
+      @group = @user.created_groups.create(@attr)
     end
 
     it "should redirect a non-creator" do
@@ -100,10 +99,9 @@ describe GroupsController do
   describe "PUT 'update'" do
     before(:each) do
       @attr = {:name => "Test Group",
-                :about => "about us",
-                :announcement => "NEW"}
+                :about => "about us" }
 
-      @group = @user.groups.create(@attr)
+      @group = @user.created_groups.create(@attr)
     end
 
     describe "failure" do

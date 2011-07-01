@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
 
   has_many :groups, :through => :memberships
 
+  #CREATOR
+  has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates(:name, :presence => true,
             :length => {:maximum => 50})

@@ -6,28 +6,27 @@ describe Group do
     @attr = {
       :name => "Test Group",
       :about => "About Us",
-      :announcement => "Announcement"
     }
   end
 
   it "should create a new group given valid attributes" do
-    @user.groups.create!(@attr)
+    @user.created_groups.create!(@attr)
   end
 
   describe "validations" do
 
     it "should require a name" do
-      noname_group = @user.groups.new(@attr.merge(:name => ""))
+      noname_group = @user.created_groups.new(@attr.merge(:name => ""))
       noname_group.should_not be_valid
     end
 
     it "should require an about section" do
-      no_about = @user.groups.new(@attr.merge(:about =>""))
+      no_about = @user.created_groups.new(@attr.merge(:about =>""))
       no_about.should_not be_valid
     end
 
     it "should require a unique name" do
-      Group.create!(@attr)
+      @user.created_groups.create!(@attr)
       dup_group = Group.new(@attr)
       dup_group.should_not be_valid
     end
@@ -35,7 +34,7 @@ describe Group do
 
   describe "field checking" do
     before(:each) do
-      @group = @user.groups.create!(@attr)
+      @group = @user.created_groups.create!(@attr)
     end
 
     it "should have a creator" do

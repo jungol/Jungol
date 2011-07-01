@@ -11,8 +11,10 @@
 
   <strong>Name</strong> <%= @group.name %><br />
   <strong>About</strong> <%= @group.about %><br />
-  <strong>Announcement</strong> <%= @group.announcement %><br />
-  <strong>URL</strong> <%= link_to group_path(@group), @group %><br />
-  <strong>Members</strong> <%= render @group.users %>
+
+  Creator <%= render @group.creator %><br />
+  <strong>URL</strong> <%= link_to group_path(@group), @group %><br /><br />
+  <strong>Users</strong> <%= render @group.users %><br />
+
 
 </div>

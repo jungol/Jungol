@@ -59,12 +59,12 @@ describe "Groups" do
       lambda do
         user = Factory(:user)
         integration_sign_in(user)
-        group = Factory(:group)
+        group = user.created_groups.create(:name => "Test", :about => "something!")
         visit group_path(group)
         click_link "join_button"
         response.should have_selector('div.flash.error', :content => "Please enable javascript")
         response.should render_template('groups/show')
-      end.should_not change(Membership, :count)
+      end.should change(Membership, :count).by(1) #only for the creator, not the join
     end
   end
 end
