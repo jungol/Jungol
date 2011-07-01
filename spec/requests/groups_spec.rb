@@ -55,17 +55,16 @@ describe "Groups" do
       end
     end
 
-    it "should join a group" do
+    it "should redirect because we don't have JS to POST" do
       lambda do
         user = Factory(:user)
         integration_sign_in(user)
         group = Factory(:group)
         visit group_path(group)
-        #click_link "join_button"
-        click_button
-        response.should have_selector('div.flash.success', :content => "joined")
+        click_link "join_button"
+        response.should have_selector('div.flash.error', :content => "Please enable javascript")
         response.should render_template('groups/show')
-      end.should change(Membership, :count).by(1)
+      end.should_not change(Membership, :count)
     end
   end
 end
