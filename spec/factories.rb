@@ -11,6 +11,10 @@ Factory.define :group do |group|
   group.about   "About us"
 end
 
+Factory.sequence :name do |n|
+  "Group #{n}"
+end
+
 Factory.sequence :email do |n|
   "person-#{n}@jungolhq.com"
 end

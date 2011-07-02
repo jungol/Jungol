@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
 
   before_filter :authenticate, :except => [:index, :show]
-  before_filter :priveleged_user, :only => [:edit, :update]
+  before_filter :require_leader, :only => [:edit, :update, :link]
 
   def index
     @title = "All Groups"
@@ -15,10 +15,12 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @member = @group.users.include?(current_user)
+    @member = @group.member?(current_user)
+    @leader = @group.leader?(current_user)
     @title = @group.name
   end
 
+  #ADD MEMBER TO GROUP
   def join
     @member = true
     @group = Group.find(params[:id])
@@ -34,6 +36,25 @@ class GroupsController < ApplicationController
     else #it fell back to GET (no js)
       flash[:error] = "Please enable javascript to join."
       redirect_to @group
+    end
+  end
+
+  #ADD GROUP TO GROUPS
+  def link
+    @title = "Connect to Group"
+    @group1 = Group.find(params[:id])
+    if request.get?
+      @groups = Group.find(:all, :conditions => ['id not in (?) or (?)', @group1, @group1.groups])
+      render :link
+    elsif request.post?
+      @group2 = Group.find(params[:group][:id])
+      @group1.groups << @group2
+      @group2.groups << @group1
+      flash[:success] = "Congrats! #{@group1.name} is now connected with #{@group2.name}."
+      redirect_to @group1
+    else
+      flash[:error] = "Error connecting with #{@group2.name}. Please try again."
+      redirect_to @group1
     end
   end
 
@@ -67,10 +88,10 @@ class GroupsController < ApplicationController
       deny_access unless signed_in?
     end
 
-    def priveleged_user
+    def require_leader
       @group = Group.find(params[:id])
-      @user = User.find(@group.memberships.find_by_role(1).user_id)
-      redirect_to(root_path) unless current_user?(@user)
+      flash[:error] = "You must be a leader of #{@group.name} to do that."
+      redirect_to(group_path) unless @group.leader?(current_user)
     end
 
 end

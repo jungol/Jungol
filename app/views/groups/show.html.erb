@@ -1,7 +1,7 @@
 <%= link_to("Join Group", join_path(@group),
             :method => :post,
             :class => 'join_button round',
-            :id => 'join_button') %>
+            :id => 'join_button') unless @member %>
 
 <%#= button_to "Join Group", {:action => "join", :id => @group.id}, :class => "join_button round"%>
 <div class='group_profile'>
@@ -12,9 +12,17 @@
   <strong>Name</strong> <%= @group.name %><br />
   <strong>About</strong> <%= @group.about %><br />
 
-  Creator <%= render @group.creator %><br />
+  Creator: <%= @group.creator.name %><br />
   <strong>URL</strong> <%= link_to group_path(@group), @group %><br /><br />
-  <strong>Users</strong> <%= render @group.users %><br />
 
+  <strong>Leaders</strong> <%= render @group.leaders %><br />
+  <strong>Users</strong> <%= render @group.non_leaders %><br /><br />
+
+  <strong>Connected Groups</strong> <%= render @group.groups %><br />
+
+  <% if @leader %>
+    <%= "You're a leader! Connect!" %><br />
+    <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
+  <% end %>
 
 </div>

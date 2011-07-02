@@ -12,6 +12,7 @@ describe PagesController do
         response.should redirect_to signin_path
       end
     end
+
     describe "success" do
       before(:each) do
         test_sign_in(@user)
