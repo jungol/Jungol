@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701225058) do
+ActiveRecord::Schema.define(:version => 20110706212751) do
 
   create_table "group_groups", :id => false, :force => true do |t|
     t.integer "group_id"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(:version => 20110701225058) do
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
   add_index "memberships", ["role"], :name => "index_memberships_on_role"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
+  create_table "todos", :force => true do |t|
+    t.integer  "creator_id"
+    t.integer  "group_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "todos", ["creator_id"], :name => "index_todos_on_creator_id"
+  add_index "todos", ["group_id"], :name => "index_todos_on_group_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
