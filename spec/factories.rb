@@ -11,6 +11,10 @@ Factory.define :group do |group|
   group.about   "About us"
 end
 
+Factory.define :todo do |todo|
+  todo.title "Test TODO"
+end
+
 Factory.sequence :name do |n|
   "Group #{n}"
 end

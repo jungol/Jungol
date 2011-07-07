@@ -1,2 +1,7 @@
-<h1>Todos#new</h1>
-<p>Find me in app/views/todos/new.html.erb</p>
+<h1>Create a Todo List</h1>
+<%= form_for([@group, @todo]) do |f| %>
+  <%= render 'fields', :f => f %>
+  <div class = 'actions'>
+    <%= f.submit "Create List" %>
+  </div>
+<% end %>

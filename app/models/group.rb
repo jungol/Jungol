@@ -24,7 +24,7 @@ class Group < ActiveRecord::Base
   validates_acceptance_of :agreement
 
 
-  after_create :add_creator
+  after_create :add_creator_as_member
 
   #AFFILIATES
   has_and_belongs_to_many :groups, :join_table => "group_groups", :association_foreign_key => :group2_id
@@ -60,7 +60,7 @@ class Group < ActiveRecord::Base
   end
 
 
-  def add_creator
+  def add_creator_as_member
     self.users << creator
   end
 end

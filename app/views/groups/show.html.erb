@@ -20,6 +20,9 @@
 
   <strong>Connected Groups</strong> <%= render @group.groups %><br />
 
+
+  <strong>Todo Lists</strong> <%= render @group.todos %><br />
+
   <% if @leader %>
     <%= "You're a leader! Connect!" %><br />
     <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
