@@ -28,10 +28,10 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 #add rubyracer as js engine for heroku
-#gem "therubyracer", :git => "https://github.com/cowboyd/therubyracer.git", :branch => "locktight"
 
 group :production do
-    gem 'therubyracer-heroku', '0.8.1.pre3'
+#   gem 'therubyracer-heroku', '0.8.1.pre3'
+    gem "therubyracer", :git => "https://github.com/cowboyd/therubyracer.git", :branch => "locktight"
 end
 
 group :development do
