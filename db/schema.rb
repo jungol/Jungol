@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20110707045835) do
     t.string   "description"
     t.integer  "todo_id"
     t.integer  "status"
-    t.integer  "order"
+    t.integer  "list_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

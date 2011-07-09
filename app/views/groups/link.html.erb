@@ -1,11 +1,11 @@
 <div class='group_profile'>
   <h1>
-    <%= @group1.name %>
+    <%= @group.name %>
   </h1>
 
   <h2>Please select a group to connect with:</h2>
 
-  <%= form_tag(link_path(@group1), :method => :post) do %>
+  <%= form_tag(link_path(@group), :method => :post) do %>
     <div class='fields'>
       <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
     </div>

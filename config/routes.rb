@@ -1,7 +1,5 @@
 Jungola::Application.routes.draw do
 
-  get "items/new"
-
   match 'groups/:id/join', :controller => :groups, :action => :join, :via => [:post, :get], :as => "join"
 
   match 'groups/:id/link', :controller => :groups, :action => :link, :via => [:post, :get], :as => "link"
@@ -9,7 +7,7 @@ Jungola::Application.routes.draw do
   resources :users
   resources :groups do
     resources :todos do
-      resources :items
+      resources :todo_items
     end
   end
 

@@ -4,7 +4,7 @@ class CreateTodoItems < ActiveRecord::Migration
       t.string :description
       t.integer :todo_id
       t.integer :status
-      t.integer :order
+      t.integer :list_order
 
       t.timestamps
     end

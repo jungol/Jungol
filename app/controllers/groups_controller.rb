@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
 
+  before_filter :find_group, :except => [:index, :new, :create]
   before_filter :authenticate, :except => [:index, :show]
   before_filter :require_leader, :only => [:edit, :update, :link]
 
@@ -14,7 +15,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
     @member = @group.member?(current_user)
     @leader = @group.leader?(current_user)
     @title = @group.name
@@ -23,7 +23,6 @@ class GroupsController < ApplicationController
   #ADD MEMBER TO GROUP
   def join
     @member = true
-    @group = Group.find(params[:id])
     if request.post?
       if !@group.users.include?(current_user)
         @group.users << current_user
@@ -42,19 +41,18 @@ class GroupsController < ApplicationController
   #ADD GROUP TO GROUPS
   def link
     @title = "Connect to Group"
-    @group1 = Group.find(params[:id])
     if request.get?
-      @groups = Group.find(:all, :conditions => ['id not in (?) or (?)', @group1, @group1.groups])
+      @groups = Group.find(:all, :conditions => ['id not in (?) or (?)', @group, @group.groups])
       render :link
     elsif request.post?
       @group2 = Group.find(params[:group][:id])
-      @group1.groups << @group2
-      @group2.groups << @group1
-      flash[:success] = "Congrats! #{@group1.name} is now connected with #{@group2.name}."
-      redirect_to @group1
+      @group.groups << @group2
+      @group2.groups << @group
+      flash[:success] = "Congrats! #{@group.name} is now connected with #{@group2.name}."
+      redirect_to @group
     else
       flash[:error] = "Error connecting with #{@group2.name}. Please try again."
-      redirect_to @group1
+      redirect_to @group
     end
   end
 
@@ -83,15 +81,8 @@ class GroupsController < ApplicationController
     end
   end
 
-  private
-    def authenticate
-      deny_access unless signed_in?
-    end
-
-    def require_leader
-      @group = Group.find(params[:id])
-      flash[:error] = "You must be a leader of #{@group.name} to do that."
-      redirect_to(group_path) unless @group.leader?(current_user)
-    end
+  def find_group
+    @group = Group.find(params[:id])
+  end
 
 end
