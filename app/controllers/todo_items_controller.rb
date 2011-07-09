@@ -21,12 +21,22 @@ class TodoItemsController < ApplicationController
 
   def update
     @item = TodoItem.find(params[:id])
-    if(@item.update_attributes(params[:todo_item]))
-      flash[:success] = "Item updated."
-    else
-      flash[:error] = "Error updating item. Please try again."
+    if params["description"]
+      if(@item.update_attributes(:description => params["description"]))
+        flash[:success] = "Item updated."
+        render :text => params["description"]
+      else
+        flash[:error] = "Error updating item. Please try again."
+      end
+    elsif params["status"]
+      if(@item.update_attributes(:status => params["status"]))
+        flash[:success] = "Item updated."
+        render :text => params["status"]
+      else
+        flash[:error] = "Error updating item. Please try again."
+      end
     end
-    redirect_to group_todo_path(@group, @todo)
+    #redirect_to group_todo_path(@group, @todo)
   end
 
 

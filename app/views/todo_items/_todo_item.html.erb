@@ -1,5 +1,5 @@
 <li>
-  <%= todo_item.list_order %>)
-  <%= todo_item.description %><br />
+  <%= todo_item.list_order %> )
+  <div class='edit_todo_item' id="<%= "/groups/#{todo_item.todo.group.id.to_s}/todos/#{todo_item.todo.id.to_s}/todo_items/#{todo_item.id.to_s}" %>"><%= todo_item.description %></div>
   status: <%= todo_item.status %>
 </li>
