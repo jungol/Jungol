@@ -1,5 +1,6 @@
+<% up_path = group_todo_todo_item_path(@group.id, @todo.id, todo_item) %>
 <li>
-  <%= todo_item.list_order %> )
-  <div class='edit_todo_item' id="<%= "/groups/#{todo_item.todo.group.id.to_s}/todos/#{todo_item.todo.id.to_s}/todo_items/#{todo_item.id.to_s}" %>"><%= todo_item.description %></div>
-  status: <%= todo_item.status %>
+  <%= todo_item.list_order %>)
+  <span class='edit_todo_desc' id="<%= up_path %>"><%= todo_item.description %></span><br />
+  Status: <span class='edit_todo_status' id="<%= up_path %>"><%= todo_item.status %></span>
 </li>

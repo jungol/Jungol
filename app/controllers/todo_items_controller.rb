@@ -51,5 +51,4 @@ class TodoItemsController < ApplicationController
       @group = Group.find(params[:group_id])
     end
 
-
 end
