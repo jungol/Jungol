@@ -11,5 +11,5 @@ $ ->
   $('.edit_todo_item').each ->
       $(this).editable "#{$(this).attr('id')}",
         method: "PUT"
-        name: 'description'
+        name: 'todo_item[description]'
 

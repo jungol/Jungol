@@ -87,7 +87,7 @@ describe TodoItemsController do
 
     describe "success" do
       it "should update an item's description" do
-        @attr = @attr.merge( :descrption => "new description")
+        @attr = @attr.merge( :description => "new description")
         put :update, :group_id => @group, :todo_id => @todo, :id => @item, :todo_item => @attr
         @item.reload
         @item.description.should == @attr[:description]
