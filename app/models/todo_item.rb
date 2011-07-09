@@ -15,7 +15,8 @@
 class TodoItem < ActiveRecord::Base
 
   attr_accessor :todo
-  attr_accessible :description, :status, :list_order
+  attr_accessible :description, :status
+  attr_protected :list_order
 
   belongs_to :todo
 
