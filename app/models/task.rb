@@ -1,18 +1,18 @@
 # == Schema Information
-# Schema version: 20110707045835
+# Schema version: 20110710015518
 #
-# Table name: todo_items
+# Table name: tasks
 #
 #  id          :integer         not null, primary key
 #  description :string(255)
-#  todo_id     :integer
+#  task_id     :integer
 #  status      :integer
 #  list_order  :integer
 #  created_at  :datetime
 #  updated_at  :datetime
 #
 
-class TodoItem < ActiveRecord::Base
+class Task < ActiveRecord::Base
 
   attr_accessor :todo
   attr_accessible :description, :status
@@ -36,7 +36,8 @@ class TodoItem < ActiveRecord::Base
     end
 
     def add_order
-      self.list_order ||= self.todo.items.count + 1
+      self.list_order ||= self.todo.tasks.count + 1
     end
+
 
 end

@@ -1,0 +1,7 @@
+<h1>Add a Task</h1>
+<%= form_for([@group, @todo, @task]) do |f| %>
+  <%= render 'fields', :f => f %>
+  <div class = 'actions'>
+    <%= f.submit "Add Task" %>
+  </div>
+<% end %>

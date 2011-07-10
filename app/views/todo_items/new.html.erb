@@ -1,7 +1,0 @@
-<h1>Add a Todo Item</h1>
-<%= form_for([@group, @todo, @item]) do |f| %>
-  <%= render 'fields', :f => f %>
-  <div class = 'actions'>
-    <%= f.submit "Add Item" %>
-  </div>
-<% end %>

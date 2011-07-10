@@ -17,7 +17,7 @@ class Todo < ActiveRecord::Base
   belongs_to :group
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
 
-  has_many :items, :class_name => 'TodoItem', :dependent => :destroy, :order => 'list_order ASC'
+  has_many :tasks, :dependent => :destroy, :order => 'list_order ASC'
 
   validates( :title, :presence => true,
                       :length => {:maximum => 60},

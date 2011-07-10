@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TodoItemsController do
+describe TasksController do
 
   render_views
 
@@ -28,17 +28,17 @@ describe TodoItemsController do
 
     it "should not create an invalid Item" do
       lambda do
-        post :create, :group_id => @group, :todo_id => @todo, :todo_item => @attr
-      end.should_not change(TodoItem, :count)
+        post :create, :group_id => @group, :todo_id => @todo, :task => @attr
+      end.should_not change(Task, :count)
     end
 
     it "if invalid should redirect to the Todo page" do
-      post :create, :group_id => @group, :todo_id => @todo, :todo_item => @attr
+      post :create, :group_id => @group, :todo_id => @todo, :task => @attr
       response.should redirect_to([@group, @todo])
     end
 
     it "if invalid should give error message" do
-      post :create, :group_id => @group, :todo_id => @todo, :todo_item => @attr
+      post :create, :group_id => @group, :todo_id => @todo, :task => @attr
       flash[:error].should =~ /error adding/i
     end
 
@@ -49,17 +49,17 @@ describe TodoItemsController do
 
       it "should create a new item" do
         lambda do
-          post :create, :group_id => @group, :todo_id => @todo, :todo_item => @attr
-        end.should change(TodoItem, :count).by(1)
+          post :create, :group_id => @group, :todo_id => @todo, :task => @attr
+        end.should change(Task, :count).by(1)
       end
 
       it "should redirect to the todo show page" do
-        post :create, :group_id => @group, :todo_id => @todo, :todo_item => @attr
+        post :create, :group_id => @group, :todo_id => @todo, :task => @attr
         response.should redirect_to([@group, @todo])
       end
 
       it "should display a confirmation message" do
-        post :create, :group_id => @group, :todo_id => @todo, :todo_item => @attr
+        post :create, :group_id => @group, :todo_id => @todo, :task => @attr
         flash[:success].should =~ /added/i
       end
 
@@ -70,7 +70,7 @@ describe TodoItemsController do
     before(:each) do
       @attr = { :description => "description",
                 :status => 2}
-      @item = @todo.items.create(@attr)
+      @item = @todo.tasks.create(@attr)
     end
 
     describe "failure" do
@@ -80,7 +80,7 @@ describe TodoItemsController do
 
       it "should redirect a non-member" do
         test_sign_in(Factory(:user, :email => Factory.next(:email)))
-        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :todo_item => @attr
+        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         response.should redirect_to(@group)
       end
     end
@@ -88,27 +88,27 @@ describe TodoItemsController do
     describe "success" do
       it "should update an item's description" do
         @attr = @attr.merge( :description => "new description")
-        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :todo_item => @attr
+        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         @item.reload
         @item.description.should == @attr[:description]
       end
 
       it "should update an item's status" do
         @attr = @attr.merge( :status => 1)
-        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :todo_item => @attr
+        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         @item.reload
         @item.status.should == @attr[:status]
       end
 
       it "should NOT update an item's order" do
         @attr = @attr.merge( :list_order => 57)
-        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :todo_item => @attr
+        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         @item.reload
         @item.list_order.should_not == @attr[:list_order]
       end
 
       it "should have a confirmation message" do
-        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :todo_item => @attr
+        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         flash[:success].should =~ /updated/i
       end
     end

@@ -7,7 +7,7 @@ Jungola::Application.routes.draw do
   resources :users
   resources :groups do
     resources :todos do
-      resources :todo_items
+      resources :tasks
     end
   end
 
