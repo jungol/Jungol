@@ -1,6 +1,6 @@
 <% up_path = group_todo_todo_item_path(@group.id, @todo.id, todo_item) %>
 <li>
   <%= todo_item.list_order %>)
-  <span class='edit_todo_desc' id="<%= up_path %>"><%= todo_item.description %></span><br />
+  <span class='edit_todo_desc' data-path="<%= up_path %>" id="<%= up_path %>"><%= todo_item.description %></span><br />
   Status: <span class='edit_todo_status' id="<%= up_path %>"><%= todo_item.status %></span>
 </li>
