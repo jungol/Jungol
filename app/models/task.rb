@@ -5,7 +5,7 @@
 #
 #  id          :integer         not null, primary key
 #  description :string(255)
-#  task_id     :integer
+#  todo_id     :integer
 #  status      :integer
 #  list_order  :integer
 #  created_at  :datetime
@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
   attr_accessible :description, :status
   attr_protected :list_order
 
+  @@count = 0
   belongs_to :todo
 
   validates( :description, :presence => true,
@@ -36,7 +37,13 @@ class Task < ActiveRecord::Base
     end
 
     def add_order
-      self.list_order ||= self.todo.tasks.count + 1
+      if self.todo
+        @@count = 0
+        self.list_order ||= self.todo.tasks.count + 1
+      else
+        @@count = @@count + 1
+        self.list_order = @@count
+      end
     end
 
 

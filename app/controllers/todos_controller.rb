@@ -7,6 +7,7 @@ class TodosController < ApplicationController
   def new
     @title = "Create a Todo List"
     @todo = Todo.new
+    3.times{ @todo.tasks.build }
   end
 
   def create

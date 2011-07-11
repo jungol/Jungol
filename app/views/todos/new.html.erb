@@ -1,7 +1,12 @@
 <h1>Create a Todo List</h1>
-<%= form_for([@group, @todo]) do |f| %>
-  <%= render 'fields', :f => f %>
+<%= form_for [@group, @todo] do |todo_f| %>
+  <%= render 'fields', :f => todo_f %>
+
+  <%= todo_f.fields_for :tasks, :tasks do |task_f| %>
+    <%= render "task_fields", :f => task_f %>
+  <% end %>
+  <p><%= link_to_add_fields "Add Task", todo_f, :tasks  %></p>
   <div class = 'actions'>
-    <%= f.submit "Create List" %>
+    <%= todo_f.submit "Create List" %>
   </div>
 <% end %>

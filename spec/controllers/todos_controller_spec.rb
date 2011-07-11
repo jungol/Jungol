@@ -30,6 +30,19 @@ describe TodosController do
         flash[:error].should =~ /member/
       end
     end
-  end
 
+    describe 'fields' do
+     it "should have a title field" do
+       get :new, :group_id => @group
+       response.should have_selector('div', :class => 'field')
+     end
+
+     it "should have tasks auto-built" do
+       get :new, :group_id => @group
+       response.should have_selector('label', :content => 'Task')
+     end
+
+    end
+
+  end
 end
