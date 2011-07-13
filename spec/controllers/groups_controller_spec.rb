@@ -2,47 +2,45 @@ require 'spec_helper'
 
 describe GroupsController do
 
-  render_views
-
-
   describe "GET 'new'" do
     before(:each) do
-      @user = test_sign_in(Factory(:user))
+    controller.class.skip_before_filter :authenticate
+    @user = Factory(:user)
     end
 
     it "should be successful" do
-      get 'new'
+      get :new
       response.should be_success
     end
 
-    it "should have the right title" do
+    it "should render new template" do
       get :new
-      response.should have_selector("title", :content => "Create Group")
+      response.should render_template :new
     end
+
   end
 
   describe "POST 'create'" do
     before(:each) do
       @user = test_sign_in(Factory(:user))
       @attr = { :name => "",
-                :about => "",
-                }
+                :about => "" }
     end
 
-    it "should not create a group" do
+    it "should return 200" do
+      post :create, :group => @attr
+      response.should be_success
+    end
+
+    it "should not create a blank group" do
       lambda do
-        post :create, :user => @attr
+        post :create, :group => @attr
       end.should_not change(Group, :count)
     end
 
-    it "should have the right title" do
-      post :create, :user => @attr
-      response.should have_selector("title", :content => "Create Group")
-    end
-
     it "should render the 'new' page" do
-      post :create, :user => @attr
-      response.should render_template('new')
+      post :create, :group => @attr
+      response.should render_template :new
     end
 
     describe "success" do
@@ -92,9 +90,9 @@ describe GroupsController do
       response.should be_success
     end
 
-    it "should have the right title" do
+    it "should render the template" do
       get :edit, :id => @group
-      response.should have_selector( "title", :content => "Edit Group")
+      response.should render_template :edit
     end
 
   end
@@ -121,13 +119,9 @@ describe GroupsController do
 
       it "should render the 'edit' page" do
         put :update, :id => @group, :group => @attr
-        response.should render_template(:edit)
+        response.should render_template :edit
       end
 
-      it "should render the 'edit' page" do
-        put :update, :id => @group, :group => @attr
-        response.should have_selector("title", :content => "Edit Group")
-      end
     end
 
     describe "success" do
@@ -167,20 +161,13 @@ describe GroupsController do
         response.should render_template(:link)
       end
 
-      it "should have the right title" do
-        test_sign_in(@user)
-        get :link, :id => @group
-        response.should have_selector("title", :content => "Connect to Group")
-      end
-
       it "should redirect if not signed_in" do
         get :link, :id => @group
-        response.should redirect_to(signin_path)
+        response.should redirect_to(@group)
       end
 
       it "should redirect if user is not a group leader" do
-        @user = Factory(:user, :email => Factory.next(:email))
-        test_sign_in(@user)
+        @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
         get :link, :id => @group
         response.should redirect_to(@group)
       end
@@ -194,9 +181,9 @@ describe GroupsController do
 
       describe "failure" do
 
-        it "should redirect if not signed_in" do
+        it "should redirect to group page if not signed_in" do
           post :link, :id => @group, :group => {:id => @group2.id}
-          response.should redirect_to(signin_path)
+          response.should redirect_to(@group)
         end
 
         it "should redirect if user is not a group leader" do

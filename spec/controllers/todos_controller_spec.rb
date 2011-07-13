@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe TodosController do
 
-  render_views
-
   before(:each) do
     @attr = { :name => "Test Group",
               :about => "We're a Group!"}
@@ -19,7 +17,7 @@ describe TodosController do
 
     it "should have the right title" do
       get :new, :group_id => @group
-      response.should have_selector(:title, :content => "Create a Todo List")
+      response.should render_template :new
     end
 
     describe 'permissions' do
@@ -31,18 +29,33 @@ describe TodosController do
       end
     end
 
-    describe 'fields' do
-     it "should have a title field" do
-       get :new, :group_id => @group
-       response.should have_selector('div', :class => 'field')
-     end
+  end
 
-     it "should have tasks auto-built" do
-       get :new, :group_id => @group
-       response.should have_selector('label', :content => 'Task')
-     end
+  describe "POST 'create'" do
+    before(:each) do
+      @attr = {:title => "A Test Todo"}
+    end
 
+    it "should add a Todo to DB" do
+      lambda do
+        post :create, :group_id => @group, :todo => @attr
+      end.should change(Todo, :count)
+    end
+
+    it "should have a success message" do
+        post :create, :group_id => @group, :todo => @attr
+        flash[:success].should == "Todo Created."
+    end
+
+    it "should add tasks as well" do
+      @task_attr = {500 => {:description => "something"}}
+      lambda do
+        post :create,
+          :group_id => @group,
+          :todo => @attr.merge(:tasks_attributes => @task_attr)
+      end.should change(Task, :count).by(1)
     end
 
   end
+
 end

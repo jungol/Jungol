@@ -8,8 +8,8 @@ describe "FriendlyForwardings" do
     #should redirect to signin page
     fill_in :email,     :with => user.email
     fill_in :password,  :with => user.password
-    click_button
+    click_button :submit
     #should redirect to users/edit
-    response.should render_template('users/edit')
+   page.should have_selector 'title', :content => 'Edit'
   end
 end

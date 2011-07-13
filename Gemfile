@@ -43,6 +43,9 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'webrat'
+#  gem 'webrat'
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'launchy'
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
 end

@@ -2,38 +2,34 @@ require 'spec_helper'
 describe "Layout links" do
 
   it "should have a home page at '/'" do
-    get '/'
-    response.should have_selector('title', :content => "Home")
+    visit root_path
+    page.should have_selector('title', :content => "Home")
   end
 
   describe "when not signed in" do
     it "should have a signin link" do
       visit root_path
-      response.should have_selector("a", :href => signin_path,
+      page.should have_selector("a", :href => signin_path,
                                     :content => "Sign in")
     end
   end
 
   describe "when signed in" do
     before(:each) do
-      @user = Factory(:user)
-      visit signin_path
-      fill_in :email,     :with => @user.email
-      fill_in :password,  :with => @user.password
-      click_button
+      @user = integration_sign_in(Factory(:user))
     end
 
     it "should have a signout link" do
       visit root_path
-      response.should have_selector("a", :href => signout_path,
+      page.should have_selector("a", :href => signout_path,
                                     :content => "Sign out")
     end
-    
+
     it "should have a profile link" do
       visit root_path
-       response.should have_selector("a", :href => user_path(@user), 
+       page.should have_selector("a", :href => '/users/#{@user.id}',
                                      :content => "Profile")
     end
-    
+
   end
 end

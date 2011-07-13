@@ -1,5 +1,7 @@
 Jungola::Application.routes.draw do
 
+  get "test/new"
+
   match 'groups/:id/join', :controller => :groups, :action => :join, :via => [:post, :get], :as => "join"
 
   match 'groups/:id/link', :controller => :groups, :action => :link, :via => [:post, :get], :as => "link"

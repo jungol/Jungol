@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/jnicklas/capybara.git
+  revision: 6a17be47958efd40fada26efe92e43b3af468db9
+  specs:
+    capybara (1.0.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      selenium-webdriver (~> 2.0.0)
+      xpath (~> 0.1.4)
+
+GIT
   remote: https://github.com/cowboyd/therubyracer.git
   revision: 0d3bf45af431138ae7a09c17e9cc63a5fc554733
   branch: locktight
@@ -51,11 +63,15 @@ GEM
     arel (2.1.1)
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
+    childprocess (0.1.9)
+      ffi (~> 1.0.6)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.1.1)
     columnize (0.3.4)
+    configuration (1.3.1)
+    database_cleaner (0.6.7)
     diff-lcs (1.1.2)
     erubis (2.7.0)
     execjs (1.2.0)
@@ -66,12 +82,17 @@ GEM
       railties (>= 3.0.0)
     faker (0.9.5)
       i18n (~> 0.4)
+    ffi (1.0.9)
     gravatar_image_tag (1.0.0)
     hike (1.0.0)
     i18n (0.6.0)
     jquery-rails (1.0.9)
       railties (~> 3.0)
       thor (~> 0.14)
+    json_pure (1.5.3)
+    launchy (0.4.0)
+      configuration (>= 0.0.5)
+      rake (>= 0.8.1)
     libv8 (3.3.10.2)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
@@ -81,7 +102,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     multi_json (1.0.3)
-    nokogiri (1.4.4)
+    nokogiri (1.5.0)
     pg (0.11.0)
     polyglot (0.3.1)
     rack (1.3.0)
@@ -133,12 +154,18 @@ GEM
       ruby-debug-base19 (>= 0.11.19)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
+    rubyzip (0.9.4)
     sass (3.1.2)
     sass-rails (3.1.0.rc.2)
       actionpack (~> 3.1.0.rc1)
       railties (~> 3.1.0.rc1)
       sass (>= 3.1.2)
       sprockets (>= 2.0.0.beta.9)
+    selenium-webdriver (2.0.1)
+      childprocess (>= 0.1.9)
+      ffi (>= 1.0.7)
+      json_pure
+      rubyzip
     sprockets (2.0.0.beta.10)
       hike (~> 1.0)
       rack (~> 1.0)
@@ -151,21 +178,22 @@ GEM
     uglifier (1.0.0)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    webrat (0.7.3)
-      nokogiri (>= 1.2.0)
-      rack (>= 1.0)
-      rack-test (>= 0.5.3)
+    xpath (0.1.4)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   annotate-models
+  capybara!
   coffee-script
+  database_cleaner
   factory_girl_rails
   faker
   gravatar_image_tag
   jquery-rails
+  launchy
   pg
   rails (= 3.1.0.rc4)
   rake (= 0.8.7)
@@ -175,5 +203,4 @@ DEPENDENCIES
   sass-rails (~> 3.1.0.rc)
   therubyracer!
   uglifier
-  webrat
   will_paginate!

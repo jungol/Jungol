@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe UsersController do
 
-  render_views
-
   describe "GET 'index'" do
     describe "for non-signed-in users" do
       it "should deny access" do
@@ -29,60 +27,40 @@ describe UsersController do
         response.should be_success
       end
 
-      it "should have the right title" do
+      it "should render the template" do
         get :index
-        response.should have_selector("title", :content => "All users")
+        response.should render_template :index
       end
 
-      it "should have an element for each user" do
-        get :index
-        @users[0..2].each do |user|
-          response.should have_selector("li", :content => user.name)
-        end
-      end
-
-      it "should paginate users" do
-        get :index
-        response.should have_selector("div.pagination")
-        response.should have_selector("span.disabled", :content => "Previous")
-        response.should have_selector("a", :href => "/users?escape=false&page=2", :content => "2")
-        response.should have_selector("a", :href => "/users?escape=false&page=2", :content => "Next")
-      end
+      #      it "should have an element for each user" do
+      #        get :index
+      #        @users[0..2].each do |user|
+      #          response.should have_selector("li", :content => user.name)
+      #        end
+      #      end
+      #
+      #      it "should paginate users" do
+      #        get :index
+      #        response.should have_selector("div.pagination")
+      #        response.should have_selector("span.disabled", :content => "Previous")
+      #        response.should have_selector("a", :href => "/users?escape=false&page=2", :content => "2")
+      #        response.should have_selector("a", :href => "/users?escape=false&page=2", :content => "Next")
+      #      end
 
     end
   end
-  
+
   describe "GET 'new'" do
     it "should be successful" do
       get :new
       response.should be_success
     end
 
-    it "should have the right title" do 
-        get :new
-        response.should have_selector("title", :content => "Sign up")
-    end
-
-    it "should have a name field" do
+    it "should render the template" do
       get :new
-      response.should have_selector("input[id='user_name'][type='text']")
+      response.should render_template :new
     end
-    
-    it "should have a email field" do
-      get :new
-      response.should have_selector("input[id='user_email'][type='text']")
-    end
-     
-    it "should have a password field" do
-      get :new
-      response.should have_selector("input[id='user_password'][type='password']")
-    end
-
-    it "should have a password confirmation field" do
-      get :new
-      response.should have_selector("input[id='user_password_confirmation'][type='password']")
-    end
- end
+  end
 
   describe "GET 'show'" do
     before(:each) do
@@ -98,20 +76,10 @@ describe UsersController do
       get :show, :id => @user
       assigns(:user).should == @user
     end
-    
-    it "should have the right title" do
-      get :show, :id => @user
-      response.should have_selector("title", :content => @user.name)
-    end
 
-    it "should include the user's name" do
+    it "should render the show template" do
       get :show, :id => @user
-      response.should have_selector("h1", :content => @user.name)
-    end
-
-    it "should have a profile image" do
-      get :show, :id => @user
-      response.should have_selector("h1>img", :class => "gravatar")
+      response.should render_template :show
     end
 
   end
@@ -120,7 +88,7 @@ describe UsersController do
     describe "failure" do
       before(:each) do
         @attr = { :name => "", :email => "", :password => "",
-          :password_confirmation => "" }
+                  :password_confirmation => "" }
       end
 
       it "shouldn't create a user" do
@@ -129,21 +97,17 @@ describe UsersController do
         end.should_not change(User, :count)
       end
 
-      it "should have the right title" do
+      it "should render the signup template" do
         post :create, :user => @attr
-        response.should have_selector("title", :content => "Sign up")
+        response.should render_template :new
       end
 
-      it "should render the 'new' page" do
-        post :create, :user => @attr
-        response.should render_template('new')
-      end
     end
 
     describe "success" do
       before(:each) do
         @attr = { :name => "New User", :email => "user@example.com",
-          :password => "foobar", :password_confirmation => "foobar"}
+                  :password => "foobar", :password_confirmation => "foobar"}
       end
 
       it "should create a user" do
@@ -172,27 +136,20 @@ describe UsersController do
   end #POST create
 
   describe "GET 'edit'" do
-  
+
     before(:each) do
       @user = Factory(:user)
       test_sign_in(@user)
     end
- 
+
     it "should be successful" do
       get :edit, :id => @user
       response.should be_success
     end
- 
-    it "should have the right title" do
+
+    it "should render the edit template" do
       get :edit, :id => @user
-      response.should have_selector( "title",  :content => "Edit user" )
-    end
- 
-    it "should have a link to change the Gravatar" do
-      get :edit, :id => @user
-      gravatar_url = "http://en.gravatar.com/emails"
-      response.should have_selector( "a", :href => gravatar_url,
-                                    :content => "change" )
+      response.should render_template :edit
     end
   end
 
@@ -205,18 +162,14 @@ describe UsersController do
     describe "failure" do
       before(:each) do
         @attr = { :email => "", :name => "", :password => "",
-          :password_confirmation => "" }
+                  :password_confirmation => "" }
       end
 
       it "should render the 'edit' page" do
         put :update, :id => @user, :user => @attr
-        response.should render_template('edit')
+        response.should render_template :edit
       end
 
-      it "should have the right title" do
-        put :update, :id => @user, :user => @attr
-        response.should have_selector("title", :content => "Edit user")
-      end
     end
 
     describe "success" do
@@ -250,7 +203,7 @@ describe UsersController do
     end
 
     describe "for non-signed-in users" do
-      
+
       it "should deny access to 'edit'" do
         get :edit, :id => @user
         response.should redirect_to(signin_path)

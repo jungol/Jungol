@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe TasksController do
 
-  render_views
 
   before(:each) do
     @attr = { :name => "Test Group",
