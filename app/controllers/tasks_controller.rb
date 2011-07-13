@@ -12,9 +12,9 @@ class TasksController < ApplicationController
   def create
     @task = @todo.tasks.build(params[:task])
     if @task.save
-      flash[:success] = "Task added."
+      flash.now[:success] = "Task added."
     elsif
-      flash[:error] = "Error adding task. Please try again."
+      flash.now[:error] = "Error adding task. Please try again."
     end
     redirect_to group_todo_path(@group, @todo)
   end
@@ -23,18 +23,18 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if params['task']['description']
       if(@task.update_attributes(:description => params['task']['description']))
-        flash[:success] = "Task updated."
+        flash.now[:success] = "Task updated."
         #render :text => params['task']['description']
       else
-        flash[:error] = "Error updating task. Please try again."
+        flash.now[:error] = "Error updating task. Please try again."
       end
     end
     if params['task']['status']
       if(@task.update_attributes(:status => params['task']['status']))
-        flash[:success] = "Task updated."
+        flash.now[:success] = "Task updated."
         #render :text => params['task']['status']
       else
-        flash[:error] = "Error updating task. Please try again."
+        flash.now[:error] = "Error updating task. Please try again."
       end
     end
     render :text => params['task']['status'] || params['task']['description']

@@ -22,6 +22,7 @@
 
 
   <strong>Todo Lists</strong> <%= render @group.todos %><br />
+  <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br />
 
   <% if @leader %>
     <%= "You're a leader! Connect!" %><br />
