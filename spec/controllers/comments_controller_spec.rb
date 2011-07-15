@@ -36,6 +36,22 @@ describe CommentsController do
   end
 
   describe "POST create" do
+    describe "permissions" do
+      it "should not create a comment if not logged in" do
+        controller.current_user = nil
+        expect {
+          post :create, :comment => valid_attributes, :todo => @todo, :group => @group
+        }.to_not change(Comment, :count).by(1)
+      end
+
+      it "should not create a comment if not a member" do
+        @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        expect {
+          post :create, :comment => valid_attributes, :todo => @todo, :group => @group
+        }.to_not change(Comment, :count).by(1)
+      end
+    end
+
     describe "with valid params" do
       it "creates a new Comment" do
         expect {
@@ -73,7 +89,23 @@ describe CommentsController do
   end
 
   describe "PUT update" do
-    describe "with valid params" do
+    describe "permissions" do
+      it "should not update a comment if not logged in" do
+        comment = @user.comments.create! valid_attributes
+        controller.current_user = nil
+        Comment.any_instance.should_not_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => comment.id, :comment => {:body => "hmm"}, :todo => @todo, :group => @group
+      end
+
+      it "should not update a comment if not the creator" do
+        comment = @user.comments.create! valid_attributes
+        @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        Comment.any_instance.should_not_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => comment.id, :comment => {'these' => 'params'}, :todo => @todo, :group => @group
+      end
+    end
+
+  describe "with valid params" do
       it "updates the requested comment" do
         comment = @user.comments.create! valid_attributes
         # Assuming there are no other comments in the database, this
