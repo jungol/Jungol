@@ -1,0 +1,27 @@
+<div class='group_discussion'>
+  <h1>
+    <%= "#{@discussion.title} - #{@group.name}" %>
+  </h1>
+
+  <strong>Title</strong> <%= @discussion.title %><br />
+
+  Creator: <%= @discussion.creator.name %><br />
+  <strong>URL</strong> <%= link_to group_discussion_path(@group, @discussion) %><br /><br />
+
+  <%= @discussion.body %><br /><br />
+
+  <%= form_for @comment do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <%= hidden_field(:group, :id) %>
+    <%= hidden_field(:discussion, :id) %>
+    <div class="field">
+      <%= f.label :body, "Post Comment" %><br />
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Post' %>
+    </div>
+  <% end %>
+  <%= render @discussion.comments %>
+
+</div>

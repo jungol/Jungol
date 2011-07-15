@@ -20,6 +20,8 @@
 
   <strong>Connected Groups</strong> <%= render @group.groups %><br />
 
+  <strong>Discussions</strong> <%= render @group.discussions %><br />
+  <%= link_to "Add a Discussion", new_group_discussion_path(@group)  %><br />
 
   <strong>Todo Lists</strong> <%= render @group.todos %><br />
   <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br />

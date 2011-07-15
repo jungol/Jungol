@@ -53,9 +53,10 @@ class CommentsController < ApplicationController
           @todo.comments << @comment
           format.html { redirect_to group_todo_path(@group, @todo), notice: 'Comment was successfully created.' }
           format.json { render json: @comment, status: :created, location: @comment }
-        elsif @disc
-          #TODO - handle comments for discussion
-          #@disc.comments << @comment
+        elsif @discussion
+          @discussion.comments << @comment
+          format.html { redirect_to group_discussion_path(@group, @discussion), notice: 'Comment was successfully created.' }
+          format.json { render json: @comment, status: :created, location: @comment }
         end
       else
         format.html { render :template => 'todos/show' }
@@ -67,11 +68,16 @@ class CommentsController < ApplicationController
   # PUT /comments/1
   # PUT /comments/1.json
   def update
-
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to group_todo_path(@group, @todo), notice: 'Comment was successfully created.' }
-        format.json { head :ok }
+        if(@todo)
+          format.html { redirect_to group_todo_path(@group, @todo), notice: 'Comment was successfully created.' }
+          format.json { head :ok }
+        elsif @discussion
+          format.html { redirect_to group_discussion_path(@group, @discussion), notice: 'Comment was successfully created.' }
+          format.json { head :ok }
+        elsif @discussion
+        end
       else
         format.html { render :template => 'todos/show' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -100,8 +106,8 @@ class CommentsController < ApplicationController
   def find_item
     if params[:todo]
       @todo = Todo.find params[:todo][:id]
-    elsif params[:disc]
-      @disc = Discussion.find params[:disc][:id]
+    elsif params[:discussion]
+      @discussion = Discussion.find params[:discussion][:id]
     end
   end
 

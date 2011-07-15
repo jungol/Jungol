@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   #CREATOR
   has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'
   has_many :created_todos, :foreign_key => 'creator_id', :class_name => 'Todo'
+  has_many :created_discussions, :foreign_key => 'creator_id', :class_name => 'Discussion'
   has_many :comments
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

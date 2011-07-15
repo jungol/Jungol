@@ -1,0 +1,7 @@
+<h1>Create a Discussion</h1>
+<%= form_for [@group, @discussion] do |disc_f| %>
+  <%= render 'fields', :f => disc_f %>
+  <div class = 'actions'>
+    <%= disc_f.submit "Create" %>
+  </div>
+<% end %>

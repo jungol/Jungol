@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714194007) do
+ActiveRecord::Schema.define(:version => 20110715201216) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(:version => 20110714194007) do
 
   add_index "comments", ["item_id"], :name => "index_comments_on_item_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "discussions", :force => true do |t|
+    t.integer  "creator_id"
+    t.integer  "group_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "discussions", ["creator_id"], :name => "index_discussions_on_creator_id"
+  add_index "discussions", ["group_id"], :name => "index_discussions_on_group_id"
 
   create_table "group_groups", :id => false, :force => true do |t|
     t.integer "group_id"

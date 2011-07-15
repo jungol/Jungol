@@ -39,6 +39,8 @@ class Group < ActiveRecord::Base
   #ITEMS
   has_many :todos, :dependent => :destroy
 
+  has_many :discussions, :dependent => :destroy
+
   def member?(user)
     users.include?(user)
   end

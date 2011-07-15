@@ -8,6 +8,7 @@ Jungola::Application.routes.draw do
 
   resources :users
   resources :groups do
+    resources :discussions
     resources :todos do
       resources :tasks
     end
