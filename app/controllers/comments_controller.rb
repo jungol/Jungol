@@ -29,19 +29,19 @@ class CommentsController < ApplicationController
   #  # GET /comments/new
   #  # GET /comments/new.json
 
-#  def new
-#    @comment = Comment.new
-#
-#    respond_to do |format|
-#      format.html # new.html.erb
-#      format.json { render json: @comment }
-#    end
-#  end
+  #  def new
+  #    @comment = Comment.new
+  #
+  #    respond_to do |format|
+  #      format.html # new.html.erb
+  #      format.json { render json: @comment }
+  #    end
+  #  end
 
   # GET /comments/1/edit
-#  def edit
-#    @comment = Comment.find(params[:id])
-#  end
+  #  def edit
+  #    @comment = Comment.find(params[:id])
+  #  end
 
   # POST /comments
   # POST /comments.json
@@ -59,8 +59,13 @@ class CommentsController < ApplicationController
           format.json { render json: @comment, status: :created, location: @comment }
         end
       else
-        format.html { render :template => 'todos/show' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        if @todo
+          format.html { render :template => 'todos/show' }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        elsif @discussion
+          format.html { render :template => 'discussions/show' }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -76,26 +81,30 @@ class CommentsController < ApplicationController
         elsif @discussion
           format.html { redirect_to group_discussion_path(@group, @discussion), notice: 'Comment was successfully created.' }
           format.json { head :ok }
-        elsif @discussion
         end
       else
-        format.html { render :template => 'todos/show' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        if @todo
+          format.html { render :template => 'todos/show' }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        elsif @discussion
+          format.html { render :template => 'discussions/show' }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
   # DELETE /comments/1
   # DELETE /comments/1.json
-#  def destroy
-#    @comment = Comment.find(params[:id])
-#    @comment.destroy
-#
-#    respond_to do |format|
-#      format.html { redirect_to comments_url }
-#      format.json { head :ok }
-#    end
-#  end
+  #  def destroy
+  #    @comment = Comment.find(params[:id])
+  #    @comment.destroy
+  #
+  #    respond_to do |format|
+  #      format.html { redirect_to comments_url }
+  #      format.json { head :ok }
+  #    end
+  #  end
 
   private
 
