@@ -10,4 +10,18 @@
   <br /><br />
   <%= render @todo.tasks %>
 
+  <%= form_for @comment do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <%= hidden_field(:group, :id) %>
+    <%= hidden_field(:todo, :id) %>
+    <div class="field">
+      <%= f.label :body, "Post Comment" %><br />
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Post' %>
+    </div>
+  <% end %>
+  <%= render @todo.comments %>
+
 </div>

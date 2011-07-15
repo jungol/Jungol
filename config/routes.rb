@@ -1,6 +1,6 @@
 Jungola::Application.routes.draw do
 
-  get "test/new"
+  resources :comments, :only => [:create, :update]
 
   match 'groups/:id/join', :controller => :groups, :action => :join, :via => [:post, :get], :as => "join"
 

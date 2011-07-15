@@ -50,7 +50,6 @@ describe "Groups" do
         lambda do
           user = Factory(:user)
           group = user.created_groups.create(:name => "Test", :about => "something!")
-
           user2 = Factory(:user, :email => Factory.next(:email))
           integration_sign_in(user2)
           visit group_path(group)

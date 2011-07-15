@@ -153,3 +153,8 @@ ul.users {
 .users li{
   list-style: none;
 }
+
+div.comment{
+  border:1px dotted #111;
+  padding:2px;
+}

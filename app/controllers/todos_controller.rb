@@ -24,6 +24,7 @@ class TodosController < ApplicationController
 
   def show
     @title = "#{@todo.title} < #{@group.name}"
+    @comment = current_user.comments.new
   end
 
   def find_group

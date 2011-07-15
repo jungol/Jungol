@@ -18,13 +18,12 @@ class User < ActiveRecord::Base
 
   #MEMBERSHIPS
   has_many :memberships, :dependent => :destroy
-
   has_many :groups, :through => :memberships
 
   #CREATOR
   has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'
-
   has_many :created_todos, :foreign_key => 'creator_id', :class_name => 'Todo'
+  has_many :comments
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates(:name, :presence => true,

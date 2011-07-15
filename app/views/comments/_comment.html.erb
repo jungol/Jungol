@@ -1,0 +1,9 @@
+<div class="comment">
+  <p>
+    Posted by <b><%= comment.user.name %></b> on <%= comment.created_at.to_s :long %>
+  </p>
+  <p>
+    <b>Body:</b>
+    <%= comment.body %>
+  </p>
+</div>
