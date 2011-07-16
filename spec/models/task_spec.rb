@@ -28,3 +28,17 @@ describe Task do
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id          :integer         not null, primary key
+#  description :string(255)
+#  todo_id     :integer
+#  status      :integer
+#  list_order  :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

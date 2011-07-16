@@ -1,16 +1,3 @@
-# == Schema Information
-# Schema version: 20110624164937
-#
-# Table name: groups
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  about      :text
-#  creator_id :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Group < ActiveRecord::Base
 
   attr_accessor :agreement
@@ -66,3 +53,16 @@ class Group < ActiveRecord::Base
     self.users << creator
   end
 end
+
+# == Schema Information
+#
+# Table name: groups
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  about      :text
+#  creator_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

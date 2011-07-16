@@ -31,3 +31,17 @@ describe Discussion do
 
   end
 end
+
+# == Schema Information
+#
+# Table name: discussions
+#
+#  id         :integer         not null, primary key
+#  creator_id :integer
+#  group_id   :integer
+#  title      :string(255)
+#  body       :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+

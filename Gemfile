@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source :rubygems
 
 gem 'rails', '3.1.0.rc4'
 
@@ -36,7 +36,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  # gem 'annotate-models'
+  gem 'annotate'
   gem 'faker'
   gem 'ruby-debug19'
   gem 'cucumber-rails'

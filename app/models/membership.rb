@@ -1,16 +1,3 @@
-# == Schema Information
-# Schema version: 20110624164937
-#
-# Table name: memberships
-#
-#  id         :integer         not null, primary key
-#  user_id    :integer
-#  group_id   :integer
-#  role       :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Membership < ActiveRecord::Base
   #SCOPES
   #scope :creator, :conditions => {:role => 1}
@@ -45,3 +32,16 @@ class Membership < ActiveRecord::Base
     end
 
 end
+
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  group_id   :integer
+#  role       :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

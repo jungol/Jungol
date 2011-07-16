@@ -20,3 +20,16 @@ describe Todo do
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: todos
+#
+#  id         :integer         not null, primary key
+#  creator_id :integer
+#  group_id   :integer
+#  title      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

@@ -1,17 +1,3 @@
-# == Schema Information
-# Schema version: 20110710015518
-#
-# Table name: tasks
-#
-#  id          :integer         not null, primary key
-#  description :string(255)
-#  todo_id     :integer
-#  status      :integer
-#  list_order  :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
 class Task < ActiveRecord::Base
 
   attr_accessor :todo
@@ -48,3 +34,17 @@ class Task < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id          :integer         not null, primary key
+#  description :string(255)
+#  todo_id     :integer
+#  status      :integer
+#  list_order  :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
