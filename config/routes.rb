@@ -10,7 +10,11 @@ Jungola::Application.routes.draw do
   resources :groups do
     resources :discussions
     resources :todos do
-      resources :tasks
+      resources :tasks do
+        member do
+          post :update
+        end
+      end
     end
   end
 

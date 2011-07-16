@@ -3,20 +3,16 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
   $('.edit_task_desc').each ->
-    $(this).editable "#{$(this).attr('id')}",
-      method: "PUT"
-      name: 'task[description]'
-      style: 'display: inline'
+    $(this).editInPlace(
+      url:"#{$(this).attr('id')}",
+      update_value: 'task[description]')
+      #style: 'display: inline'
 
   $('.edit_task_status').each ->
-    $(this).editable "#{$(this).attr('id')}",
-      method: "PUT"
-      data:
-        1:'Not Started'
-        2:'In Progress'
-        3:'Completed'
-      name: 'task[status]'
-      style: 'display: inline'
-      type: 'select'
-      submit: 'OK'
+    $(this).editInPlace(
+      url: "#{$(this).attr('id')}",
+      select_options:
+        "Not Started:1, In Progress:2, Completed:3"
+      update_value: 'task[status]'
+      field_type: 'select')
 

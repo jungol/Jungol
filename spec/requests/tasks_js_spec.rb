@@ -32,8 +32,9 @@ describe "TasksJs" do
 
     it "should show an inline editing field after click", :js => true do
       @task = page.find('span.edit_task_desc')
+      page.should_not have_field('inplace_value')
       @task.click
-      page.should have_field('task[description]')
+      page.should have_field('inplace_value')
     end
   end
 end
