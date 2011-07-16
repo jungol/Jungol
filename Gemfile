@@ -34,17 +34,12 @@ group :production do
     gem "therubyracer", :git => "https://github.com/cowboyd/therubyracer.git", :branch => "locktight"
 end
 
-group :development do
+group :development, :test do
   gem 'rspec-rails'
   # gem 'annotate-models'
   gem 'faker'
   gem 'ruby-debug19'
-end
-
-group :test do
   gem 'cucumber-rails'
-  gem 'rspec'
-#  gem 'webrat'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
