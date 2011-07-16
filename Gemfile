@@ -42,6 +42,7 @@ group :development do
 end
 
 group :test do
+  gem 'cucumber-rails'
   gem 'rspec'
 #  gem 'webrat'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
