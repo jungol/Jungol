@@ -36,7 +36,7 @@ end
 
 group :development do
   gem 'rspec-rails'
-  gem 'annotate-models'
+  # gem 'annotate-models'
   gem 'faker'
   gem 'ruby-debug19'
 end
