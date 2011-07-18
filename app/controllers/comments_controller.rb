@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_filter :find_comment, :only => :update
   before_filter :require_member
   before_filter :require_creator, :only => :update
-  before_filter :authenticate, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
   # GET /comments
   # GET /comments.json
   #  def index

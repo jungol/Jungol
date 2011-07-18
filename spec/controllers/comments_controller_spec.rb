@@ -30,7 +30,9 @@ describe CommentsController do
   before(:each) do
     @attr = { :name => "Test Group",
               :about => "We're a Group!"}
-    @user = test_sign_in(Factory(:user))
+
+    @user = Factory(:user)
+    sign_in @user
     @group = @user.created_groups.create(@attr)
     @todo = @user.created_todos.create(:title => "SOMETHING")
   end
@@ -38,14 +40,15 @@ describe CommentsController do
   describe "POST create" do
     describe "permissions" do
       it "should not create a comment if not logged in" do
-        controller.current_user = nil
+        sign_out @user
         expect {
           post :create, :comment => valid_attributes, :todo => @todo, :group => @group
         }.to_not change(Comment, :count).by(1)
       end
 
       it "should not create a comment if not a member" do
-        @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        @user = Factory(:user)
+        sign_in @user
         expect {
           post :create, :comment => valid_attributes, :todo => @todo, :group => @group
         }.to_not change(Comment, :count).by(1)
@@ -92,14 +95,14 @@ describe CommentsController do
     describe "permissions" do
       it "should not update a comment if not logged in" do
         comment = @user.comments.create! valid_attributes
-        controller.current_user = nil
+        sign_out @user
         Comment.any_instance.should_not_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => comment.id, :comment => {:body => "hmm"}, :todo => @todo, :group => @group
       end
 
       it "should not update a comment if not the creator" do
         comment = @user.comments.create! valid_attributes
-        @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        @user = sign_in(Factory(:user, :email => Factory.next(:email)))
         Comment.any_instance.should_not_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => comment.id, :comment => {'these' => 'params'}, :todo => @todo, :group => @group
       end

@@ -4,8 +4,8 @@ describe GroupsController do
 
   describe "GET 'new'" do
     before(:each) do
-    controller.class.skip_before_filter :authenticate
-    @user = Factory(:user)
+      @user = Factory(:user)
+      sign_in @user
     end
 
     it "should be successful" do
@@ -22,7 +22,8 @@ describe GroupsController do
 
   describe "POST 'create'" do
     before(:each) do
-      @user = test_sign_in(Factory(:user))
+      @user = Factory(:user)
+      sign_in @user
       @attr = { :name => "",
                 :about => "" }
     end
@@ -72,14 +73,16 @@ describe GroupsController do
   describe "GET 'edit'" do
     before(:each) do
       @attr = {:name => "Test Group",
-                :about => "about us" }
+               :about => "about us" }
 
-      @user = test_sign_in(Factory(:user))
+      @user = Factory(:user)
+      sign_in @user
       @group = @user.created_groups.create(@attr)
     end
 
     it "should redirect a non-creator" do
-      test_sign_in(Factory(:user, :email => Factory.next(:email)))
+      @user2 = Factory(:user)
+      sign_in @user2
       get :edit, :id => @group
       response.should redirect_to(@group)
     end
@@ -100,9 +103,10 @@ describe GroupsController do
   describe "PUT 'update'" do
     before(:each) do
       @attr = {:name => "Test Group",
-                :about => "about us" }
+               :about => "about us" }
 
-      @user = test_sign_in(Factory(:user))
+      @user = Factory(:user)
+      sign_in @user
       @group = @user.created_groups.create(@attr)
     end
 
@@ -112,7 +116,8 @@ describe GroupsController do
       end
 
       it "should redirect a non-creator" do
-        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        @user = Factory(:user)
+        sign_in @user
         put :update, :id => @group, :group => @attr
         response.should redirect_to(@group)
       end
@@ -156,7 +161,7 @@ describe GroupsController do
     describe "GET 'link'" do
 
       it "should render the 'link' page" do
-        test_sign_in(@user)
+        sign_in(@user)
         get :link, :id => @group
         response.should render_template(:link)
       end
@@ -167,7 +172,8 @@ describe GroupsController do
       end
 
       it "should redirect if user is not a group leader" do
-        @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        @user = Factory(:user)
+        sign_in @user
         get :link, :id => @group
         response.should redirect_to(@group)
       end
@@ -188,7 +194,7 @@ describe GroupsController do
 
         it "should redirect if user is not a group leader" do
           @user = Factory(:user, :email => Factory.next(:email))
-          test_sign_in(@user)
+          sign_in(@user)
           post :link, :id => @group, :group => {:id => @group2.id}
           response.should redirect_to(@group)
         end
@@ -197,20 +203,20 @@ describe GroupsController do
       describe "success" do
         it "should connect group A to group B" do
           lambda do
-            test_sign_in(@user)
+            sign_in(@user)
             post :link, :id => @group, :group => {:id => @group2}
           end.should change(@group.groups, :count)
         end
 
         it "should connect group B to group A" do
           lambda do
-            test_sign_in(@user)
+            sign_in(@user)
             post :link, :id => @group2, :group => {:id => @group}
           end.should change(@group.groups, :count)
         end
 
         it "should redirect to the group page" do
-          test_sign_in(@user)
+          sign_in(@user)
           post :link, :id => @group, :group => {:id => @group2}
           response.should redirect_to(@group)
         end

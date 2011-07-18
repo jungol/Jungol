@@ -9,7 +9,7 @@ describe User do
       :password_confirmation => "foobar"
     }
   end
-  
+
   it "should create new instance given valid attributes" do
     User.create!(@attr)
   end
@@ -18,7 +18,7 @@ describe User do
     no_name_user = User.new(@attr.merge(:name => ""))
     no_name_user.should_not be_valid
   end
-      
+
   it "should require an email" do
     no_email_user = User.new(@attr.merge(:email => ""))
     no_email_user.valid?.should_not == true #same as above test
@@ -60,7 +60,7 @@ describe User do
     user_with_dup_email.should_not be_valid
   end
 
-  describe  "password validations" do
+  describe "password validations" do
     it "should require a password" do
       User.new(@attr.merge(:password => "", :password_confirmation => "")).
         should_not be_valid
@@ -70,13 +70,13 @@ describe User do
       User.new(@attr.merge( :password_confirmation => "else")).
         should_not be_valid
     end
- 
+
     it "should reject short password" do
       short = "a" *5
       hash = @attr.merge( :password => short, :password_confirmation => short)
       User.new(hash).should_not be_valid
     end
- 
+
     it "should reject long passwords" do
       long = "a" * 41
       hash = @attr.merge( :password => long, :password_confirmation => long)
@@ -95,30 +95,6 @@ describe User do
 
     it "should set the encrypted password" do
       @user.encrypted_password.should_not be_blank
-    end
-
-    describe "has_password?" do
-
-      it "should be true if passwords match" do
-        @user.has_password?(@attr[:password]).should be_true
-      end
-
-      it "should be false if password don't match" do
-        @user.has_password?(@attr["invalid"]).should be_false
-      end
-    end
-
-    describe "authenticate method" do
-
-      it "should return nil on email/pass mismatch" do
-        wrong_pass_user = User.authenticate(@attr[:email], "wrongpass")
-        wrong_pass_user.should be_nil
-      end
-
-      it "should return the user on email/pass match" do
-        matched_user = User.authenticate(@attr[:email], @attr[:password])
-        matched_user.should == @user
-      end
     end
   end
 
@@ -143,16 +119,26 @@ describe User do
 
 end
 
+
+
 # == Schema Information
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
+#  id                     :integer         not null, primary key
+#  email                  :string(255)     default(""), not null
+#  encrypted_password     :string(128)     default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer         default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  name                   :string(255)
+#  about                  :text
 #
 

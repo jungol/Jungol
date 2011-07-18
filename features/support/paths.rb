@@ -6,7 +6,10 @@ module NavigationHelpers
   # step definition in web_steps.rb
   #
   def path_to(page_name)
-    case page_name
+   case page_name
+
+    when /^the signin page$/
+      '/users/sign_in'
 
     when /^the filter page$/
       '/filtered'

@@ -3,6 +3,8 @@
     <%= gravatar_for @user %>
     <%= @user.name %>
   </h1>
-  <strong>Name</strong> <%= @user.name %><br />
-  <strong>URL</strong> <%= link_to user_path(@user), @user %>
+  <strong>Email</strong> <%= @user.email %><br />
+  <strong>About</strong><%= @user.about %><br />
+  <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+<strong>Groups</strong><%= render @user.groups %><br />
 </div>

@@ -9,13 +9,13 @@ describe PagesController do
     describe "failure" do
       it "should redirect to signin if not logged in" do
         get :invite
-        response.should redirect_to signin_path
+        response.should redirect_to new_user_session_path
       end
     end
 
     describe "success" do
       before(:each) do
-        test_sign_in(@user)
+        sign_in(@user)
         @emails = "example-1@jungolhq.com, example-2@jungolhq.com, example-3@jungolhq.com, else"
       end
 

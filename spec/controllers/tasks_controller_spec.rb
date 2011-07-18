@@ -6,7 +6,8 @@ describe TasksController do
   before(:each) do
     @attr = { :name => "Test Group",
               :about => "We're a Group!"}
-    @user = test_sign_in(Factory(:user))
+    @user = Factory(:user)
+    sign_in @user
     @group = @user.created_groups.create(@attr)
     @todo = @user.created_todos.create(:title => "TEST TODO")
     @group.todos << @todo
@@ -78,7 +79,8 @@ describe TasksController do
       end
 
       it "should redirect a non-member" do
-        test_sign_in(Factory(:user, :email => Factory.next(:email)))
+        @user = Factory(:user)
+        sign_in @user
         put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         response.should redirect_to(@group)
       end

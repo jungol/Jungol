@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :authenticate, :only => :invite
+  before_filter :authenticate_user!, :only => :invite
 
   def home
     @title = "Home"

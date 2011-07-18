@@ -54,6 +54,8 @@ class Group < ActiveRecord::Base
   end
 end
 
+
+
 # == Schema Information
 #
 # Table name: groups

@@ -1,12 +1,14 @@
 Jungola::Application.routes.draw do
 
+  devise_for :users
+
   resources :comments, :only => [:create, :update]
 
   match 'groups/:id/join', :controller => :groups, :action => :join, :via => [:post, :get], :as => "join"
 
   match 'groups/:id/link', :controller => :groups, :action => :link, :via => [:post, :get], :as => "link"
 
-  resources :users
+  resources :users, :only => :show
   resources :groups do
     resources :discussions
     resources :todos do
@@ -18,11 +20,11 @@ Jungola::Application.routes.draw do
     end
   end
 
-  resources :sessions, :only => [:new, :create, :destroy]
-
-  match '/signup', :to => 'users#new'
-  match '/signin', :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
+#  resources :sessions, :only => [:new, :create, :destroy]
+#
+#  match '/signup', :to => 'users#new'
+#  match '/signin', :to => 'sessions#new'
+#  match '/signout', :to => 'sessions#destroy'
   match '/invite', :to => 'pages#invite'
 
   root :to => 'pages#home'

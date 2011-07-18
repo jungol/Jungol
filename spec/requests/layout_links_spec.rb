@@ -9,7 +9,7 @@ describe "Layout links" do
   describe "when not signed in" do
     it "should have a signin link" do
       visit root_path
-      page.should have_selector("a", :href => signin_path,
+      page.should have_selector("a", :href => new_user_session_path,
                                     :content => "Sign in")
     end
   end
@@ -21,7 +21,7 @@ describe "Layout links" do
 
     it "should have a signout link" do
       visit root_path
-      page.should have_selector("a", :href => signout_path,
+      page.should have_selector("a", :href => destroy_user_session_path,
                                     :content => "Sign out")
     end
 

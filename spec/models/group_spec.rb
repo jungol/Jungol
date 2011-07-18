@@ -53,6 +53,8 @@ describe Group do
 
 end
 
+
+
 # == Schema Information
 #
 # Table name: groups

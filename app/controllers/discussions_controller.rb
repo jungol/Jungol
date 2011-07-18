@@ -2,7 +2,7 @@ class DiscussionsController < ApplicationController
   before_filter :find_group
   before_filter :require_member
   before_filter :find_disc, :except => [:new, :create]
-  before_filter :authenticate, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
 
   def new
     @title = "Create a Discussion"

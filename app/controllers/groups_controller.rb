@@ -1,7 +1,6 @@
 class GroupsController < ApplicationController
-
   before_filter :find_group, :except => [:index, :new, :create]
-  before_filter :authenticate, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :require_leader, :only => [:edit, :update, :link]
 
   def index
