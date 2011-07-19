@@ -166,9 +166,9 @@ describe GroupsController do
         response.should render_template(:link)
       end
 
-      it "should redirect if not signed_in" do
+      it "should redirect to signin if not signed_in" do
         get :link, :id => @group
-        response.should redirect_to(@group)
+        response.should redirect_to new_user_session_path
       end
 
       it "should redirect if user is not a group leader" do
@@ -187,9 +187,9 @@ describe GroupsController do
 
       describe "failure" do
 
-        it "should redirect to group page if not signed_in" do
+        it "should redirect to signin page if not signed_in" do
           post :link, :id => @group, :group => {:id => @group2.id}
-          response.should redirect_to(@group)
+          response.should redirect_to new_user_session_path
         end
 
         it "should redirect if user is not a group leader" do

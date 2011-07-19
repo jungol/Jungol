@@ -107,9 +107,9 @@ describe "Users" do
         fill_in 'Email', :with => user.email
         fill_in 'Password', :with => user.password
         click_button :submit
-        page.should have_content user.name
-        click_link "Sign out"
-        page.should have_css('title', :content => "Home")
+        page.should have_content "Signed in successfully"
+        click_link "Logout"
+        page.should have_content "Signed out successfully"
       end
     end
   end

@@ -1,6 +1,6 @@
 <% up_path = group_todo_task_path(@group.id, @todo.id, task) %>
-<li>
-  <%= task.list_order %>)
-  <span class='edit_task_desc' data-path="<%= up_path %>" id="<%= up_path %>"><%= task.description %></span><br />
+<li id = "task_<%= task.id %>">
+  <span class='edit_task_desc' data-path="<%= up_path %>" id="<%= up_path %>"><%= task.description %></span> -
+  <span><%= task.task_num %></span><br />
   Status: <span class='edit_task_status' id="<%= up_path %>"><%= task.status %></span>
 </li>

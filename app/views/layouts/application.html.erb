@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <%= javascript_include_tag "application" %>
+<%= render 'layouts/stylesheets' %>
+<%= stylesheet_link_tag "application" %>
 <html>
   <head>
     <title><%= title %></title>
     <%= csrf_meta_tag %>
-    <%= render 'layouts/stylesheets' %>
   </head>
   <body>
     <div class="container">

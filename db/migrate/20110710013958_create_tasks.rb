@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :todo_id
       t.integer :status
       t.integer :list_order
+      t.integer :task_num
 
       t.timestamps
     end

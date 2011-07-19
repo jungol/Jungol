@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20110717034132) do
     t.integer  "todo_id"
     t.integer  "status"
     t.integer  "list_order"
+    t.integer  "task_num"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
