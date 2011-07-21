@@ -6,7 +6,7 @@ describe TodosController do
     @attr = { :name => "Test Group",
               :about => "We're a Group!"}
     @user = Factory(:user)
-    sign_in @user
+    test_sign_in @user
     @group = @user.created_groups.create(@attr)
   end
 
@@ -24,7 +24,7 @@ describe TodosController do
     describe 'permissions' do
       it "should redirect a non-member" do
         @user = Factory(:user)
-        sign_in @user
+        test_sign_in @user
         get :new, :group_id => @group
         response.should redirect_to (@group)
         flash[:error].should =~ /member/

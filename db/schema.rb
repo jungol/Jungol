@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110717034132) do
+ActiveRecord::Schema.define(:version => 20110720043553) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(:version => 20110717034132) do
   end
 
   add_index "groups", ["creator_id"], :name => "index_groups_on_creator_id"
+
+  create_table "item_shares", :force => true do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "group_id"
+    t.integer  "creator_id"
+    t.boolean  "leaders_only", :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_shares", ["creator_id"], :name => "index_item_shares_on_creator_id"
+  add_index "item_shares", ["group_id"], :name => "index_item_shares_on_group_id"
+  add_index "item_shares", ["item_id"], :name => "index_item_shares_on_item_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"

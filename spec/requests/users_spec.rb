@@ -95,7 +95,11 @@ describe "Users" do
   describe "sign in/out" do
     describe "failure" do
       it "should not sign a user in" do
-        integration_sign_in(User.new( :email => "fake@fake.com", :password => "invalid"))
+        user = User.new( :email => "fake@fake.com", :password => "invalid")
+        visit new_user_session_path
+        fill_in 'Email', :with => user.email
+        fill_in 'Password', :with => user.password
+        click_button :submit
         page.should have_selector("div.flash.alert", :content => "Invalid")
       end
     end
@@ -103,6 +107,7 @@ describe "Users" do
     describe "success" do
       it "should sign a user in and out" do
         user = Factory(:user)
+        user.confirm!
         visit new_user_session_path
         fill_in 'Email', :with => user.email
         fill_in 'Password', :with => user.password

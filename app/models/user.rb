@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'
   has_many :created_todos, :foreign_key => 'creator_id', :class_name => 'Todo'
   has_many :created_discussions, :foreign_key => 'creator_id', :class_name => 'Discussion'
+  has_many :created_shares, :foreign_key => 'creator_id', :class_name => 'ItemShare'
   has_many :comments
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -23,7 +24,6 @@ class User < ActiveRecord::Base
             :length => {:maximum => 50}
             #:uniqueness => { :case_sensitive => false }
 end
-
 
 # == Schema Information
 #
@@ -40,8 +40,12 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
 #  name                   :string(255)
 #  about                  :text
 #
+

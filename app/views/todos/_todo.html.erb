@@ -1,4 +1,10 @@
 <li>
   <%= link_to todo.title, group_todo_path(@group, todo) %>
+  <% if todo.item_shares.present? %><br />
+    <ul>Sharing with:
+      <% todo.item_shares.each do |i| %>
+        <%= render 'todos/share', :group => i.group %>
+      <% end %>
+    </ul>
+  <% end %>
 </li>
-

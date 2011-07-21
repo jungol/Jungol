@@ -42,6 +42,7 @@ class Task < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: tasks
@@ -51,6 +52,7 @@ end
 #  todo_id     :integer
 #  status      :integer
 #  list_order  :integer
+#  task_num    :integer
 #  created_at  :datetime
 #  updated_at  :datetime
 #

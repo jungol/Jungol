@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
   def link
     @title = "Connect to Group"
     if request.get?
-      @groups = Group.find(:all, :conditions => ['id not in (?) or (?)', @group, @group.groups])
+      @groups = @group.unconnected_groups
       render :link
     elsif request.post?
       @group2 = Group.find(params[:group][:id])

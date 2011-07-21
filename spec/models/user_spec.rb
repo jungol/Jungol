@@ -76,12 +76,6 @@ describe User do
       hash = @attr.merge( :password => short, :password_confirmation => short)
       User.new(hash).should_not be_valid
     end
-
-    it "should reject long passwords" do
-      long = "a" * 41
-      hash = @attr.merge( :password => long, :password_confirmation => long)
-      User.new(hash).should_not be_valid
-    end
   end
 
   describe "password encryption" do
@@ -120,7 +114,6 @@ describe User do
 end
 
 
-
 # == Schema Information
 #
 # Table name: users
@@ -136,6 +129,9 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
 #  name                   :string(255)

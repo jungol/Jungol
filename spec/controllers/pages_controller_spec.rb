@@ -15,7 +15,7 @@ describe PagesController do
 
     describe "success" do
       before(:each) do
-        sign_in(@user)
+        test_sign_in(@user)
         @emails = "example-1@jungolhq.com, example-2@jungolhq.com, example-3@jungolhq.com, else"
       end
 

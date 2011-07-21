@@ -1,0 +1,8 @@
+<li>
+  <%= form_tag(share_group_discussion_path(group, @discussion), :method => :post) do %>
+    <div class='actions'>
+      <%= group.name %>
+      <%= submit_tag "Share" %>
+    </div>
+  <% end %>
+</li>

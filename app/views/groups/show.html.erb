@@ -1,34 +1,35 @@
-<%= link_to("Join Group", join_path(@group),
-            :method => :post,
-            :class => 'join_button round',
-            :id => 'join_button') unless @member %>
+<%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
 
-<%#= button_to "Join Group", {:action => "join", :id => @group.id}, :class => "join_button round"%>
 <div class='group_profile'>
   <h1>
     <%= @group.name %>
   </h1>
 
-  <strong>Name</strong> <%= @group.name %><br />
-  <strong>About</strong> <%= @group.about %><br />
+  <h3>Name</h3> <%= @group.name %><br />
+  <h3>About</h3> <%= @group.about %><br />
 
   Creator: <%= @group.creator.name %><br />
-  <strong>URL</strong> <%= link_to group_path(@group), @group %><br /><br />
+  <h3>URL</h3> <%= link_to group_path(@group), @group %><br /><br />
 
-  <strong>Leaders</strong> <%= render @group.leaders %><br />
-  <strong>Users</strong> <%= render @group.non_leaders %><br /><br />
+  <h3>Leaders</h3> <%= render @group.leaders %><br />
+  <h3>Users</h3> <%= render @group.non_leaders %><br /><br />
 
-  <strong>Connected Groups</strong> <%= render @group.groups %><br />
-
-  <strong>Discussions</strong> <%= render @group.discussions %><br />
-  <%= link_to "Add a Discussion", new_group_discussion_path(@group)  %><br />
-
-  <strong>Todo Lists</strong> <%= render @group.todos %><br />
-  <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br />
+  <h3>Connected Groups</h3> <%= render @group.groups %><br />
 
   <% if @leader %>
     <%= "You're a leader! Connect!" %><br />
-    <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
+    <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %><br />
+  <% end %>
+
+  <h3>Discussions</h3> <%= render @group.discussions %><br />
+  <%= link_to "Add a Discussion", new_group_discussion_path(@group)  %><br /><br />
+
+  <h3>Todo Lists</h3> <%= render @group.todos %><br />
+  <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br /><br />
+
+  being shared on:
+  <% @group.item_shares.each do |i| %>
+    <%= render 'shared_item', :item => i.item %>
   <% end %>
 
 </div>

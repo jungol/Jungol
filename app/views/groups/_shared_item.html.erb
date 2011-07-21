@@ -1,0 +1,9 @@
+<li>
+  <% if item.is_a? Discussion %>
+    <%= link_to item.title, group_discussion_path(@group, item) %>
+    (<%= item.class %>)
+  <% elsif item.is_a? Todo %>
+    <%= link_to item.title, group_todo_path(@group, item) %>
+    (<%= item.class %>)
+  <% end %>
+</li>

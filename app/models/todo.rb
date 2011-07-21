@@ -6,6 +6,8 @@ class Todo < ActiveRecord::Base
 
   has_many :tasks, :dependent => :destroy, :order => 'list_order ASC'
   has_many :comments, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
+  has_many :item_shares, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
+  has_many :groups, :through => :item_shares
 
   accepts_nested_attributes_for :tasks, :reject_if => lambda {|t| t[:description].blank? }, :allow_destroy => true
 

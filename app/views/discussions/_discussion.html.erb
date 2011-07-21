@@ -1,3 +1,10 @@
 <li>
   <%= link_to discussion.title, group_discussion_path(@group, discussion) %>
+  <% if !discussion.item_shares.empty? %><br />
+    <ul>Sharing with:
+      <% discussion.item_shares.each do |i| %>
+        <%= render 'discussions/share', :group => i.group %>
+      <% end %>
+    </ul>
+  <% end %>
 </li>

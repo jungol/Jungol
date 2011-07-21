@@ -10,8 +10,17 @@ Jungola::Application.routes.draw do
 
   resources :users, :only => :show
   resources :groups do
-    resources :discussions
+    resources :discussions do
+      member do
+        post :share
+        put :share
+      end
+    end
     resources :todos do
+      member do
+        post :share
+        put :share
+      end
       resources :tasks do
         member do
           post :update

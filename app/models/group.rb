@@ -24,6 +24,7 @@ class Group < ActiveRecord::Base
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
 
   #ITEMS
+  has_many :item_shares
   has_many :todos, :dependent => :destroy
 
   has_many :discussions, :dependent => :destroy
@@ -48,6 +49,13 @@ class Group < ActiveRecord::Base
     non_leaders.include?(user) if user
   end
 
+  def unshared_groups(item)
+    Group.find(:all, :conditions => ['id in (?)', self.groups - item.groups])
+  end
+
+  def unconnected_groups
+    Group.find(:all, :conditions => ['id not in (?) and id not in (?)', self.groups, self.id])
+  end
 
   def add_creator_as_member
     self.users << creator

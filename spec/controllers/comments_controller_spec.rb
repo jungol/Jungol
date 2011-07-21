@@ -32,7 +32,7 @@ describe CommentsController do
               :about => "We're a Group!"}
 
     @user = Factory(:user)
-    sign_in @user
+    test_sign_in @user
     @group = @user.created_groups.create(@attr)
     @todo = @user.created_todos.create(:title => "SOMETHING")
   end
@@ -48,7 +48,7 @@ describe CommentsController do
 
       it "should not create a comment if not a member" do
         @user = Factory(:user)
-        sign_in @user
+        test_sign_in @user
         expect {
           post :create, :comment => valid_attributes, :todo => @todo, :group => @group
         }.to_not change(Comment, :count).by(1)
@@ -102,7 +102,8 @@ describe CommentsController do
 
       it "should not update a comment if not the creator" do
         comment = @user.comments.create! valid_attributes
-        @user = sign_in(Factory(:user, :email => Factory.next(:email)))
+        @user = Factory :user
+        @user.confirm!
         Comment.any_instance.should_not_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => comment.id, :comment => {'these' => 'params'}, :todo => @todo, :group => @group
       end

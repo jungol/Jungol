@@ -10,6 +10,22 @@
 
   <%= @discussion.body %><br /><br />
 
+  <% if @shared.present? %>
+    <ul>
+      Item Shared With:
+      <% @shared.each do |group| %>
+        <%= render 'share', :group => group %>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if @unshared.present? %>
+    <ul>
+      Share Item With:
+      <% @unshared.each do |group| %>
+        <%= render 'groups', :group => group %>
+      <% end %>
+    </ul>
+  <% end %>
   <%= form_for @comment do |f| %>
     <%= render 'shared/error_messages', :object => f.object %>
     <%= hidden_field(:group, :id) %>
