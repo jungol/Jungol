@@ -14,13 +14,6 @@ class Discussion < ActiveRecord::Base
 
   validates :body, :presence => true
 
-#  def shared_groups
-#    shared = []
-#    self.item_shares.each do |i|
-#      shared << i.group_id
-#    end
-#  end
-
 end
 
 # == Schema Information

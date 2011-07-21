@@ -27,9 +27,13 @@
   <h3>Todo Lists</h3> <%= render @group.todos %><br />
   <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br /><br />
 
-  being shared on:
-  <% @group.item_shares.each do |i| %>
-    <%= render 'shared_item', :item => i.item %>
+  <% if @group.item_shares.present? %>
+    Being Shared On:
+    <ul>
+      <% @group.item_shares.each do |i| %>
+        <%= render 'shared_item', :item => i.item %>
+      <% end %>
+    </ul>
   <% end %>
 
 </div>
