@@ -1,7 +1,8 @@
 class TodosController < ApplicationController
-  before_filter :find_group
-  before_filter :require_member
+  before_filter :find_group, :except => :share
   before_filter :find_todo, :except => [:new, :create]
+  before_filter :find_origin_group, :only => :share
+  before_filter :require_member
   before_filter :authenticate_user!, :except => [:index, :show]
 
   def new
@@ -35,8 +36,8 @@ class TodosController < ApplicationController
       if new_share.save
         @todo = Todo.find(params[:id])
         @todo.item_shares << new_share
-        @group.item_shares << new_share
-        flash[:success] = "Todo #{@todo.title} is now shared with #{@group.name}."
+        @shared_group.item_shares << new_share
+        flash[:success] = "Todo #{@todo.title} is now shared with #{@shared_group.name}."
       else
         flash[:error] = "Problem sharing todo.  Please try again."
       end
@@ -56,4 +57,8 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
   end
 
+  def find_origin_group
+    @group = @todo.group
+    @shared_group = Group.find(params[:group_id])
+  end
 end

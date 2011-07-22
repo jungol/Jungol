@@ -1,7 +1,8 @@
 class DiscussionsController < ApplicationController
-  before_filter :find_group
-  before_filter :require_member
+  before_filter :find_group, :except => :share
   before_filter :find_disc, :except => [:new, :create, :share]
+  before_filter :find_origin_group, :only => :share
+  before_filter :require_member
   before_filter :authenticate_user!, :except => [:index, :show]
 
   def new
@@ -34,8 +35,8 @@ class DiscussionsController < ApplicationController
       if new_share.save
         @discussion = Discussion.find(params[:id])
         @discussion.item_shares << new_share
-        @group.item_shares << new_share
-        flash[:success] = "Discussion #{@discussion.title} is now shared with #{@group.name}."
+        @shared_group.item_shares << new_share
+        flash[:success] = "Discussion #{@discussion.title} is now shared with #{@shared_group.name}."
       else
         flash[:error] = "Problem sharing discussion.  Please try again."
       end
@@ -55,5 +56,9 @@ class DiscussionsController < ApplicationController
     @discussion = Discussion.find(params[:id], :conditions => {:group_id => params[:group_id]})
   end
 
+  def find_origin_group
+    @group = @discussion.group
+    @shared_group = Group.find(params[:group_id])
+  end
 
 end
