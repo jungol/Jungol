@@ -12,10 +12,20 @@ module NavigationHelpers
       '/users/sign_in'
 
     when /^the filter page$/
-      '/filtered'
+      '/filter'
+
+    when /^(.*)'s page$/
+      group_path(Group.find_by_name($1).id)
 
     when /^the home\s?page$/
       '/'
+
+    when /^the group\s?page$/
+      '/groups'
+
+    when /^my profile\s?page$/
+      user_path(default_user.id)
+
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

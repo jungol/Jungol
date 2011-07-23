@@ -5,26 +5,42 @@
     <%= @group.name %>
   </h1>
 
-  <h3>Name</h3> <%= @group.name %><br />
-  <h3>About</h3> <%= @group.about %><br />
+  <h4>Name</h4> <%= @group.name %><br />
+  <h4>About</h4> <%= @group.about %><br />
 
   Creator: <%= @group.creator.name %><br />
-  <h3>URL</h3> <%= link_to group_path(@group), @group %><br /><br />
+  <h4>URL</h4> <%= link_to @group.name, @group %><br /><br />
 
-  <h3>Leaders</h3> <%= render @group.leaders %><br />
-  <h3>Users</h3> <%= render @group.non_leaders %><br /><br />
+  <h4>Leaders</h4> <%= render @group.leaders %><br />
+  <h4>Users</h4> <%= render @group.non_leaders %><br /><br />
 
-  <h3>Connected Groups</h3> <%= render @group.groups %><br />
+  <h4>Connected Groups</h4>
+  <% if @group.groups.present? %>
+    <%= render @group.groups %><br />
+  <% else %>
+    No Groups yet.<br />
+  <% end %>
+
 
   <% if @leader %>
     <%= "You're a leader! Connect!" %><br />
     <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %><br />
   <% end %>
 
-  <h3>Discussions</h3> <%= render @group.discussions %><br />
+  <h4>Discussions</h4>
+  <% if @group.discussions.present? %>
+    <%= render @group.discussions %><br />
+  <% else %>
+    No Discussions yet.<br />
+  <% end %>
   <%= link_to "Add a Discussion", new_group_discussion_path(@group)  %><br /><br />
 
-  <h3>Todo Lists</h3> <%= render @group.todos %><br />
+  <h4>Todo Lists</h4>
+  <% if @group.todos.present? %>
+    <%= render @group.todos %><br />
+  <% else %>
+    No Todos yet.<br />
+  <% end %>
   <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br /><br />
 
   <% if @group.item_shares.present? %>

@@ -8,3 +8,8 @@ Factory.define :user do |user|
   user.password              "foobar"
   user.password_confirmation "foobar"
 end
+
+Factory.define :confirmed_user, :parent => :user do |f|
+  f.after_create { |user| user.confirm! }
+end
+

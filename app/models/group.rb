@@ -54,7 +54,11 @@ class Group < ActiveRecord::Base
   end
 
   def unconnected_groups
-    Group.find(:all, :conditions => ['id not in (?) and id not in (?)', self.groups, self.id])
+    if self.groups.present?
+      Group.find(:all, :conditions => ['id not in (?) and id not in (?)', self.groups, self.id])
+    else
+      Group.find(:all, :conditions => ['id not in (?)', self.id])
+    end
   end
 
   def add_creator_as_member
