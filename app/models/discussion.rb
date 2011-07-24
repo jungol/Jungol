@@ -5,7 +5,7 @@ class Discussion < ActiveRecord::Base
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
 
   has_many :item_shares, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
-  has_many :groups, :through => :item_shares
+  has_many :shared_groups, :through => :item_shares, :source => :group
   has_many :comments, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
 
   validates( :title, :presence => true,
@@ -13,6 +13,11 @@ class Discussion < ActiveRecord::Base
                       :uniqueness => { :case_sensitive => false})
 
   validates :body, :presence => true
+
+  def all_groups #all groups that can see this item
+    ret = [] << self.group
+    ret | self.shared_groups
+  end
 
 end
 

@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
   before_filter :find_group, :except => :share
-  before_filter :find_disc, :except => [:new, :create, :share]
+  before_filter :find_disc, :except => [:new, :create]
   before_filter :find_origin_group, :only => :share
   before_filter :require_member
   before_filter :authenticate_user!, :except => [:index, :show]
@@ -26,7 +26,7 @@ class DiscussionsController < ApplicationController
     @title = "#{@discussion.title} < #{@group.name}"
     @comment = current_user.comments.new
     @unshared = @group.unshared_groups(@discussion)
-    @shared = @discussion.groups
+    @shared = @discussion.shared_groups
   end
 
   def share
@@ -53,7 +53,7 @@ class DiscussionsController < ApplicationController
   end
 
   def find_disc
-    @discussion = Discussion.find(params[:id], :conditions => {:group_id => params[:group_id]})
+    @discussion = Discussion.find(params[:id])
   end
 
   def find_origin_group

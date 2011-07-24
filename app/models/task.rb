@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
                        :length => {:maximum => 140})
 
   validates_numericality_of :status, :only_integer => true
-  validates_inclusion_of :status, :in => 0..3
+  validates_inclusion_of :status, :in => 0..2
 
   before_validation :add_default_status, :add_order_add_desc
 

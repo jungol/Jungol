@@ -29,6 +29,13 @@ Jungola::Application.routes.draw do
     end
   end
 
+  resources :filter, :only => :index do
+    collection do
+      post :filter
+      post :select
+    end
+  end
+
 #  resources :sessions, :only => [:new, :create, :destroy]
 #
 #  match '/signup', :to => 'users#new'

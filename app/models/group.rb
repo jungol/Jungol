@@ -25,6 +25,8 @@ class Group < ActiveRecord::Base
 
   #ITEMS
   has_many :item_shares
+  has_many :shared_todos, :through => :item_shares, :source => :item, :source_type => 'Todo'
+  has_many :shared_discussions, :through => :item_shares, :source => :item, :source_type => 'Discussion'
   has_many :todos, :dependent => :destroy
 
   has_many :discussions, :dependent => :destroy
@@ -50,7 +52,7 @@ class Group < ActiveRecord::Base
   end
 
   def unshared_groups(item)
-    Group.find(:all, :conditions => ['id in (?)', self.groups - item.groups])
+    Group.find(:all, :conditions => ['id in (?)', self.groups - item.shared_groups])
   end
 
   def unconnected_groups
@@ -59,6 +61,14 @@ class Group < ActiveRecord::Base
     else
       Group.find(:all, :conditions => ['id not in (?)', self.id])
     end
+  end
+
+  def all_todos
+    self.todos | self.shared_todos
+  end
+
+  def all_discussions
+    self.discussions | self.shared_discussions
   end
 
   def add_creator_as_member

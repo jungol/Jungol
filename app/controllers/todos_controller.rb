@@ -15,7 +15,7 @@ class TodosController < ApplicationController
     @title = "#{@todo.title} < #{@group.name}"
     @comment = current_user.comments.new
     @unshared = @group.unshared_groups(@todo)
-    @shared = @todo.groups
+    @shared = @todo.shared_groups
  end
 
   def create

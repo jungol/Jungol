@@ -12,4 +12,8 @@ module ApplicationHelper
     image_tag("logo.png", :alt => "Jungol", :class => "round")
   end
 
+  def to_hash
+    self.inject({}) { |h, i| h[i] = i; h }
+  end
+
 end

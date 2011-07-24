@@ -12,7 +12,7 @@ $ ->
     $(this).editInPlace(
       url: "#{$(this).attr('id')}",
       select_options:
-        "Not Started:1, In Progress:2, Completed:3"
+        "In Progress:1, Completed:22"
       update_value: 'task[status]'
       field_type: 'select')
 

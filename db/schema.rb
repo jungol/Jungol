@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20110720043553) do
     t.integer  "creator_id"
     t.integer  "group_id"
     t.string   "title"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
