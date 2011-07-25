@@ -34,7 +34,7 @@ describe DiscussionsController do
 
   describe "POST 'create'" do
     before(:each) do
-      @attr = {:title => "A Test Discussion", :body => "A Test Body"}
+      @attr = {:title => "A Test Discussion", :description => "A Test Description"}
     end
 
     it "should add a Discussion to DB" do

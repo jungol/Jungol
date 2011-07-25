@@ -1,5 +1,5 @@
 class Discussion < ActiveRecord::Base
-  attr_accessible :title, :body
+  attr_accessible :title, :description
 
   belongs_to :group
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
@@ -12,7 +12,7 @@ class Discussion < ActiveRecord::Base
                       :length => {:maximum => 60},
                       :uniqueness => { :case_sensitive => false})
 
-  validates :body, :presence => true
+  validates :description, :presence => true
 
   def all_groups #all groups that can see this item
     ret = [] << self.group
@@ -21,16 +21,17 @@ class Discussion < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: discussions
 #
-#  id         :integer         not null, primary key
-#  creator_id :integer
-#  group_id   :integer
-#  title      :string(255)
-#  body       :text
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer         not null, primary key
+#  creator_id  :integer
+#  group_id    :integer
+#  title       :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 

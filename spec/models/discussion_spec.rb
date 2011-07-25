@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Discussion do
    before(:each) do
     @user = Factory(:user)
-    @attr = {:title => "Test", :body => "Something"}
+    @attr = {:title => "Test", :description => "Something"}
   end
 
   describe 'validations' do
@@ -24,24 +24,25 @@ describe Discussion do
       dup.should_not be_valid
     end
 
-    it "should require a body" do
-      nobody = @user.created_discussions.new(@attr.merge(:body => ""))
-      nobody.should_not be_valid
+    it "should require a descrption" do
+      nodesc = @user.created_discussions.new(@attr.merge(:description => ""))
+      nodesc.should_not be_valid
     end
 
   end
 end
 
+
 # == Schema Information
 #
 # Table name: discussions
 #
-#  id         :integer         not null, primary key
-#  creator_id :integer
-#  group_id   :integer
-#  title      :string(255)
-#  body       :text
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer         not null, primary key
+#  creator_id  :integer
+#  group_id    :integer
+#  title       :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 

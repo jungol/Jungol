@@ -8,7 +8,7 @@
   Creator: <%= @discussion.creator.name %><br />
   <strong>URL</strong> <%= link_to group_discussion_path(@group, @discussion) %><br /><br />
 
-  <%= @discussion.body %><br /><br />
+  <%= @discussion.description %><br /><br />
 
   <% if @shared.present? %>
     <ul>

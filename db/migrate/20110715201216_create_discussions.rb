@@ -4,7 +4,7 @@ class CreateDiscussions < ActiveRecord::Migration
       t.integer :creator_id
       t.integer :group_id
       t.string :title
-      t.text :body
+      t.text :description
 
       t.timestamps
     end

@@ -23,6 +23,19 @@ class User < ActiveRecord::Base
   validates :name, :presence => true,
             :length => {:maximum => 50}
             #:uniqueness => { :case_sensitive => false }
+
+  def member_of?(group)
+    self.groups.include? group
+  end
+
+  def leader_of?(group)
+    self.groups.includes(:memberships).where(:memberships => {:role => 1}).include? group
+  end
+
+  def can_see?(current_group, item)  #whether a user can see an item, given the group they're viewing from
+    (member_of? current_group ) && (item.all_groups.include? current_group)
+    #TODO add logic to incorporate leaders_only
+  end
 end
 
 # == Schema Information
