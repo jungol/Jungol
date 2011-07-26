@@ -30,6 +30,16 @@ class TodosController < ApplicationController
     end
   end
 
+  def update
+    if(@todo.update_attributes(params[:todo]))
+      flash[:success] = "Todo updated."
+      redirect_to group_todo_path(@group, @todo)
+    else
+      @title = "#{@todo.title} < #{@group.name}"
+      render :show
+    end
+  end
+
   def share
     if request.post? #CREATE SHARE
       new_share = current_user.created_shares.new()

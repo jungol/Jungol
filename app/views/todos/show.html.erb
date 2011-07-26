@@ -26,6 +26,17 @@
       <% end %>
     </ul>
   <% end %>
+
+  <%= form_for [@group, @todo] do |todo_f| %>
+    <%= todo_f.fields_for :tasks, Task.new do |task_f| %>
+      <%= render "task_fields", :f => task_f %>
+    <% end %>
+    <p><%= link_to_add_fields "New Task", todo_f, :tasks  %></p>
+    <div class = 'actions'>
+      <%= todo_f.submit "Add" %>
+    </div>
+  <% end %>
+
   <ul class="sortable">
     <%= render @todo.tasks %>
   </ul>
