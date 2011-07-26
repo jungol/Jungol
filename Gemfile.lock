@@ -86,6 +86,9 @@ GEM
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
+    devise_invitable (0.5.3)
+      devise (~> 1.4.1)
+      rails (>= 3.0.0, < 3.2)
     diff-lcs (1.1.2)
     erubis (2.7.0)
     execjs (1.2.0)
@@ -213,6 +216,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
+  devise_invitable
   factory_girl_rails
   faker
   gravatar_image_tag

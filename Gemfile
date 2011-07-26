@@ -19,6 +19,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 gem 'devise'
+gem 'devise_invitable'
 
 # Use unicorn as the web server
 # gem 'unicorn'

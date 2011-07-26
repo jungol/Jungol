@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  before_filter :authenticate_user!, :only => :invite
 
   def home
     @title = "Home"
@@ -17,7 +16,8 @@ class PagesController < ApplicationController
       @recipients.each do |email|
         email = email.strip
         if email_regex =~ email
-          Notifier.invite(@user, email).deliver
+          User.invite!(:email => email)
+          #Notifier.invite(@user, email).deliver
           flash[:success] ||= "<p>Emails delivered:</p><ul>"
           flash[:success] << "<li>"+ email + "</li>"
         else

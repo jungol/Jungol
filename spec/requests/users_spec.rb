@@ -6,7 +6,10 @@ describe "Users" do
 
     describe "signup" do
 
-      before(:each){ visit new_user_registration_path }
+      before(:each) do
+        visit new_user_registration_path
+      end
+
 
       it "should have the right title" do
         page.should have_css('title', :content => "Sign up")

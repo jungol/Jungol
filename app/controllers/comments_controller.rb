@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
   before_filter :find_comment, :only => :update
   before_filter :require_member
   before_filter :require_creator, :only => :update
-  before_filter :authenticate_user!, :except => [:index, :show]
 
   def create
     @comment = current_user.comments.build(params[:comment])

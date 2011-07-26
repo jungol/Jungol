@@ -26,7 +26,7 @@ describe PagesController do
 
       it "should render after post" do
         post :invite, :invitees => @emails
-        response.should render_template(:invite)
+        response.should redirect_to invite_path
       end
 
       it "should send valid emails" do
