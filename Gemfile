@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'annotate'
   gem 'faker'
+  gem 'populator'
   gem 'ruby-debug19'
   gem 'cucumber-rails'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
