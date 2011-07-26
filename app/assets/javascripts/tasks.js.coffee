@@ -8,11 +8,19 @@ $ ->
       update_value: 'task[description]')
       #style: 'display: inline'
 
-  $('.edit_task_status').each ->
-    $(this).editInPlace(
-      url: "#{$(this).attr('id')}",
-      select_options:
-        "In Progress:1, Completed:22"
-      update_value: 'task[status]'
-      field_type: 'select')
+#  $('.edit_task_status').each ->
+#    $(this).editInPlace(
+#      url: "#{$(this).attr('id')}",
+#      select_options:
+#        "In Progress:1, Completed:2"
+#      update_value: 'task[status]'
+#      field_type: 'select')
 
+  $('.task_radio').change ->
+    $.ajax "#{@id}",
+      type: 'POST',
+      data: "task[status]=#{@value}",
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        $('body').append "Successful AJAX call: #{data}"
