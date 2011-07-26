@@ -10,6 +10,8 @@ class Group < ActiveRecord::Base
 
   validates_acceptance_of :agreement
 
+  validate :max_users
+
 
   after_create :add_creator_as_member
 
@@ -73,6 +75,12 @@ class Group < ActiveRecord::Base
 
   def add_creator_as_member
     self.users << creator
+  end
+
+  def max_users
+    if self.users.size > 30
+      errors.add :base, "Group cannot have more than 30 users."
+    end
   end
 end
 

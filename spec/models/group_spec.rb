@@ -51,6 +51,22 @@ describe Group do
 
   end
 
+  describe "member limits" do
+    before(:each) do
+      @user = Factory(:confirmed_user)
+      @group = @user.created_groups.create(:name => "Test", :about => "something!")
+    end
+
+    it "should allow 30 existing members in a group" do
+      @group.users.stub!(:size).and_return 30
+      @group.should be_valid
+    end
+
+    it "should not allow 31 members in a group" do
+      @group.users.stub!(:size).and_return 31
+      @group.should_not be_valid
+    end
+  end
 end
 
 

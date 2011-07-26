@@ -21,7 +21,6 @@ class GroupsController < ApplicationController
 
   #ADD MEMBER TO GROUP
   def join
-    @member = true
     if request.post?
       if !@group.users.include?(current_user)
         @group.users << current_user

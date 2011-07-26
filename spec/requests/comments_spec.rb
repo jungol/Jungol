@@ -12,21 +12,21 @@ describe "Comments" do
     it "should create a comment" do
       lambda do
         fill_in 'Post Comment', :with => "Test Comment"
-        click_button :submit
+        click_button 'Post'
       end.should change(Comment, :count).by(1)
     end
 
     it "should add that comment to a user's comments" do
       lambda do
         fill_in 'Post Comment', :with => "Test Comment"
-        click_button :submit
+        click_button 'Post'
       end.should change(@user.comments, :count).by(1)
     end
 
     it "should add that comment to the todo's comments" do
       lambda do
         fill_in 'Post Comment', :with => "Test Comment"
-        click_button :submit
+        click_button 'Post'
       end.should change(Todo.first.comments, :count).by(1)
     end
   end

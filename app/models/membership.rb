@@ -8,6 +8,8 @@ class Membership < ActiveRecord::Base
 
   validates_presence_of :role, :group_id, :user_id
 
+  validates_associated :group
+
   #ASSOCIATIONS
   belongs_to :user
   belongs_to :group
