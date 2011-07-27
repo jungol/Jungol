@@ -30,12 +30,22 @@ class TodosController < ApplicationController
   end
 
   def update
-    if(@todo.update_attributes(params[:todo]))
+    if params[:todo][:tasks_attributes] #adding tasks to todo
+      task_cnt = 1
+      params[:todo][:tasks_attributes].each do |k, task|
+        @todo.update_attributes(:tasks_attributes => {task_cnt => task})
+        task_cnt += 1
+      end
       flash[:success] = "Todo updated."
       redirect_to group_todo_path(@group, @todo)
     else
-      @title = "#{@todo.title} < #{@group.name}"
-      render :show
+      if(@todo.update_attributes(params[:todo]))
+        flash[:success] = "Todo updated."
+        redirect_to group_todo_path(@group, @todo)
+      else
+        @title = "#{@todo.title} < #{@group.name}"
+        render :show
+      end
     end
   end
 
