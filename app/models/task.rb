@@ -17,28 +17,20 @@ class Task < ActiveRecord::Base
 
   before_validation :add_default_status, :add_order_add_desc
 
-  def self.update_many(tasks)
-    tasks.each_with_index do |task_id, list_order|
-      task = find(task_id)
-      task.update_attribute :list_order, list_order
-    end
-  end
-
-
   private
-  def add_default_status
-    self.status ||= 0
-  end
-
-  def add_order_add_desc
-    if self.todo
-      @@count = self.todo.tasks_count + 1
-    else
-      @@count += 1
+    def add_default_status
+      self.status ||= 0
     end
-    self.task_num = @@count
-    self.list_order = @@count
-  end
+
+    def add_order_add_desc
+      if self.todo
+        @@count = self.todo.tasks_count + 1
+      else
+        @@count += 1
+      end
+      self.task_num = @@count
+      self.list_order = @@count
+    end
 
 end
 

@@ -24,7 +24,11 @@ disc = user.created_discussions.create!(:title => "First Discussion", :descripti
 group.discussions << disc
 puts 'First Jungol discussion created: ' << disc.title
 
-todo = user.created_todos.create!(:title => "First Todo", :description => "This is the first todo.")
+todo = user.created_todos.create!(:title => "First Todo", :description => "This is the first todo.",
+                                  :tasks_attributes => [
+                                    {:description => "Task One"},
+                                    {:description => "Task Two"},
+                                    {:description => "Task Three"}])
 group.todos << todo
 puts 'First Jungol todo created: ' << todo.title
 

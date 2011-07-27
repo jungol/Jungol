@@ -19,14 +19,14 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = Task.find(params['id'])
     if params['task'].is_a? Array #WE'RE UPDATING LIST ORDER
-      Task.update_many(params['task'])
+      @todo.update_order(params['task'])
       render :nothing => true
       return
     end
     if params['task']['description'] #UPDATING DESCRIPTION
-      if(@task.update_attributes(:description => params['task']['description']))
+      if(@task.update_attribute(:description, params['task']['description']))
         flash.now[:success] = "Task updated."
         #render :text => params['task']['description']
       else
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
       end
     end
     if params['task']['status'] #UPDATING STATUS
-      if(@task.update_attributes(:status => params['task']['status']))
+      if(@task.update_attribute(:status, params['task']['status']))
         flash.now[:success] = "Task updated."
         #render :text => params['task']['status']
       else
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
       end
     end
     if params['task']['list_order']
-      if(@task.update_attributes(:list_order => params['task']['list_order']))
+      if(@task.update_attribute(:list_order, params['task']['list_order']))
         flash.now[:success] = "Task updated."
         #render :text => params['task']['list_order']
       else

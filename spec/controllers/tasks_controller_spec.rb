@@ -101,13 +101,6 @@ describe TasksController do
         @item.status.should == @attr[:status]
       end
 
-      it "should NOT update an item's order" do
-        @attr = @attr.merge( :list_order => 57)
-        put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
-        @item.reload
-        @item.list_order.should_not == @attr[:list_order]
-      end
-
       it "should have a confirmation message" do
         put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         flash[:success].should =~ /updated/i

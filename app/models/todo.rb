@@ -20,10 +20,15 @@ class Todo < ActiveRecord::Base
     ret | self.shared_groups
   end
 
-  def add_many(tasks)
-    tasks.each {|task| self.update_attributes(:tasks_attributes => [task]) }
+  def add_many(_tasks)
+    _tasks.each {|task| self.update_attributes(:tasks_attributes => [task]) }
   end
 
+  def update_order(_tasks)
+    self.tasks.each do |task|
+      task.update_attribute :list_order, _tasks.index(task.id.to_s) + 1
+    end
+  end
 end
 
 
