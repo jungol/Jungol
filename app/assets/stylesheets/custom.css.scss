@@ -1,16 +1,14 @@
-.container {
-  width: 710px;
-}
-body {
-    background: #cfffcc;
-}
-header {
-    padding-top: 20px;
-}
-header img {
-  padding: 1em;
-  background: #fff;
-}
+body { background: #f3f4f3; }
+.container { width: 100%; }
+div.clearall { clear: both; }
+
+
+/* Header */
+header { background: #387663; }
+header img { margin: 10px 0 10px 20px; }
+
+
+
 section {
   margin-top: 2em;
   font-size: 120%;
@@ -43,33 +41,18 @@ a:visited {
     color: #069;
 }
 /* Navigation */
-nav {
-  float: right;
-}
-nav {
-  background-color: white;
-  padding: 0 0.7em;
-  white-space: nowrap;
-}
-nav ul {
-  margin: 0;
-  padding: 0;
-}
-nav ul li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
-}
-nav ul li a {
-  padding: 0 5px;
-  font-weight: bold;
-}
-nav ul li a:visited {
-    color: #09c;
-}
-nav ul li a:hover {
-    text-decoration: underline;
-}
+nav { float: right; }
+nav { white-space: nowrap; }
+nav ul { margin: 30px 0 0 0; color: #fff; }
+nav ul li { list-style-type: none; display: inline-block; padding: 0.2em 0; text-transform: uppercase; }
+nav ul li a { padding: 0 5px; font-weight: normal; color: #fff; }
+nav ul li a:visited { color: #fff; }
+nav ul li a:hover { text-decoration: underline; color: #fff; }
+
+/* Search Groups */
+form.search-form { float: right; margin: 27px 20px 0 10px; }
+
+
 /* Sign up button */
 a.signup_button {
   margin-left: auto;
@@ -90,12 +73,6 @@ a.create_button,a.join_button, input.join_button {
  font-weight:bold;
  padding:10px;
  float:right;
-}
-/* Round corners */
-.round {
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius:  10px
 }
 
 .profile img.gravatar {

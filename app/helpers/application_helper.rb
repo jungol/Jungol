@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def logo
-    image_tag("logo.png", :alt => "Jungol", :class => "round")
+    image_tag("logo-new.png", :alt => "Jungol")
   end
 
   def to_hash
