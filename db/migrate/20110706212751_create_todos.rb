@@ -5,6 +5,7 @@ class CreateTodos < ActiveRecord::Migration
       t.integer :group_id
       t.string :title
       t.text :description
+      t.integer :tasks_count, :default => 0
 
       t.timestamps
     end

@@ -5,13 +5,15 @@ class Task < ActiveRecord::Base
   attr_protected :list_order, :task_num
 
   @@count = 0
-  belongs_to :todo
+  belongs_to :todo, :counter_cache => true
 
   validates( :description, :presence => true,
-                       :length => {:maximum => 140})
+            :length => {:maximum => 140})
 
   validates_numericality_of :status, :only_integer => true
   validates_inclusion_of :status, :in => 0..2
+
+  validates_uniqueness_of :task_num, :list_order, :scope => :todo_id
 
   before_validation :add_default_status, :add_order_add_desc
 
@@ -24,21 +26,19 @@ class Task < ActiveRecord::Base
 
 
   private
-    def add_default_status
-      self.status ||= 0
-    end
+  def add_default_status
+    self.status ||= 0
+  end
 
-    def add_order_add_desc
-      if self.todo
-        @@count = 0
-        self.list_order ||= self.todo.tasks.count + 1
-        self.task_num ||= self.todo.tasks.count + 1
-      else
-        @@count = @@count + 1
-        self.task_num = @@count
-        self.list_order = @@count
-      end
+  def add_order_add_desc
+    if self.todo
+      @@count = self.todo.tasks_count + 1
+    else
+      @@count += 1
     end
+    self.task_num = @@count
+    self.list_order = @@count
+  end
 
 end
 

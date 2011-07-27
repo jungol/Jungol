@@ -114,13 +114,14 @@ describe User do
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
 #
 #  id                     :integer         not null, primary key
 #  email                  :string(255)     default(""), not null
-#  encrypted_password     :string(128)     default(""), not null
+#  encrypted_password     :string(128)     default("")
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -136,5 +137,10 @@ end
 #  updated_at             :datetime
 #  name                   :string(255)
 #  about                  :text
+#  invitation_token       :string(60)
+#  invitation_sent_at     :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string(255)
 #
 

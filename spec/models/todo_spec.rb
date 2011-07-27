@@ -22,6 +22,7 @@ describe Todo do
 end
 
 
+
 # == Schema Information
 #
 # Table name: todos
@@ -33,5 +34,6 @@ end
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  tasks_count :integer         default(0)
 #
 

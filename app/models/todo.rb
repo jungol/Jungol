@@ -20,7 +20,9 @@ class Todo < ActiveRecord::Base
     ret | self.shared_groups
   end
 
+
 end
+
 
 
 # == Schema Information
@@ -34,5 +36,6 @@ end
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  tasks_count :integer         default(0)
 #
 
