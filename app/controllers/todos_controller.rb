@@ -15,7 +15,7 @@ class TodosController < ApplicationController
     @comment = current_user.comments.new
     @unshared = @group.unshared_groups(@todo)
     @shared = @todo.shared_groups
- end
+  end
 
   def create
     @todo = current_user.created_todos.build(params[:todo])
@@ -31,11 +31,7 @@ class TodosController < ApplicationController
 
   def update
     if params[:todo][:tasks_attributes] #adding tasks to todo
-      task_cnt = 1
-      params[:todo][:tasks_attributes].each do |k, task|
-        @todo.update_attributes(:tasks_attributes => {task_cnt => task})
-        task_cnt += 1
-      end
+      @todo.add_many(params[:todo][:tasks_attributes].values)
       flash[:success] = "Todo updated."
       redirect_to group_todo_path(@group, @todo)
     else
