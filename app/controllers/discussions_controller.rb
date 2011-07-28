@@ -3,6 +3,7 @@ class DiscussionsController < ApplicationController
   before_filter :find_disc, :except => [:new, :create]
   before_filter :find_origin_group, :only => :share
   before_filter :require_member
+  before_filter :require_delete, :only => :destroy
 
   def new
     @title = "Create a Discussion"
@@ -26,6 +27,15 @@ class DiscussionsController < ApplicationController
     @comment = current_user.comments.new
     @unshared = @group.unshared_groups(@discussion)
     @shared = @discussion.shared_groups
+    @up_path = group_discussion_path(@group, @discussion)
+  end
+
+  def update
+    if request.post? #AJAX update - description
+      if @discussion.update_attributes(params[:discussion])
+        render :text => params[:discussion][:description]
+      end
+    end
   end
 
   def share
@@ -47,6 +57,13 @@ class DiscussionsController < ApplicationController
     redirect_to group_discussion_path(@discussion.group, @discussion)
   end
 
+  def destroy
+    title = @discussion.title
+    @discussion.destroy
+    flash[:success] = "Discussion '#{title}' destroyed."
+    redirect_to group_path(@group)
+  end
+
   def find_group
     @group = Group.find(params[:group_id])
   end
@@ -60,4 +77,9 @@ class DiscussionsController < ApplicationController
     @shared_group = Group.find(params[:group_id])
   end
 
+  def require_delete
+    unless current_user.can_delete? @discussion
+      redirect_to group_discussion_path @group, @discussion
+    end
+  end
 end

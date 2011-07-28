@@ -3,6 +3,7 @@ class TodosController < ApplicationController
   before_filter :find_todo, :except => [:new, :create]
   before_filter :find_origin_group, :only => :share
   before_filter :require_member
+  before_filter :require_delete, :only => :destroy
 
   def new
     @title = "Create a Todo List"
@@ -15,6 +16,7 @@ class TodosController < ApplicationController
     @comment = current_user.comments.new
     @unshared = @group.unshared_groups(@todo)
     @shared = @todo.shared_groups
+    @up_path = group_todo_path(@group, @todo)
   end
 
   def create
@@ -30,17 +32,23 @@ class TodosController < ApplicationController
   end
 
   def update
-    if params[:todo][:tasks_attributes] #adding tasks to todo
-      @todo.add_many(params[:todo][:tasks_attributes].values)
-      flash[:success] = "Todo updated."
-      redirect_to group_todo_path(@group, @todo)
+    if request.post? #AJAX update - description
+      if @todo.update_attributes(params[:todo])
+        render :text => params[:todo][:description]
+      end
     else
-      if(@todo.update_attributes(params[:todo]))
+      if params[:todo][:tasks_attributes] #adding tasks to todo
+        @todo.add_many(params[:todo][:tasks_attributes].values)
         flash[:success] = "Todo updated."
         redirect_to group_todo_path(@group, @todo)
-      else
-        @title = "#{@todo.title} < #{@group.name}"
-        render :show
+      else #updating todo through REST form
+        if(@todo.update_attributes(params[:todo]))
+          flash[:success] = "Todo updated."
+          redirect_to group_todo_path(@group, @todo)
+        else
+          @title = "#{@todo.title} < #{@group.name}"
+          render :show
+        end
       end
     end
   end
@@ -64,6 +72,14 @@ class TodosController < ApplicationController
     redirect_to group_todo_path(@todo.group, @todo)
   end
 
+
+  def destroy
+    title = @todo.title
+    @todo.destroy
+    flash[:success] = "Todo '#{title}' destroyed."
+    redirect_to group_path(@group)
+  end
+
   def find_group
     @group = Group.find(params[:group_id])
   end
@@ -75,5 +91,11 @@ class TodosController < ApplicationController
   def find_origin_group
     @group = @todo.group
     @shared_group = Group.find(params[:group_id])
+  end
+
+  def require_delete
+    unless current_user.can_delete? @todo
+      redirect_to group_todo_path(@group, @todo)
+    end
   end
 end

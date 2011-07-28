@@ -8,6 +8,10 @@ class Comment < ActiveRecord::Base
   validates( :body, :presence => true,
                       :length => {:maximum => 512})
 
+  def item
+    self.item
+  end
+
 end
 
 # == Schema Information

@@ -3,13 +3,20 @@
     <%= "#{@todo.title} - #{@group.name}" %>
   </h1>
 
-  <strong>Title</strong> <%= @todo.title %><br />
+  <strong>Title</strong><br />
+  <div><%= @todo.title %></div>
 
-  <strong>Description</strong> <%= @todo.description %><br />
+  <strong>Description</strong><br />
+  <div id="<%= @up_path %>" class='edit_todo_desc'><%= @todo.description %></div>
 
   Creator: <%= @todo.creator.name %><br />
   <strong>URL</strong> <%= link_to group_todo_path(@group, @todo) %><br /><br />
   <br /><br />
+  <% if current_user.can_delete? @todo %>
+    <%= link_to "DELETE TODO", group_todo_path(@group, @todo), :method => :delete, :confirm => "You sure?",
+      :title => "Delete #{@todo.title}" %>
+  <% end %>
+
   <% if @shared.present? %>
     <ul>
       Item Shared With:

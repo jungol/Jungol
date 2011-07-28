@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110727053239) do
+ActiveRecord::Schema.define(:version => 20110726215050) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20110727053239) do
     t.string   "item_type"
     t.integer  "group_id"
     t.integer  "creator_id"
-    t.boolean  "leaders_only", :default => false, :null => false
+    t.boolean  "admins_only", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,9 +94,9 @@ ActiveRecord::Schema.define(:version => 20110727053239) do
     t.integer  "group_id"
     t.string   "title"
     t.text     "description"
+    t.integer  "tasks_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tasks_count", :default => 0
   end
 
   add_index "todos", ["creator_id"], :name => "index_todos_on_creator_id"

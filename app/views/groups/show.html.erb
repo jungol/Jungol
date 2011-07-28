@@ -11,8 +11,8 @@
   Creator: <%= @group.creator.name %><br />
   <h4>URL</h4> <%= link_to @group.name, @group %><br /><br />
 
-  <h4>Leaders</h4> <%= render @group.leaders %><br />
-  <h4>Users</h4> <%= render @group.non_leaders %><br /><br />
+  <h4>Admins</h4> <%= render @group.admins %><br />
+  <h4>Users</h4> <%= render @group.non_admins %><br /><br />
 
   <h4>Connected Groups</h4>
   <% if @group.groups.present? %>
@@ -22,8 +22,8 @@
   <% end %>
 
 
-  <% if @leader %>
-    <%= "You're a leader! Connect!" %><br />
+  <% if @admin %>
+    <%= "You're a admin! Connect!" %><br />
     <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %><br />
   <% end %>
 

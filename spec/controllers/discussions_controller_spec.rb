@@ -48,4 +48,50 @@ describe DiscussionsController do
         flash[:success].should == "Discussion Created."
     end
   end
+
+  describe "DELETE 'destroy'" do
+    before(:each) do
+      @discussion = @user.created_discussions.create!(:title => "bla", :description => "desc")
+      @group.discussions << @discussion
+    end
+
+    describe "as a non-member" do
+      it "should protect the page" do
+        @user = Factory(:confirmed_user)
+        test_sign_in @user
+        delete :destroy, :group_id => @group, :id => @discussion
+        response.should redirect_to @group
+      end
+    end
+
+    describe "as a non-admin" do
+      it "should direct back to discussion" do
+        @user = Factory(:confirmed_user)
+        test_sign_in @user
+        @group.users << @user
+        delete :destroy, :group_id => @group, :id => @discussion
+        response.should redirect_to group_discussion_path(@group, @discussion)
+      end
+    end
+
+    describe "as a creator/admin" do
+      it "should destroy the discussion" do
+        expect {
+        delete :destroy, :group_id => @group, :id => @discussion
+        }.should change(Discussion, :count).by(-1)
+      end
+
+      it "should update the group's discussion count" do
+        expect {
+        delete :destroy, :group_id => @group, :id => @discussion
+        }.should change(@group.discussions, :count).by(-1)
+      end
+
+      it "should redirect to the group page" do
+        delete :destroy, :group_id => @group, :id => @discussion
+        response.should redirect_to @group
+      end
+    end
+  end
+
 end

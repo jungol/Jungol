@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :find_group, :except => [:index, :new, :create]
-  before_filter :require_leader, :only => [:edit, :update, :link]
+  before_filter :require_admin, :only => [:edit, :update, :link]
 
   def index
     @title = "All Groups"
@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
 
   def show
     @member = @group.member?(current_user)
-    @leader = @group.leader?(current_user)
+    @admin = @group.admin?(current_user)
     @title = @group.name
   end
 

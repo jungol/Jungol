@@ -8,7 +8,13 @@
   Creator: <%= @discussion.creator.name %><br />
   <strong>URL</strong> <%= link_to group_discussion_path(@group, @discussion) %><br /><br />
 
-  <%= @discussion.description %><br /><br />
+  <strong>Description</strong><br />
+  <div id="<%= @up_path %>" class='edit_disc_desc'><%= @discussion.description %></div>
+
+  <% if current_user.can_delete? @discussion %>
+    <%= link_to "DELETE DISCUSSION", group_discussion_path(@group, @discussion), :method => :delete, :confirm => "You sure?",
+      :title => "Delete #{@discussion.title}" %>
+  <% end %>
 
   <% if @shared.present? %>
     <ul>

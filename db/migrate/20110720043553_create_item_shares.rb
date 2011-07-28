@@ -2,10 +2,10 @@ class CreateItemShares < ActiveRecord::Migration
   def change
     create_table :item_shares do |t|
       t.integer :item_id
-      t.string :item_type
+      t.string  :item_type
       t.integer :group_id
       t.integer :creator_id
-      t.boolean :leaders_only, :null => false, :default => false
+      t.boolean :admins_only, :null => false, :default => false
 
       t.timestamps
     end

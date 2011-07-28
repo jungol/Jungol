@@ -2,7 +2,11 @@ Jungola::Application.routes.draw do
 
   devise_for :users
 
-  resources :comments, :only => [:create, :update]
+  resources :comments, :only => [:create, :update] do
+    member do
+      post :update
+    end
+  end
 
   match 'groups/:id/join', :controller => :groups, :action => :join, :via => [:post, :get], :as => "join"
 
@@ -14,11 +18,13 @@ Jungola::Application.routes.draw do
       member do
         post :share
         put :share
+        post :update
       end
     end
     resources :todos do
       member do
         post :share
+        post :update
         put :share
       end
       resources :tasks do

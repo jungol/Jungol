@@ -7,9 +7,9 @@ module PermissionsHelper
       end
     end
 
-    def require_leader
-      unless @group.leader?(current_user)
-        flash[:error] = "You must be a leader of #{@group.name} to do that."
+    def require_admin
+      unless @group.admin?(current_user)
+        flash[:error] = "You must be an admin of #{@group.name} to do that."
         redirect_to(group_path(@group))
       end
     end

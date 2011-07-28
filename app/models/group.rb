@@ -37,20 +37,20 @@ class Group < ActiveRecord::Base
     users.include?(user)
   end
 
-  def leader?(user)
-    leaders.include?(user) if user
+  def admin?(user)
+    admins.include?(user) if user
   end
 
-  def leaders
+  def admins
     users.includes(:memberships).where(:memberships => {:role => 1})
   end
 
-  def non_leaders
+  def non_admins
     users.includes(:memberships).where(:memberships => {:role => 2})
   end
 
-  def non_leader?(user)
-    non_leaders.include?(user) if user
+  def non_admin?(user)
+    non_admins.include?(user) if user
   end
 
   def unshared_groups(item)

@@ -5,17 +5,18 @@ describe ItemShare do
 end
 
 
+
 # == Schema Information
 #
 # Table name: item_shares
 #
-#  id           :integer         not null, primary key
-#  item_id      :integer
-#  item_type    :string(255)
-#  group_id     :integer
-#  creator_id   :integer
-#  leaders_only :boolean         default(FALSE), not null
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id          :integer         not null, primary key
+#  item_id     :integer
+#  item_type   :string(255)
+#  group_id    :integer
+#  creator_id  :integer
+#  admins_only :boolean         default(FALSE), not null
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 

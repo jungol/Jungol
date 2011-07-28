@@ -23,6 +23,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: todos
@@ -32,8 +33,8 @@ end
 #  group_id    :integer
 #  title       :string(255)
 #  description :text
+#  tasks_count :integer         default(0)
 #  created_at  :datetime
 #  updated_at  :datetime
-#  tasks_count :integer         default(0)
 #
 
