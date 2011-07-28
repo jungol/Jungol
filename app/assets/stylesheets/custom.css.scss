@@ -1,19 +1,32 @@
-body { background: #f3f4f3; }
+body { background: #fff; }
 .container { width: 100%; }
 div.clearall { clear: both; }
 
 
 /* Header */
-header { background: #387663; }
-header img { margin: 10px 0 10px 20px; }
+header { background: #bee8eb; }
+header .logo { position: absolute; top: 10px; left: 20px; }
 
+header .secondary { background: #fff; margin-top: 15px; }
+header .secondary .groups-list { margin: 0 0 0 20px; padding: 60px 0 20px 20px; font-family: 'Cabin', sans-serif; width: 28%; float: left; }
+header .secondary .groups-list h1 { font-weight: 600; font-size: 1.4em; color: #738151; }
+header .secondary .groups-list ul { list-style: none; padding: 0; margin: 0; line-height: 1.2em; padding-left: 10px; }
+header .secondary .groups-list ul li { font-weight: 400; }
+header .secondary .groups-list ul li a { color: #738151; text-decoration: underline; }
+
+header .secondary .group-info { float: left; width: 68%; padding-top: 30px; }
+header .secondary .group-info img { float: left; padding-right: 20px; }
+header .secondary .group-info h1 { font-size: 22px; float: left; font-family: 'Cabin', sans-serif; font-weight: 600; color: #3f3f3f; }
+header .secondary .group-info p { float: left; font-family: 'Cabin', sans-serif; margin-top: -5px; color: #8eac45; }
+header .secondary .group-info p a { color: #8eac45; text-decoration: underline; }
+header .secondary .group-info p.blurb { padding-left: 145px; padding-right: 115px; margin-top: -15px; color: #696a57; }
 
 
 section {
   margin-top: 2em;
   font-size: 120%;
   padding: 20px;
-  background: #fff;
+  background: yellow;
 }
 section h1 {
     font-size: 200%;
@@ -43,14 +56,16 @@ a:visited {
 /* Navigation */
 nav { float: right; }
 nav { white-space: nowrap; }
-nav ul { margin: 30px 0 0 0; color: #fff; }
+nav ul { margin: 22px 0 0 0; color: #888f6e; }
 nav ul li { list-style-type: none; display: inline-block; padding: 0.2em 0; text-transform: uppercase; }
-nav ul li a { padding: 0 5px; font-weight: normal; color: #fff; }
-nav ul li a:visited { color: #fff; }
-nav ul li a:hover { text-decoration: underline; color: #fff; }
+nav ul li a { padding: 0 5px; font-weight: normal; color: #888f6e; }
+nav ul li a:visited { color: #888f6e; }
+nav ul li a:hover { text-decoration: underline; color: #888f6e; }
 
 /* Search Groups */
-form.search-form { float: right; margin: 27px 20px 0 10px; }
+form.search-form { float: right; margin: 19px 20px 0 10px; }
+input.search-field { background: #fff; border: 1px solid #cbd5ad; color: #c6c6b3; -moz-border-radius: 2px;
+border-radius: 2px; }
 
 
 /* Sign up button */
