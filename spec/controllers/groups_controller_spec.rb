@@ -171,7 +171,7 @@ describe GroupsController do
         response.should redirect_to new_user_session_path
       end
 
-      it "should redirect if user is not a group leader" do
+      it "should redirect if user is not a group admin" do
         @user = Factory(:user)
         test_sign_in @user
         get :link, :id => @group
@@ -192,7 +192,7 @@ describe GroupsController do
           response.should redirect_to new_user_session_path
         end
 
-        it "should redirect if user is not a group leader" do
+        it "should redirect if user is not a group admin" do
           @user = Factory(:user, :email => Factory.next(:email))
           test_sign_in(@user)
           post :link, :id => @group, :group => {:id => @group2.id}
