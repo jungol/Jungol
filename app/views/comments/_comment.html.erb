@@ -1,9 +1,10 @@
+<% comment_class = current_user==comment.user ? "edit_comment" : "comment" %>
 <div class="comment">
   <p>
     Posted by <b><%= comment.user.name %></b> on <%= comment.created_at.to_s :long %>
   </p>
   <p>
     <b>Body:</b>
-    <%= comment.body %>
+    <p class="<%= comment_class %>" id="<%= comment_path(comment) %>"><%= comment.body %></p>
   </p>
 </div>

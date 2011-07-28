@@ -31,10 +31,11 @@ describe CommentsController do
     @attr = { :name => "Test Group",
               :about => "We're a Group!"}
 
-    @user = Factory(:user)
+    @user = Factory(:confirmed_user)
     test_sign_in @user
     @group = @user.created_groups.create(@attr)
     @todo = @user.created_todos.create(:title => "SOMETHING")
+    @group.todos << @todo
   end
 
   describe "POST create" do
@@ -47,7 +48,7 @@ describe CommentsController do
       end
 
       it "should not create a comment if not a member" do
-        @user = Factory(:user)
+        @user = Factory(:confirmed_user)
         test_sign_in @user
         expect {
           post :create, :comment => valid_attributes, :todo => @todo, :group => @group
@@ -91,21 +92,21 @@ describe CommentsController do
     end
   end
 
-  describe "PUT update" do
+  describe "POST update" do
     describe "permissions" do
       it "should not update a comment if not logged in" do
         comment = @user.comments.create! valid_attributes
         sign_out @user
+        post :update, :id => comment.id, :comment => {:body => "hmm"}, :todo => @todo, :group => @group
         Comment.any_instance.should_not_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => comment.id, :comment => {:body => "hmm"}, :todo => @todo, :group => @group
       end
 
       it "should not update a comment if not the creator" do
         comment = @user.comments.create! valid_attributes
-        @user = Factory :user
-        @user.confirm!
+        @user = Factory :confirmed_user
+        test_sign_in @user
+        post :update, :id => comment.id, :comment => {'these' => 'params'}, :todo => @todo, :group => @group
         Comment.any_instance.should_not_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => comment.id, :comment => {'these' => 'params'}, :todo => @todo, :group => @group
       end
     end
 
@@ -117,20 +118,15 @@ describe CommentsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Comment.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => comment.id, :comment => {'these' => 'params'}, :todo => @todo, :group => @group
+        post :update, :id => comment.id, :comment => {'these' => 'params'}, :todo => @todo, :group => @group
       end
 
       it "assigns the requested comment as @comment" do
         comment = @user.comments.create! valid_attributes
-        put :update, :id => comment.id, :comment => valid_attributes, :todo => @todo, :group => @group
+        post :update, :id => comment.id, :comment => valid_attributes, :todo => @todo, :group => @group
         assigns(:comment).should eq(comment)
       end
 
-      it "redirects to the comment" do
-        comment = @user.comments.create! valid_attributes
-        put :update, :id => comment.id, :comment => valid_attributes, :todo => @todo, :group => @group
-        response.should redirect_to(group_todo_path @group, @todo)
-      end
     end
 
     describe "with invalid params" do
@@ -138,17 +134,10 @@ describe CommentsController do
         comment = @user.comments.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
-        put :update, :id => comment.id.to_s, :comment => {}, :todo => @todo, :group => @group
+        post :update, :id => comment.id.to_s, :comment => {}, :todo => @todo, :group => @group
         assigns(:comment).should eq(comment)
       end
 
-      it "re-renders the 'todos/show' template" do
-        comment = @user.comments.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Comment.any_instance.stub(:save).and_return(false)
-        put :update, :id => comment.id.to_s, :comment => {}, :todo => @todo, :group => @group
-        response.should render_template("todos/show")
-      end
     end
   end
 

@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
-  before_filter :find_group, :find_item
+  before_filter :find_group, :find_item, :only => :create
   before_filter :find_comment, :only => :update
-  before_filter :require_member
-  before_filter :require_creator, :only => :update
+  before_filter :require_view, :only => :create
 
   def create
     @comment = current_user.comments.build(params[:comment])
@@ -29,41 +28,17 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PUT /comments/1
-  # PUT /comments/1.json
   def update
-    respond_to do |format|
+    if request.post? && @comment.user == current_user
       if @comment.update_attributes(params[:comment])
-        if(@todo)
-          format.html { redirect_to group_todo_path(@group, @todo), notice: 'Comment was successfully created.' }
-          format.json { head :ok }
-        elsif @discussion
-          format.html { redirect_to group_discussion_path(@group, @discussion), notice: 'Comment was successfully created.' }
-          format.json { head :ok }
-        end
+        render :text => params[:comment][:body]
       else
-        if @todo
-          format.html { render :template => 'todos/show' }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
-        elsif @discussion
-          format.html { render :template => 'discussions/show' }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
-        end
+        render :nothing => true
       end
+    else
+      render :nothing => true
     end
   end
-
-  # DELETE /comments/1
-  # DELETE /comments/1.json
-  #  def destroy
-  #    @comment = Comment.find(params[:id])
-  #    @comment.destroy
-  #
-  #    respond_to do |format|
-  #      format.html { redirect_to comments_url }
-  #      format.json { head :ok }
-  #    end
-  #  end
 
   private
 
@@ -83,10 +58,10 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
-  def require_creator
-    if @comment.user != current_user
-      flash[:error] = "You must be the comment's creator to do that."
-      redirect_to group_path(@group)
+  def require_view
+    unless current_user.can_see?(@group, (@todo.present? ? @todo : @discussion))
+      flash[:error] = "You don't have permission to comment on that."
+      redirect_to @group
     end
   end
 
