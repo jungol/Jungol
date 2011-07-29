@@ -1,29 +1,43 @@
-<div id="outer">
-  <div id="groups" style="float:left; width:200px;">
-    Groups<br />
-    <ul>
-      <%= render current_user.groups %>
-    </ul>
-    <a id="test_select">Group B</a>
-  </div>
-  <div id="shares" style="float:left;width:200px;">
-    <% if @group.present? %>
-      Shared Groups <br/>
-      <ul>
-        <%= render @group.groups %>
-      </ul>
-    <% end %>
-    <a id="test_filter">Groups A,B</a>
-  </div>
-  <div id="main" style="float:left;">
-    <h3>Todos</h3>
-    <ul>
-      <%= render :partial =>'filter/todo', :collection => @current_todos %>
-    </ul>
-    <h3>Discussions</h3>
-    <ul>
-      <%= render :partial =>'filter/discussion', :collection => @current_discussions %>
-    </ul>
-  </div>
-  <div style="clear:both;"> </div>
+<div id="main-left">
+	<h1>Filter by Connections</h1>
+	<ul class="filter-con">
+		<li><a href="#">Genocide Intervention Network</a></li>
+		<li class="selected"><a href="#">STAND</a></li>
+		<li><a href="#">Wellspring Advisors</a></li>
+		<li><a href="#">Darfur Peace and Development</a></li>
+		<li class="add"><a href="#">Add a Connection</a></li>
+	</ul>
+</div>
+		
+		
+		
+		
+<div class="clearall"></div>
+	<!-- <div id="groups" style="float:left; width:200px;">
+	    Groups<br />
+	    <ul>
+	      <%= render current_user.groups %>
+	    </ul>
+	    <a id="test_select">Group B</a>
+	  </div>
+	  <div id="shares" style="float:left;width:200px;">
+	    <% if @group.present? %>
+	      Shared Groups <br/>
+	      <ul>
+	        <%= render @group.groups %>
+	      </ul>
+	    <% end %>
+	    <a id="test_filter">Groups A,B</a>
+	  </div>
+	  <div id="main" style="float:left;">
+	    <h3>Todos</h3>
+	    <ul>
+	      <%= render :partial =>'filter/todo', :collection => @current_todos %>
+	    </ul>
+	    <h3>Discussions</h3>
+	    <ul>
+	      <%= render :partial =>'filter/discussion', :collection => @current_discussions %>
+	    </ul>
+	  </div>
+	  <div style="clear:both;"> </div> -->
 </div>

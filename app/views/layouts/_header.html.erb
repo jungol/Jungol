@@ -1,14 +1,22 @@
 <header>
   <%= link_to logo, root_path %>
-  <nav class="round">
+
+	<form class="search-form">
+		<input class="search-field" type="text" value="search groups" onfocus="if(this.value=='search groups'){this.value='';}" onblur="if(this.value==''){this.value='search groups';}" />
+		<input class="search-button" type="button" value="go" />
+	</form>
+
+  <nav>
     <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Groups", groups_path %></li>
+      <li><%= link_to "Home", root_path %></li> | 
+      <li><%= link_to "Groups", groups_path %></li> | 
       <% if signed_in? %>
-        <li><%= link_to "Profile", current_user %></li>
+        <li><%= link_to "Profile", current_user %></li> | 
       <% end %>
-      <%= render 'devise/menu/registration_items' %>
+      <%= render 'devise/menu/registration_items' %> | 
       <%= render 'devise/menu/login_items' %>
     </ul>
   </nav>
+
+	<div class="clearall"></div>
 </header>
