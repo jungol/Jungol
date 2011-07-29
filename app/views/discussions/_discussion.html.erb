@@ -1,9 +1,9 @@
 <li>
   <%= link_to discussion.title, group_discussion_path(@group, discussion) %>
   <% if !discussion.item_shares.empty? %><br />
-    <ul>Sharing with:
+    <ul>
       <% discussion.item_shares.each do |i| %>
-        <%= render 'discussions/share', :group => i.group %>
+        <%= render('discussions/share', :group => i.group) unless i.group.id == @group.id %>
       <% end %>
     </ul>
   <% end %>

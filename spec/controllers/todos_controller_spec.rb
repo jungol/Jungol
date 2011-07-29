@@ -63,6 +63,7 @@ describe TodosController do
     before(:each) do
       @todo = @user.created_todos.create!(:title => "bla", :description => "desc")
       @group.todos << @todo
+      @user.share @group, @todo
     end
 
     describe "as a non-member" do

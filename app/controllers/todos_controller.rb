@@ -1,9 +1,10 @@
 class TodosController < ApplicationController
   before_filter :find_group, :except => :share
+  before_filter :require_member
   before_filter :find_todo, :except => [:new, :create]
   before_filter :find_origin_group, :only => :share
-  before_filter :require_member
   before_filter :require_delete, :only => :destroy
+  before_filter :require_view, :except => [:new, :create]
 
   def new
     @title = "Create a Todo List"
@@ -23,6 +24,10 @@ class TodosController < ApplicationController
     @todo = current_user.created_todos.build(params[:todo])
     if @todo.save #success
       @group.todos << @todo
+
+      #create share with original group
+      current_user.share @group, @todo
+
       flash[:success] = "Todo Created."
       redirect_to group_todo_path(@group, @todo)
     else
@@ -80,22 +85,30 @@ class TodosController < ApplicationController
     redirect_to group_path(@group)
   end
 
-  def find_group
-    @group = Group.find(params[:group_id])
-  end
-
-  def find_todo
-    @todo = Todo.find(params[:id])
-  end
-
-  def find_origin_group
-    @group = @todo.group
-    @shared_group = Group.find(params[:group_id])
-  end
-
-  def require_delete
-    unless current_user.can_delete? @todo
-      redirect_to group_todo_path(@group, @todo)
+  private
+    def find_group
+      @group = Group.find(params[:group_id])
     end
-  end
+
+    def find_todo
+      @todo = Todo.find(params[:id])
+    end
+
+    def find_origin_group
+      @group = @todo.group
+      @shared_group = Group.find(params[:group_id])
+    end
+
+    def require_delete
+      unless current_user.can_delete? @todo
+        redirect_to group_todo_path(@group, @todo)
+      end
+    end
+
+    def require_view
+      unless current_user.can_view?(@group, @todo)
+        flash[:error] = "You don't have permission to do that."
+        redirect_to @group
+      end
+    end
 end

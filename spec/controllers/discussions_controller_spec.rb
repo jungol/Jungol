@@ -4,7 +4,7 @@ describe DiscussionsController do
   before(:each) do
     @attr = { :name => "Test Group",
               :about => "We're a Group!"}
-    @user = Factory(:user)
+    @user = Factory(:confirmed_user)
     test_sign_in @user
     @group = @user.created_groups.create(@attr)
   end
@@ -53,6 +53,7 @@ describe DiscussionsController do
     before(:each) do
       @discussion = @user.created_discussions.create!(:title => "bla", :description => "desc")
       @group.discussions << @discussion
+      @user.share @group, @discussion
     end
 
     describe "as a non-member" do

@@ -47,7 +47,7 @@
     Being Shared On:
     <ul>
       <% @group.item_shares.each do |i| %>
-        <%= render 'shared_item', :item => i.item %>
+        <%= render('shared_item', :item => i.item) unless i.item.group_id == @group.id %>
       <% end %>
     </ul>
   <% end %>

@@ -1,9 +1,10 @@
 class DiscussionsController < ApplicationController
   before_filter :find_group, :except => :share
+  before_filter :require_member, :except => :show #catch them in require_view
   before_filter :find_disc, :except => [:new, :create]
   before_filter :find_origin_group, :only => :share
-  before_filter :require_member
   before_filter :require_delete, :only => :destroy
+  before_filter :require_view, :except => [:new, :create]
 
   def new
     @title = "Create a Discussion"
@@ -14,6 +15,10 @@ class DiscussionsController < ApplicationController
     @discussion = current_user.created_discussions.build(params[:discussion])
     if @discussion.save #success
       @group.discussions << @discussion
+
+      #create share with original group
+      current_user.share @group, @discussion
+
       flash[:success] = "Discussion Created."
       redirect_to group_discussion_path(@group, @discussion)
     else
@@ -61,25 +66,34 @@ class DiscussionsController < ApplicationController
     title = @discussion.title
     @discussion.destroy
     flash[:success] = "Discussion '#{title}' destroyed."
-    redirect_to group_path(@group)
+    redirect_to @group
   end
 
-  def find_group
-    @group = Group.find(params[:group_id])
-  end
+  private
 
-  def find_disc
-    @discussion = Discussion.find(params[:id])
-  end
-
-  def find_origin_group
-    @group = @discussion.group
-    @shared_group = Group.find(params[:group_id])
-  end
-
-  def require_delete
-    unless current_user.can_delete? @discussion
-      redirect_to group_discussion_path @group, @discussion
+    def find_group
+      @group = Group.find(params[:group_id])
     end
-  end
+
+    def find_disc
+      @discussion = Discussion.find(params[:id])
+    end
+
+    def find_origin_group
+      @group = @discussion.group
+      @shared_group = Group.find(params[:group_id])
+    end
+
+    def require_delete
+      unless current_user.can_delete? @discussion
+        redirect_to group_discussion_path @group, @discussion
+      end
+    end
+
+    def require_view
+      unless current_user.can_view?(@group, @discussion)
+        flash[:error] = "You don't have permission to do that."
+        redirect_to @group
+      end
+    end
 end

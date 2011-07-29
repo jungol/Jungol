@@ -14,11 +14,6 @@ class Discussion < ActiveRecord::Base
 
   validates :description, :presence => true
 
-  def all_groups #all groups that can see this item
-    ret = [] << self.group
-    ret | self.shared_groups
-  end
-
 end
 
 

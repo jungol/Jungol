@@ -14,8 +14,8 @@ class FilterController < ApplicationController
     @group = Group.find(params[:group_id])
     @shown[:main_group] = @group
     @shown[:shared_groups] = @group.groups
-    @shown[:items][:todos] = @group.all_todos
-    @shown[:items][:discussions] = @group.all_discussions
+    @shown[:items][:todos] = @group.shared_todos
+    @shown[:items][:discussions] = @group.shared_discussions
 
     render :json => @shown
   end
@@ -27,17 +27,17 @@ class FilterController < ApplicationController
     @groups = Group.find(:all, :conditions => ['id in (?)', @groups])
 
     group1 = @groups.first  #start with first, since this is an intersect
-    group1.all_todos.each do |td| #add this todo if it has the other groups listed in its groups
-      if((td.all_groups | @groups) == td.all_groups) #union is same as original, i.e. nothing new in @groups
+    group1.shared_todos.each do |td| #add this todo if it has the other groups listed in its groups
+      if((td.shared_groups | @groups) == td.shared_groups) #union is same as original, i.e. nothing new in @groups
         @shown_items[:todos][i] = td
-        i = i+1
+        i += 1
       end
     end
     i=0
-    group1.all_discussions.each do |dc| #add this discussion if it has the other groups listed in its groups
-      if((dc.all_groups | @groups) == dc.all_groups) #union is same as original, i.e. nothing new in @groups
+    group1.shared_discussions.each do |dc| #add this discussion if it has the other groups listed in its groups
+      if((dc.shared_groups | @groups) == dc.shared_groups) #union is same as original, i.e. nothing new in @groups
         @shown_items[:discussions][i] = dc
-        i = i+1
+        i += 1
       end
     end
     render :json => @shown_items

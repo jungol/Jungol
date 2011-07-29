@@ -2,8 +2,6 @@ class ItemShare < ActiveRecord::Base
 
   attr_accessible :admins_only, :group_id
 
-  attr_accessor :group_id
-
   belongs_to :item, :polymorphic => true
   belongs_to :group
 

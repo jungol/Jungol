@@ -36,9 +36,16 @@ namespace :db do
         disc = user.created_discussions.create :title => "Discussion ##{n}",
           :description => Populator.words(10..30)
         group.discussions << disc
+        new_share = user.created_shares.create
+        disc.item_shares << new_share
+        group.item_shares << new_share
 
         todo = user.created_todos.create :title => "Todo ##{n}", :description => Populator.words(10..20)
         group.todos << todo
+        new_share = user.created_shares.create
+        todo.item_shares << new_share
+        group.item_shares << new_share
+
         Random.rand(10).times do
           todo.tasks.create :description => Populator.words(1..3)
         end

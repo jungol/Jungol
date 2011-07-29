@@ -11,14 +11,9 @@ class Todo < ActiveRecord::Base
 
   accepts_nested_attributes_for :tasks, :reject_if => lambda {|t| t[:description].blank? }, :allow_destroy => true
 
-  validates( :title, :presence => true,
+  validates :title, :presence => true,
             :length => {:maximum => 60},
-            :uniqueness => { :case_sensitive => false})
-
-  def all_groups #all groups that can see this item
-    ret = [] << self.group
-    ret | self.shared_groups
-  end
+            :uniqueness => { :case_sensitive => false}
 
   def add_many(_tasks)
     _tasks.each {|task| self.update_attributes(:tasks_attributes => [task]) }

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  require 'ruby-debug'
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -32,14 +33,25 @@ class User < ActiveRecord::Base
     self.groups.includes(:memberships).where(:memberships => {:role => 1}).include? group
   end
 
-  def can_see?(current_group, item)  #whether a user can see an item, given the group they're viewing from
-    (member_of? current_group ) && (item.all_groups.include? current_group)
-    #TODO add logic to incorporate leaders_only
+  def can_view?(current_group, item)  #whether a user can see an item, given the group they're viewing from
+    if self.member_of? current_group  # user has to be member of viewing group
+      if item.shared_groups.include? current_group  #group has to be shared on this item
+        share = item.item_shares.find_by_group_id current_group.id
+        return (! share.admins_only) || (self.admin_of? current_group) #either item isn't admin_only, or user is an admin
+      end
+    end
   end
 
   def can_delete?(item)
     (admin_of? item.group) || (item.creator == self)
   end
+
+  def share(group, item)
+    share = self.created_shares.create
+    item.item_shares << share
+    group.item_shares << share
+  end
+
 end
 
 

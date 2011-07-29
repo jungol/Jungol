@@ -12,7 +12,6 @@ class Group < ActiveRecord::Base
 
   validate :max_users
 
-
   after_create :add_creator_as_member
 
   #AFFILIATES
@@ -26,7 +25,7 @@ class Group < ActiveRecord::Base
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
 
   #ITEMS
-  has_many :item_shares
+  has_many :item_shares, :dependent => :destroy
   has_many :shared_todos, :through => :item_shares, :source => :item, :source_type => 'Todo'
   has_many :shared_discussions, :through => :item_shares, :source => :item, :source_type => 'Discussion'
   has_many :todos, :dependent => :destroy
@@ -65,12 +64,12 @@ class Group < ActiveRecord::Base
     end
   end
 
-  def all_todos
-    self.todos | self.shared_todos
+  def shared_on_todos
+    self.shared_todos.where "group_id not in ?", self.id
   end
 
-  def all_discussions
-    self.discussions | self.shared_discussions
+  def shared_on_discussions
+    self.shared_discussionss.where "group_id not in ?", self.id
   end
 
   def add_creator_as_member

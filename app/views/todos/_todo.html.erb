@@ -1,9 +1,9 @@
 <li class='todo_link'>
   <%= link_to todo.title, group_todo_path(@group, todo) %>
   <% if todo.item_shares.present? %><br />
-    <ul>Sharing with:
+    <ul>
       <% todo.item_shares.each do |i| %>
-        <%= render 'todos/share', :group => i.group %>
+        <%= render('todos/share', :group => i.group) unless i.group.id == @group.id %>
       <% end %>
     </ul>
   <% end %>

@@ -42,27 +42,27 @@ class CommentsController < ApplicationController
 
   private
 
-  def find_group
-    @group = Group.find(params[:group][:id])
-  end
-
-  def find_item
-    if params[:todo]
-      @todo = Todo.find params[:todo][:id]
-    elsif params[:discussion]
-      @discussion = Discussion.find params[:discussion][:id]
+    def find_group
+      @group = Group.find(params[:group][:id])
     end
-  end
 
-  def find_comment
-    @comment = Comment.find(params[:id])
-  end
-
-  def require_view
-    unless current_user.can_see?(@group, (@todo.present? ? @todo : @discussion))
-      flash[:error] = "You don't have permission to comment on that."
-      redirect_to @group
+    def find_item
+      if params[:todo]
+        @todo = Todo.find params[:todo][:id]
+      elsif params[:discussion]
+        @discussion = Discussion.find params[:discussion][:id]
+      end
     end
-  end
+
+    def find_comment
+      @comment = Comment.find(params[:id])
+    end
+
+    def require_view
+      unless current_user.can_view?(@group, (@todo.present? ? @todo : @discussion))
+        flash[:error] = "You don't have permission to comment on that."
+        redirect_to @group
+      end
+    end
 
 end

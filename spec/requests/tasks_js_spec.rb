@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "TasksJs" do
   describe "Task creation form" do
     before(:each) do
-      @user = integration_sign_in(Factory(:user))
+      @user = integration_sign_in(Factory(:confirmed_user))
       integration_make_group
       click_link 'Add a Todo'
     end
@@ -25,7 +25,7 @@ describe "TasksJs" do
 
   describe "Task editing" do
     before(:each) do
-      @user = integration_sign_in(Factory(:user))
+      @user = integration_sign_in(Factory(:confirmed_user))
       integration_make_group
       integration_make_todo
     end
