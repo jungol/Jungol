@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "FriendlyForwardings" do
 
   it "should forward to the requested page after signin" do
-    user = Factory(:user)
+    user = Factory(:confirmed_user)
     visit new_user_session_path
     #should redirect to signin page
     fill_in 'Email',     :with => user.email

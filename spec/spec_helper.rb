@@ -53,7 +53,7 @@ RSpec.configure do |config|
     visit new_user_session_path
     fill_in 'Email',     :with => user.email
     fill_in 'Password',  :with => user.password
-    click_button :submit
+    click_button 'Sign in'
   end
 
   def integration_make_group
@@ -61,14 +61,14 @@ RSpec.configure do |config|
     fill_in 'Name', :with => "Group Name"
     fill_in 'About', :with => "About us: We're a group"
     check 'Agreement'
-    click_button :submit
+    click_button 'Create Group'
   end
 
   def integration_make_todo
     click_link 'Add a Todo'
     fill_in 'Title', :with => "Test Todo"
     fill_in 'Task', :with => "Here's a test task"
-    click_button :submit
+    click_button 'Create List'
   end
 
 end

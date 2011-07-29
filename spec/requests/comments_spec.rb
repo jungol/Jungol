@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Comments" do
   before(:each) do
-    @user = Factory(:user)
+    @user = Factory(:confirmed_user)
     integration_sign_in(@user)
     integration_make_group
     integration_make_todo
