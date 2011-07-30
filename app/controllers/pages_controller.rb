@@ -7,6 +7,7 @@ class PagesController < ApplicationController
       redirect_to filter_index_path
       return
     end
+    @updates_request = UpdatesRequest.new
     @title = "Jungol"
     render :lander
   end

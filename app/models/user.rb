@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   has_many :created_shares, :foreign_key => 'creator_id', :class_name => 'ItemShare'
   has_many :comments
 
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, :presence => true,
             :length => {:maximum => 50}
             #:uniqueness => { :case_sensitive => false }

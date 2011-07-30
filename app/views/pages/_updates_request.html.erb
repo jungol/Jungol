@@ -1,0 +1,6 @@
+<%= form_for @updates_request, :remote => true do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <p><%= f.label :email %><br />
+    <%= f.email_field :email %></p>
+  <%= f.submit "Submit" %>
+<% end %>

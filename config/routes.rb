@@ -2,6 +2,8 @@ Jungola::Application.routes.draw do
 
   devise_for :users
 
+  resources :updates_requests, :only => [:create]
+
   resources :comments, :only => [:create, :update] do
     member do
       post :update
