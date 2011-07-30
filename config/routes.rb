@@ -42,14 +42,11 @@ Jungola::Application.routes.draw do
     end
   end
 
-#  resources :sessions, :only => [:new, :create, :destroy]
-#
-#  match '/signup', :to => 'users#new'
-#  match '/signin', :to => 'sessions#new'
-#  match '/signout', :to => 'sessions#destroy'
   match '/invite', :to => 'pages#invite'
 
-  root :to => 'pages#home'
+  match '/user' => "filter#index", :as => :user_root
+
+  root :to => 'pages#welcome'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

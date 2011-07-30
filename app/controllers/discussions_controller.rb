@@ -1,4 +1,5 @@
 class DiscussionsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_group, :except => :share
   before_filter :find_disc, :except => [:new, :create]
   before_filter :find_origin_group, :only => :share

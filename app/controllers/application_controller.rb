@@ -3,6 +3,5 @@ class ApplicationController < ActionController::Base
   include PermissionsHelper
 
   before_filter InvitationFilter
-  before_filter :authenticate_user!
 
 end
