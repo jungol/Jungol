@@ -36,15 +36,11 @@ namespace :db do
         disc = user.created_discussions.create :title => "Discussion ##{n}",
           :description => Populator.words(10..30)
         group.discussions << disc
-        new_share = user.created_shares.create
-        disc.item_shares << new_share
-        group.item_shares << new_share
+        user.share group, disc
 
         todo = user.created_todos.create :title => "Todo ##{n}", :description => Populator.words(10..20)
         group.todos << todo
-        new_share = user.created_shares.create
-        todo.item_shares << new_share
-        group.item_shares << new_share
+        user.share group, todo
 
         Random.rand(10).times do
           todo.tasks.create :description => Populator.words(1..3)
@@ -61,15 +57,12 @@ namespace :db do
 
       #share items between groups: discussion from group A and todo from group B
 
-      new_share = group.creator.created_shares.create
       disc = group.discussions.first
-      disc.item_shares << new_share
-      random_group.item_shares << new_share
+      group.creator.share random_group, disc
 
-      new_share2 = random_group.creator.created_shares.create
       todo = random_group.todos.first
-      todo.item_shares << new_share2
-      group.item_shares << new_share2
+      random_group.creator.share group, todo
+
     end
   end
 end
