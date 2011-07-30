@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 $ ->
 
-##--HELPERS
+  ##--HELPERS
   pluralize = (num, sin, plur = sin + "s") ->
     if num == 1
       num + " " + sin
@@ -52,7 +52,7 @@ $ ->
             "group_id": "1"
           }
       ]
-    }
+  }
 
   testGroup = {
     "group_id": "2"
