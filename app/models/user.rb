@@ -9,7 +9,15 @@ class User < ActiveRecord::Base
   attr_accessible :name, :about, :email, :password, :password_confirmation, :remember_me, :avatar
 
   #AVATAR
-  has_attached_file :avatar, :styles => { :medium => "100x100>", :thumb => "50x50>", :small => "30x30>" }, :whiny => false
+  has_attached_file :avatar,
+    :storage => :s3,
+    :bucket => 'jungol_images',
+    :styles => { :medium => "100x100>", :thumb => "50x50>", :small => "30x30>" },
+    :whiny => false,
+    :s3_credentials => {
+      :access_key_id     => ENV['S3_KEY'],
+      :secret_access_key => ENV['S3_SECRET']
+    }
   validates_attachment_size :avatar, :less_than => 1.megabyte, :message => "must be less than 1MB in size"
   validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'file type is not allowed (only jpeg/png/gif images)'
 
