@@ -1,7 +1,15 @@
 class PagesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:welcome]
+  layout "lander"
 
-  def home
-    @title = "Home"
+  def welcome
+    if user_signed_in?
+      redirect_to filter_index_path
+      return
+    end
+    @updates_request = UpdatesRequest.new
+    @title = "Jungol"
+    render :lander
   end
 
   def invite

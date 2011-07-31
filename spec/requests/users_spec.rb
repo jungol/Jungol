@@ -34,7 +34,7 @@ describe "Users" do
 
     describe "show view" do
       before(:each) do
-        @user = Factory(:user)
+        @user = Factory(:confirmed_user)
         integration_sign_in @user
         visit user_path(@user)
       end
@@ -52,7 +52,7 @@ describe "Users" do
     describe "edit view" do
 
       before(:each) do
-        @user = Factory(:user)
+        @user = Factory(:confirmed_user)
         integration_sign_in @user
         visit edit_user_registration_path @user
       end
@@ -75,7 +75,7 @@ describe "Users" do
           fill_in "Email",            :with => ""
           fill_in "Password",         :with => ""
           fill_in "Password confirmation",     :with => ""
-          click_button :submit
+          click_button 'Sign up'
         end.should_not change(User, :count)
       end
     end
@@ -88,7 +88,7 @@ describe "Users" do
           fill_in 'user_email',            :with => "user@example.com"
           fill_in 'user_password',         :with => "foobar"
           fill_in 'user_password_confirmation',     :with => "foobar"
-          click_button :submit
+          click_button 'Sign up'
         end.should change(User, :count).by(1)
       end
     end
@@ -102,19 +102,19 @@ describe "Users" do
         visit new_user_session_path
         fill_in 'Email', :with => user.email
         fill_in 'Password', :with => user.password
-        click_button :submit
+        click_button 'Sign in'
         page.should have_selector("div.flash.alert", :content => "Invalid")
       end
     end
 
     describe "success" do
       it "should sign a user in and out" do
-        user = Factory(:user)
+        user = Factory(:confirmed_user)
         user.confirm!
         visit new_user_session_path
         fill_in 'Email', :with => user.email
         fill_in 'Password', :with => user.password
-        click_button :submit
+        click_button 'Sign in'
         page.should have_content "Signed in successfully"
         click_link "Logout"
         page.should have_content "Signed out successfully"

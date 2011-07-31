@@ -1,8 +1,9 @@
 class TodosController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_group, :except => :share
-  before_filter :require_member
   before_filter :find_todo, :except => [:new, :create]
   before_filter :find_origin_group, :only => :share
+  before_filter :require_member
   before_filter :require_delete, :only => :destroy
   before_filter :require_view, :except => [:new, :create]
 

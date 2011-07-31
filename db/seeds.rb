@@ -22,9 +22,8 @@ puts 'First group created: ' << group.name
 
 disc = user.created_discussions.create!(:title => "First Discussion", :description => "This is the first discussion.")
 group.discussions << disc
-new_share = user.created_shares.create
-disc.item_shares << new_share
-group.item_shares << new_share
+user.share group, disc
+
 puts 'First Jungol discussion created: ' << disc.title
 
 todo = user.created_todos.create!(:title => "First Todo", :description => "This is the first todo.",
@@ -33,8 +32,7 @@ todo = user.created_todos.create!(:title => "First Todo", :description => "This 
                                     {:description => "Task Two"},
                                     {:description => "Task Three"}])
 group.todos << todo
-new_share = user.created_shares.create
-todo.item_shares << new_share
-group.item_shares << new_share
+user.share group, todo
+
 puts 'First Jungol todo created: ' << todo.title
 

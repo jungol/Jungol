@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :get_group, :get_todo
   before_filter :require_member
   before_filter :require_admin, :only => [:delete]

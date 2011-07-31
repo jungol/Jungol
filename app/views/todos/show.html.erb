@@ -25,7 +25,7 @@
       <% end %>
     </ul>
   <% end %>
-  <% if @unshared.present? %>
+  <% if (@unshared.present? && current_user.member_of?(@group)) %>
     <ul>
       Share Item With:
       <% @unshared.each do |group| %>

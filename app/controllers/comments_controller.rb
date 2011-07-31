@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_group, :find_item, :only => :create
   before_filter :find_comment, :only => :update
   before_filter :require_view, :only => :create

@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :find_group, :except => [:index, :new, :create]
   before_filter :require_admin, :only => [:edit, :update, :link]
 

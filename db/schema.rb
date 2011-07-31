@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110726215050) do
+ActiveRecord::Schema.define(:version => 20110730072724) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -101,6 +101,15 @@ ActiveRecord::Schema.define(:version => 20110726215050) do
 
   add_index "todos", ["creator_id"], :name => "index_todos_on_creator_id"
   add_index "todos", ["group_id"], :name => "index_todos_on_group_id"
+
+  create_table "updates_requests", :force => true do |t|
+    t.string   "email"
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "updates_requests", ["email"], :name => "index_updates_requests_on_email", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
