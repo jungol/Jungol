@@ -21,7 +21,12 @@ a:visited {
 .hideme {
   display: none;
 }
-
+.greenme {
+  color: #8eac4b;
+  a {
+    text-decoration: underline;
+  }
+}
 
 /* Header */
 header {
@@ -240,7 +245,8 @@ section {
       border: 1px solid #aeae96;
       margin-left: -1px;
       background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.3, rgb(129,171,69)), color-stop(0.65, rgb(127,182,55)) );
-      background-image: -moz-linear-gradient( center bottom, rgb(129,171,69) 30%, rgb(127,182,55) 65% ); }
+      background-image: -moz-linear-gradient( center bottom, rgb(129,171,69) 30%, rgb(127,182,55) 65% );
+		}
     h3 {
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
       padding-left: 10px;
@@ -253,15 +259,29 @@ section {
     p {
       padding-left: 10px;
       width: 500px;
-      .greenme {
-        color: #8eac4b;
-        a {
-          text-decoration: underline;
-        }
-      }
-
     }
+		.todo-titles {
+			padding-left: 10px;
+			list-style: none;
+			li { 
+				display: inline;
+				margin-left: 35px;
+				font-weight: bold;
+			}
+			li.todo-first {
+				margin: 0 300px 0 0;
+			}
+		}
+		.first-todo {
+			float: left;
+		}
+		.shared-list { 
+			list-style: none; margin: -5px 0 5px 10px; padding: 0;
+			li { 
+				display: inline; 
+			}
   }
+}
   /* Lander */
   #land-top { height: 400px;
     background-color: #bee8eb;
@@ -556,11 +576,12 @@ div.comment{
 }
 
 .sortable {
-  list-style-type: none; margin: 0; padding: 0; width: 60%;
+  list-style-type: none; margin: 0; padding-left: 10px; width: 60%;
   li {
     height: 50px; line-height: 25px;
-    border:1px solid #ddd;
-    padding: 3px;
+		border-bottom: 1px solid #d8dad8;
+		margin: 0;
+		padding: 0;
     .placeholder{
       background-color:#BBB;
     }

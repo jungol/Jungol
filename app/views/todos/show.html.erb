@@ -1,20 +1,78 @@
 <div class="content-bg">
-<div id="main-left">
-	<h1>Connected to</h1>
-	<ul class="filter-con">
-		<li><a id ="test_filter" href="#">Genocide Intervention Network</a></li>
-		<li class="selected"><a href="#">STAND</a></li>
-		<li><a href="#">Wellspring Advisors</a></li>
-		<li><a href="#">Darfur Peace and Development</a></li>
-		<li class="add"><a href="#">Add a Connection</a></li>
-	</ul>
-</div>
+	<div id="secondary-left" class="hideme">
+		<h1>My Groups</h1>
+		<ul class="filter-con">
+			<a id ="test_filter" href="#"><li>Genocide Intervention Network</li></a>
+			<a href="#"><li class="selected">STAND</li></a>
+			<a href="#"><li>PRSSA</li></a>
+			<a href="#"><li>Darfur Peace and Development</li></a>
+			<a href="#"><li class="add">Request to Join a Group</li></a>
+		</ul>
+	</div>
 
-<div id="main-right">
-	<h1>Name of List</h1>
-	<p class="desc">Short description of todo list here.</p>
+	<div id="main-left">
+		<h1>Connected to</h1>
+		<ul class="filter-con">
+			<a id ="test_filter" href="#"><li>Genocide Intervention Network</li></a>
+			<a href="#"><li class="selected">STAND</li></a>
+			<a href="#"><li>Wellspring Advisors</li></a>
+			<a href="#"><li>Darfur Peace and Development</li></a>
+			<a href="#"><li class="add">Add a Connection</li></a>
+		</ul>
+	</div>
+
+	<div id="main-right">
+		<div class="item-head">
+			<h2><%= "#{@todo.title} - #{@group.name}" %></h2><span class="create-button"><a href="#">Share »</a></span>
+		</div>
+
+	  <p id="<%= @up_path %>" class='edit_todo_desc'><i><%= @todo.description %></i></p>
+
+	  <% if @shared.present? %>
+	    <ul class="shared-list greenme">
+				<li>Shared With:</li>
+	      <% @shared.each do |group| %>
+	      	<a href="#"><%= render 'share', :group => group %></a>&nbsp;
+	      <% end %>
+	    </ul>
+	  <% end %>
+	  <% if (@unshared.present? && current_user.member_of?(@group)) %>
+	    <ul class="shared-list greenme">
+	      <li>Share Item With:</li>
+	      <% @unshared.each do |group| %>
+	        <%= render 'groups', :group => group %>
+	      <% end %>
+	    </ul>
+	  <% end %>
+
+		<ul class="todo-titles">
+			<li class="todo-first">To-do Item</li>
+			<li>Completed</li>
+			<li>In Progress</li>
+		</ul>
+		
+		<div class="clearall"></div>
+
+	  <ul class="sortable">
+	    <%= render @todo.tasks %>
+	  </ul>
 	
-</div>
+	
+	
+	  <%= form_for @comment do |f| %>
+	    <%= render 'shared/error_messages', :object => f.object %>
+	    <%= hidden_field(:group, :id) %>
+	    <%= hidden_field(:todo, :id) %>
+	    <div class="field">
+	      <%= f.label :body, "Post Comment" %><br />
+	      <%= f.text_area :body %>
+	    </div>
+	    <div class="actions">
+	      <%= f.submit 'Post' %>
+	    </div>
+	  <% end %>
+	  <%= render @todo.comments %>
+	</div>
 
 
 
@@ -26,7 +84,7 @@
 
 
 
-<div class='group_todo'>
+<!-- <div class='group_todo'>
   <h1>
     <%= "#{@todo.title} - #{@group.name}" %>
   </h1>
@@ -89,5 +147,4 @@
   <% end %>
   <%= render @todo.comments %>
 
-</div>
-</div>
+</div> -->
