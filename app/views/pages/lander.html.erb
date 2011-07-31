@@ -10,8 +10,12 @@
 		<%= image_tag "twitter.png", :alt => 'Jungol on Twitter' %>
 	</div>
 	
-	<div id="login-window">
-		test
+	<div id="login-window" class="hideme">
+		<form>
+			<input class="email" type="text" value="name@emailladdress.com" onfocus="if(this.value=='name@emailladdress.com'){this.value='';}" onblur="if(this.value==''){this.value='name@emailladdress.com';}" />
+			<input class="password" type="text" value="*********" onfocus="if(this.value=='name@emailladdress.com'){this.value='';}" onblur="if(this.value==''){this.value='*********';}" /><br />
+			<button type="button" name="" value="" class="login-submit">Submit</button>
+		</form>
 	</div>
 	
 	<div id="screenshot">
