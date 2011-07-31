@@ -64,5 +64,14 @@ namespace :db do
       random_group.creator.share group, todo
 
     end
+
+    #FILTERING SHARE
+    group = Group.find(7)
+    random = Group.find(1)
+    disc = group.discussions.first
+    group.creator.share random, disc
+
+    todo = random.todos.first
+    random.creator.share group, todo
   end
 end
