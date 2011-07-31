@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20110730072724) do
     t.string   "item_type"
     t.integer  "group_id"
     t.integer  "creator_id"
-    t.boolean  "admins_only", :default => false, :null => false
+    t.boolean  "leaders_only", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
