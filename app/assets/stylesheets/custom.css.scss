@@ -4,6 +4,8 @@ div.clearall { clear: both; }
 a { color: #8eac45; text-decoration: underline; }
 a:hover { color: #8eac45; text-decoration: underline; }
 a:visited { color: #8eac45; }
+.hideme { display: none; }
+
 
 /* Header */
 header { background: #bee8eb; height: 60px; }
@@ -38,10 +40,9 @@ section #main-left { float: left; width: 260px; background: #f3f4f3; border: 1px
 section #main-left h1 { font-family: 'Cabin', sans-serif; font-size: 16px; font-weight: 600px; padding: 10px 0 10px 40px; display: block; background: #e2e6e2; width: 225px; border: 1px solid #c6c7c2; margin-left: -2px; color: #646464;
 				-moz-box-shadow: 0 1px 2px #646464;
 				-webkit-box-shadow: 0 1px 2px #646464;
-				box-shadow: 0 1px 2px #646464;
-				z-index: 99 !important; }
+				box-shadow: 0 1px 2px #646464; }
 
-section #main-left ul { list-style: none; font-family: 'Cabin', sans-serif; z-index: 9 !important; }
+section #main-left ul { list-style: none; font-family: 'Cabin', sans-serif; }
 section #main-left li { padding: 20px 0 20px 40px; display: block; background: #f3f4f3; width: 223px; margin: -6px 0 0 -21px; border-bottom: 1px solid #dcdddc; border-top: 1px solid #dcdddc; font-size: 13px; }
 section #main-left li a { color: #646464 !important; text-decoration: none !important; }
 section #main-left li.add { border-bottom: none; }
@@ -71,6 +72,8 @@ section #land-top { height: 400px; background-color: #bee8eb; background-positio
 				background: -moz-radial-gradient(circle, #bee8eb, #a3d4db);
 				background: -ms-radial-gradient(circle, #bee8eb, #a3d4db); }
 
+section #screenshot { z-index: 9; position: absolute; right: 40px; top: 50px; }
+
 section #land-login { float: right; margin: 10px 40px 0 60px; }
 section #land-login button.login-button { background: url('/assets/login-bg.png') no-repeat left; padding: 0 20px 0 125px; height: 35px; border: 0; font-family: 'Cabin', sans-serif; color: #b4e1e5; font-style: italic; font-size: 18px; margin-right: 50px; cursor: pointer; }
 section #land-login img { vertical-align: middle; padding-left: 10px; }
@@ -81,7 +84,7 @@ section #land-bottom #land-copy-right { float: left; width: 35%; color: #87ae54;
 section #land-bottom #land-copy-right ul { list-style: none; margin-left: 0; padding-left: 0; }
 section #land-bottom #land-copy-right ul li { font-weight: 600; background: url('/assets/lander-leaf.png') no-repeat left; padding: 10px 0 10px 30px; }
 
-section #form-box { width: 530px; position: absolute; top: 275px; right: 40px; padding: 35px; border: 1px solid #b4b4b4; -moz-border-radius: 2px; border-radius: 2px; background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.31, #D9D9D7), color-stop(0.66, #F3F3F1) ); background-image: -moz-linear-gradient( center bottom, #D9D9D7 31%, #F3F3F1 66%);
+section #form-box { z-index: 999; width: 490px; position: absolute; top: 275px; right: 40px; padding: 35px; border: 1px solid #b4b4b4; -moz-border-radius: 2px; border-radius: 2px; background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.31, #D9D9D7), color-stop(0.66, #F3F3F1) ); background-image: -moz-linear-gradient( center bottom, #D9D9D7 31%, #F3F3F1 66%);
 				-moz-box-shadow: 0 4px 4px #cacaca;
 				-webkit-box-shadow: 0 4px 4px #cacaca;
 				box-shadow: 0 1px 4px #cacaca; }
