@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  require 'ruby-debug'
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
