@@ -3,7 +3,7 @@ $(document).ready(function() {
 		$("#login-window").show();
 		return false;
 	});
-	$("body").click(function() {
+	$("body .container").click(function() {
 		$("#login-window").hide();
 		return false;
 	});
