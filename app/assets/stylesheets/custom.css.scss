@@ -71,6 +71,10 @@ section #land-top { height: 400px; background-color: #bee8eb; background-positio
 				background: -moz-radial-gradient(circle, #bee8eb, #a3d4db);
 				background: -ms-radial-gradient(circle, #bee8eb, #a3d4db); }
 
+section #land-login { float: right; margin-top: 0; background: yellow; margin-right: 60px; }
+section #land-login button.login-button { background: url('/assets/login-bg.png') no-repeat left; padding: 0 20px 0 125px; height: 35px; border: 0; font-family: 'Cabin', sans-serif; color: #b4e1e5; font-style: italic; font-size: 18px; margin-right: 50px; }
+section #land-login img { vertical-align: middle; }
+
 section #land-bottom { border-top: 1px solid #aeae96; border-bottom: 1px solid #aeae96; padding: 100px 50px 100px 110px; font-family: 'Cabin', sans-serif; color: #8f8e8e; font-size: 20px; }
 section #land-bottom #land-copy-left { float: left; width: 50%; margin-right: 100px; }
 section #land-bottom #land-copy-right { float: left; width: 35%; color: #87ae54; font-size: 19px; font-family: 'Cabin', sans-serif; }
@@ -86,6 +90,11 @@ section #form-box h1 { font-size: 20px; color: #77903a; font-family: 'Cabin', sa
 section #form-box h1 span { font-size: 16px; }
 
 section p.welcome { color: #fff; position: absolute; top: 60px; left: 70px; font-size: 34px; font-weight: 600; text-shadow: 1px 0px 1px #7b7b7b; }
+section p.welcome img { vertical-align: middle; }
+
+
+
+
 footer {
   text-align:center;
   width:710px;
