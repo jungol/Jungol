@@ -71,9 +71,9 @@ section #land-top { height: 400px; background-color: #bee8eb; background-positio
 				background: -moz-radial-gradient(circle, #bee8eb, #a3d4db);
 				background: -ms-radial-gradient(circle, #bee8eb, #a3d4db); }
 
-section #land-login { float: right; margin-top: 0; margin-right: 60px; }
-section #land-login button.login-button { background: url('/assets/login-bg.png') no-repeat left; padding: 0 20px 0 125px; height: 35px; border: 0; font-family: 'Cabin', sans-serif; color: #b4e1e5; font-style: italic; font-size: 18px; margin-right: 50px; }
-section #land-login img { vertical-align: middle; }
+section #land-login { float: right; margin: 10px 40px 0 60px; }
+section #land-login button.login-button { background: url('/assets/login-bg.png') no-repeat left; padding: 0 20px 0 125px; height: 35px; border: 0; font-family: 'Cabin', sans-serif; color: #b4e1e5; font-style: italic; font-size: 18px; margin-right: 50px; cursor: pointer; }
+section #land-login img { vertical-align: middle; padding-left: 10px; }
 
 section #land-bottom { border-top: 1px solid #aeae96; border-bottom: 1px solid #aeae96; padding: 100px 50px 100px 110px; font-family: 'Cabin', sans-serif; color: #8f8e8e; font-size: 20px; }
 section #land-bottom #land-copy-left { float: left; width: 50%; margin-right: 100px; }
@@ -85,25 +85,31 @@ section #form-box { width: 530px; position: absolute; top: 275px; right: 40px; p
 				-moz-box-shadow: 0 4px 4px #cacaca;
 				-webkit-box-shadow: 0 4px 4px #cacaca;
 				box-shadow: 0 1px 4px #cacaca; }
-section #form-box input.email { height: 40px; width: 290px; }
+section #form-box input.email { height: 40px; width: 300px; padding-left: 25px; font-family: 'Verdana', Arial, Helvetica, sans-serif; color: #c6c6b3; border: 1px solid #bfc2b5;
+ 				-moz-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
+			   -webkit-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
+			   box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf; }
+section #form-box button.land-submit { font-family: 'Cabin', sans-serif; font-size: 16px; color: #fff; padding: 10px 20px; width: 130px; margin-left: 20px; cursor: pointer;
+				background: -moz-linear-gradient( top, #83b73b 0%, #6c982e);
+				background: -webkit-gradient( linear, left top, left bottom,  from(#83b73b), to(#6c982e));
+				border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+				border: 1px solid #719f30; 
+				-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1); 
+				-webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+				text-shadow: 0px 1px 0px #000, 0px 1px 0px #000; }
 section #form-box h1 { font-size: 20px; color: #77903a; font-family: 'Cabin', sans-serif; font-weight: 600; }
 section #form-box h1 span { font-size: 16px; }
 
-section p.welcome { color: #fff; position: absolute; top: 60px; left: 70px; font-size: 34px; font-weight: 600; text-shadow: 1px 0px 1px #7b7b7b; }
+section p.welcome { color: #fff; position: absolute; top: 50px; left: 70px; font-size: 34px; font-weight: 600; text-shadow: 1px 0px 1px #7b7b7b; }
 section p.welcome img { vertical-align: middle; }
 
 
 
+/* footer */
+footer { float: right; text-align: center; margin: 10px 60px 0 0; }
 
-footer {
-  text-align:center;
-  width:710px;
-  margin: 10px auto 0px;
-}
-
-footer nav{
-  float: none;
-}
+footer nav { float: none; }
+footer nav ul li.first { margin-right: 40px; }
 
 /* Links */
 
