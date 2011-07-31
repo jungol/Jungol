@@ -64,14 +64,18 @@
 	    <%= hidden_field(:group, :id) %>
 	    <%= hidden_field(:todo, :id) %>
 	    <div class="field">
-	      <%= f.label :body, "Post Comment" %><br />
+				<p>Comments</p>
+	      <span><%= f.label :body, "Post Comment..." %></span><br />
 	      <%= f.text_area :body %>
 	    </div>
 	    <div class="actions">
-	      <%= f.submit 'Post' %>
+	      <%= f.submit 'Post Comment »' %>
 	    </div>
 	  <% end %>
-	  <%= render @todo.comments %>
+	  
+	<div id="todo-comments">
+		<%= render @todo.comments %>
+	</div>
 	</div>
 
 
