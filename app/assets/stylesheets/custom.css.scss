@@ -9,27 +9,44 @@ a:visited { color: #8eac45; }
 
 
 /* Header */
-header { background: #bee8eb; height: 60px; }
-header .logo { position: absolute; top: 10px; left: 20px; }
+header { 
+	background: #bee8eb; height: 60px; 
+		.logo { 
+			position: absolute; top: 10px; left: 20px; 
+		}
+		.header-nav { 
+			margin-top: 20px; 
+		}
+		.header-search { 
+			float: right;
+			margin: 12px 40px 0 10px; 
+			input.search-field { 
+				padding: 5px;
+				background: #f3f4f3 url('/assets/search-button.png') right no-repeat;
+				border: 1px solid #cbd5ad; 
+				color: #c6c6b3; 
+				-moz-border-radius: 2px; 
+				border-radius: 2px;
+			}
+		}
+}
 
 .secondary {
   background: #fff;
   margin-top: 0;
   .groups-list {
-    margin: 0 0 0 20px; padding: 60px 0 20px 20px; font-family: 'Cabin', sans-serif; width: 28%; float: left;
-    h1 { font-weight: 600; font-size: 1.4em; color: #738151; }
-    ul { list-style: none; padding: 0; margin: 0; line-height: 1.2em; padding-left: 10px; }
-    ul li { font-weight: 400; }
-    ul li a { color: #738151; text-decoration: underline; }
+    margin: 60px 0 0 20px; padding: 60px 0 0 20px; font-family: 'Cabin', sans-serif; width: 28%; float: left;
+    p { font-weight: 400; }
+    a { color: #738151; text-decoration: underline; }
   }
 
   .group-info {
     float: left; width: 68%; padding-top: 30px;
     img { float: left; padding-right: 20px; }
     h1 { font-size: 22px; float: left; font-family: 'Cabin', sans-serif; font-weight: 600; color: #3f3f3f; }
-    p { float: left; font-family: 'Cabin', sans-serif; margin-top: -5px; color: #8eac45; }
+    p { font-family: 'Cabin', sans-serif; margin-top: 35px; color: #8eac45; }
     p a { color: #8eac45; text-decoration: underline; }
-    p.blurb { padding-left: 145px; padding-right: 115px; margin-top: -15px; color: #696a57; }
+    p.blurb { float: left; padding-left: 145px; padding-right: 115px; margin-top: -15px; color: #696a57; }
   }
 }
 /* Main Content */
@@ -56,15 +73,45 @@ section #main-left li.selected { background: #d7e7b2; border-bottom: 1px solid r
 
 section #main-right { float: left; background: #fdfffd; margin-left: 20px; width: 692px; border: 1px solid #aeae96; border-top: none; }
 
-section #main-right .create-button { float: right; }
+section #main-right .create-button { 
+	position: relative; 
+	float: right; 
+	margin-top: -50px; 
+	right: 25px; 
+	display: block; 
+	background: #f2f2ef; 
+	padding: 0 5px; 
+	font-family: 'Cabin', sans-serif; 
+	font-weight: 600; 
+	font-size: 12px; 
+	color: #77903a;
+	a { 
+		text-decoration: none;
+	}
+}
+
+section #main-right .create-button:hover { 
+	background: #d2d2d0; cursor: pointer; 
+	-moz-box-shadow: inset 0 0 2px #777;
+	-webkit-box-shadow: inset 0 0 2px #777;
+	box-shadow: inset 0 0 2px #777; 
+}
 
 section #main-right .item-head h2 { font-size: 20px; font-weight: 600; font-family: 'Cabin', sans-serif; color: #fff; width: 682px; padding: 10px 0 10px 10px; border: 1px solid #aeae96; margin-left: -1px;
 				background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.3, rgb(129,171,69)), color-stop(0.65, rgb(127,182,55)) );
 				background-image: -moz-linear-gradient( center bottom, rgb(129,171,69) 30%, rgb(127,182,55) 65% ); }
-section #main-right h3 { font-family: 'Verdana', Arial, Helvetica, sans-serif; padding-left: 10px; font-size: 13px; text-decoration: underline; }
+section #main-right h3 { 
+	font-family: 'Verdana', Arial, Helvetica, sans-serif; 
+	padding-left: 10px; 
+	font-size: 13px; 
+	text-decoration: underline; 
+	a { 
+		color: #000; 
+	}
+}
 section #main-right p { padding-left: 10px; width: 500px; }
 section #main-right p.greenme { color: #8eac4b; }
-section #main-right p.greenme span { text-decoration: underline; }
+section #main-right p.greenme a { text-decoration: underline; }
 
 /* Lander */
 section #land-top { height: 400px; background-color: #bee8eb; background-position: center center; background-repeat: no-repeat; margin-bottom: 5px;
@@ -159,10 +206,6 @@ nav ul li { list-style-type: none; display: inline-block; padding: 0.2em 0; text
 nav ul li a { padding: 0 5px; font-weight: normal; color: #888f6e; text-decoration: none; }
 nav ul li a:visited { color: #888f6e; }
 nav ul li a:hover { text-decoration: underline; color: #888f6e; }
-
-/* Search Groups */
-form.search-form { float: right; margin: 19px 20px 0 10px; }
-input.search-field { background: #fff; border: 1px solid #cbd5ad; color: #c6c6b3; -moz-border-radius: 2px; border-radius: 2px; }
 
 
 /* Sign up button */

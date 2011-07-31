@@ -1,13 +1,13 @@
 <header>
   <%= link_to logo, root_path %>
 
-	<form>
+	<form class="header-search">
 		<input class="search-field" type="text" value="search groups" onfocus="if(this.value=='search groups'){this.value='';}" onblur="if(this.value==''){this.value='search groups';}" />
-		<input class="search-button" type="button" value="go" />
+		<input class="search-button hideme" type="button" value="" />
 	</form>
 
   <nav>
-    <ul>
+    <ul class="header-nav">
       <li><%= link_to "Home", root_path %></li> | 
       <li><%= link_to "Groups", groups_path %></li> | 
       <% if signed_in? %>
