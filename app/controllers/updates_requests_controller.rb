@@ -7,7 +7,7 @@ class UpdatesRequestsController < ApplicationController
     if req.save
       render :nothing => true
     else
-      render :json => {:error => "fail!"}
+      render :text => e.message, :status => 403
     end
 
   end

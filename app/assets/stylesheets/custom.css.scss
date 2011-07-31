@@ -77,42 +77,59 @@ section #screenshot { z-index: 9; position: absolute; right: 40px; top: 50px; }
 
 section #land-login { float: right; margin: 10px 40px 0 60px; }
 section #land-login button.login-button { background: url('/assets/login-bg.png') no-repeat left; padding: 0 20px 0 125px; height: 35px; border: 0; font-family: 'Cabin', sans-serif; color: #b4e1e5; font-style: italic; font-size: 18px; margin-right: 50px; cursor: pointer; }
-section #land-login img { vertical-align: middle; padding-left: 10px; }
+section #land-login img { vertical-align: top; padding-left: 10px; padding-top:2px; }
 
-section #login-window { background: #67952b; width: 188px; position: absolute; top: 42px!important; top: 44px; right: 186px; z-index: 9999; padding: 10px 15px 10px 10px; }
+section #login-window { background: #67952b; width: 188px; position: relative; z-index: 9999; padding: 10px 15px 10px 10px; }
 section #login-window input { font-family: 'Verdana', Arial, Helvetica, sans-serif; color: #c6c6b3; border: 1px solid #bfc2b5; width: 100%;
 				-moz-box-shadow: inset 0 0 2px #e0dfdf;
 				-webkit-box-shadow: inset 0 0 2px #e0dfdf;
 				box-shadow: inset 0 0 2px #e0dfdf; }
-section #login-window button.login-submit { font-family: 'Cabin', sans-serif; width: 193px; cursor: pointer; color: #fff;
+section #login-window input.login-submit { font-family: 'Cabin', sans-serif; width: 193px; cursor: pointer; color: #fff;
 				background: -moz-linear-gradient( top, #83b73b 0%, #6c982e);
 				background: -webkit-gradient( linear, left top, left bottom,  from(#83b73b), to(#6c982e));
 				border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-				border: 1px solid #719f30; 
-				-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1); 
+				border: 1px solid #719f30;
+				-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
 				-webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
 				text-shadow: 0px 1px 0px #000, 0px 1px 0px #000; }
+section #login-window {
+  label {
+    padding-left:8px;
+    color:#fff;
+    text-shadow: 0px 1px 0px #000, 0px 1px 0px #000;
+
+  }
+  #rem {
+    width:inherit;
+  }
+  #login-submit{
+    width:50px;
+    float:right;
+    margin-right:-2px;
+  }
+}
+
 
 section #land-bottom { border-top: 1px solid #aeae96; border-bottom: 1px solid #aeae96; padding: 100px 50px 100px 110px; font-family: 'Cabin', sans-serif; color: #8f8e8e; font-size: 20px; }
 section #land-bottom #land-copy-left { float: left; width: 50%; margin-right: 100px; }
 section #land-bottom #land-copy-right { float: left; width: 35%; color: #87ae54; font-size: 19px; font-family: 'Cabin', sans-serif; }
-section #land-bottom #land-copy-right ul { list-style: none; margin-left: 0; padding-left: 0; }
+section #land-bottom #land-copy-right ul { list-style: none; margin-left: 0; padding-left: 0; padding-top: 5px; }
 section #land-bottom #land-copy-right ul li { font-weight: 600; background: url('/assets/lander-leaf.png') no-repeat left; padding: 10px 0 10px 30px; }
 
 section #form-box { z-index: 999; width: 490px; position: absolute; top: 275px; right: 40px; padding: 35px; border: 1px solid #b4b4b4; -moz-border-radius: 2px; border-radius: 2px; background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.31, #D9D9D7), color-stop(0.66, #F3F3F1) ); background-image: -moz-linear-gradient( center bottom, #D9D9D7 31%, #F3F3F1 66%);
-				-moz-box-shadow: 0 4px 4px #cacaca;
-				-webkit-box-shadow: 0 4px 4px #cacaca;
-				box-shadow: 0 1px 4px #cacaca; }
+				-moz-box-shadow: 1px 0px 8px #777777;
+				-webkit-box-shadow: 1px 0px 8px #777777;
+				box-shadow: 1px 0px 8px #777777; }
 section #form-box input.email { height: 40px; width: 300px; padding-left: 25px; font-family: 'Verdana', Arial, Helvetica, sans-serif; color: #777777; border: 1px solid #bfc2b5;
  				-moz-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
 			   -webkit-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
 			   box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf; }
-section #form-box button.land-submit { font-family: 'Cabin', sans-serif; font-size: 16px; color: #fff; padding: 10px 20px; width: 130px; margin-left: 20px; cursor: pointer;
+section #form-box input.land-submit { font-family: 'Cabin', sans-serif; font-size: 16px; color: #fff; padding: 10px 20px; width: 130px; margin-left: 20px; cursor: pointer;
 				background: -moz-linear-gradient( top, #83b73b 0%, #6c982e);
 				background: -webkit-gradient( linear, left top, left bottom,  from(#83b73b), to(#6c982e));
 				border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-				border: 1px solid #719f30; 
-				-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1); 
+				border: 1px solid #719f30;
+				-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
 				border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
 				border: 1px solid #719f30;
 				-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
@@ -139,7 +156,7 @@ nav { float: right; }
 nav { white-space: nowrap; }
 nav ul { margin: 22px 0 0 0; color: #888f6e; }
 nav ul li { list-style-type: none; display: inline-block; padding: 0.2em 0; text-transform: uppercase; }
-nav ul li a { padding: 0 5px; font-weight: normal; color: #888f6e; }
+nav ul li a { padding: 0 5px; font-weight: normal; color: #888f6e; text-decoration: none; }
 nav ul li a:visited { color: #888f6e; }
 nav ul li a:hover { text-decoration: underline; color: #888f6e; }
 
