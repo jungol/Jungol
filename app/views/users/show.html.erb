@@ -1,10 +1,15 @@
 <div class='profile'>
   <h1>
-    <%= gravatar_for @user %>
+    <% if @user.avatar.present? %>
+      <%= image_tag @user.avatar.url(:thumb) %>
+    <% else %>
+      <%= gravatar_for @user %>
+    <% end %>
     <%= @user.name %>
   </h1>
+
   <strong>Email</strong> <%= @user.email %><br />
   <strong>About</strong><%= @user.about %><br />
   <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-<strong>Groups</strong><%= render @user.groups %><br />
+  <strong>Groups</strong><%= render @user.groups %><br />
 </div>

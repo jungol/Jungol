@@ -27,4 +27,6 @@ Jungola::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  #Hook ImageMagick to Paperclip
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end

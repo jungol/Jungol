@@ -1,5 +1,4 @@
 <li>
-  <%= gravatar_for user, :size => 30 %>
+  <%= user.avatar.present? ? image_tag( user.avatar.url(:small)) : gravatar_for( user, :size => 30) %>
   <%= link_to user.name, user %>
 </li>
-

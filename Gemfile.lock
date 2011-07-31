@@ -65,6 +65,7 @@ GEM
     builder (3.0.0)
     childprocess (0.1.9)
       ffi (~> 1.0.6)
+    cocaine (0.1.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -124,6 +125,11 @@ GEM
     multi_json (1.0.3)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
+    paperclip (2.3.16)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     pg (0.11.0)
     polyglot (0.3.1)
     populator (1.0.0)
@@ -222,6 +228,7 @@ DEPENDENCIES
   gravatar_image_tag
   jquery-rails
   launchy
+  paperclip (~> 2.3)
   pg
   populator
   rails (= 3.1.0.rc4)
