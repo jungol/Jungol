@@ -24,7 +24,7 @@ class FilterController < ApplicationController
   def filter
     @groups = []
     @shown_items = {:todos => {}, :discussions => {}}
-    params["selected_groups"].each {|k,v| @groups << v["group_id"]}
+    params["selected_groups"].each {|val| @groups << val }
     origin_group = Group.find_by_id(params["origin_group"])
     @groups = Group.find(:all, :conditions => ['id in (?)', @groups])
     @groups << origin_group

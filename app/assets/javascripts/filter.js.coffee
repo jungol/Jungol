@@ -43,22 +43,22 @@ $ ->
   testData = {
     "origin_group": "1",
 
-    "selected_groups":
-      [
-        {
-          "group_id": "7"
-        },
-          {
-            "group_id": "1"
-          }
-      ]
+    "selected_groups": []
   }
 
   testGroup = {
     "group_id": "2"
   }
 
-  $('#test_filter').click ->
+  $('a.con_group_li').click ->
+    $('li', @).toggleClass('selected')
+
+    found = $.inArray(@.id, testData.selected_groups)
+    if found > -1 ##Group WAS selected, remove it from list
+      testData.selected_groups.splice(found, 1)
+    else #add to list
+      testData.selected_groups.push(@.id)
+
     $.ajax 'filter/filter',
       type: 'POST',
       data: testData,

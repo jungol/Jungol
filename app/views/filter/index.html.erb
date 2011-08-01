@@ -2,22 +2,20 @@
 	<div id="secondary-left" class="">
 		<h1>My Groups</h1>
 		<ul class="filter-con">
-			<a id ="test_filter" href="#"><li>Genocide Intervention Network</li></a>
-			<a href="#"><li class="selected">STAND</li></a>
-			<a href="#"><li>PRSSA</li></a>
-			<a href="#"><li>Darfur Peace and Development</li></a>
-			<a href="#"><li class="add">Request to Join a Group</li></a>
+                  <% @groups.each do |gr| %>
+                    <%= render 'my_group', :group => gr %>
+                  <% end %>
+                  <a href="#"><li class="add">Request to Join a Group</li></a>
 		</ul>
 	</div>
 
 	<div id="main-left">
 		<h1>Connected to</h1>
 		<ul class="filter-con">
-			<a id ="test_filter" href="#"><li>Genocide Intervention Network</li></a>
-			<a href="#"><li class="selected">STAND</li></a>
-			<a href="#"><li>Wellspring Advisors</li></a>
-			<a href="#"><li>Darfur Peace and Development</li></a>
-			<a href="#"><li class="add">Add a Connection</li></a>
+                  <% @groups.each do |gr| %>
+                    <%= render 'con_group', :group => gr %>
+                  <% end %>
+                  <a href="#"><li class="add">Add a Connection</li></a>
 		</ul>
 	</div>
 
@@ -61,7 +59,7 @@
 			<h3>Budget for Spring 2011 Semester</h3>
 			<p class="greenme">uploaded 12 hours ago by Shawn Gomez  | <span>4 comments</span></p>
 			<p class="greenme">Share  Save Darfur | Genocide Intervention Network | STAND</p>
-  	
+
 			<h3>Spring Semester Schedules</h3>
 			<p class="greenme">uploaded 12 hours ago by Brittni Alex  | <span>4 comments</span></p>
 			<p class="greenme">Share  Save Darfur | Genocide Intervention Network | Wellspring Advisors</p>
