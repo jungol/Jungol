@@ -28,6 +28,10 @@ a:visited {
   }
 }
 
+
+/* TO DO MODAL POPOVER WINDOW STYLES */
+
+
 /* Header */
 header {
   background: #bee8eb; height: 60px;
@@ -112,6 +116,20 @@ section {
     background: #cbe3c5;
     border-top: 1px solid #b1d9bd;
     padding: 20px 0 30px 0;
+		.todo-modal {
+			background: yellow;
+			width: 555px;
+			height: 20px;
+			border: 1px solid red;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+		.full {
+			width: 960px !important;
+			float: none !important;
+			margin: 0 auto !important;
+		}
   }
 
   /* Filter Page *
@@ -227,6 +245,8 @@ section {
       }
     }
 
+
+
     .create-button:hover {
       background: #d2d2d0;
       cursor: pointer;
@@ -247,6 +267,10 @@ section {
       background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.3, rgb(129,171,69)), color-stop(0.65, rgb(127,182,55)) );
       background-image: -moz-linear-gradient( center bottom, rgb(129,171,69) 30%, rgb(127,182,55) 65% );
 		}
+		.headerfull h2 {
+			width: 950px !important;
+		}
+		
     h3 {
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
       padding-left: 10px;
