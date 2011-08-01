@@ -83,8 +83,14 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
+        tbody = $('#item.todos > .item-body')
+        dbody = $('#item.discussions > .item-body')
+        tbody.empty()
+        dbody.empty()
         $.each data.todos, (k,v)->
-          $('#item.todo').append todoMarkup(v)
+          tbody.append todoMarkup(v)
         $.each data.discussions, (k,v)->
-          $('#item.discussions').append discMarkup(v)
+          dbody.append discMarkup(v)
+        if $.isEmptyObject(data.discussions) then dbody.append "<p>No Discussions.</p>"
+        if $.isEmptyObject(data.todos) then tbody.append "<p>No Todos.</p>"
 
