@@ -28,10 +28,6 @@ a:visited {
   }
 }
 
-
-/* TO DO MODAL POPOVER WINDOW STYLES */
-
-
 /* Header */
 header {
   background: #bee8eb; height: 60px;
@@ -116,15 +112,6 @@ section {
     background: #cbe3c5;
     border-top: 1px solid #b1d9bd;
     padding: 20px 0 30px 0;
-		.todo-modal {
-			background: yellow;
-			width: 555px;
-			height: 20px;
-			border: 1px solid red;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-		}
 		.full {
 			width: 960px !important;
 			float: none !important;
@@ -245,8 +232,6 @@ section {
       }
     }
 
-
-
     .create-button:hover {
       background: #d2d2d0;
       cursor: pointer;
@@ -321,6 +306,12 @@ section {
 				background: #f3f4f3;
 				border: 1px solid #797b69;
 			}
+			#todo_title,
+			#discussion_title {
+				background: #f3f4f3;
+				border: 1px solid #939587;
+				width: 400px;
+			}
 		}
 		.actions {
 			padding-left: 10px;
@@ -342,6 +333,12 @@ section {
 	      -webkit-box-shadow: inset 0 0 2px #777;
 	      box-shadow: inset 0 0 2px #777;
 			}
+			span input {
+				left: 343px !important;
+			}
+			span.todo-fix input {
+				left: 323px !important;
+			}
 		}
 		#todo-comments {
 			padding: 0 10px;
@@ -357,6 +354,7 @@ section {
 				}
 			}
 		}
+		
 }
   /* Lander */
   #land-top { height: 400px;

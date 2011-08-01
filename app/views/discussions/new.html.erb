@@ -1,7 +1,17 @@
-<h1>Create a Discussion</h1>
-<%= form_for [@group, @discussion] do |disc_f| %>
-  <%= render 'fields', :f => disc_f %>
-  <div class = 'actions'>
-    <%= disc_f.submit "Create" %>
-  </div>
-<% end %>
+<div class="content-bg">
+	<div id="main-right" class="full">
+		<div class="item-head headerfull">
+			<h2>Create New Discussion</h2><span class="create-button"><a href="#">Create New</a></span>
+		</div>
+		
+		<%= form_for [@group, @discussion] do |disc_f| %>
+		  <%= render 'fields', :f => disc_f %>
+		  <div class = 'actions'>
+		    <span><%= disc_f.submit "Create" %></span>
+		  </div>
+		<% end %>
+		
+		
+	<div>
+</div>
+
