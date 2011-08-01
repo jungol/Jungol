@@ -75,8 +75,6 @@ $ ->
     else #add to list
       filterData.selected_groups.push(@.id)
 
-    alert filterData.selected_groups
-
     $.ajax 'filter/filter',
       type: 'POST',
       data: filterData,
