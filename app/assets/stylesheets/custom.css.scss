@@ -108,6 +108,7 @@ header {
 /* Main Content */
 section {
   .content-bg {
+		height: 100%;
     margin-right: 15px;
     background: #cbe3c5;
     border-top: 1px solid #b1d9bd;
@@ -207,7 +208,8 @@ section {
     height: 100%;
   }
 
-  #main-right { float: right;
+  #main-right { 
+		float: right;
     background: #fdfffd;
     margin-left: 45px;
     width: 692px;
@@ -354,7 +356,34 @@ section {
 				}
 			}
 		}
-		
+		.groups-search{ 
+			padding: 0 40px 10px 90px;
+			input.search-field {
+      	padding: 5px;
+      	background: #f3f4f3;
+      	border: 1px solid #cbd5ad;
+      	color: #c6c6b3;
+      	-moz-border-radius: 2px;
+      	border-radius: 2px;
+    	}
+			.search-button {
+				position: absolute;
+				top: 366px;
+				right: 478px;
+			}
+		}
+		.welcome-button {
+			display: inline-block;
+			background: #f2f2ef;
+			color: #77903a;
+			border: none;
+			padding: 5px 35px;
+			margin: 0 15px 30px 0;
+			
+		}
+		.first-welcome {
+			margin-left: 130px;
+		}
 }
   /* Lander */
   #land-top { height: 400px;

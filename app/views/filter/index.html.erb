@@ -19,7 +19,7 @@
     </ul>
   </div>
 
-  <div id="main-right">
+  <div id="main-right" class="hideme">
     <div id="item" class="todos">
       <div class="item-head">
         <h2>To-Do Lists</h2><span class="create-button"><a href="#">Create New »</a></span>
@@ -72,8 +72,32 @@
     </div>
   </div>
 
-  <div class="clearall"></div>
+	<div id="main-right">
+		<div id="item">
+			<div class="item-head">
+      	<h2>Add to My Groups</h2>
+			</div>
+				<p>If you want to add another group to My Groups, search the organization by name or keyword and request to join.</p>
+				<form class="groups-search">
+					<input class="search-field" type="text" value="search groups" onfocus="if(this.value=='search groups'){this.value='';}" onblur="if(this.value==''){this.value='search groups';}" />
+					<input class="search-button" type="image" value="" src="/assets/search-button.png" alt="Search" />
+				</form>
+		</div>
+		
+		<div id="item">
+			<div class="item-head">
+      	<h2>Can't Find it?</h2>
+			</div>
+			
+			<p>If you can’t find what you’re looking for, you can See All Groups or Create a New Group.</p>
+			
+			<input class="welcome-button first-welcome" type="button" value="See All Groups »" /><input class="welcome-button" type="button" value="Create New Group »" />
+			
+  	</div>
 
+	</div>
+  
+<div class="clearall"></div>
 
 
   <!-- <div id="groups" style="float:left; width:200px;">
