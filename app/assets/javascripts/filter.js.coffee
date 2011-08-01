@@ -48,6 +48,9 @@ $ ->
 
   conGroupMarkup = (group) ->
     "<a id='#{group.id}' href='#' class='con_group_li'><li>#{group.name}</li></a>"
+  groupInfoMarkup = (group) ->
+    "<img src='/assets/prssa-logo.png' /><h1>#{group.name}</h1><p><a href=\"#\">Group Info</a> | <a href=\"#\">Invite New Members</a></p>
+      <p class=\"blurb\">#{group.about}</p>"
 
   filterData = {
     "origin_group": "1",
@@ -60,6 +63,7 @@ $ ->
     $('#my-groups').toggleClass('secondary-left').toggleClass('main-left') #SWAP .main-left for secondary-left styling
     $('#main-items').show()
     $('#main-welcome').hide()
+
     filterData.origin_group = @.id
     $.ajax 'filter/select',
       type: 'POST',
@@ -73,6 +77,7 @@ $ ->
         $.each data.shared_groups, (k,v) ->
           $('.con_group_ul').append conGroupMarkup(v)
         $('.con_group_ul').append addCon
+        $('.group-info').empty().append groupInfoMarkup(data.main_group)
 
   #SELECT SHARED GROUP
   $('a.con_group_li').live 'click',  ->
