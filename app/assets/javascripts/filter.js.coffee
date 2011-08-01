@@ -52,6 +52,7 @@ $ ->
 
   #CLICK ON MY GROUP
   $('a.my_group_li').click ->
+    filterData.origin_group = @.id
     $.ajax 'filter/select',
       type: 'POST',
       data: {"group_id": @.id},
