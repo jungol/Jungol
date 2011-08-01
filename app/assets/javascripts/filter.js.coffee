@@ -24,6 +24,9 @@ $ ->
 
 ##--/HELPERS
 
+  createNewLinks = (groupID) ->
+    $('.item#todos > .item-head a').attr('href', "/groups/#{groupID}/todos/new").attr('target', '_blank')
+    $('.item#discussions > .item-head a').attr('href', "/groups/#{groupID}/discussions/new").attr('target', '_blank')
 
   todoMarkup = (todo) ->
     shared_groups = for group in todo.shared_groups
@@ -48,6 +51,7 @@ $ ->
 
   conGroupMarkup = (group) ->
     "<a id='#{group.id}' href='#' class='con_group_li'><li>#{group.name}</li></a>"
+
   groupInfoMarkup = (group) ->
     "<img src='/assets/prssa-logo.png' /><h1>#{group.name}</h1><p><a href=\"#\">Group Info</a> | <a href=\"#\">Invite New Members</a></p>
       <p class=\"blurb\">#{group.about}</p>"
@@ -65,6 +69,7 @@ $ ->
     $('#main-welcome').hide()
 
     filterData.origin_group = @.id
+    createNewLinks(@.id)
     $.ajax 'filter/select',
       type: 'POST',
       data: {"group_id": @.id},
@@ -72,12 +77,24 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
+        #Clear selected groups, populate new
         $('.con_group_ul').empty()
         filterData.selected_groups = []
         $.each data.shared_groups, (k,v) ->
           $('.con_group_ul').append conGroupMarkup(v)
         $('.con_group_ul').append addCon
         $('.group-info').empty().append groupInfoMarkup(data.main_group)
+        #Populate items connected to origin group
+        tbody = $('.item#todos > .item-body')
+        dbody = $('.item#discussions > .item-body')
+        tbody.empty()
+        dbody.empty()
+        $.each data.items.todos, (k,v)->
+          tbody.append todoMarkup(v)
+        $.each data.items.discussions, (k,v)->
+          dbody.append discMarkup(v)
+        if $.isEmptyObject(data.items.discussions) then dbody.append "<p>No Discussions.</p>"
+        if $.isEmptyObject(data.items.todos) then tbody.append "<p>No Todos.</p>"
 
   #SELECT SHARED GROUP
   $('a.con_group_li').live 'click',  ->
@@ -96,8 +113,8 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
-        tbody = $('#item.todos > .item-body')
-        dbody = $('#item.discussions > .item-body')
+        tbody = $('.item#todos > .item-body')
+        dbody = $('.item#discussions > .item-body')
         tbody.empty()
         dbody.empty()
         $.each data.todos, (k,v)->
