@@ -1,21 +1,17 @@
 <div class="content-bg">
-	<div id="main-right" class="full">
-		<div class="item-head headerfull">
-			<h2>Create New To-Do</h2><span class="create-button"><a href="#">Create New</a></span>
-		</div>
-		
-		<%= form_for [@group, @todo] do |todo_f| %>
-		  <%= render 'fields', :f => todo_f %>
+  <div id="main-right" class="main-right full">
+    <div class="item-head headerfull">
+      <h2>Create New To-Do</h2><span class="create-button"><a href="#">Create New</a></span>
+    </div>
 
-		  <%= todo_f.fields_for :tasks, :tasks do |task_f| %>
-		    <%= render "task_fields", :f => task_f %>
-		  <% end %>
-		  <p><%= link_to_add_fields "Add Task", todo_f, :tasks  %></p>
-		  <div class='actions'>
-		    <span class="todo-fix"><%= todo_f.submit "Create List" %></span>
-		  </div>
-		<% end %>
-		
-	<div>
-</div>
+    <%= form_for [@group, @todo] do |todo_f| %>
+      <%= render 'fields', :f => todo_f %>
 
+      <%= todo_f.fields_for :tasks, :tasks do |task_f| %>
+        <%= render "task_fields", :f => task_f %>
+      <% end %>
+      <p><%= link_to_add_fields "Add Task", todo_f, :tasks  %></p>
+      <div class='actions'>
+        <span class="todo-fix"><%= todo_f.submit "Create List" %></span>
+      </div>
+    <% end %>

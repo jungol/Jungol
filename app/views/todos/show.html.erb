@@ -1,64 +1,64 @@
 <div class="content-bg">
-	<div id="main-right" class="full">
-		<div class="item-head headerfull">
-			<h2><%= "#{@todo.title} - #{@group.name}" %></h2><span class="create-button"><a href="#">Share »</a></span>
-		</div>
+  <div id="main-right" class="main-right full">
+    <div class="item-head headerfull">
+      <h2><%= "#{@todo.title} - #{@group.name}" %></h2><span class="create-button"><a href="#">Share »</a></span>
+    </div>
 
-	  <p id="<%= @up_path %>" class='edit_todo_desc'><i><%= @todo.description %></i></p>
+    <p id="<%= @up_path %>" class='edit_todo_desc'><i><%= @todo.description %></i></p>
 
-	  <% if @shared.present? %>
-	    <ul class="shared-list greenme">
-				<li>Shared With:</li>
-	      <% @shared.each do |group| %>
-	      	<a href="#"><%= render 'share', :group => group %></a>&nbsp;
-	      <% end %>
-	    </ul>
-	  <% end %>
-	  <% if (@unshared.present? && current_user.member_of?(@group)) %>
-	    <ul class="shared-list greenme">
-	      <li>Share Item With:</li>
-	      <% @unshared.each do |group| %>
-	        <%= render 'groups', :group => group %>
-	      <% end %>
-	    </ul>
-	  <% end %>
+    <% if @shared.present? %>
+      <ul class="shared-list greenme">
+        <li>Shared With:</li>
+        <% @shared.each do |group| %>
+          <a href="#"><%= render 'share', :group => group %></a>&nbsp;
+        <% end %>
+      </ul>
+    <% end %>
+    <% if (@unshared.present? && current_user.member_of?(@group)) %>
+      <ul class="shared-list greenme">
+        <li>Share Item With:</li>
+        <% @unshared.each do |group| %>
+          <%= render 'groups', :group => group %>
+        <% end %>
+      </ul>
+    <% end %>
 
-		<ul class="todo-titles">
-			<li class="todo-first">To-do Item</li>
-			<li>Completed</li>
-			<li>In Progress</li>
-		</ul>
-		
-		<div class="clearall"></div>
+    <ul class="todo-titles">
+      <li class="todo-first">To-do Item</li>
+      <li>Completed</li>
+      <li>In Progress</li>
+    </ul>
 
-	  <ul class="sortable">
-	    <%= render @todo.tasks %>
-	  </ul>
-	
-	
-	
-	  <%= form_for @comment do |f| %>
-	    <%= render 'shared/error_messages', :object => f.object %>
-	    <%= hidden_field(:group, :id) %>
-	    <%= hidden_field(:todo, :id) %>
-	    <div class="field">
-				<p>Comments</p>
-	      <span><%= f.label :body, "Post Comment..." %></span><br />
-	      <%= f.text_area :body %>
-	    </div>
-	    <div class="actions">
-	      <%= f.submit 'Post Comment »' %>
-	    </div>
-	  <% end %>
-	  
-	<div id="todo-comments">
-		<%= render @todo.comments %>
-	</div>
-	</div>
+    <div class="clearall"></div>
+
+    <ul class="sortable">
+      <%= render @todo.tasks %>
+    </ul>
 
 
 
-<div class="clearall"></div>
+    <%= form_for @comment do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>
+      <%= hidden_field(:group, :id) %>
+      <%= hidden_field(:todo, :id) %>
+      <div class="field">
+        <p>Comments</p>
+        <span><%= f.label :body, "Post Comment..." %></span><br />
+        <%= f.text_area :body %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Post Comment »' %>
+      </div>
+    <% end %>
+
+    <div id="todo-comments">
+      <%= render @todo.comments %>
+    </div>
+  </div>
+
+
+
+  <div class="clearall"></div>
 </div>
 
 

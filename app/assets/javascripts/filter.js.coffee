@@ -1,6 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 $ ->
+  #HIDE SOME STUFF
+  $('#con-groups').hide()
+  $('#main-items').hide()
 
   ##--HELPERS
   pluralize = (num, sin, plur = sin + "s") ->
@@ -20,6 +23,7 @@ $ ->
   addCon = "<a href=\"#\"><li class=\"add\">Add a Connection</li></a>"
 
 ##--/HELPERS
+
 
   todoMarkup = (todo) ->
     shared_groups = for group in todo.shared_groups
@@ -52,6 +56,10 @@ $ ->
 
   #CLICK ON MY GROUP
   $('a.my_group_li').click ->
+    $('#con-groups').toggle() #SHOW CONNECTED GROUPS
+    $('#my-groups').toggleClass('secondary-left').toggleClass('main-left') #SWAP .main-left for secondary-left styling
+    $('#main-items').show()
+    $('#main-welcome').hide()
     filterData.origin_group = @.id
     $.ajax 'filter/select',
       type: 'POST',
