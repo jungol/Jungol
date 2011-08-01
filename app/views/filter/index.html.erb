@@ -1,7 +1,7 @@
 <div class="content-bg">
 	<div id="secondary-left" class="">
 		<h1>My Groups</h1>
-		<ul class="filter-con">
+		<ul class="filter-con my_group_ul">
                   <% @groups.each do |gr| %>
                     <%= render 'my_group', :group => gr %>
                   <% end %>
@@ -11,7 +11,7 @@
 
 	<div id="main-left">
 		<h1>Connected to</h1>
-		<ul class="filter-con">
+		<ul class="filter-con con_group_ul">
                   <% @groups.each do |gr| %>
                     <%= render 'con_group', :group => gr %>
                   <% end %>

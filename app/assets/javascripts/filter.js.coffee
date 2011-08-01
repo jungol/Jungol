@@ -17,6 +17,8 @@ $ ->
   timeify = (time, format = "mm/dd/yy hh:mm") ->
     $.timeago(time)
 
+  addCon = "<a href=\"#\"><li class=\"add\">Add a Connection</li></a>"
+
 ##--/HELPERS
 
   todoMarkup = (todo) ->
@@ -40,44 +42,50 @@ $ ->
                 <p>#{disc.description}</p>
                 <p class=\"greenme\">Share #{shared_groups.join("  |  ")}</p>"
 
-  testData = {
-    "origin_group": "1",
+  conGroupMarkup = (group) ->
+    "<a id='#{group.id}' href='#' class='con_group_li'><li>#{group.name}</li></a>"
 
+  filterData = {
+    "origin_group": "1",
     "selected_groups": []
   }
 
-  testGroup = {
-    "group_id": "2"
-  }
+  #CLICK ON MY GROUP
+  $('a.my_group_li').click ->
+    $.ajax 'filter/select',
+      type: 'POST',
+      data: {"group_id": @.id},
+      dataType: 'json',
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        $('.con_group_ul').empty()
+        filterData.selected_groups = []
+        $.each data.shared_groups, (k,v) ->
+          $('.con_group_ul').append conGroupMarkup(v)
+        $('.con_group_ul').append addCon
 
-  $('a.con_group_li').click ->
+  #SELECT SHARED GROUP
+  $('a.con_group_li').live 'click',  ->
     $('li', @).toggleClass('selected')
 
-    found = $.inArray(@.id, testData.selected_groups)
+    found = $.inArray(@.id, filterData.selected_groups)
     if found > -1 ##Group WAS selected, remove it from list
-      testData.selected_groups.splice(found, 1)
+      filterData.selected_groups.splice(found, 1)
     else #add to list
-      testData.selected_groups.push(@.id)
+      filterData.selected_groups.push(@.id)
+
+    alert filterData.selected_groups
 
     $.ajax 'filter/filter',
       type: 'POST',
-      data: testData,
+      data: filterData,
       dataType: 'json',
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
         $.each data.todos, (k,v)->
-          $('#main-right').append todoMarkup(v)
+          $('#item.todo').append todoMarkup(v)
         $.each data.discussions, (k,v)->
-          $('#main-right').append discMarkup(v)
-
-  $('#test_select').click ->
-    $.ajax 'filter/select',
-      type: 'POST',
-      data: testGroup,
-      dataType: 'json',
-      error: (jqXHR, textStatus, errorThrown) ->
-        $('body').append "AJAX Error: #{textStatus}"
-      success: (data, textStatus, jqXHR) ->
-        $('body').append "Successful AJAX call: #{data}"
+          $('#item.discussions').append discMarkup(v)
 
