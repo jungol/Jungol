@@ -129,7 +129,7 @@ section {
     h1 {
       font-family: 'Cabin', sans-serif;
       font-size: 16px;
-      font-weight: 600px;
+      font-weight: 600;
       padding: 10px 0 10px 40px;
       display: block;
       background: #e2e6e2;
@@ -183,12 +183,12 @@ section {
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       -moz-box-shadow: inset 0 0 5px #c8d7a7;
       -webkit-box-shadow: inset 0 0 5px #c8d7a7;
-      box-shadow: inner 0 0 5px #c8d7a7;
+      box-shadow: inset 0 0 5px #c8d7a7;
     }
 		li:hover {
 			cursor: pointer;
 		}
-  }
+}
 
   #secondary-left {
     margin: 10px 0 0 0;
@@ -317,6 +317,20 @@ section {
 				-moz-box-shadow: inset 0 0 2px #777;
 	      -webkit-box-shadow: inset 0 0 2px #777;
 	      box-shadow: inset 0 0 2px #777;
+			}
+		}
+		#todo-comments {
+			padding: 0 10px;
+			.comment { 
+				border: 1px solid #d7e7b2;
+				background: #f3f4f3;
+				margin-bottom: 5px;
+				p{
+					color: #8eac4b;
+				}
+				p.edit_comment {
+					color: #585858;
+				}
 			}
 		}
 }
