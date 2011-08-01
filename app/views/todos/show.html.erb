@@ -1,7 +1,10 @@
 <div class="content-bg">
   <div id="main-right" class="main-right full">
     <div class="item-head headerfull">
-      <h2><%= "#{@todo.title} - #{@group.name}" %></h2><span class="create-button"><a href="#">Share »</a></span>
+      <h2><%= @todo.title %></h2>
+      <span id="add-task-button" class="button">Add Task</span>
+      <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
+      <span id="share-button" class="button"><a href="#">Share »</a></span>
     </div>
 
     <p id="<%= @up_path %>" class='edit_todo_desc'><i><%= @todo.description %></i></p>
@@ -23,6 +26,18 @@
       </ul>
     <% end %>
 
+    <div id="add-task-form">
+      <%= form_for [@group, @todo] do |todo_f| %>
+        <%= todo_f.fields_for :tasks, Task.new do |task_f| %>
+          <%= render "task_fields", :f => task_f %>
+        <% end %>
+        <p><%= link_to_add_fields "New Task", todo_f, :tasks  %></p>
+        <div class = 'actions'>
+          <%= todo_f.submit "Add" %>
+        </div>
+      <% end %>
+    </div>
+
     <ul class="todo-titles">
       <li class="todo-first">To-do Item</li>
       <li>Completed</li>
@@ -35,13 +50,12 @@
       <%= render @todo.tasks %>
     </ul>
 
-
-
     <%= form_for @comment do |f| %>
       <%= render 'shared/error_messages', :object => f.object %>
       <%= hidden_field(:group, :id) %>
       <%= hidden_field(:todo, :id) %>
       <div class="field">
+        <a name="comments"></a>
         <p>Comments</p>
         <span><%= f.label :body, "Post Comment..." %></span><br />
         <%= f.text_area :body %>
@@ -60,9 +74,6 @@
 
   <div class="clearall"></div>
 </div>
-
-
-
 
 
 

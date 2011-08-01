@@ -1,7 +1,10 @@
 <div class="content-bg">
   <div id="main-right" class="main-right full">
     <div class="item-head headerfull">
-      <h2><%= @discussion.title %></h2><span class="create-button"><a href='#'>Share >></a></span>
+      <h2><%= @discussion.title %></h2>
+      <span id="add-task-button" class="button">Add Task</span>
+      <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
+      <span id="share-button" class="button"><a href="#">Share »</a></span>
     </div>
 
     <p id="<%= @up_path %>" class='edit_disc_desc'><i><%= @discussion.description %></i></p>
@@ -32,11 +35,13 @@
       <%= hidden_field(:group, :id) %>
       <%= hidden_field(:discussion, :id) %>
       <div class="field">
-        <%= f.label :body, "Post Comment" %><br />
+        <a name="comments"></a>
+        <p>Comments</p>
+        <span><%= f.label :body, "Post Comment..." %></span><br />
         <%= f.text_area :body %>
       </div>
       <div class="actions">
-        <%= f.submit 'Post' %>
+        <%= f.submit 'Post Comment »' %>
       </div>
     <% end %>
     <%= render @discussion.comments %>
