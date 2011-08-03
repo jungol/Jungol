@@ -28,8 +28,9 @@ a:visited {
   }
 }
 #wrapper { 
-	width: 960px;
+	width: 980px;
 	margin: 0 auto;
+	background:yellow;
 }
 
 /* Header */
@@ -128,7 +129,7 @@ section {
   .main-left,
   .secondary-left {
     float: left;
-    width: 260px;
+    width: 250px;
     background: #f3f4f3;
     border: 1px solid #b3c7af;
     margin-left: 35px;
@@ -142,13 +143,14 @@ section {
       padding: 10px 0 10px 40px;
       display: block;
       background: #e2e6e2;
-      width: 230px;
+      width: 220px;
       border: 1px solid #c6c7c2;
       margin-left: -6px;
       color: #646464;
       -moz-box-shadow: 0 1px 2px #646464;
       -webkit-box-shadow: 0 1px 2px #646464;
       box-shadow: 0 1px 2px #646464;
+			margin-top: -1px;
     }
     ul {
       list-style: none;
@@ -162,7 +164,7 @@ section {
         padding: 20px 0 20px 40px;
         display: block;
         background: #f3f4f3;
-        width: 220px;
+        width: 210px;
         margin: -6px 0 0 -21px;
         border-bottom: 1px solid #dcdddc;
         border-top: 1px solid #dcdddc;
@@ -227,7 +229,7 @@ section {
     float: left;
     background: #fdfffd;
     margin-left: 320px;
-    width: 650px;
+    width: 660px;
     border: 1px solid #aeae96;
     border-top: none;
     margin-right: 20px;
@@ -291,7 +293,7 @@ section {
         font-weight: 600;
         font-family: 'Cabin', sans-serif;
         color: #fff;
-        width: 640px;
+        width: 650px;
         padding: 10px 0 10px 10px;
         border: 1px solid #aeae96;
         margin-left: -1px;
@@ -796,13 +798,11 @@ ul.hmenu {
   }
 }
 
-<<<<<<< HEAD
 input:-webkit-input-placeholder {
   color:    #C6C6B3;
-=======
+}
 input::-webkit-input-placeholder {
   color: #C6C6B3;
->>>>>>> 934f47d54edc8760ce31da106dc1a31e80ff6919
 }
 input:-moz-placeholder {
   color: #C6C6B3;
