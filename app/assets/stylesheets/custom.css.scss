@@ -27,6 +27,10 @@ a:visited {
     text-decoration: underline;
   }
 }
+#wrapper { 
+	width: 960px;
+	margin: 0 auto;
+}
 
 /* Header */
 header {
@@ -220,10 +224,10 @@ section {
   }
 
   .main-right {
-    float: right;
+    float: left;
     background: #fdfffd;
-    margin-left: 45px;
-    width: 692px;
+    margin-left: 320px;
+    width: 650px;
     border: 1px solid #aeae96;
     border-top: none;
     margin-right: 20px;
@@ -287,7 +291,7 @@ section {
         font-weight: 600;
         font-family: 'Cabin', sans-serif;
         color: #fff;
-        width: 682px;
+        width: 640px;
         padding: 10px 0 10px 10px;
         border: 1px solid #aeae96;
         margin-left: -1px;
@@ -792,7 +796,7 @@ ul.hmenu {
   }
 }
 
-input::-webkit-input-placeholder {
+input:-webkit-input-placeholder {
   color:    #C6C6B3;
 }
 input:-moz-placeholder {
