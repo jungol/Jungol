@@ -5,8 +5,8 @@
   <%= f.password_field :password,
     :class => "password",
     :placeholder => "***********" %>
-  <%= f.submit "Sign in", :class => "login-submit", :id => "login-submit" %>
   <% if devise_mapping.rememberable? -%>
     <%= f.check_box :remember_me, :id => "rem" %><%= f.label :remember_me %>
   <% end -%>
+  <%= f.submit "Sign in", :class => "login-submit", :id => "login-submit" %>
 <% end %>

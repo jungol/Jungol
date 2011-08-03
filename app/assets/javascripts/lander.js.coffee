@@ -6,6 +6,5 @@ $ ->
     $('#new_updates_request').fadeOut 'fast', ->
       $('#form-box').append "<h1>Thanks! We'll be in touch soon.</h1>"
 
-#  $('.login-button')
-#    .click ->
-#        $('#login-window').toggle()
+  $('.login-button').click ->
+    $('#login-window').slideToggle(300)
