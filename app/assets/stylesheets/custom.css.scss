@@ -48,7 +48,7 @@ header {
       padding: 5px 30px 5px 5px;
       background: #f3f4f3;
       border: 1px solid #cbd5ad;
-      color: #c6c6b3;
+      color: #888888;
       -moz-border-radius: 2px;
       border-radius: 2px;
     }
@@ -457,7 +457,7 @@ section {
         padding: 5px;
         background: #f3f4f3;
         border: 1px solid #cbd5ad;
-        color: #c6c6b3;
+        color: #888888;
         -moz-border-radius: 2px;
         border-radius: 2px;
       }
@@ -526,7 +526,7 @@ section {
     padding: 10px 15px 10px 10px;
 
     input { font-family: 'Verdana', Arial, Helvetica, sans-serif;
-      color: #c6c6b3;
+      color: #888888;
       border: 1px solid #bfc2b5;
       width: 100%;
       -moz-box-shadow: inset 0 0 2px #e0dfdf;
@@ -796,10 +796,15 @@ ul.hmenu {
   }
 }
 
+<<<<<<< HEAD
 input:-webkit-input-placeholder {
   color:    #C6C6B3;
+=======
+input::-webkit-input-placeholder {
+  color: #C6C6B3;
+>>>>>>> 934f47d54edc8760ce31da106dc1a31e80ff6919
 }
 input:-moz-placeholder {
-  color:    #C6C6B3;
+  color: #C6C6B3;
 }
 
