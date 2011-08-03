@@ -30,7 +30,6 @@ a:visited {
 #wrapper { 
 	width: 980px;
 	margin: 0 auto;
-	background:yellow;
 }
 
 /* Header */
@@ -192,9 +191,9 @@ section {
     li.selected {
       background: #d7e7b2;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      -moz-box-shadow: inset 0 0 5px #babbb9;
-      -webkit-box-shadow: inset 0 0 5px #babbb9;
-      box-shadow: inset 0 0 5px #babbb9;
+      -moz-box-shadow: inset 0 0 10px #b2c682;
+      -webkit-box-shadow: inset 0 0 10px #b2c682;
+      box-shadow: inset 0 0 10px #b2c682;
     }
     li:hover {
       cursor: pointer;
@@ -228,7 +227,7 @@ section {
   .main-right {
     float: right;
     background: #fdfffd;
-    width: 660px;
+    width: 670px;
     border: 1px solid #aeae96;
     border-top: none;
 		.item-body {
@@ -519,9 +518,12 @@ section {
   }
 
   #login-window {
-    background: #67952b;
+    background: #579b21;
     width: 188px;
     position: relative;
+		left: 2px;
+		top: -3px;
+
     z-index: 9999;
     padding: 10px 15px 10px 10px;
 
