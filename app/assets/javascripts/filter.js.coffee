@@ -1,9 +1,17 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 $ ->
+  #VARIABLES
+  filterData = {
+    "origin_group": "1",
+    "selected_groups": []
+  }
+  onGroup = true
+
   #HIDE SOME STUFF
   $('#con-groups').hide()
   $('#main-items').hide()
+  $('#my-groups-over').hide()
 
   ##--HELPERS
   pluralize = (num, sin, plur = sin + "s") ->
@@ -56,23 +64,17 @@ $ ->
     "<img src='/assets/prssa-logo.png' /><h1>#{group.name}</h1><p><a href=\"#\">Group Info</a> | <a href=\"#\">Invite New Members</a></p>
       <p class=\"blurb\">#{group.about}</p>"
 
-  filterData = {
-    "origin_group": "1",
-    "selected_groups": []
-  }
-
-  #CLICK ON MY GROUP
-  $('a.my_group_li').click ->
-    $('#con-groups').toggle() #SHOW CONNECTED GROUPS
-    $('#my-groups').toggleClass('secondary-left').toggleClass('main-left') #SWAP .main-left for secondary-left styling
-    $('#main-items').show()
-    $('#main-welcome').hide()
-
-    filterData.origin_group = @.id
-    createNewLinks(@.id)
+  #gets items after group is selected
+  getItems = (_group_id) ->
+    tbody = $('.item#todos > .item-body')
+    dbody = $('.item#discussions > .item-body')
+    tbody.fadeTo(900, 0)
+    dbody.fadeTo(900, 0)
+    filterData.origin_group = _group_id
+    createNewLinks(_group_id)
     $.ajax 'filter/select',
       type: 'POST',
-      data: {"group_id": @.id},
+      data: {"group_id": _group_id},
       dataType: 'json',
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
@@ -85,8 +87,6 @@ $ ->
         $('.con_group_ul').append addCon
         $('.group-info').empty().append groupInfoMarkup(data.main_group)
         #Populate items connected to origin group
-        tbody = $('.item#todos > .item-body')
-        dbody = $('.item#discussions > .item-body')
         tbody.empty()
         dbody.empty()
         $.each data.items.todos, (k,v)->
@@ -95,11 +95,36 @@ $ ->
           dbody.append discMarkup(v)
         if $.isEmptyObject(data.items.discussions) then dbody.append "<p>No Discussions.</p>"
         if $.isEmptyObject(data.items.todos) then tbody.append "<p>No Todos.</p>"
+        tbody.stop().fadeTo(500, 1)
+        dbody.stop().fadeTo(500, 1)
+
+  $('#my-groups-over').click ->
+    $('#con-groups').hide('slide', {direction:'right'}, 300)#SHOW CONNECTED GROUPS
+    $('#my-groups').switchClass('secondary-left', 'main-left', 300) #move to right, ungray
+    $(@).hide()
+
+
+  #CLICK ON ONE OF YOUR GROUPS
+  $('a.my_group_li').click ->
+    $('#main-welcome').hide()
+    $('#main-items').show()
+    getItems(@.id)
+    $('ul.my_group_ul li').removeClass('selected') #unselect all
+    $('li', @).toggleClass('selected') #Mark as selected
+    $('#con-groups').show('slide', { direction:'right'}, 300 ) #SHOW CONNECTED GROUPS
+    $('#my-groups').switchClass 'main-left', 'secondary-left', 300, -> #move to left, gray out
+      $('#my-groups-over').height($('#my-groups').height() + 2).show()
+
+
+
 
   #SELECT SHARED GROUP
   $('a.con_group_li').live 'click',  ->
     $('li', @).toggleClass('selected')
-
+    tbody = $('.item#todos > .item-body')
+    dbody = $('.item#discussions > .item-body')
+    tbody.fadeTo(900, 0)
+    dbody.fadeTo(900, 0)
     found = $.inArray(@.id, filterData.selected_groups)
     if found > -1 ##Group WAS selected, remove it from list
       filterData.selected_groups.splice(found, 1)
@@ -113,8 +138,6 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
-        tbody = $('.item#todos > .item-body')
-        dbody = $('.item#discussions > .item-body')
         tbody.empty()
         dbody.empty()
         $.each data.todos, (k,v)->
@@ -123,4 +146,5 @@ $ ->
           dbody.append discMarkup(v)
         if $.isEmptyObject(data.discussions) then dbody.append "<p>No Discussions.</p>"
         if $.isEmptyObject(data.todos) then tbody.append "<p>No Todos.</p>"
-
+        tbody.stop().fadeTo(500, 1)
+        dbody.stop().fadeTo(500, 1)

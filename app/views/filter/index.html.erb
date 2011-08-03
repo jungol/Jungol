@@ -1,11 +1,11 @@
 <div class="content-bg">
+  <div id="my-groups-over" class="secondary-left-over"></div>
   <div id="my-groups" class="main-left">
     <h1>My Groups</h1>
     <ul class="filter-con my_group_ul">
       <% @groups.each do |gr| %>
         <%= render 'my_group', :group => gr %>
       <% end %>
-      <a href="#"><li class="add">Request to Join a Group</li></a>
     </ul>
   </div>
 
