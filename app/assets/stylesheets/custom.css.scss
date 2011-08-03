@@ -523,18 +523,19 @@ section {
     position: relative;
 		left: 2px;
 		top: -3px;
-
     z-index: 9999;
     padding: 10px 15px 10px 10px;
 
-    input { font-family: 'Verdana', Arial, Helvetica, sans-serif;
-      color: #888888;
+    input { 
+			width: 100%;
+      font-family: 'Verdana', Arial, Helvetica, sans-serif;
+      color: #777777;
       border: 1px solid #bfc2b5;
-      width: 100%;
-      -moz-box-shadow: inset 0 0 2px #e0dfdf;
-      -webkit-box-shadow: inset 0 0 2px #e0dfdf;
-      box-shadow: inset 0 0 2px #e0dfdf;
-
+      -moz-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
+      -webkit-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
+      box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
+			padding: 5px;
+			
       .login-submit {
         font-family: 'Cabin', sans-serif;
         width: 193px;
@@ -622,9 +623,9 @@ section {
 			font-size: 12px;
       color: #777777;
       border: 1px solid #bfc2b5;
-      -moz-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
-      -webkit-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
-      box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf; }
+      -moz-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
+      -webkit-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
+      box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf; }
     input.land-submit {
       font-family: 'Cabin', sans-serif;
       font-size: 16px;
@@ -798,9 +799,7 @@ ul.hmenu {
   }
 }
 
-input:-webkit-input-placeholder {
-  color:    #C6C6B3;
-}
+
 input::-webkit-input-placeholder {
   color: #C6C6B3;
 }
