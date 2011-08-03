@@ -99,10 +99,10 @@ $ ->
         dbody.stop().fadeTo(500, 1)
 
   $('#my-groups-over').click ->
-    $('#con-groups').hide('slide', {direction:'right'}, 300)#SHOW CONNECTED GROUPS
-    $('#my-groups').switchClass('secondary-left', 'main-left', 300) #move to right, ungray
     $(@).unbind('mouseenter mouseleave')
     $(@).hide()
+    $('#con-groups').hide('slide', {direction:'right'}, 300)#SHOW CONNECTED GROUPS
+    $('#my-groups').switchClass('secondary-left', 'main-left', 300) #move to right, ungray
 
 
   #CLICK ON ONE OF YOUR GROUPS
