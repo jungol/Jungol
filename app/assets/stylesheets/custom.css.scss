@@ -41,7 +41,7 @@ header {
     float: right;
     margin: 12px 40px 0 10px;
     input.search-field {
-      padding: 5px;
+      padding: 5px 30px 5px 5px;
       background: #f3f4f3;
       border: 1px solid #cbd5ad;
       color: #c6c6b3;
@@ -49,9 +49,9 @@ header {
       border-radius: 2px;
     }
     .search-button {
-      position: absolute;
-      top: 20px;
-      right: 41px;
+      position: relative;
+      top: 3px;
+      right: 28px;
     }
   }
 }
@@ -186,9 +186,9 @@ section {
     li.selected {
       background: #d7e7b2;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      -moz-box-shadow: inset 0 0 5px #c8d7a7;
-      -webkit-box-shadow: inset 0 0 5px #c8d7a7;
-      box-shadow: inset 0 0 5px #c8d7a7;
+      -moz-box-shadow: inset 0 0 5px #babbb9;
+      -webkit-box-shadow: inset 0 0 5px #babbb9;
+      box-shadow: inset 0 0 5px #babbb9;
     }
     li:hover {
       cursor: pointer;
@@ -227,7 +227,14 @@ section {
     border: 1px solid #aeae96;
     border-top: none;
     margin-right: 20px;
-
+		.item-body {
+			p {
+				margin-top: -5px;
+			}
+			.share {
+				margin-top: -10px !important;
+			}
+		}
 
     /* NEW SESSION STYLES */
     input#user_email,
@@ -309,11 +316,11 @@ section {
       }
 
       #comment-button {
-        right:100px;
+        right:85px;
       }
 
       #add-task-button {
-        right:170px;
+        right:156px;
       }
       .create-button {
         right:25px;
@@ -338,9 +345,13 @@ section {
       padding-left: 10px;
       font-size: 13px;
       text-decoration: underline;
+			padding-top: 20px;
       a {
         color: #000;
       }
+			.top {
+				padding-top: 0;
+			}
     }
     p {
       padding-left: 10px;
@@ -382,6 +393,7 @@ section {
       textarea {
         background: #f3f4f3;
         border: 1px solid #797b69;
+				height: 130px;
       }
       #todo_title,
       #discussion_title {
@@ -417,12 +429,16 @@ section {
         left: 323px !important;
       }
     }
-    #todo-comments {
-      padding: 0 10px;
+    #todo-comments,
+ 		#disc-comments {
+      padding: 0 10px 10px 10px;
+			width: 400px;
+			overflow: hidden;
       .comment {
         border: 1px solid #d7e7b2;
         background: #f3f4f3;
         margin-bottom: 5px;
+				width: 400px;
         p{
           color: #8eac4b;
         }
@@ -442,9 +458,9 @@ section {
         border-radius: 2px;
       }
       .search-button {
-        position: absolute;
-        top: 366px;
-        right: 478px;
+        position: relative;
+	      top: 3px;
+	      right: 28px;
       }
     }
     .welcome-button {
@@ -597,6 +613,7 @@ section {
       width: 300px;
       padding-left: 25px;
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
+			font-size: 12px;
       color: #777777;
       border: 1px solid #bfc2b5;
       -moz-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
@@ -643,6 +660,7 @@ section {
     font-size: 34px;
     font-weight: 500;
     text-shadow: 1px 0px 1px #7b7b7b;
+		font-family: 'Cabin', sans-serif;
   }
   p.welcome img {
     vertical-align: bottom;
@@ -652,7 +670,7 @@ section {
 
 
 /* footer */
-footer { float: right; text-align: center; margin: 10px 60px 0 0; }
+footer { float: right; text-align: center; margin: 5px 60px 5px 0; }
 
 footer nav { float: none; }
 footer nav ul li.first { margin-right: 40px; }
