@@ -27,9 +27,9 @@ a:visited {
     text-decoration: underline;
   }
 }
-#wrapper { 
-	width: 980px;
-	margin: 0 auto;
+#wrapper {
+  width: 980px;
+  margin: 0 auto;
 }
 
 /* Header */
@@ -149,7 +149,7 @@ section {
       -moz-box-shadow: 0 1px 2px #646464;
       -webkit-box-shadow: 0 1px 2px #646464;
       box-shadow: 0 1px 2px #646464;
-			margin-top: -1px;
+      margin-top: -1px;
     }
     ul {
       list-style: none;
@@ -214,9 +214,7 @@ section {
     width:260px;
   }
   .secondary-left-over:hover {
-    background:#000;
     cursor:pointer;
-    opacity: 0.2;
   }
   .main-left {
     z-index: 10;
@@ -230,14 +228,14 @@ section {
     width: 670px;
     border: 1px solid #aeae96;
     border-top: none;
-		.item-body {
-			p {
-				margin-top: -5px;
-			}
-			.share {
-				margin-top: -10px !important;
-			}
-		}
+    .item-body {
+      p {
+        margin-top: -5px;
+      }
+      .share {
+        margin-top: -10px !important;
+      }
+    }
 
     /* NEW SESSION STYLES */
     input#user_email,
@@ -348,13 +346,13 @@ section {
       padding-left: 10px;
       font-size: 13px;
       text-decoration: underline;
-			padding-top: 20px;
+      padding-top: 20px;
       a {
         color: #000;
       }
-			.top {
-				padding-top: 0;
-			}
+      .top {
+        padding-top: 0;
+      }
     }
     p {
       padding-left: 10px;
@@ -396,7 +394,7 @@ section {
       textarea {
         background: #f3f4f3;
         border: 1px solid #797b69;
-				height: 130px;
+        height: 130px;
       }
       #todo_title,
       #discussion_title {
@@ -433,15 +431,15 @@ section {
       }
     }
     #todo-comments,
- 		#disc-comments {
+    #disc-comments {
       padding: 0 10px 10px 10px;
-			width: 400px;
-			overflow: hidden;
+      width: 400px;
+      overflow: hidden;
       .comment {
         border: 1px solid #d7e7b2;
         background: #f3f4f3;
         margin-bottom: 5px;
-				width: 400px;
+        width: 400px;
         p{
           color: #8eac4b;
         }
@@ -462,8 +460,8 @@ section {
       }
       .search-button {
         position: relative;
-	      top: 3px;
-	      right: 28px;
+        top: 3px;
+        right: 28px;
       }
     }
     .welcome-button {
@@ -521,21 +519,20 @@ section {
     background: #579b21;
     width: 188px;
     position: relative;
-		left: 2px;
-		top: -3px;
+    left: 2px;
+    top: -3px;
+
     z-index: 9999;
     padding: 10px 15px 10px 10px;
 
-    input { 
-			width: 100%;
-      font-family: 'Verdana', Arial, Helvetica, sans-serif;
-      color: #777777;
+    input { font-family: 'Verdana', Arial, Helvetica, sans-serif;
+      color: #888888;
       border: 1px solid #bfc2b5;
-      -moz-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
-      -webkit-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
-      box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
-			padding: 5px;
-			
+      width: 100%;
+      -moz-box-shadow: inset 0 0 2px #e0dfdf;
+      -webkit-box-shadow: inset 0 0 2px #e0dfdf;
+      box-shadow: inset 0 0 2px #e0dfdf;
+
       .login-submit {
         font-family: 'Cabin', sans-serif;
         width: 193px;
@@ -620,12 +617,12 @@ section {
       width: 300px;
       padding-left: 25px;
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
-			font-size: 12px;
+      font-size: 12px;
       color: #777777;
       border: 1px solid #bfc2b5;
-      -moz-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
-      -webkit-box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf;
-      box-shadow: 0 1px 3px #ccc, inset 0 0 10px #e0dfdf; }
+      -moz-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
+      -webkit-box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf;
+      box-shadow: 0 2px 0 #ccc, inset 0 0 10px #e0dfdf; }
     input.land-submit {
       font-family: 'Cabin', sans-serif;
       font-size: 16px;
@@ -667,7 +664,7 @@ section {
     font-size: 34px;
     font-weight: 500;
     text-shadow: 1px 0px 1px #7b7b7b;
-		font-family: 'Cabin', sans-serif;
+    font-family: 'Cabin', sans-serif;
   }
   p.welcome img {
     vertical-align: bottom;
@@ -798,7 +795,6 @@ ul.hmenu {
     display:inline;
   }
 }
-
 
 input::-webkit-input-placeholder {
   color: #C6C6B3;
