@@ -583,10 +583,11 @@ section {
 
   #login-window {
     background: #67952b;
-    width: 188px !important; /*moz width*/
+    width: 188px !important;
     position: relative;
+		right: 92px !important; /*moz fix*/
     right: 97px;
-    top: -4px;
+    top: -1px;
     z-index: 9999;
     padding: 10px 15px 15px 10px;
 		border-radius: 0 0 5px 5px;
