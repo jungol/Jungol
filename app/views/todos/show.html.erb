@@ -13,7 +13,7 @@
       <ul class="shared-list greenme">
         <li>Shared With:</li>
         <% @shared.each do |group| %>
-          <a href="#"><%= render 'share', :group => group %></a>&nbsp;
+          <%= render 'share', :group => group %>&nbsp;
         <% end %>
       </ul>
     <% end %>
