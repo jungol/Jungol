@@ -92,7 +92,8 @@
 
       <p>If you can’t find what you’re looking for, you can See All Groups or Create a New Group.</p>
 
-      <input class="welcome-button first-welcome" type="button" value="See All Groups »" /><input class="welcome-button" type="button" value="Create New Group »" />	
+      <%= link_to "See All Groups »", groups_path, :class => ['welcome-button', 'first-welcome'], :target => '_blank' %>
+      <%= link_to "Create New Group »", new_group_path, :class => 'welcome-button', :target => '_blank' %>
     </div>
 
 
@@ -100,11 +101,11 @@
 		<label class="label-completed-radio" for="sample-completed-radio">
 			<input name="sample-completed-radio" id="sample-radio" type="radio" />
 		</label>
-		
+
 		<label class="label-progress-radio" for="sample-progress-radio">
 			<input name="sample-progress-radio" type="radio" />
 		</label>
-		
+
 		<label class="label-check" for="sample-check">
 			<input name="sample-check" type="checkbox" />
 		</label>
