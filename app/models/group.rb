@@ -40,6 +40,10 @@ class Group < ActiveRecord::Base
     admins.include?(user) if user
   end
 
+  def users_by_role
+    users.all(:conditions => ['users.id not in (?)', self.creator], :include => :memberships, :order => 'memberships.role DESC' )
+  end
+
   def admins
     users.includes(:memberships).where(:memberships => {:role => 1})
   end
