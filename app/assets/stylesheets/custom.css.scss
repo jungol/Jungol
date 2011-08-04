@@ -29,7 +29,7 @@ a:visited {
 }
 #wrapper {
   width: 980px;
-  margin: 0 auto;
+  margin-left: 0;
 }
 
 /* Header */
@@ -160,10 +160,10 @@ section {
       color: #646464;
       text-decoration: none;
       li {
-        padding: 20px 0 20px 40px;
+        padding: 20px 0 20px 20px;
         display: block;
         background: #f3f4f3;
-        width: 210px;
+        width: 230px;
         margin: -6px 0 0 -21px;
         border-bottom: 1px solid #dcdddc;
         border-top: 1px solid #dcdddc;
