@@ -31,7 +31,7 @@
         <%= todo_f.fields_for :tasks, Task.new do |task_f| %>
           <%= render "task_fields", :f => task_f %>
         <% end %>
-        <p><%= link_to_add_fields "New Task", todo_f, :tasks  %></p>
+        <%= link_to_add_fields "New Task", todo_f, :tasks  %>
         <div class = 'actions'>
           <%= todo_f.submit "Add" %>
         </div>
