@@ -535,7 +535,8 @@ section {
 
   }
   /* Lander */
-  #land-top { height: 450px;
+  #land-top {
+    height: 475px;
     background-color: #bee8eb;
     background-position: center center;
     background-repeat: no-repeat;
@@ -548,7 +549,7 @@ section {
   #screenshot { z-index: 9;
     position: absolute;
     right: 40px;
-    top: 100px; }
+    top: 115px; }
 
   #land-login {
     float: right;
@@ -677,7 +678,7 @@ section {
     z-index: 999;
     width: 490px;
     position: absolute;
-    top: 325px;
+    top: 355px;
     right: 40px;
     padding: 35px;
     border: 1px solid #b4b4b4;
@@ -735,7 +736,7 @@ section {
   p.welcome {
     color: #fff;
     position: absolute;
-    top: 50px;
+    top: 85px;
     left: 70px;
     font-size: 34px;
     font-weight: 500;
