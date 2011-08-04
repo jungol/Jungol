@@ -6,7 +6,8 @@ $ ->
     "origin_group": "1",
     "selected_groups": []
   }
-  onGroup = true
+  todoCount = 0
+  discCount = 0
 
   #HIDE SOME STUFF
   $('#con-groups').hide()
@@ -39,8 +40,9 @@ $ ->
   todoMarkup = (todo) ->
     shared_groups = for group in todo.shared_groups
       linkify( group.name, group.url, "class='group_link'")
+    todoCount++
 
-    "<h3>#{linkify todo.title, todo.url, "class='todo_link'"}</h3>
+    "<h3 class=\"#{"top" if todoCount == 1}\">#{linkify todo.title, todo.url, "class='todo_link'"}</h3>
       <p class=\"greenme\"><span>#{linkify pluralize( todo.tasks_count, "Task"), todo.url + "#tasks", ""}</span>  |
       last update #{timeify todo.updated_at} |
       <span>#{linkify pluralize( todo.comments.length, "comment"), todo.url + "#comments", ""}</span>  </p>
@@ -51,7 +53,7 @@ $ ->
     shared_groups = for group in disc.shared_groups
       linkify( group.name, group.url, "class='group_link'")
 
-    "<h3>#{linkify disc.title, disc.url, "class='disc_link'"}</h3>
+    "<h3 class=\"#{"top" if todoCount == 1}\">#{linkify disc.title, disc.url, "class='disc_link'"}</h3>
       <p class=\"greenme\">last post #{timeify disc.last} by #{disc.by.name} |
       <span>#{linkify pluralize( disc.comments.length, "comment"), disc.url + "#comments", ""}</span>  </p>
                 <p>#{disc.description}</p>
@@ -66,6 +68,7 @@ $ ->
 
   #gets items after group is selected
   getItems = (_group_id) ->
+    [todoCount, discCount] = [0, 0]
     tbody = $('.item#todos > .item-body')
     dbody = $('.item#discussions > .item-body')
     tbody.fadeTo(900, 0)
@@ -128,6 +131,8 @@ $ ->
 
   #SELECT SHARED GROUP
   $('a.con_group_li').live 'click',  ->
+    [todoCount, discCount] = [0, 0]
+    tbody = $('.item#todos > .item-body')
     $('li', @).toggleClass('selected')
     tbody = $('.item#todos > .item-body')
     dbody = $('.item#discussions > .item-body')
@@ -152,7 +157,7 @@ $ ->
           tbody.append todoMarkup(v)
         $.each data.discussions, (k,v)->
           dbody.append discMarkup(v)
-        if $.isEmptyObject(data.discussions) then dbody.append "<p>No Discussions.</p>"
-        if $.isEmptyObject(data.todos) then tbody.append "<p>No Todos.</p>"
+        if $.isEmptyObject(data.discussions) then dbody.append "<p style='opacity:0.6'>No Discussions.</p>"
+        if $.isEmptyObject(data.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
