@@ -18,11 +18,11 @@ onload = function() {
         };
         if (l.className == 'label-completed-radio') {
             l.className = (safari && inp.checked == true || inp.checked) ? 'label-completed-radio cr-on' : 'label-completed-radio cr-off';
-            l.onclick = turn_radio;
+            l.onclick = turn_completed_radio;
         };
 				if (l.className == 'progress-radio') {
             l.className = (safari && inp.checked == true || inp.checked) ? 'label-progress-radio pr-on' : 'label-progress-radio pr-off';
-            l.onclick = turn_radio;
+            l.onclick = turn_progress_radio;
         };
     };
 };
