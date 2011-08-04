@@ -7,7 +7,7 @@
 		<%= form_for [@group, @discussion] do |disc_f| %>
 		  <%= render 'fields', :f => disc_f %>
 		  <div class = 'actions'>
-		    <span><%= disc_f.submit "Create" %></span>
+		    <span class="disc-fix"><%= disc_f.submit "Create" %></span>
 		  </div>
 		<% end %>
 		
