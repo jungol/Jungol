@@ -554,8 +554,8 @@ section {
     margin: 10px 40px 0 60px;
 
     button.login-button {
-      background: url('/assets/login-bg.png') no-repeat left;
-      padding: 0 20px 0 125px;
+      background: #67952b;
+      padding: 0 20px;
       height: 35px;
       border: 0;
       font-family: 'Cabin', sans-serif;
@@ -564,7 +564,16 @@ section {
       font-size: 18px;
       margin-right: 50px;
       cursor: pointer;
+			border-radius: 5px;
     }
+		.monkey {
+			background: url('/assets/monkey.png') no-repeat;
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			top: 7px;
+			right: 284px;
+		}
     img {
       vertical-align: top;
       padding-left: 10px;
@@ -573,11 +582,11 @@ section {
   }
 
   #login-window {
-    background: #579b21;
+    background: #67952b;
     width: 188px !important; /*moz width*/
     position: relative;
-    left: 2px;
-    top: -3px;
+    right: 97px;
+    top: -4px;
     z-index: 9999;
     padding: 10px 15px 15px 10px;
 		border-radius: 0 0 5px 5px;
