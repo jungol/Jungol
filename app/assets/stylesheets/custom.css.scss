@@ -486,14 +486,35 @@ section {
 
 
 
-		/* Radio button and Checkbox styles
-		.has-js .label-check,
-		.has-js .label-radio 
+		/* Radio button and Checkbox styles */
+		.has-js .check {
+			background: url('/assets/check-open.png') no-repeat;
+		}
+		.has-js .completed-radio {
+			background: url('/assets/completed-radio-open.png') no-repeat;
+		}
+		.has-js .progress-radio {
+			background: url('/assets/progress-radio-open.png') no-repeat;
+		}
+		.has-js label.cr-on {
+			background: url ('/assets/completed-radio-closed.png') no-repeat;
+		}
+		.has-js label.pr-on {
+			background: url('/assets/progress-radio-closed.png') no-repeat;
+		}
+		.has-js label.c-on {
+			background: url('/assets/check-closed.png') no-repeat;
+		}
+		.has-js .completed-radio,
+		.has-js .progress-radio,
+		.has-js .check {
+			position: absolute; left: -9999px;
+		}
 		
 		
 		
-		
-  }*/
+
+  }
   /* Lander */
   #land-top { height: 400px;
     background-color: #bee8eb;
