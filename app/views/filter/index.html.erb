@@ -16,7 +16,7 @@
       <% @groups.each do |gr| %>
         <%= render 'con_group', :group => gr %>
       <% end %>
-      <a href="#"><li class="add">Add a Connection</li></a>
+      <%#= link_to content_tag(:li, "Add a Connection", :class => 'add'), link_path(@group) %>
     </ul>
   </div>
 

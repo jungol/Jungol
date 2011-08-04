@@ -29,7 +29,8 @@ $ ->
   timeify = (time, format = "mm/dd/yy hh:mm") ->
     $.timeago(time)
 
-  addCon = "<a href=\"#\"><li class=\"add\">Add a Connection</li></a>"
+  addCon = (_group_id) ->
+    "<a href='/groups/#{_group_id}/link', target='_blank'><li class=\"add\">Add a Connection</li></a>"
 
 ##--/HELPERS
 
@@ -88,7 +89,7 @@ $ ->
         filterData.selected_groups = []
         $.each data.shared_groups, (k,v) ->
           $('.con_group_ul').append conGroupMarkup(v)
-        $('.con_group_ul').append addCon
+        $('.con_group_ul').append addCon(_group_id)
         $('.group-info').empty().append groupInfoMarkup(data.main_group)
         #Populate items connected to origin group
         tbody.empty()

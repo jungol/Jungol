@@ -1,6 +1,6 @@
 <div class="secondary">
   <div class="groups-list">
-    <p><a href="#">All Groups</a> | <a href="#">Create New Group</a></p>
+    <p><%= link_to "All Groups", groups_path, :target => '_blank' %> | <%= link_to "Create New Group", new_group_path, :target => '_blank' %></p>
   </div>
 
   <%= render 'layouts/group_info' %>
