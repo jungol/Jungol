@@ -1,10 +1,10 @@
 <% up_path = group_todo_task_path(@group.id, @todo.id, task) %>
-<li id = "task_<%= task.id %>"><div>
-    <span style="float:left;" class='edit_task_desc' data-path="<%= up_path %>" id="<%= up_path %>"><%= task.description %></span>
-    <span style="float:right;padding-right:20px;">
+<li id = "task_<%= task.id %>" class="task-item"><div>
+    <span class='edit_task_desc task-desc' data-path="<%= up_path %>" id="<%= up_path %>"><%= task.description %></span>
+    <span class='task-status'>
       <%= radio_button_tag "status#{task.id}", 1, task.status==1, :class => 'task_radio', :id => up_path %>
       <%= radio_button_tag "status#{task.id}", 2, task.status==2, :class => 'task_radio', :id => up_path %>
     </span>
-    <span style="float:right; padding-right:30px;"><%= task.task_num %></span>
+    <span class='task-number'><%= task.task_num %></span>
   </div>
 </li>
