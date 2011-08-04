@@ -99,15 +99,11 @@ $ ->
         dbody.stop().fadeTo(500, 1)
 
   $('#my-groups-over').click ->
+    $(@).unbind('mouseenter mouseleave')
+    $(@).hide()
     $('#con-groups').hide('slide', {direction:'right'}, 300)#SHOW CONNECTED GROUPS
     $('#my-groups').switchClass('secondary-left', 'main-left', 300) #move to right, ungray
-    $(@).hide()
 
-  #ADD HOVER FUNCTION
-  $('#my-groups-over').mouseenter ->
-    $('#my-groups').css {'opacity':1}
-  $('#my-groups-over').mouseleave ->
-    $('#my-groups').css {'opacity':0.4}
 
   #CLICK ON ONE OF YOUR GROUPS
   $('a.my_group_li').click ->
@@ -117,11 +113,16 @@ $ ->
     $('ul.my_group_ul li').removeClass('selected') #unselect all
     $('li', @).toggleClass('selected') #Mark as selected
     $('#con-groups').show('slide', { direction:'right'}, 300 ) #SHOW CONNECTED GROUPS
+    #ADD HOVER FUNCTION
+    $('#my-groups-over').mouseenter ->
+      $('#my-groups').css {'opacity':1}
+    $('#my-groups-over').mouseleave ->
+      $('#my-groups').css {'opacity':0.5}
 
     #MARK 'MY GROUPS' INACTIVE, SHOW OVER-DIV
     $('#my-groups').switchClass 'main-left', 'secondary-left', 300, -> #move to left, gray out
       $('#my-groups-over').height($('#my-groups').height() + 2).show()
-      $(@).css {'opacity': 0.4}
+      $(@).css {'opacity': 0.5}
 
 
 
