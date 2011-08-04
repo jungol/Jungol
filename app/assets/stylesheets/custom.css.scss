@@ -386,6 +386,9 @@ section {
         font-size: 16px;
         margin-bottom: 0;
         font-weight: bold;
+				input[type="text"] {
+					width: 389px;
+				}
       }
       span {
         color: #585858;
@@ -484,8 +487,6 @@ section {
       margin-left: 130px;
     }
 
-
-
 		/* Radio button and Checkbox styles */
 		.has-js .label-check,
 		.has-js .label-completed-radio,
@@ -517,6 +518,13 @@ section {
 			left: -9999px;
 		}
 		
+		#add-task-form{
+			form {
+				a { 
+					margin-left: 20px;
+				}
+			}
+		}
 		
 		
 
@@ -823,17 +831,36 @@ div.comment{
 }
 
 .sortable {
-  list-style-type: none; margin: 0; padding-left: 10px; width: 60%;
+  list-style-type: none;
+	margin: 0;
+	padding-left: 10px; 
+	width: 74%; 
   li {
-    height: 50px; line-height: 25px;
+		line-height: 25px;
     border-bottom: 1px solid #d8dad8;
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
+		div {
+			.task-desc {
+				display: inline-block;
+				width: 378px;
+			}
+			.task-status {
+				input {
+					margin: 0 43px;
+					background: red;
+				}
+			}
+			.task-number {
+				margin-left: 70px;
+			}
+		}
+	}
     .placeholder{
       background-color:#BBB;
-    }
+   	}
   }
-}
+
 
 ul.hmenu {
   list-style: none;
