@@ -487,13 +487,18 @@ section {
 
 
 		/* Radio button and Checkbox styles */
-		.has-js .check {
+		.has-js .label-check,
+		.has-js .label-completed-radio,
+		.has-js .label-progress-radio {
+			padding-left: 34px;
+		}
+		.has-js .label-check {
 			background: url('/assets/check-open.png') no-repeat;
 		}
-		.has-js .completed-radio {
+		.has-js .label-completed-radio {
 			background: url('/assets/completed-radio-open.png') no-repeat;
 		}
-		.has-js .progress-radio {
+		.has-js .label-progress-radio {
 			background: url('/assets/progress-radio-open.png') no-repeat;
 		}
 		.has-js label.cr-on {
@@ -505,10 +510,11 @@ section {
 		.has-js label.c-on {
 			background: url('/assets/check-closed.png') no-repeat;
 		}
-		.has-js .completed-radio,
-		.has-js .progress-radio,
-		.has-js .check {
-			position: absolute; left: -9999px;
+		.has-js input.completed-radio,
+		.has-js input.progress-radio,
+		.has-js input.check {
+			position: absolute; 
+			left: -9999px;
 		}
 		
 		

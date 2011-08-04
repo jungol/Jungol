@@ -10,45 +10,45 @@ onload = function() {
     var ls = gebtn(d,'label');
     for (var i = 0; i < ls.length; i++) {
         var l = ls[i];
-        if (l.className.indexOf('label_') == -1) continue;
+        if (l.className.indexOf('label-') == -1) continue;
         var inp = gebtn(l,'input')[0];
-        if (l.className == 'check') {
-            l.className = (safari && inp.checked == true || inp.checked) ? 'check c-on' : 'check cc-off';
+        if (l.className == 'label-check') {
+            l.className = (safari && inp.checked == true || inp.checked) ? 'label-check c-on' : 'label-check cc-off';
             l.onclick = check_it;
         };
-        if (l.className == 'completed-radio') {
-            l.className = (safari && inp.checked == true || inp.checked) ? 'completed-radio cr-on' : 'completed-radio cr-off';
+        if (l.className == 'label-completed-radio') {
+            l.className = (safari && inp.checked == true || inp.checked) ? 'label-completed-radio cr-on' : 'label-completed-radio cr-off';
             l.onclick = turn_radio;
         };
 				if (l.className == 'progress-radio') {
-            l.className = (safari && inp.checked == true || inp.checked) ? 'progress-radio pr-on' : 'progress-radio pr-off';
+            l.className = (safari && inp.checked == true || inp.checked) ? 'label-progress-radio pr-on' : 'label-progress-radio pr-off';
             l.onclick = turn_radio;
         };
     };
 };
 var check_it = function() {
     var inp = gebtn(this,'input')[0];
-    if (this.className == 'check c_off' || (!safari && inp.checked)) {
-        this.className = 'check c-on';
+    if (this.className == 'label-check c-off' || (!safari && inp.checked)) {
+        this.className = 'label-check c-on';
         if (safari) inp.click();
     } else {
-        this.className = 'check c-off';
+        this.className = 'label-check c-off';
         if (safari) inp.click();
     };
 };
 var turn_completed_radio = function() {
     var inp = gebtn(this,'input')[0];
-    if (this.className == 'completed-radio cr-off' || inp.checked) {
+    if (this.className == 'label-completed-radio cr-off' || inp.checked) {
         var ls = gebtn(this.parentNode,'label');
         for (var i = 0; i < ls.length; i++) {
             var l = ls[i];
             if (l.className.indexOf('comleted-radio') == -1)  continue;
-            l.className = 'completed-radio cr-off';
+            l.className = 'label-completed-radio cr-off';
         };
-        this.className = 'completed-radio cr-on';
+        this.className = 'label-completed-radio cr-on';
         if (safari) inp.click();
     } else {
-        this.className = 'completed-radio cr-off';
+        this.className = 'label-completed-radio cr-off';
         if (safari) inp.click();
     };
 };
