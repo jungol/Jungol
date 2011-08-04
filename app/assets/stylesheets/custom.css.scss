@@ -532,7 +532,6 @@ section {
     }
 
 
-
   }
   /* Lander */
   #land-top {
@@ -899,3 +898,8 @@ input:-moz-placeholder {
   color: #C6C6B3;
 }
 
+.flash {
+  position:absolute;
+  top: 10px;
+  left:40%;
+}
