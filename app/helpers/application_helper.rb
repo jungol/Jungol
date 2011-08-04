@@ -16,4 +16,9 @@ module ApplicationHelper
     self.inject({}) { |h, i| h[i] = i; h }
   end
 
+  def timeago(time, options = {})
+    options[:class] += " timeago"
+    content_tag(:span, time.to_s, options.merge(:title => time.getutc.iso8601)) if time
+  end
+
 end
