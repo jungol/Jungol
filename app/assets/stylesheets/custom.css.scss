@@ -279,7 +279,9 @@ section {
         -moz-box-shadow: none;
       }
     }
-    li:hover,
+    li:hover {
+			background: #f0f1f0;
+		}
     li.selected {
       background: #d7e7b2;
       border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -375,8 +377,7 @@ section {
 
 	/* NEW SESSION STYLES */
   #new-session,
- 	#new-invite,
- 	#invite-activate {
+ 	#new-invite {
 		input#user_email,
   	input#user_password {
   	  height: 40px;
@@ -501,8 +502,7 @@ section {
       padding-top: 0;
     }
     p {
-      padding-left: 10px;
-      width: 500px;
+      padding: 0 10px;
       margin-top: -5px;
     }
     p.greenme {
