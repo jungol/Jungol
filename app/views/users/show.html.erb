@@ -1,10 +1,24 @@
-<div class='profile'>
-  <h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-  </h1>
-  <strong>Email</strong> <%= @user.email %><br />
-  <strong>About</strong><%= @user.about %><br />
-  <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-<strong>Groups</strong><%= render @user.groups %><br />
+<div class="content-bg">
+	<div id="wrapper">
+		
+		
+		
+		<div class="main-right">
+			<div class="item">
+				<div class="item-head">
+	        <h2><%= @user.name %></h2><span class="create-button button"><!-- <a href="#">Edit User »</a></span> -->
+	      </div>
+	
+  			<h1 class="top"><%= gravatar_for @user %> <%= @user.name %></h1>
+
+				<p class="about-user"><span class="user-title">About</span><%= @user.about %></p>
+				<p class="email-user"><span class="user-title">Email</span><%= @user.email %></p>
+				<p class="groups-user"><span class="user-title">Groups</span><%= render @user.groups %></p>
+				
+  			<!-- <strong>URL</strong> <%= link_to user_path(@user), @user %><br /> -->
+			</div>
+		</div>
+		
+		<div class="clearall"></div>
+	</div>
 </div>
