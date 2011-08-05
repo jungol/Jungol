@@ -144,7 +144,10 @@ section {
 			text-decoration: none;
 			margin-left: 5px;
 		}
-		
+		span.group-link {
+			display: inline-block;
+			width: 60px;
+		}
     a.round {
       background: #8eac4b;
       display: block;
