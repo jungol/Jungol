@@ -1,5 +1,4 @@
 <div class="content-bg">
-<<<<<<< HEAD
 	<div id="show-group" class="main-right full">
 		<div class="item-head headerfull">
 			<h2>About</h2>
@@ -10,12 +9,6 @@
 	  <div class="item-head headerfull">
 			<h2>Members</h2>
 		</div>
-		
-		  <%= render 'user', :user => @group.creator %>
-    <% @group.users_by_role.each do |user| %>
-      <%= render 'user', :user => user %>
-    <% end %>
-		
 <%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
 
 <% if @admin %>
@@ -26,7 +19,11 @@
 
   <p><%= @group.about %></p>
 
-
+  <h3 id="group-members">Members</h3>
+    <%= render 'user', :user => @group.creator %>
+  <% @group.users_by_role.each do |user| %>
+    <%= render 'user', :user => user %>
+  <% end %>
 
   <h4>Connected Groups</h4>
   <% if @group.groups.present? %>
@@ -56,67 +53,9 @@
     <ul>
       <% @group.item_shares.each do |i| %>
         <%= render('shared_item', :item => i.item) unless i.item.group_id == @group.id %>
-=======
-  <div id="show-group" class="main-right full">
-    <div class="item-head headerfull">
-      <h2>About</h2>
-    </div>
-    <p><%= @group.about %></p>
-
-    <%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
-
-    <div id='group-info-members'>
-      <% if @member %>
-        <div class="item-head headerfull">
-          <h2>Members</h2>
-        </div>
-        <ul class='group-members-ul'>
-          <%= render 'user', :user => @group.creator %>
-          <% @group.users_by_role.each do |user| %>
-            <%= render 'user', :user => user %>
-          <% end %>
-        </ul>
-
-        <h4>Connected Groups</h4>
-        <ul class='group-groups-ul'>
-          <% if @group.groups.present? %>
-            <%= render @group.groups %>
-          <% else %>
-            <li>No Groups yet.</li>
-          <% end %>
-        </ul>
-
-        <% if @admin %>
-          <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
-        <% end %>
->>>>>>> df9f036f5492be84ddb803789f9d748048425e89
       <% end %>
+    </ul>
+  <% end %> -->
 
-      <!--  <h4>Discussions</h4>
-      <% if @group.discussions.present? %>
-        <%= render @group.discussions %><br />
-      <% else %>
-        No Discussions yet.<br />
-      <% end %>
-      <%= link_to "Add a Discussion", new_group_discussion_path(@group)  %><br /><br />
-
-      <h4>Todo Lists</h4>
-      <% if @group.todos.present? %>
-        <%= render @group.todos %><br />
-      <% else %>
-        No Todos yet.<br />
-      <% end %>
-      <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br /><br />
-
-      <% if @group.item_shares.present? %>
-        Being Shared On:
-        <ul>
-          <% @group.item_shares.each do |i| %>
-            <%= render('shared_item', :item => i.item) unless i.item.group_id == @group.id %>
-          <% end %>
-        </ul>
-      <% end %> -->
-
-    </div>
-  </div>
+	<div>
 </div>

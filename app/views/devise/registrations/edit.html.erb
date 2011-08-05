@@ -2,7 +2,10 @@
   <div id="wrapper">
 
     <div id="user-items" class="main-right full">
-      <h2><%= resource_name.to_s.humanize %>'s Account</h2>
+      <div class="item-head headerfull">
+  			<h2><%= resource_name.to_s.humanize %>'s Account</h2>
+  		</div>
+
 
       <%= gravatar_for @user %>
       <%= link_to "change", "http://en.gravatar.com/emails", :target => "_blank" %>
