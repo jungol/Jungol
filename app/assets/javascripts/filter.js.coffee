@@ -50,7 +50,7 @@ $ ->
       last update #{timeify todo.updated_at} |
       <span>#{linkify pluralize( todo.comments.length, "comment"), todo.url + "#comments", ""}</span>  </p>
                 <p>#{todo.description}</p>
-                <p class=\"greenme\">Share #{shared_groups.join("  |  ")}</p>"
+                <p class=\"greenme\">Shared with  #{shared_groups.join("  |  ")}</p>"
 
   discMarkup = (disc) ->
     shared_groups = for group in disc.shared_groups
@@ -61,14 +61,14 @@ $ ->
       <p class=\"greenme\">last post #{timeify disc.last} by #{disc.by.name} |
       <span>#{linkify pluralize( disc.comments.length, "comment"), disc.url + "#comments", ""}</span>  </p>
                 <p>#{disc.description}</p>
-                <p class=\"greenme\">Share #{shared_groups.join("  |  ")}</p>"
+                <p class=\"greenme\">Shared with  #{shared_groups.join("  |  ")}</p>"
 
   conGroupMarkup = (group) ->
     "<a id='#{group.id}' href='#' class='con_group_li'><li>#{group.name}</li></a>"
 
   groupInfoMarkup = (group) ->
     "<img src='/assets/group-placeholder.png' /><h1>#{group.name}</h1><p><a target = '_blank' href=\"/groups/#{group.id}\">Group Info</a> |
-      <a href=\"/invite\" target = '_blank'>Invite New Members</a></p>
+      <a href=\"#\" target = '_blank'>Invite New Members</a></p>
       <p class=\"blurb\">#{group.about}</p>"
 
   #gets items after group is selected
