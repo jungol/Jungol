@@ -3,24 +3,15 @@
     <div class="item-head headerfull">
       <h2>About</h2>
     </div>
-
     <p><%= @group.about %></p>
 
-    <div class="item-head headerfull">
-      <h2>Members</h2>
-    </div>
     <%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
 
-    <% if @admin %>
-      <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
-    <% end %>
-
-    <div class='group-profile'>
-
-      <p><%= @group.about %></p>
-
+    <div id='group-info-members'>
       <% if @member %>
-        <h3 id="group-members">Members</h3>
+        <div class="item-head headerfull">
+          <h2>Members</h2>
+        </div>
         <ul class='group-members-ul'>
           <%= render 'user', :user => @group.creator %>
           <% @group.users_by_role.each do |user| %>
@@ -36,6 +27,10 @@
             <li>No Groups yet.</li>
           <% end %>
         </ul>
+
+        <% if @admin %>
+          <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
+        <% end %>
       <% end %>
 
       <!--  <h4>Discussions</h4>
