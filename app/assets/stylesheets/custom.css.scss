@@ -223,9 +223,12 @@ section {
   }
 
 	#user {
-		ul.user-groups {
-			float: left;
-			
+		div.group-cont {
+			ul.user-groups {
+				list-style: none;
+				display: block;
+				margin: -37px 0 10px 54px;
+			}
 		}
 	}
 

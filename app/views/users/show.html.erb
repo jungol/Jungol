@@ -13,10 +13,15 @@
         <p class="groups-user">
           <span class="user-title">Groups</span>
         </p>
-        <ul class="user-groups">
-          <%= render @user.groups %>
-        </ul>
-
+        
+        <div class="group-cont">
+          <ul class="user-groups">
+            <%= render @user.groups %>
+          </ul>
+          
+          <div class="clearall"></div>
+        </div>
+        
       </div>
     </div>
 
