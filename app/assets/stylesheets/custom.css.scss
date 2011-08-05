@@ -346,6 +346,20 @@ section {
 
 	#user-items {
 		form {
+			#user_name,
+			#user_email,
+			#user_password,
+			#user_password_confirmation,
+			#user_current_password {
+        background: #f3f4f3;
+        border: 1px solid #939587;
+        width: 400px;
+      }
+      textarea {
+        background: #f3f4f3;
+        border: 1px solid #797b69;
+        height: 130px;
+      }
 			p.update-button input {
         background: #8eac4b;
         display: block;
