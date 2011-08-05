@@ -144,6 +144,26 @@ section {
 			text-decoration: none;
 			margin-left: 5px;
 		}
+		
+    a.round {
+      background: #8eac4b;
+      display: block;
+      border: 0;
+      padding: 10px 15px;
+      font-family: 'Cabin', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      width: 115px;
+			margin: 0 0 10px 10px;
+			text-decoration: none;
+    }
+    a.round:hover {
+      background: #758e3c;
+      cursor: pointer;
+      -moz-box-shadow: inset 0 0 2px #777;
+      -webkit-box-shadow: inset 0 0 2px #777;
+      box-shadow: inset 0 0 2px #777;
+    }
 		a.group-connect:hover {
 
 		}
