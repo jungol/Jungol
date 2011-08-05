@@ -1,18 +1,21 @@
 <%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
 
-<div class='group_profile'>
-  <h1>
-    <%= @group.name %>
-  </h1>
+<% if @admin %>
+  <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %><br />
+<% end %>
 
-  <h4>Name</h4> <%= @group.name %><br />
-  <h4>About</h4> <%= @group.about %><br />
+<div class='group-profile'>
 
-  Creator: <%= @group.creator.name %><br />
-  <h4>URL</h4> <%= link_to @group.name, @group %><br /><br />
+  <h3 id='group-about-title'>About</h3>
+  <p>
+    <%= @group.about %>
+  </p>
 
-  <h4>Admins</h4> <%= render @group.admins %><br />
-  <h4>Users</h4> <%= render @group.non_admins %><br /><br />
+  <h3 id="group-members">Members</h3>
+    <%= render 'user', :user => @group.creator %>
+  <% @group.users_by_role.each do |user| %>
+    <%= render 'user', :user => user %>
+  <% end %>
 
   <h4>Connected Groups</h4>
   <% if @group.groups.present? %>
@@ -21,13 +24,7 @@
     No Groups yet.<br />
   <% end %>
 
-
-  <% if @admin %>
-    <%= "You're a admin! Connect!" %><br />
-    <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %><br />
-  <% end %>
-
-  <h4>Discussions</h4>
+<!--  <h4>Discussions</h4>
   <% if @group.discussions.present? %>
     <%= render @group.discussions %><br />
   <% else %>
@@ -51,5 +48,3 @@
       <% end %>
     </ul>
   <% end %>
-
-</div>

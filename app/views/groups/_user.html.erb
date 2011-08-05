@@ -1,0 +1,15 @@
+<li class='group-user'>
+  <%= gravatar_for user, :size => 30 %>
+  <%= link_to user.name, user %>
+  <p class='user-role'>
+    <% if user == @group.creator %>
+      Creator
+    <% elsif user.admin_of? @group %>
+      Administrator
+      <%= "Remove Admin" if current_user.admin_of? @group %>
+    <% else %>
+      User
+      <%= "Make Admin" if current_user.admin_of? @group %>
+    <% end %>
+  </p>
+</li>
