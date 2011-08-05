@@ -4,7 +4,7 @@
       <h2><%= @todo.title %></h2>
       <span id="add-task-button" class="button">Add Task</span>
       <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
-      <span id="share-button" class="button"><a href="#">Share »</a></span>
+      <span id="share-button" class="button"><a href="<%= share_group_todo_path(@group, @todo) %>">Share »</a></span>
     </div>
 
     <p id="<%= @up_path %>" class='edit_todo_desc'><i><%= @todo.description %></i></p>
@@ -14,14 +14,6 @@
         <li>Shared With:</li>
         <% @shared.each do |group| %>
           <%= render 'share', :group => group %>&nbsp;
-        <% end %>
-      </ul>
-    <% end %>
-    <% if (@unshared.present? && current_user.member_of?(@group)) %>
-      <ul class="share-list">
-        <li>Share Item With:</li>
-        <% @unshared.each do |group| %>
-          <%= render 'groups', :group => group %>
         <% end %>
       </ul>
     <% end %>

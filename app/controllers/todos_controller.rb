@@ -60,7 +60,13 @@ class TodosController < ApplicationController
   end
 
   def share
-    if request.post? #CREATE SHARE
+    if request.get? # SHARE PAGE
+      @title = "Share #{@todo.title}"
+      @unshared = @group.unshared_groups(@todo)
+      #@share = @current_user.created_shares.new()
+      render :share
+      return
+    elsif request.post? #CREATE SHARE
       new_share = current_user.created_shares.new()
       if new_share.save
         @todo = Todo.find(params[:id])

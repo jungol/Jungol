@@ -3,7 +3,7 @@
     <div class="item-head headerfull">
       <h2><%= @discussion.title %></h2>
       <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
-      <span id="share-button" class="button"><a href="#">Share »</a></span>
+      <span id="share-button" class="button"><a href="<%= share_group_discussion_path(@group, @discussion) %>">Share »</a></span>
     </div>
 
     <p id="<%= @up_path %>" class='edit_disc_desc'><i><%= @discussion.description %></i></p>
@@ -21,14 +21,7 @@
         <% end %>
       </ul>
     <% end %>
-    <% if @unshared.present? %>
-      <ul class="share-list">
-        <li>Share Item With:</li>
-        <% @unshared.each do |group| %>
-          <%= render 'groups', :group => group %>
-        <% end %>
-      </ul>
-    <% end %>
+
     <%= form_for @comment do |f| %>
       <%= render 'shared/error_messages', :object => f.object %>
       <%= hidden_field(:group, :id) %>

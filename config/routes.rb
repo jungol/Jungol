@@ -18,6 +18,7 @@ Jungola::Application.routes.draw do
   resources :groups do
     resources :discussions do
       member do
+        get :share
         post :share
         put :share
         post :update
@@ -25,6 +26,7 @@ Jungola::Application.routes.draw do
     end
     resources :todos do
       member do
+        get :share
         post :share
         post :update
         put :share
