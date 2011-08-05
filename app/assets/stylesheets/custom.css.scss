@@ -222,6 +222,13 @@ section {
     height: 100%;
   }
 
+	#user {
+		ul.user-groups {
+			float: left;
+			
+		}
+	}
+
 	/* NEW SESSION STYLES */
   #new-session {	
 		input#user_email,
@@ -821,7 +828,7 @@ a.create_button,a.join_button, input.join_button {
 }
 
 .profile img.gravatar {
-  border: 1px solid #999;
+  border: 10px solid #999;
   margin-bottom: -15px;
 }
 
