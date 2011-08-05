@@ -274,7 +274,8 @@ section {
       }
     }
     li:hover {
-      background: #f0f1f0;
+      background: #e7e7e7;
+      cursor: pointer;
     }
     li.selected {
       background: #d7e7b2;
@@ -282,9 +283,6 @@ section {
       -moz-box-shadow: inset 0 0 10px #b2c682;
       -webkit-box-shadow: inset 0 0 10px #b2c682;
       box-shadow: inset 0 0 10px #b2c682;
-    }
-    li:hover {
-      cursor: pointer;
     }
   }
 
