@@ -346,7 +346,7 @@ section {
       padding: 20px 0 0 10px;
       font-size: 14px;
       text-decoration: underline;
-			font-weight: 600;
+      font-weight: 600;
       a {
         color: #000;
       }
@@ -405,7 +405,7 @@ section {
       }
       #todo_title,
       #discussion_title,
- 			#group_name {
+      #group_name {
         background: #f3f4f3;
         border: 1px solid #939587;
         width: 400px;
@@ -440,10 +440,10 @@ section {
       span.disc-fix input {
         left: 331px !important;
       }
-			span.group-fix input {
-				left: 292px !important;
-				top: -38px;
-			}
+      span.group-fix input {
+        left: 292px !important;
+        top: -38px;
+      }
     }
     #todo-comments,
     #disc-comments {
@@ -499,40 +499,40 @@ section {
     }
 
     /* Radio button and Checkbox styles */
-		.checkme {
-			width: 21px;
-			height: 20px;
-			background: url('/assets/check.png') no-repeat;
-			display: block;
-			clear: left;
-			float: left;
-		}
-		.completed-radio {
-			width: 13px;
-			height: 14px;
-			background: url('/assets/completed-radio.png') no-repeat;
-			display: block;
-			clear: left;
-			float: left;
-		}
-		.progress-radio {
-			width: 13px;
-			height: 14px;
-			background: url('/assets/progress-radio.png') no-repeat;
-			display: block;
-			clear: left;
-			float: left;
-		}
-		/*.select {
-			position: absolute;
-			width: 158px; // With the padding included, the width is 190 pixels: the actual width of the image. 
-			height: 21px;
-			padding: 0 24px 0 8px;
-			color: #fff;
-			font: 12px/21px arial,sans-serif;
-			background: url(select.gif) no-repeat;
-			overflow: hidden;
-		}*/
+    .checkme {
+      width: 21px;
+      height: 20px;
+      background: url('/assets/check.png') no-repeat;
+      display: block;
+      clear: left;
+      float: left;
+    }
+    .completed-radio {
+      width: 13px;
+      height: 14px;
+      background: url('/assets/completed-radio.png') no-repeat;
+      display: block;
+      clear: left;
+      float: left;
+    }
+    .progress-radio {
+      width: 13px;
+      height: 14px;
+      background: url('/assets/progress-radio.png') no-repeat;
+      display: block;
+      clear: left;
+      float: left;
+    }
+    /*.select {
+      position: absolute;
+      width: 158px; // With the padding included, the width is 190 pixels: the actual width of the image.
+      height: 21px;
+      padding: 0 24px 0 8px;
+      color: #fff;
+      font: 12px/21px arial,sans-serif;
+      background: url(select.gif) no-repeat;
+      overflow: hidden;
+    }*/
 
     #add-task-form{
       form {
@@ -542,21 +542,21 @@ section {
       }
     }
 
-		h1.top {
-			padding-left: 10px;
-			img {
-				vertical-align: -12px;
-			}
-		}
+    h1.top {
+      padding-left: 10px;
+      img {
+        vertical-align: -12px;
+      }
+    }
 
-		span.user-title {
-			margin-right: 30px;
-			font-weight: bold;
-		}
-		
-		h2.group-select {
-			padding-left: 10px;
-		}
+    span.user-title {
+      margin-right: 30px;
+      font-weight: bold;
+    }
+
+    h2.group-select {
+      padding-left: 10px;
+    }
 
   }
   /* Lander */
