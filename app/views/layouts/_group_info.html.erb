@@ -1,11 +1,11 @@
 <div class="group-info">
   <% if @group.present? %>
-    <%= image_tag "prssa-logo.png", :alt => "#{@group.name} Logo"  %>
+    <%= image_tag "group-placeholder.png", :alt => "#{@group.name} Logo"  %>
     <h1><%= @group.name %></h1>
     <p><a href="#">Group Info</a> | <a href="#">Invite New Members</a></p>
     <p class="blurb"><%= @group.about %></p>
   <% else %>
-    <%= image_tag "prssa-logo.png", :alt => 'PRSSA Logo'  %>
+    <%= image_tag "group-placeholder.png", :alt => 'PRSSA Logo'  %>
     <h1>Placeholder Group of America (no group present)</h1>
     <p><a href="#">Group Info</a> | <a href="#">Invite New Members</a></p>
     <p class="blurb">Fusce ut augue quis nisl bibendum tincidunt ut eget diam. Sed urna est, rutrum dignissim. Fusce ut augue quis nisl bibendum tincidunt utnissim.</p>
