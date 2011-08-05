@@ -1,4 +1,10 @@
-<h2>Set your information</h2>
+<div class="content-bg">
+  <div id="invite-activate" class="main-right full">
+    <div id="item" class="todos">
+      <div class="item-head headerfull">
+        <h2>Set your information</h2>
+      </div>
+      
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>
@@ -16,5 +22,10 @@
   <p><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %></p>
 
-  <p><%= f.submit "Set my info" %></p>
+  <p class="sign-in-button"><%= f.submit "Set my info" %></p>
 <% end %>
+
+      <div class="clearall"></div>
+    </div>
+  </div>
+</div>
