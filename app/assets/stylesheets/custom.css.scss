@@ -27,9 +27,13 @@ a:visited {
     text-decoration: underline;
   }
 }
-#wrapper {
+#filter-wrapper {
   width: 980px;
   margin-left: 0;
+}
+#wrapper {
+	width: 980px;
+	margin: 0 auto;
 }
 
 /* Header */
