@@ -22,7 +22,7 @@
       </ul>
     <% end %>
     <% if @unshared.present? %>
-      <ul class="shared-list">
+      <ul class="share-list">
         <li>Share Item With:</li>
         <% @unshared.each do |group| %>
           <%= render 'groups', :group => group %>

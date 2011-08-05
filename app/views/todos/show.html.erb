@@ -18,7 +18,7 @@
       </ul>
     <% end %>
     <% if (@unshared.present? && current_user.member_of?(@group)) %>
-      <ul class="shared-list greenme">
+      <ul class="share-list">
         <li>Share Item With:</li>
         <% @unshared.each do |group| %>
           <%= render 'groups', :group => group %>

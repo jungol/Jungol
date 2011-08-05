@@ -1,0 +1,4 @@
+<li class='group-list-li'>
+  <%= gravatar_for group.creator, :size => 30 %>
+  <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %>
+</li>

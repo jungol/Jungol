@@ -2,10 +2,10 @@
   <div id="show-group" class="main-right full">
     <div class="item-head headerfull">
       <h2>About</h2>
+      <%= content_tag(:span, link_to("Join This Group »", join_path(@group), :method => :post), :class => 'join-button button', :id => 'join_button') unless @member %>
     </div>
     <p><%= @group.about %></p>
 
-    <%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
 
     <div id='group-info-members'>
       <% if @member %>
@@ -25,19 +25,14 @@
         </div>
         <ul class="group-groups-ul">
           <% if @group.groups.present? %>
-            <%= render @group.groups %>
+            <% @group.groups.each do |gr| %>
+              <%= render 'layouts/group_list', :group => gr %>
+            <% end %>
           <% else %>
             <li>No Groups yet.</li>
           <% end %>
           <div class="clearall"></div>
         </ul>
-        
-        <div class="hideme">
-        <div class="item-head headerfull">
-          <h2>About</h2><span class="create-button button"><a href="#">Join Group »</a></span>
-        </div>
-        <p><%= @group.about %></p>
-        </div>
 
         <% if @admin %>
           <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>

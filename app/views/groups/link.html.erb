@@ -2,20 +2,16 @@
   <div id="wrapper">
 
     <div class="main-right full">
-      <div class="item">
-        <div class="item-head">
+      <div id='group-connect' class="item">
+        <div class="item-head headerfull">
           <h2><%= @group.name %></h2><span class="create-button button"><!-- <a href="#">Edit User »</a></span> -->
         </div>
-        <h1>
-        </h1>
 
         <h2 class="group-select">Select a group to connect with <%= @group.name %>:</h2>
 
         <%= form_tag(link_path(@group), :method => :post) do %>
-          <div class="field">
-            <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
-          </div>
           <div class="actions">
+            <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
             <%= submit_tag "Connect with #{@group.name}" %>
           </div>
         <% end %>

@@ -13,15 +13,17 @@
         <p class="groups-user">
           <span class="user-title">Groups</span>
         </p>
-        
+
         <div class="group-cont">
           <ul class="user-groups">
-            <%= render @user.groups %>
+            <% @user.groups.each do |gr| %>
+              <%= render 'layouts/group_list', :group => gr %>
+            <% end %>
           </ul>
-          
+
           <div class="clearall"></div>
         </div>
-        
+
       </div>
     </div>
 

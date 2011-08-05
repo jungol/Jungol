@@ -7,10 +7,10 @@
     <%= form_for(@group) do |f| %>
       <%= render 'fields', :f => f %>
       <div class='field agreement'>
-        <%= f.label :agreement, "I agree to the terms and conditions (forthcoming)" %><br />
         <%= f.check_box :agreement %>
+        <%= f.label :agreement, "I agree to the terms and conditions (forthcoming)" %>
       </div>
-      <div class='actions'>
+      <div class='actions submit'>
         <span class="group-fix"><%= f.submit "Create Group" %></span>
       </div>
     <% end %>
