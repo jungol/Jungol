@@ -14,6 +14,8 @@ $ ->
   $('#main-items').hide()
   $('#my-groups-over').hide()
 
+  #SHOW WELCOME HEADER
+
   ##--HELPERS
   pluralize = (num, sin, plur = sin + "s") ->
     if num == 1
