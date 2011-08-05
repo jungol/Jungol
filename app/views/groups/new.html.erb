@@ -1,20 +1,19 @@
 <div class="content-bg">
-	<div id="main-right" class="main-right full">
-		<div class="item-head headerfull">
-			<h2>Create Group</h2>
-		</div>
+  <div id="main-right" class="main-right full">
+    <div class="item-head headerfull">
+      <h2>Create Group</h2>
+    </div>
 
-<%= form_for(@group) do |f| %>
-  <%= render 'fields', :f => f %>
-  <div class='field'>
-    <%= f.label :agreement %>&nbsp;<%= f.check_box :agreement %>
+    <%= form_for(@group) do |f| %>
+      <%= render 'fields', :f => f %>
+      <div class='field'>
+        <%= f.label :agreement, "I agree to the terms and conditions (forthcoming)" %><br />
+        <%= f.check_box :agreement %>
+      </div>
+      <div class='actions'>
+        <span class="group-fix"><%= f.submit "Create Group" %></span>
+      </div>
+    <% end %>
+
   </div>
-  <div class='actions'>
-    <span class="group-fix"><%= f.submit "Create Group" %></span>
-  </div>
-<% end %>
-
-
-	<div>
 </div>
-
