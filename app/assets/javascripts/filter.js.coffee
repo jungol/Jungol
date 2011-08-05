@@ -67,7 +67,8 @@ $ ->
     "<a id='#{group.id}' href='#' class='con_group_li'><li>#{group.name}</li></a>"
 
   groupInfoMarkup = (group) ->
-    "<img src='/assets/prssa-logo.png' /><h1>#{group.name}</h1><p><a href=\"#\">Group Info</a> | <a href=\"#\">Invite New Members</a></p>
+    "<img src='/assets/group-placeholder.png' /><h1>#{group.name}</h1><p><a target = '_blank' href=\"/groups/#{group.id}\">Group Info</a> |
+      <a href=\"/invite\" target = '_blank'>Invite New Members</a></p>
       <p class=\"blurb\">#{group.about}</p>"
 
   #gets items after group is selected

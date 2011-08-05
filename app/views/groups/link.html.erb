@@ -1,29 +1,27 @@
 <div class="content-bg">
-	<div id="wrapper">
-		
-		
-		
-		<div class="main-right">
-			<div class="item">
-				<div class="item-head">
-	        <h2><%= @group.name %></h2><span class="create-button button"><!-- <a href="#">Edit User »</a></span> -->
-	      </div>
-					<h1>
-					</h1>
-					
-					<h2 class="group-select">Please select a group to connect with:</h2>
-					
-					<%= form_tag(link_path(@group), :method => :post) do %>
-					  <div class="field">
-					    <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
-					  </div>
-					  <div class="actions">
-					    <%= submit_tag "Connect to Group" %>
-					  </div>
-					<% end %>
-				</div>
-			</div>
+  <div id="wrapper">
 
-			<div class="clearall"></div>
-		</div>
-	</div>
+    <div class="main-right">
+      <div class="item">
+        <div class="item-head">
+          <h2><%= @group.name %></h2><span class="create-button button"><!-- <a href="#">Edit User »</a></span> -->
+        </div>
+        <h1>
+        </h1>
+
+        <h2 class="group-select">Select a group to connect with <%= @group.name %>:</h2>
+
+        <%= form_tag(link_path(@group), :method => :post) do %>
+          <div class="field">
+            <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
+          </div>
+          <div class="actions">
+            <%= submit_tag "Connect with #{@group.name}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="clearall"></div>
+  </div>
+</div>
