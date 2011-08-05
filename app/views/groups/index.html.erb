@@ -1,9 +1,19 @@
-<h1>All groups</h1>
+<div class="content-bg">
+  <div id="wrapper">
 
-<%= will_paginate %>
+    <div id="all-groups" class="main-right full">
+      <div class="item-head headerfull">
+  			<h2>All Groups</h2>
+  		</div>
 
-<ul class='groups'>
-    <%= render @groups %>
-</ul>
+      <%= will_paginate %>
 
-<%= will_paginate %>
+      <ul class='all-groups'>
+        <%= render @groups %>
+      </ul>
+
+      <%= will_paginate %>
+
+    <div class="clearall"></div>
+  </div>
+</div>
