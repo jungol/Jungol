@@ -68,7 +68,7 @@ $ ->
 
   groupInfoMarkup = (group) ->
     "<img src='/assets/group-placeholder.png' /><h1>#{group.name}</h1><p><a target = '_blank' href=\"/groups/#{group.id}\">Group Info</a> |
-      <a href=\"#\" >Invite New Members</a></p>
+      <a href=\"/users/invitation/new\" >Invite New User</a></p>
       <p class=\"blurb\">#{group.about}</p>"
 
   #gets items after group is selected
@@ -76,8 +76,10 @@ $ ->
     [todoCount, discCount] = [0, 0]
     tbody = $('.item#todos > .item-body')
     dbody = $('.item#discussions > .item-body')
+    ginfo = $('.group-info')
     tbody.fadeTo(900, 0)
     dbody.fadeTo(900, 0)
+    ginfo.fadeTo(900, 0)
     filterData.origin_group = _group_id
     createNewLinks(_group_id)
     $.ajax 'filter/select',
@@ -93,7 +95,7 @@ $ ->
         $.each data.shared_groups, (k,v) ->
           $('.con_group_ul').append conGroupMarkup(v)
         $('.con_group_ul').append addCon(_group_id)
-        $('.group-info').empty().append groupInfoMarkup(data.main_group)
+        ginfo.empty().append groupInfoMarkup(data.main_group)
         #Populate items connected to origin group
         tbody.empty()
         dbody.empty()
@@ -105,6 +107,7 @@ $ ->
         if $.isEmptyObject(data.items.todos) then tbody.append "<p>No Todos.</p>"
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
+        ginfo.stop().fadeTo(500, 1)
 
   $('#my-groups-over').click ->
     $(@).unbind('mouseenter mouseleave')

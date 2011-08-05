@@ -1,10 +1,22 @@
-<h1>Invite Users</h1>
+<div class="content-bg">
+  <div id="new-invite" class="main-right full">
+    <div id="item" class="todos">
+      <div class="item-head headerfull">
+        <h2>Send Invitation</h2>
+      </div>
 
-<%= form_tag do %>
-  <%= label_tag(:invitees, "Please enter a list of emails separated by commas:") %><br />
-  <%= text_area_tag(:invitees) %>
-  <div class='actions'>
-    <%= submit_tag "Invite" %>
+      <%= form_tag do %>
+        <p>
+          <%= label_tag(:invitees, "Please enter a list of emails separated by commas:") %><br />
+          <%= text_area_tag(:invitees) %>
+        </p>
+        <p class='sign-in-button'>
+          <%= submit_tag "Send Invitations" %>
+        </p>
+
+      <div class="clearall"></div>
+    </div>
   </div>
+</div>
 
 <% end %>

@@ -3,7 +3,7 @@
     <ul>
       <li class="first">Jungol © 2011</li>
       <% if signed_in? %>
-        <li><%= link_to "Invite", invite_path %></li>|
+        <li class='invite'><%= link_to "Invite", new_user_invitation_path %></li>|
       <% end %>
       <li><%= link_to "About", '#' %></li>|
       <li><%= link_to "Feedback", 'mailto:feedback@jungolhq.com' %></li>|

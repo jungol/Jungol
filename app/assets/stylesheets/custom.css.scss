@@ -990,10 +990,23 @@ section {
 
 
 /* footer */
-footer { float: right; text-align: center; margin: 5px 60px 5px 0; }
-
-footer nav { float: none; }
-footer nav ul li.first { margin-right: 40px; }
+footer {
+  float: right;
+  text-align: center;
+  margin: 5px 60px 5px 0;
+  nav {
+    float: none;
+    ul {
+      li.first{
+        margin-right: 40px;
+      }
+      li.invite a {
+        color:#77903A;
+        font-weight:bold;
+      }
+    }
+  }
+}
 
 /* Links */
 
