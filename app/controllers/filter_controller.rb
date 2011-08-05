@@ -2,6 +2,7 @@ class FilterController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @title = "Welcome to Jungol!"
     @groups = current_user.groups #Placeholder
     @current_todos, @current_discussions = [[], []]
     @groups.each do |group|
