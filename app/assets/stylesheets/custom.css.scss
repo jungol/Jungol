@@ -320,6 +320,7 @@ section {
 				list-style: none;
 				display: block;
 				margin: -37px 0 10px 54px;
+				
 			}
 		}
 	}
@@ -373,7 +374,8 @@ section {
 	}
 
 	/* NEW SESSION STYLES */
-  #new-session {
+  #new-session,
+ 	#new-invite {
 		input#user_email,
   	input#user_password {
   	  height: 40px;
@@ -416,6 +418,14 @@ section {
 	    margin-left: 20px;
 	    padding-bottom: 10px;
 	  }
+	}
+	#new-invite {
+		.sign-in-button input {
+			width: 180px;
+		}
+		.home {
+			margin-top: 80px;
+		}
 	}
 
 #show-group {
@@ -679,7 +689,7 @@ section {
     h1.top {
       padding-left: 10px;
       img {
-        vertical-align: -12px;
+        vertical-align: -21px;
       }
     }
 

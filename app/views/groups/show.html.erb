@@ -31,6 +31,13 @@
           <% end %>
           <div class="clearall"></div>
         </ul>
+        
+        <div class="hideme">
+        <div class="item-head headerfull">
+          <h2>About</h2><span class="create-button button"><a href="#">Join Group »</a></span>
+        </div>
+        <p><%= @group.about %></p>
+        </div>
 
         <% if @admin %>
           <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
