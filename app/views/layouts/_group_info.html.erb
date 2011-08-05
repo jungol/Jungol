@@ -2,7 +2,7 @@
   <% if @group.present? %>
     <%= image_tag "group-placeholder.png", :alt => "#{@group.name} Logo"  %>
     <h1><%= @group.name %></h1>
-    <p><%= link_to "Group Info", @group %> | <a href="/invite">Invite New Members</a></p>
+    <p><%= link_to "Group Info", @group %> | <a href="#">Invite New Members</a></p>
     <p class="blurb"><%= @group.about %></p>
   <% else %>
     <h1>Welcome to Jungol!</h1>

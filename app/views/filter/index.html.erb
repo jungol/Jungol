@@ -1,141 +1,141 @@
 <div class="content-bg">
- <div id="filter-wrapper">
-	<div id="my-groups-over" class="secondary-left-over"></div>
-  <div id="my-groups" class="main-left">
-    <h1>My Groups</h1>
-    <ul class="filter-con my_group_ul">
-      <% @groups.each do |gr| %>
-        <%= render 'my_group', :group => gr %>
-      <% end %>
-    </ul>
-  </div>
-
-  <div id="con-groups" class="main-left">
-    <h1>Filter by Connections</h1>
-    <ul class="filter-con con_group_ul">
-      <% @groups.each do |gr| %>
-        <%= render 'con_group', :group => gr %>
-      <% end %>
-      <%#= link_to content_tag(:li, "Add a Connection", :class => 'add'), link_path(@group) %>
-    </ul>
-  </div>
-
-  <div id="main-items" class="main-right">
-    <div id="todos" class="item">
-      <div class="item-head">
-        <h2>To-Do Lists</h2><span class="create-button button"><a href="#">Create New »</a></span>
-      </div>
-
-      <div class="item-body">
-        <h3 class="top">Camping To-Do List</h3>
-        <p class="greenme"><a href="#">6 To-Dos</a>  |  last updated 2 hours ago by Kyle Johnson  | <a href="#">1 comment</a></p>
-        <p>Our yearly hiking and camping trip to beautiful Penninsula State Park! Let’s make sure we have everything we need for supplies and food. </p>
-        <p class="greenme share">Share  Save Darfur | Genocide Intervention Network | Wellspring Advisors</p>
-
-        <h3>Event Planning To-Do List</h3>
-        <p class="greenme"><span>15 To-Dos</span>  |  last updated 12 hours ago by Brittni Alex  | <span>4 comments</span></p>
-        <p>Tasks for the first all-members event of the year.</p>
-        <p class="greenme">Shared between  Save Darfur | Genocide Intervention Network | STAND</p>
-      </div>
-    </div>
-
-    <div id="discussions" class="item">
-      <div class="item-head">
-        <h2>Discussions</h2><span class="create-button button"><a href="#">Create New »</a></span>
-      </div>
-
-      <div class="item-body">
-        <h3 class="top">Transitional Justice</h3>
-        <p class="greenme"><span>2 hours ago</span>  |  last post 2 hours ago by Jordan Scott  | <span>1 comment</span>  </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus euismod</p>
-        <p class="greenme">Shared between  Save Darfur | Genocide Intervention Network</p>
-
-        <h3>New York Times Book Book Review</h3>
-        <p class="greenme"><span>2 hours ago</span>  |  last updated 2 hours ago by Jordan Scott  | <span>1 comments</span></p>
-        <p>Tasks for the first all-members event of the year.</p>
-        <p class="greenme">Shared between  Save Darfur | Genocide Intervention Network</p>
-      </div>
-    </div>
-
-    <div id="docs" class="item">
-      <div class="item-head">
-        <h2>Documents</h2><span class="create-button button"><a href="#">Create New »</a></span>
-      </div>
-      <div class="item-body">
-        <h3 class="top">Budget for Spring 2011 Semester</h3>
-        <p class="greenme">uploaded 12 hours ago by Shawn Gomez  | <span>4 comments</span></p>
-        <p class="greenme">Shared between  Save Darfur | Genocide Intervention Network | STAND</p>
-
-        <h3>Spring Semester Schedules</h3>
-        <p class="greenme">uploaded 12 hours ago by Brittni Alex  | <span>4 comments</span></p>
-        <p class="greenme">Shared between  Save Darfur | Genocide Intervention Network | Wellspring Advisors</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="main-welcome" class="main-right">
-    <div class="item">
-      <div class="item-head">
-        <h2>Add to My Groups</h2>
-      </div>
-      <p>If you want to add another group to My Groups, search the organization by name or keyword and request to join.</p>
-      <form class="groups-search">
-        <input class="search-field" type="text" placeholder="search groups" />
-        <input class="search-button" type="image" value="" src="/assets/search-button.png" alt="Search" />
-      </form>
-    </div>
-
-    <div class="item">
-      <div class="item-head">
-        <h2>Can't Find it?</h2>
-      </div>
-
-      <p>If you can’t find what you’re looking for, you can See All Groups or Create a New Group.</p>
-
-      <%= link_to "See All Groups »", groups_path, :class => ['welcome-button', 'first-welcome'], :target => '_blank' %>
-      <%= link_to "Create New Group »", new_group_path, :class => 'welcome-button', :target => '_blank' %>
-    </div>
-
-		<div class="item">
-			<!-- Make sure you keep inputs surrounded by labels -->
-			<p>
-				<input type="checkbox" class="checkme styled" /><br />
-				<input type="radio" class="completed-radio styled" /><br />
-				<input type="radio" class="progress-radio styled" />
-			</p>
-		</div>
- </div>
-
-  <div class="clearall"></div>
-
-
-  <!-- <div id="groups" style="float:left; width:200px;">
-    Groups<br />
-    <ul>
-      <%= render current_user.groups %>
-    </ul>
-    <a id="test_select">Group B</a>
-  </div>
-  <div id="shares" style="float:left;width:200px;">
-    <% if @group.present? %>
-      Shared Groups <br/>
-      <ul>
-        <%= render @group.groups %>
+  <div id="filter-wrapper">
+    <div id="my-groups-over" class="secondary-left-over"></div>
+    <div id="my-groups" class="main-left">
+      <h1>My Groups</h1>
+      <ul class="filter-con my_group_ul">
+        <% @groups.each do |gr| %>
+          <%= render 'my_group', :group => gr %>
+        <% end %>
       </ul>
-    <% end %>
-    <a id="test_filter">Groups A,B</a>
+    </div>
+
+    <div id="con-groups" class="main-left">
+      <h1>Filter by Connections</h1>
+      <ul class="filter-con con_group_ul">
+        <% @groups.each do |gr| %>
+          <%= render 'con_group', :group => gr %>
+        <% end %>
+        <%#= link_to content_tag(:li, "Add a Connection", :class => 'add'), link_path(@group) %>
+      </ul>
+    </div>
+
+    <div id="main-items" class="main-right">
+      <div id="todos" class="item">
+        <div class="item-head">
+          <h2>To-Do Lists</h2><span class="create-button button"><a href="#">Create New »</a></span>
+        </div>
+
+        <div class="item-body">
+          <h3 class="top">Camping To-Do List</h3>
+          <p class="greenme"><a href="#">6 To-Dos</a>  |  last updated 2 hours ago by Kyle Johnson  | <a href="#">1 comment</a></p>
+          <p>Our yearly hiking and camping trip to beautiful Penninsula State Park! Let’s make sure we have everything we need for supplies and food. </p>
+          <p class="greenme share">Share  Save Darfur | Genocide Intervention Network | Wellspring Advisors</p>
+
+          <h3>Event Planning To-Do List</h3>
+          <p class="greenme"><span>15 To-Dos</span>  |  last updated 12 hours ago by Brittni Alex  | <span>4 comments</span></p>
+          <p>Tasks for the first all-members event of the year.</p>
+          <p class="greenme">Shared with  Save Darfur | Genocide Intervention Network | STAND</p>
+        </div>
+      </div>
+
+      <div id="discussions" class="item">
+        <div class="item-head">
+          <h2>Discussions</h2><span class="create-button button"><a href="#">Create New »</a></span>
+        </div>
+
+        <div class="item-body">
+          <h3 class="top">Transitional Justice</h3>
+          <p class="greenme"><span>2 hours ago</span>  |  last post 2 hours ago by Jordan Scott  | <span>1 comment</span>  </p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus euismod</p>
+          <p class="greenme">Shared with  Save Darfur | Genocide Intervention Network</p>
+
+          <h3>New York Times Book Book Review</h3>
+          <p class="greenme"><span>2 hours ago</span>  |  last updated 2 hours ago by Jordan Scott  | <span>1 comments</span></p>
+          <p>Tasks for the first all-members event of the year.</p>
+          <p class="greenme">Shared with  Save Darfur | Genocide Intervention Network</p>
+        </div>
+      </div>
+
+      <div id="docs" class="item">
+        <div class="item-head">
+          <h2>Documents</h2><span class="create-button button"><a href="#">Create New »</a></span>
+        </div>
+        <div class="item-body">
+          <h3 class="top">Budget for Spring 2011 Semester</h3>
+          <p class="greenme">uploaded 12 hours ago by Shawn Gomez  | <span>4 comments</span></p>
+          <p class="greenme">Shared with  Save Darfur | Genocide Intervention Network | STAND</p>
+
+          <h3>Spring Semester Schedules</h3>
+          <p class="greenme">uploaded 12 hours ago by Brittni Alex  | <span>4 comments</span></p>
+          <p class="greenme">Shared with  Save Darfur | Genocide Intervention Network | Wellspring Advisors</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-welcome" class="main-right">
+      <div class="item">
+        <div class="item-head">
+          <h2>Add to My Groups</h2>
+        </div>
+        <p>If you want to add another group to My Groups, search the organization by name or keyword and request to join.</p>
+        <form class="groups-search">
+          <input class="search-field" type="text" placeholder="search groups" />
+          <input class="search-button" type="image" value="" src="/assets/search-button.png" alt="Search" />
+        </form>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h2>Can't Find it?</h2>
+        </div>
+
+        <p>If you can’t find what you’re looking for, you can See All Groups or Create a New Group.</p>
+
+        <%= link_to "See All Groups »", groups_path, :class => ['welcome-button', 'first-welcome'], :target => '_blank' %>
+        <%= link_to "Create New Group »", new_group_path, :class => 'welcome-button', :target => '_blank' %>
+      </div>
+
+      <div class="item">
+        <!-- Make sure you keep inputs surrounded by labels -->
+        <p>
+          <input type="checkbox" class="checkme styled" /><br />
+          <input type="radio" class="completed-radio styled" /><br />
+          <input type="radio" class="progress-radio styled" />
+        </p>
+      </div>
+    </div>
+
+    <div class="clearall"></div>
+
+
+    <!-- <div id="groups" style="float:left; width:200px;">
+      Groups<br />
+      <ul>
+        <%= render current_user.groups %>
+      </ul>
+      <a id="test_select">Group B</a>
+    </div>
+    <div id="shares" style="float:left;width:200px;">
+      <% if @group.present? %>
+        Shared Groups <br/>
+        <ul>
+          <%= render @group.groups %>
+        </ul>
+      <% end %>
+      <a id="test_filter">Groups A,B</a>
+    </div>
+    <div id="main" style="float:left;">
+      <h3>Todos</h3>
+      <ul>
+        <%= render :partial =>'filter/todo', :collection => @current_todos %>
+      </ul>
+      <h3>Discussions</h3>
+      <ul>
+        <%= render :partial =>'filter/discussion', :collection => @current_discussions %>
+      </ul>
+    </div>
+    <div style="clear:both;"> </div> -->
   </div>
-  <div id="main" style="float:left;">
-    <h3>Todos</h3>
-    <ul>
-      <%= render :partial =>'filter/todo', :collection => @current_todos %>
-    </ul>
-    <h3>Discussions</h3>
-    <ul>
-      <%= render :partial =>'filter/discussion', :collection => @current_discussions %>
-    </ul>
-  </div>
-  <div style="clear:both;"> </div> -->
-</div>
 </div>
 </div>
