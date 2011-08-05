@@ -17,15 +17,19 @@
           <% @group.users_by_role.each do |user| %>
             <%= render 'user', :user => user %>
           <% end %>
+          <div class="clearall"></div>
         </ul>
 
-        <h4>Connected Groups</h4>
-        <ul class='group-groups-ul'>
+        <div class="item-head headerfull">
+          <h2>Connected Groups</h2>
+        </div>
+        <ul class="group-groups-ul">
           <% if @group.groups.present? %>
             <%= render @group.groups %>
           <% else %>
             <li>No Groups yet.</li>
           <% end %>
+          <div class="clearall"></div>
         </ul>
 
         <% if @admin %>

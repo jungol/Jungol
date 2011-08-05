@@ -124,6 +124,16 @@ section {
     background: #cbe3c5;
     border-top: 1px solid #b1d9bd;
     padding: 20px 0 30px 0;
+		a.group-connect {
+      margin-top: 0px;
+      background: #f2f2ef;
+      font-family: 'Cabin', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      color: #77903a;
+			padding: 5px;
+			
+		}
 		.button {
       position: relative;
       float: right;
@@ -281,11 +291,15 @@ section {
 	#all-groups {
 		ul {
 			list-style: none;
-			width: 400px;
-			margin-left: 10px;
 			li {
-				display: inline-block;
-				padding: 10px 20px;
+				float: left;
+				width: 200px;
+				margin-right: 10px;
+			}
+				img {
+					float: left;
+					margin-right: 10px;
+					margin-left: 0;
 			}
 		}
 	}
@@ -367,7 +381,23 @@ section {
 	  }
 	}
 
+#show-group {
+	ul.group-members-ul,
+	ul.group-groups-ul {
+		list-style: none;
+		li {
+			float: left;
+			width: 200px;
+			margin-right: 10px;
+			img {
+				float: left;
+				margin-right: 10px;
+				margin-left: 0;
+			}
+		}
+	}
 
+}
 
   .main-right {
     float: right;
