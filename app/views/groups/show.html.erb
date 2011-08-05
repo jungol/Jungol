@@ -9,6 +9,12 @@
 	  <div class="item-head headerfull">
 			<h2>Members</h2>
 		</div>
+		
+		  <%= render 'user', :user => @group.creator %>
+    <% @group.users_by_role.each do |user| %>
+      <%= render 'user', :user => user %>
+    <% end %>
+		
 <%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
 
 <% if @admin %>
@@ -19,11 +25,7 @@
 
   <p><%= @group.about %></p>
 
-  <h3 id="group-members">Members</h3>
-    <%= render 'user', :user => @group.creator %>
-  <% @group.users_by_role.each do |user| %>
-    <%= render 'user', :user => user %>
-  <% end %>
+
 
   <h4>Connected Groups</h4>
   <% if @group.groups.present? %>
