@@ -1,4 +1,4 @@
-<% comment_class = current_user==comment.user ? "edit_comment" : "comment" %>
+<% comment_class = current_user==comment.user ? "edit_comment" : "" %>
 <div class="comment">
   <p class='comment-meta'>
     <span class="comment-user"><%= link_to  comment.user.name, comment.user %></span> | <%= timeago(comment.updated_at, {:class => 'comment-time'}) %>

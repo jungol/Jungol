@@ -36,7 +36,9 @@
         <%= f.submit 'Post Comment »' %>
       </div>
     <% end %>
-    <%= render @discussion.comments %>
+    <div id="disc-comments">
+      <%= render @discussion.comments %>
+    </div>
 
 
 
