@@ -1,12 +1,11 @@
 <div class="content-bg">
   <div id="disc-share" class="main-right full">
     <div class="item-head headerfull">
-      <h2>Share <%= @discussion.title %></h2>
+      <h2>Share <%= @discussion.title %> with:</h2>
     </div>
 
     <% if(@unshared.present? && current_user.member_of?(@group)) %>
       <ul class="share-list">
-        <li>Share Item With:</li>
         <% @unshared.each do |group| %>
           <%= render 'groups', :group => group %>
         <% end %>

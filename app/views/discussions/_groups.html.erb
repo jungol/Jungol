@@ -1,8 +1,7 @@
 <li>
   <%= form_tag(share_group_discussion_path(group, @discussion), :method => :post) do %>
-    <div class='actions'>
-      <%= content_tag :span, group.name, :class => 'group-share' %>
-      <%= submit_tag "Share", :class => 'group-share' %>
-    </div>
+    <%#= check_box_tag "status#{task.id}", 1, task.status==1, :class => 'task_radio', :id => up_path %>
+    <%= content_tag :span, group.name, :class => 'group-share' %>
+    <%= submit_tag "Share", :class => 'group-share' %>
   <% end %>
 </li>
