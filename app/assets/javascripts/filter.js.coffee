@@ -103,8 +103,8 @@ $ ->
           tbody.append todoMarkup(v)
         $.each data.items.discussions, (k,v)->
           dbody.append discMarkup(v)
-        if $.isEmptyObject(data.items.discussions) then dbody.append "<p>No Discussions.</p>"
-        if $.isEmptyObject(data.items.todos) then tbody.append "<p>No Todos.</p>"
+        if $.isEmptyObject(data.items.discussions) then dbody.append "<p style='opacity:0.6'>No Discussions.</p>"
+        if $.isEmptyObject(data.items.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
         ginfo.stop().fadeTo(500, 1)
