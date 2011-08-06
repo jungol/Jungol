@@ -16,6 +16,9 @@ Jungola::Application.routes.draw do
 
   resources :users, :only => :show
   resources :groups do
+    member do
+      post :administer
+    end
     resources :discussions do
       member do
         get :share

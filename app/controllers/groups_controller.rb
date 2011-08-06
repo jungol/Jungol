@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_group, :except => [:index, :new, :create]
-  before_filter :require_admin, :only => [:edit, :update, :link]
+  before_filter :require_admin, :only => [:edit, :update, :link, :administer]
 
   def index
     @title = "All Groups"
@@ -76,6 +76,16 @@ class GroupsController < ApplicationController
     else
       @title = "Edit Group"
       render :edit
+    end
+  end
+
+  def administer
+    if params[:user_id].present? && params[:role].present?
+      mem = Membership.find_by_user_id_and_group_id(params[:user_id], @group.id)
+      if mem.change_role(params[:role])
+        flash[:success] = "Member's role updated."
+      end
+      redirect_to @group
     end
   end
 
