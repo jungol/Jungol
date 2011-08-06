@@ -60,7 +60,7 @@ RSpec.configure do |config|
     visit new_group_path
     fill_in 'Name', :with => "Group Name"
     fill_in 'About', :with => "About us: We're a group"
-    check 'Agreement'
+    check 'group_agreement'
     click_button 'Create Group'
   end
 
