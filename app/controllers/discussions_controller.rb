@@ -40,8 +40,10 @@ class DiscussionsController < ApplicationController
     if request.post? #AJAX update - description
       if @discussion.update_attributes(params[:discussion])
         render :text => params[:discussion][:description]
+        return
       end
     end
+    render :nothing => true
   end
 
   def share

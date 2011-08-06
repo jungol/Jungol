@@ -41,6 +41,7 @@ class TodosController < ApplicationController
     if request.post? #AJAX update - description
       if @todo.update_attributes(params[:todo])
         render :text => params[:todo][:description]
+        return
       end
     else
       if params[:todo][:tasks_attributes] #adding tasks to todo
