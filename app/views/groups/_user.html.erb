@@ -6,10 +6,10 @@
       Creator
     <% elsif user.admin_of? @group %>
       Administrator<br />
-      <%= link_to("Remove Admin", administer_group_path(@group, :user_id => user.id, :role => 2), :method => 'POST') if current_user.admin_of? @group %>
+      <%= link_to("Remove Admin", administer_group_path(@group, :u => user.id, :r => 2), :method => 'POST') if current_user.admin_of? @group %>
     <% else %>
       User<br />
-      <%= link_to("Make Admin", administer_group_path(@group, :user_id => user.id, :role => 1), :method => 'POST') if current_user.admin_of? @group %>
+      <%= link_to("Make Admin", administer_group_path(@group, :u => user.id, :r => 1), :method => 'POST') if current_user.admin_of? @group %>
     <% end %>
   </p>
 </li>

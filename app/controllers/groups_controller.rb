@@ -80,9 +80,9 @@ class GroupsController < ApplicationController
   end
 
   def administer
-    if params[:user_id].present? && params[:role].present?
-      mem = Membership.find_by_user_id_and_group_id(params[:user_id], @group.id)
-      if mem.change_role(params[:role])
+    if params[:u].present? && params[:r].present?
+      mem = Membership.find_by_user_id_and_group_id(params[:u], @group.id)
+      if mem.change_role(params[:r])
         flash[:success] = "Member's role updated."
       end
       redirect_to @group
