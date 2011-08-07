@@ -5,6 +5,7 @@ $ ->
   $('.edit_todo_desc').each ->
     $(this).editInPlace(
       url:"#{$(this).attr('id')}",
+      field_type: "textarea",
       update_value: 'todo[description]')
 
   $('.sortable').sortable

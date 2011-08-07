@@ -5,4 +5,5 @@ $ ->
   $('.edit_disc_desc').each ->
     $(this).editInPlace(
       url:"#{$(this).attr('id')}",
+      field_type: "textarea",
       update_value: 'discussion[description]')
