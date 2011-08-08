@@ -2,6 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
+  $('#add-task-form').hide()
+
+  $('#add-task-button').click ->
+    $('#add-task-form').toggle()
+
   $('.edit_todo_desc').each ->
     $(this).editInPlace(
       url:"#{$(this).attr('id')}",

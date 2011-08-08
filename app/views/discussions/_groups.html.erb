@@ -1,6 +1,6 @@
 <li>
-  <%= form_tag(share_group_discussion_path(group, @discussion), :method => :post) do %>
-    <%#= check_box_tag "status#{task.id}", 1, task.status==1, :class => 'task_radio', :id => up_path %>
+  <%= form_tag(share_group_discussion_path(group, @discussion), :method => :post, :remote => true) do %>
+    <%= check_box_tag :admins_only %>
     <%= content_tag :span, group.name, :class => 'group-share' %>
     <%= submit_tag "Share", :class => 'group-share' %>
   <% end %>

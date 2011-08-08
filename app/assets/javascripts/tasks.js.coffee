@@ -8,14 +8,6 @@ $ ->
       update_value: 'task[description]')
       #style: 'display: inline'
 
-#  $('.edit_task_status').each ->
-#    $(this).editInPlace(
-#      url: "#{$(this).attr('id')}",
-#      select_options:
-#        "In Progress:1, Completed:2"
-#      update_value: 'task[status]'
-#      field_type: 'select')
-
   $('.task_radio').change ->
     stat = @value
     li = $(@).closest('li')
