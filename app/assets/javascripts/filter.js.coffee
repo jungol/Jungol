@@ -42,6 +42,7 @@ $ ->
 
   todoMarkup = (todo) ->
     shared_groups = for group in todo.shared_groups
+      if group.id == todo.group_id then group.name += "*"
       linkify( group.name, group.url, "class='group_link'")
     todoCount++
 
@@ -54,6 +55,7 @@ $ ->
 
   discMarkup = (disc) ->
     shared_groups = for group in disc.shared_groups
+      if group.id == disc.group_id then group.name += "*"
       linkify( group.name, group.url, "class='group_link'")
     discCount++
 

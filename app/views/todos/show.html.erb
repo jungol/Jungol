@@ -11,9 +11,9 @@
 
     <% if @shared.present? %>
       <ul class="shared-list greenme">
-        <li>Shared With:</li>
+        <li>Shared With:  </li>
         <% @shared.each do |group| %>
-          <%= render 'share', :group => group %>&nbsp;
+          <%= render 'shared_group', :group => group %>
         <% end %>
       </ul>
     <% end %>
@@ -67,70 +67,3 @@
 
   <div class="clearall"></div>
 </div>
-
-
-
-<!-- <div class='group_todo'>
-  <h1>
-    <%= "#{@todo.title} - #{@group.name}" %>
-  </h1>
-
-  <strong>Title</strong><br />
-  <div><%= @todo.title %></div>
-
-  <strong>Description</strong><br />
-  <div id="<%= @up_path %>" class='edit_todo_desc'><%= @todo.description %></div>
-
-  Creator: <%= @todo.creator.name %><br />
-  <strong>URL</strong> <%= link_to group_todo_path(@group, @todo) %><br /><br />
-  <br /><br />
-  <% if current_user.can_delete? @todo %>
-    <%= link_to "DELETE TODO", group_todo_path(@group, @todo), :method => :delete, :confirm => "You sure?",
-      :title => "Delete #{@todo.title}" %>
-  <% end %>
-
-  <% if @shared.present? %>
-    <ul>
-      Item Shared With:
-      <% @shared.each do |group| %>
-        <%= render 'share', :group => group %>
-      <% end %>
-    </ul>
-  <% end %>
-  <% if (@unshared.present? && current_user.member_of?(@group)) %>
-    <ul>
-      Share Item With:
-      <% @unshared.each do |group| %>
-        <%= render 'groups', :group => group %>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <%= form_for [@group, @todo] do |todo_f| %>
-    <%= todo_f.fields_for :tasks, Task.new do |task_f| %>
-      <%= render "task_fields", :f => task_f %>
-    <% end %>
-    <p><%= link_to_add_fields "New Task", todo_f, :tasks  %></p>
-    <div class = 'actions'>
-      <%= todo_f.submit "Add" %>
-    </div>
-  <% end %>
-
-  <ul class="sortable">
-    <%= render @todo.tasks %>
-  </ul>
-  <%= form_for @comment do |f| %>
-    <%= render 'shared/error_messages', :object => f.object %>
-    <%= hidden_field(:group, :id) %>
-    <%= hidden_field(:todo, :id) %>
-    <div class="field">
-      <%= f.label :body, "Post Comment" %><br />
-      <%= f.text_area :body %>
-    </div>
-    <div class="actions">
-      <%= f.submit 'Post' %>
-    </div>
-  <% end %>
-  <%= render @todo.comments %>
-
-</div> -->

@@ -7,7 +7,7 @@
     <% if(@unshared.present? && current_user.member_of?(@group)) %>
       <ul class="share-list">
         <% @unshared.each do |group| %>
-          <%= render 'groups', :group => group %>
+          <%= render 'share_form', :group => group %>
         <% end %>
       </ul>
     <% end %>
