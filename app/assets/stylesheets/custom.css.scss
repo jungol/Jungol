@@ -566,7 +566,7 @@ section {
         font-weight: bold;
       }
       li.todo-first {
-        margin: 0 300px 0 0;
+        margin: 0 279px 0 0;
       }
     }
     .first-todo {
@@ -1123,7 +1123,8 @@ ul.users {
   li {
     line-height: 25px;
     border-bottom: 1px solid #d8dad8;
-    margin: 0;
+    border-top: 1px solid #d8dad8;
+    margin: -1px 0px 0px;
     padding: 20px 0;
     div {
       .task-desc {
@@ -1131,14 +1132,20 @@ ul.users {
         width: 378px;
       }
       .task-status {
+        margin-left:70px;
         input {
           margin: 0 43px;
           background: red;
         }
       }
       .task-number {
-        margin-left: 70px;
+        margin-left: 43px;
       }
+    }
+  }
+  li.completed {
+    div {
+      opacity:0.4;
     }
   }
   .placeholder{

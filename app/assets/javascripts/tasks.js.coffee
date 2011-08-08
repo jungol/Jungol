@@ -17,9 +17,12 @@ $ ->
 #      field_type: 'select')
 
   $('.task_radio').change ->
+    stat = @value
+    li = $(@).closest('li')
+    if (stat=="2") then li.addClass('completed') else li.removeClass('completed')
     $.ajax "#{@id}",
       type: 'POST',
-      data: "task[status]=#{@value}",
+      data: "task[status]=#{stat}",
 #      error: (jqXHR, textStatus, errorThrown) ->
 #        $('body').append "AJAX Error: #{textStatus}"
 #      success: (data, textStatus, jqXHR) ->
