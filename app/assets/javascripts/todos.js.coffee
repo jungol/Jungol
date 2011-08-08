@@ -14,9 +14,10 @@ $ ->
       update_value: 'todo[description]')
 
   $('.sortable').sortable
-     stop: (event, ui) ->
-       todo_path = $(this).find('.edit_task_desc').attr('id')
-       params = $('.sortable').sortable('serialize')
-       $.ajax todo_path,
-         type: "POST",
-         data: params
+    placeholder: 'placeholder'
+    stop: (event, ui) ->
+      todo_path = $(this).find('.edit_task_desc').attr('id')
+      params = $('.sortable').sortable('serialize')
+      $.ajax todo_path,
+        type: "POST",
+        data: params
