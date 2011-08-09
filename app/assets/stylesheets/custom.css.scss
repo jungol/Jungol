@@ -141,6 +141,9 @@ section {
       display: inline-block;
       width: 100px;
     }
+		#show-group {
+			font-size: 13px;
+		}
     a.round {
       background: #8eac4b;
       display: block;
@@ -169,8 +172,9 @@ section {
     }
     .button {
       position: relative;
-      float: right;
-      margin-top: -50px;
+      float: left;
+      margin-top: -45px;
+			margin-left: 175px;
       display: block;
       background: #f2f2ef;
       padding: 0 5px;
@@ -186,13 +190,17 @@ section {
     #share-button, .join-button, .create-button {
       right: 25px;
     }
-
+		#share-button {
+			float: right !important;
+		}
     #comment-button {
       right:85px;
+			float: right !important;
     }
 
     #add-task-button {
       right:156px;
+			float: right !important;
     }
 
     .button:hover {
@@ -503,10 +511,10 @@ section {
     border-top: none;
     .item-body {
       p {
-        margin-top: -5px;
+        margin-top: -10px;
       }
       .share {
-        margin-top: -10px !important;
+        margin-top: -15px !important;
       }
     }
 
@@ -519,7 +527,7 @@ section {
         font-family: 'Cabin', sans-serif;
         color: #fff;
         width: 660px;
-        padding: 10px 0 10px 10px;
+        padding: 5px 0 5px 10px;
         border: 1px solid #aeae96;
         margin-left: -1px;
         background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.3, rgb(129,171,69)), color-stop(0.65, rgb(127,182,55)) );
@@ -1066,28 +1074,27 @@ div.field, div.actions {
 }
 
 .field_with_errors{
-  margin-top: 10px;
+  margin: 10px 0 0 10px;
   padding: 2px;
   background-color:red;
   display: table;
 }
-
 .field_with_errors label{
   color:#FFF;
 }
 
 #error_explanation {
-  width: 400px;
+  width: 700px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin: 0 0 20px 10px;
   background-color: #f0f0f0;
 }
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
-  padding: 5px 5px 5px 15px;
+  padding: 5px 5px 5px 0;
   font-size: 12px;
   margin: -7px;
   margin-bottom:-5px;
@@ -1122,7 +1129,7 @@ ul.users {
     border-bottom: 1px solid #d8dad8;
     border-top: 1px solid #d8dad8;
     margin: -1px 0px 0px;
-    padding: 20px 0;
+    padding: 10px 0;
     div {
       .task-desc {
         display: inline-block;
