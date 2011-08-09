@@ -1,6 +1,6 @@
 <div class="content-bg">
   <div id="main-right" class="main-right full">
-    <div class="item-head headerfull">
+    <div class="alt-item-head headerfull">
       <h2><%= @todo.title %></h2>
       <span id="add-task-button" class="button">Add Task</span>
       <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
@@ -54,7 +54,7 @@
         <%= f.text_area :body %>
       </div>
       <div class="actions">
-        <%= f.submit 'Post Comment »' %>
+        <span class="comment-fix"><%= f.submit 'Post Comment »' %></span>
       </div>
     <% end %>
 
