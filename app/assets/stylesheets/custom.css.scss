@@ -35,6 +35,9 @@ a:visited {
   width: 980px;
   margin: 0 auto;
 }
+span.underlineme {
+	text-decoration: underline;
+}
 
 /* Header */
 header {
@@ -516,6 +519,18 @@ section {
       .share {
         margin-top: -15px !important;
       }
+			span.share-small { 
+				font-size: 10px;
+				background: #ff6e68;
+				padding: 2px;
+				font-weight: normal;
+				margin-left: 5px;
+				a {
+					text-decoration: none;
+					color: #fff;
+				}
+
+			}
     }
 
 
@@ -557,7 +572,7 @@ section {
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
       padding: 20px 0 0 10px;
       font-size: 14px;
-      text-decoration: underline;
+      text-decoration: none;
       font-weight: 600;
       a {
         color: #000;
