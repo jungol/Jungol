@@ -25,20 +25,20 @@ $ ->
     else if num == 0
       "No " + plur
 
-  linkify = (text, link, options, target = "target='_blank'") ->
-    "<a #{options} href='#{link}' #{target}>#{text}</a>"
+  linkify = (text, link, options) ->
+    "<a #{options} href='#{link}'>#{text}</a>"
 
   timeify = (time, format = "mm/dd/yy hh:mm") ->
     $.timeago(time)
 
   addCon = (_group_id) ->
-    "<a href='/groups/#{_group_id}/link', target='_blank'><li class=\"add\">Add a Connection</li></a>"
+    "<a href='/groups/#{_group_id}/link'><li class=\"add\">Add a Connection</li></a>"
 
 ##--/HELPERS
 
   createNewLinks = (groupID) ->
-    $('.item#todos > .item-head a').attr('href', "/groups/#{groupID}/todos/new").attr('target', '_blank')
-    $('.item#discussions > .item-head a').attr('href', "/groups/#{groupID}/discussions/new").attr('target', '_blank')
+    $('.item#todos > .item-head a').attr('href', "/groups/#{groupID}/todos/new")
+    $('.item#discussions > .item-head a').attr('href', "/groups/#{groupID}/discussions/new")
 
   todoMarkup = (todo) ->
     shared_groups = for group in todo.shared_groups
@@ -69,7 +69,7 @@ $ ->
     "<a id='#{group.id}' href='#' class='con_group_li'><li>#{group.name}</li></a>"
 
   groupInfoMarkup = (group) ->
-    "<img src='/assets/group-placeholder.png' /><h1>#{group.name}</h1><p><a target = '_blank' href=\"/groups/#{group.id}\">Group Info</a> |
+    "<img src='/assets/group-placeholder.png' /><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
       <a href=\"/users/invitation/new\" >Invite New User</a></p>
       <p class=\"blurb\">#{group.about}</p>"
 
