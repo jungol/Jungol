@@ -1,3 +1,4 @@
+<% is_creator = current_user==@group.creator %>
 <li class='group-user'>
   <%= gravatar_for user, :size => 30 %>
   <%= link_to user.name, user %>
@@ -6,10 +7,10 @@
       Creator
     <% elsif user.admin_of? @group %>
       Administrator<br />
-      <%= link_to("Remove Admin", administer_group_path(@group, :u => user.id, :r => 2), :method => 'POST') if current_user.admin_of? @group %>
+      <%= link_to("Remove Admin", administer_group_path(@group, :u => user.id, :r => 2), :method => 'POST') if is_creator %>
     <% else %>
       User<br />
-      <%= link_to("Make Admin", administer_group_path(@group, :u => user.id, :r => 1), :method => 'POST') if current_user.admin_of? @group %>
+      <%= link_to("Make Admin", administer_group_path(@group, :u => user.id, :r => 1), :method => 'POST') if is_creator %>
     <% end %>
   </p>
 </li>
