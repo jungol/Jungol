@@ -123,7 +123,7 @@ $ ->
     $('#main-welcome').hide()
     $('#main-items').show()
     getItems(@.id)
-    $(@).removeClass('selected') #unselect all
+    $(@).siblings().removeClass('selected') #unselect all
     $(@).toggleClass('selected') #Mark as selected
     $('#con-groups').show('slide', { direction:'right'}, 300 ) #SHOW CONNECTED GROUPS
     #ADD HOVER FUNCTION
