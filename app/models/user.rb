@@ -44,8 +44,8 @@ class User < ActiveRecord::Base
     (admin_of? item.group) || (item.creator == self)
   end
 
-  def share(group, item)
-    share = self.created_shares.create
+  def share(group, item, admins_only = false)
+    share = self.created_shares.create(:admins_only => admins_only)
     item.item_shares << share
     group.item_shares << share
   end

@@ -649,13 +649,13 @@ section {
       span input {
         left: 343px !important;
       }
-      span.todo-fix input {
+      span.todo-fix input[type="submit"] {
         left: 323px !important;
       }
-      span.disc-fix input {
+      span.disc-fix input[type="submit"]{
         left: 331px !important;
       }
-      span.group-fix input {
+      span.group-fix input[type="submit"] {
         left: 292px !important;
         top: -38px;
       }

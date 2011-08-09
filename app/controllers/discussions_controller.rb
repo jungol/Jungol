@@ -18,7 +18,7 @@ class DiscussionsController < ApplicationController
       @group.discussions << @discussion
 
       #create share with original group
-      current_user.share @group, @discussion
+      current_user.share @group, @discussion, (params[:admins_only].present?)
 
       flash[:success] = "Discussion Created."
       redirect_to group_discussion_path(@group, @discussion)

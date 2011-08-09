@@ -7,6 +7,10 @@
     <%= form_for [@group, @discussion] do |disc_f| %>
       <%= render 'fields', :f => disc_f %>
       <div class = 'actions'>
+        <span class="admins_only">
+          <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %><br/>
+          <%= check_box_tag :admins_only %>
+        </span>
         <span class="disc-fix"><%= disc_f.submit "Create" %></span>
       </div>
     <% end %>

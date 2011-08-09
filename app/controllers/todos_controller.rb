@@ -27,7 +27,7 @@ class TodosController < ApplicationController
       @group.todos << @todo
 
       #create share with original group
-      current_user.share @group, @todo
+      current_user.share @group, @todo, (params[:admins_only].present?)
 
       flash[:success] = "Todo Created."
       redirect_to group_todo_path(@group, @todo)
