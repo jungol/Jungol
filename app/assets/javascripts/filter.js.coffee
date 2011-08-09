@@ -66,7 +66,7 @@ $ ->
                 <p class=\"greenme\">Shared between  #{shared_groups.join("  |  ")}</p>"
 
   conGroupMarkup = (group) ->
-    "<a id='#{group.id}' href='#' class='con_group_li'><li>#{group.name}</li></a>"
+    "<li id='#{group.id}' class='con_group_li'>#{group.name}</li>"
 
   groupInfoMarkup = (group) ->
     "<img src='/assets/group-placeholder.png' /><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
@@ -119,12 +119,12 @@ $ ->
 
 
   #CLICK ON ONE OF YOUR GROUPS
-  $('a.my_group_li').click ->
+  $('.my_group_li').click ->
     $('#main-welcome').hide()
     $('#main-items').show()
     getItems(@.id)
-    $('ul.my_group_ul li').removeClass('selected') #unselect all
-    $('li', @).toggleClass('selected') #Mark as selected
+    $(@).removeClass('selected') #unselect all
+    $(@).toggleClass('selected') #Mark as selected
     $('#con-groups').show('slide', { direction:'right'}, 300 ) #SHOW CONNECTED GROUPS
     #ADD HOVER FUNCTION
     $('#my-groups-over').mouseenter ->
@@ -140,10 +140,10 @@ $ ->
 
 
   #SELECT SHARED GROUP
-  $('a.con_group_li').live 'click',  ->
+  $('.con_group_li').live 'click',  ->
     [todoCount, discCount] = [0, 0]
     tbody = $('.item#todos > .item-body')
-    $('li', @).toggleClass('selected')
+    $(@).toggleClass('selected')
     tbody = $('.item#todos > .item-body')
     dbody = $('.item#discussions > .item-body')
     tbody.fadeTo(900, 0)

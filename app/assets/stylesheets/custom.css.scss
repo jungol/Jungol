@@ -242,36 +242,33 @@ section {
       font-family: 'Cabin', sans-serif;
       margin-left: 3px;
     }
-    a {
+    li {
+      padding: 20px 0 20px 20px;
       color: #646464;
-      text-decoration: none;
-      li {
-        padding: 20px 0 20px 20px;
-        display: block;
-        background: #f3f4f3;
-        width: 230px;
-        margin: -6px 0 0 -21px;
-        border-bottom: 1px solid #dcdddc;
-        border-top: 1px solid #dcdddc;
-        font-size: 13px;
-      }
-      .add {
+      display: block;
+      background: #f3f4f3;
+      width: 230px;
+      margin: -6px 0 0 -21px;
+      border-bottom: 1px solid #dcdddc;
+      border-top: 1px solid #dcdddc;
+      font-size: 13px;
+    }
+    .add {
+      color: #8eac45 !important;
+      text-decoration: underline !important;
+      border-bottom: none;
+      font-family: 'Verdana', Arial, Helvetica, sans-serif;
+      a {
         color: #8eac45 !important;
         text-decoration: underline !important;
-        border-bottom: none;
-        font-family: 'Verdana', Arial, Helvetica, sans-serif;
-        a {
-          color: #8eac45 !important;
-          text-decoration: underline !important;
-        }
       }
-      .add:hover {
-        background: none;
-        border: none;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-      }
+    }
+    .add:hover {
+      background: none;
+      border: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
     }
     li:hover {
       background: #e7e7e7;
