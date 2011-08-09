@@ -1147,6 +1147,9 @@ ul.users {
     div {
       opacity:0.4;
     }
+    span.task-desc {
+      text-decoration: line-through;
+    }
   }
   .placeholder{
     background-color:#F3F4F3;
