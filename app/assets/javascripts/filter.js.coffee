@@ -122,16 +122,17 @@ $ ->
   $('.my_group_li').click ->
     $('#main-welcome').hide()
     $('#main-items').show()
-    getItems(@.id)
-    $(@).siblings().removeClass('selected') #unselect all
-    $(@).toggleClass('selected') #Mark as selected
+    if not $(@).hasClass('selected') #If it's not already selected
+      getItems(@.id)
+      $(@).siblings().removeClass('selected') #unselect all
+      $(@).toggleClass('selected') #Mark as selected
+
     $('#con-groups').show('slide', { direction:'right'}, 300 ) #SHOW CONNECTED GROUPS
     #ADD HOVER FUNCTION
     $('#my-groups-over').mouseenter ->
       $('#my-groups').css {'opacity':1}
     $('#my-groups-over').mouseleave ->
       $('#my-groups').css {'opacity':0.5}
-
     #MARK 'MY GROUPS' INACTIVE, SHOW OVER-DIV
     $('#my-groups').switchClass 'main-left', 'secondary-left', 300, -> #move to left, gray out
       $('#my-groups-over').height($('#my-groups').height() + 2).show()
