@@ -1,5 +1,7 @@
 <li class='group-list-li'>
   <%= gravatar_for group.creator, :size => 30 %>
-  <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %>
+  <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %><br />
+  <span class="group-mems"><%= pluralize group.users.count, "member"  %></span> |
+  <span class="group-cons"><%= pluralize group.groups.count, "connection"  %></span>
   <%#= link_to("Connect", link_path(group), :class => 'group-connect') %>
 </li>

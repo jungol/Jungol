@@ -15,7 +15,7 @@
 
     <% if @shared.present? %>
       <ul class="shared-list greenme">
-        <li>Shared With:  </li>
+        <li>Shared between:  </li>
         <% @shared.each do |group| %>
           <%= render 'shared_group', :group => group %>
         <% end %>
