@@ -144,7 +144,6 @@ $ ->
     $('#my-groups').switchClass 'main-left', 'secondary-left', 300, -> #move to left, gray out
       $('#my-groups-over').height($('#my-groups').height() + 2).show()
       $(@).css {'opacity': 0.5}
-      setHeights()
 
 
   #SELECT SHARED GROUP
