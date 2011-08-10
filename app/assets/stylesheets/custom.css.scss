@@ -325,7 +325,7 @@ section {
     z-index: 6;
     width: 260px;
     height: 100%;
-    margin-right: -250px;
+    margin-right: -260px;
     &:hover {
       cursor: pointer;
     }
@@ -533,6 +533,18 @@ section {
     width: 670px;
     border: 1px solid #aeae96;
     border-top: none;
+    form#new_todo {
+      p {
+        input[type="text"] {
+          width: 400px;
+          background: #f3f4f3;
+          border: 1px solid #797b69;
+        }
+      }
+    }
+    input#admins_only {
+      left: 0 !important;
+    }
 		textarea#user_about { 
 			font-family: 'Verdana', Helvetica, sans-serif;
 			font-size: 12px;
@@ -706,13 +718,13 @@ section {
         left: 343px !important;
       }
       span.todo-fix input[type="submit"] {
-        left: 323px !important;
+        left: 304px !important;
       }
       span.disc-fix input[type="submit"]{
-        left: 331px !important;
+        left: 328px !important;
       }
       span.group-fix input[type="submit"] {
-        left: 292px !important;
+        left: 288px !important;
         top: -38px;
       }
 			span.comment-fix input[type="submit"] {
