@@ -125,7 +125,6 @@ $ ->
     $('#con-groups').hide('slide', {direction:'right'}, 300)#HIDE CONNECTED GROUPS
     $('#my-groups').switchClass('secondary-left', 'main-left', 300) #move to right, ungray
 
-
   #CLICK ON ONE OF YOUR GROUPS
   $('.my_group_li').click ->
     $('#main-welcome').hide()
@@ -145,6 +144,7 @@ $ ->
     $('#my-groups').switchClass 'main-left', 'secondary-left', 300, -> #move to left, gray out
       $('#my-groups-over').height($('#my-groups').height() + 2).show()
       $(@).css {'opacity': 0.5}
+      setHeights()
 
 
   #SELECT SHARED GROUP
