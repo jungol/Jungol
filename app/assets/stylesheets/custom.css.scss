@@ -53,9 +53,6 @@ a:visited {
 span.underlineme {
 	text-decoration: underline;
 }
-.main-left-fix {
-	margin-left: 0 !important;
-}
 
 
 /*** Header ***/
@@ -313,6 +310,7 @@ section {
   }
 
   .secondary-left {
+    float: left;
     margin: 10px 0 0 0;
     z-index: 5;
     opacity: 0.5;
@@ -321,20 +319,25 @@ section {
   }
 
   .secondary-left-over {
+    float: left;
     margin: 10px 0 0 0;
     position: relative;
     z-index: 6;
     width: 260px;
     height: 100%;
-  }
-  .secondary-left-over:hover {
-    cursor:pointer;
+    margin-right: -250px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   .main-left {
     z-index: 10;
     position: relative;
 		height: 100%;
-		margin-left: -215px;
+    right: 250px;
+  }
+  #my-groups {
+    left: 0 !important;
   }
   #user {
     div.group-cont {
@@ -1197,7 +1200,7 @@ ul.users {
     border-bottom: 1px solid #d8dad8;
     border-top: 1px solid #d8dad8;
     margin: -1px 0px 0px;
-    padding: 10px 0;
+    padding: 5px 0;
     div {
       .task-desc {
         display: inline-block;
