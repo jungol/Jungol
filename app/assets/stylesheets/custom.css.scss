@@ -54,8 +54,9 @@ span.underlineme {
 	text-decoration: underline;
 }
 .main-left-fix {
-	margin-left: 10px !important;
+	margin-left: 0 !important;
 }
+
 
 /*** Header ***/
 header {
@@ -316,6 +317,7 @@ section {
     z-index: 5;
     opacity: 0.5;
 		position: relative;
+		height: 100%;
   }
 
   .secondary-left-over {
@@ -323,6 +325,7 @@ section {
     position: relative;
     z-index: 6;
     width: 260px;
+    height: 100%;
   }
   .secondary-left-over:hover {
     cursor:pointer;
@@ -343,7 +346,9 @@ section {
     }
   }
 
-  #all-groups, .group-cont {
+  #all-groups,
+  .group-cont {
+    padding-bottom: 10px;
     ul {
       list-style: none;
       li {
@@ -708,7 +713,7 @@ section {
         top: -38px;
       }
 			span.comment-fix input[type="submit"] {
-				left: 265px !important;
+				left: 266px !important;
 			}
     }
     #todo-comments,
