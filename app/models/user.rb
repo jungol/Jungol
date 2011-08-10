@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
 
   #MEMBERSHIPS
   has_many :memberships, :dependent => :destroy
-  has_many :groups, :through => :memberships
+  has_many :groups, :through => :memberships, :source => :group, :conditions => ['is_pending =?', false]
+  has_many :pending_groups, :through => :memberships, :source => :group, :conditions => ['is_pending = ?', true]
 
   #CREATOR
   has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'

@@ -36,9 +36,7 @@ describe CommentsController do
     @group = @user.created_groups.create(@attr)
     @todo = @user.created_todos.create(:title => "SOMETHING")
     @group.todos << @todo
-    new_share = @user.created_shares.create
-    @todo.item_shares << new_share
-    @group.item_shares << new_share
+    @user.share(@group, @todo)
   end
 
   describe "POST create" do

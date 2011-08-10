@@ -20,6 +20,8 @@ class Group < ActiveRecord::Base
   #MEMBERSHIPS
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
+  has_many :members, :through => :memberships, :source => :user, :conditions => ['is_pending = ?', false]
+  has_many :pending_members, :through => :memberships, :source => :user, :conditions => ['is_pending = ?', true]
 
   #CREATOR
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
@@ -32,8 +34,18 @@ class Group < ActiveRecord::Base
 
   has_many :discussions, :dependent => :destroy
 
+  def approve(user)
+    if pending_members.include?(user)
+      user.memberships.find_by_group_id(self.id).update_attributes(:is_pending => false)
+    end
+  end
+
   def member?(user)
-    users.include?(user)
+    members.include?(user)
+  end
+
+  def pending_member?(user)
+    pending_members.include?(user)
   end
 
   def admin?(user)
@@ -41,15 +53,15 @@ class Group < ActiveRecord::Base
   end
 
   def users_by_role
-    users.all(:conditions => ['users.id not in (?)', self.creator], :include => :memberships, :order => 'memberships.role DESC' )
+    members.all(:conditions => ['users.id not in (?)', self.creator], :include => :memberships, :order => 'memberships.role DESC' )
   end
 
   def admins
-    users.includes(:memberships).where(:memberships => {:role => 1})
+    members.includes(:memberships).where(:memberships => {:role => 1})
   end
 
   def non_admins
-    users.includes(:memberships).where(:memberships => {:role => 2})
+    members.includes(:memberships).where(:memberships => {:role => 2})
   end
 
   def non_admin?(user)
@@ -78,6 +90,7 @@ class Group < ActiveRecord::Base
 
   def add_creator_as_member
     self.users << creator
+    approve(creator)
   end
 
   def max_users

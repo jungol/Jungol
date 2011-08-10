@@ -1,0 +1,10 @@
+<% is_creator = current_user==@group.creator %>
+<li class='group-user'>
+  <%= gravatar_for user, :size => 30 %>
+  <%= link_to user.name, user %>
+  <p class='user-role'>
+    Pending<br />
+    <%= link_to("Approve", approve_user_group_path(@group, :u => user.id), :method => 'POST') if is_creator %>
+    <%= link_to("Deny", approve_user_group_path(@group, :u => user.id), :method => 'DELETE') if is_creator %>
+  </p>
+</li>

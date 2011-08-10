@@ -17,6 +17,12 @@ module NavigationHelpers
     when /^(.*)'s page$/
       group_path(Group.find_by_name($1).id)
 
+    when /^(.*)'s new todo page$/
+      new_group_todo_path(Group.find_by_name($1).id)
+
+    when /^(.*)'s new discussion page$/
+      new_group_discussion_path(Group.find_by_name($1).id)
+
     when /^the home\s?page$/
       '/'
 

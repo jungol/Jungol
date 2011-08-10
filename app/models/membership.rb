@@ -4,7 +4,7 @@ class Membership < ActiveRecord::Base
   #scope :admins, :conditions => {:role => 2}
   #scope :users, :conditions => {:role => 3}
   #scope :sharers, :conditions => {:role => 4}
-  attr_accessible :group_id, :role
+  attr_accessible :group_id, :role, :is_pending, :user_id
 
   validates_presence_of :role, :group_id, :user_id
 
@@ -24,7 +24,7 @@ class Membership < ActiveRecord::Base
   private
 
     def add_default_role
-      #SET FIRST MEMBER TO ADMIN
+      #SET FIRST MEMBER TO ADMIN, NON-PENDING
       #OTHERWISE DEFAULT TO USER
       if self.group_id && Group.find(self.group_id).memberships.empty?
         self.role = 1
@@ -34,6 +34,7 @@ class Membership < ActiveRecord::Base
     end
 
 end
+
 
 # == Schema Information
 #
@@ -45,5 +46,6 @@ end
 #  role       :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  is_pending :boolean         default(TRUE), not null
 #
 

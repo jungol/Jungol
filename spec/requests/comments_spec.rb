@@ -4,8 +4,7 @@ describe "Comments" do
   before(:each) do
     @user = Factory(:confirmed_user)
     integration_sign_in(@user)
-    integration_make_group
-    integration_make_todo
+    integration_make_todo integration_make_group
   end
 
   describe "Creation" do

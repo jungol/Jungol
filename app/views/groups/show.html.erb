@@ -2,7 +2,9 @@
   <div id="show-group" class="main-right full">
     <div class="item-head headerfull">
       <h2>About</h2>
-      <%= content_tag(:span, link_to("Join This Group »", join_path(@group), :method => :post), :class => 'join-button button', :id => 'join_button') unless @member %>
+      <%= content_tag(:span, link_to("Request to Join »", join_path(@group), :method => :post), :class => 'join-button button', :id => 'join_button') unless @member || @pending %>
+      <%= content_tag(:span, "Membership Pending", :class => :button) if @pending %>
+
     </div>
     <p><%= @group.about %></p>
 
@@ -13,6 +15,12 @@
       <%= render 'user', :user => @group.creator %>
       <% @group.users_by_role.each do |user| %>
         <%= render 'user', :user => user %>
+      <% end %>
+
+      <% if @admin && @group.pending_members.present? %>
+        <% @group.pending_members.each do |p| %>
+          <%= render 'pending_user', :user => p %>
+        <% end %>
       <% end %>
       <div class="clearall"></div>
     </ul>

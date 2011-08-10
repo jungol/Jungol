@@ -24,7 +24,7 @@ describe "Groups" do
         visit new_group_path
         fill_in 'Name',    :with => "New Group"
         fill_in 'About',   :with => "About us"
-        check 'Agreement'
+        check 'group_agreement'
       end
 
       it "should make a new group" do
@@ -49,7 +49,7 @@ describe "Groups" do
         user2 = Factory(:confirmed_user, :email => Factory.next(:email))
         integration_sign_in(user2)
         visit group_path(group)
-        click_link "join_button"
+        click_link "Request to Join"
         page.should have_selector('div.flash', :content => "Please enable javascript")
       end.should change(Membership, :count).by(2) #one for user1, one for user2
     end

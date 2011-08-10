@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730072724) do
+ActiveRecord::Schema.define(:version => 20110809194505) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20110730072724) do
     t.integer  "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_pending", :default => true, :null => false
   end
 
   add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"

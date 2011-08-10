@@ -18,6 +18,8 @@ Jungola::Application.routes.draw do
   resources :groups do
     member do
       post :administer
+      post :approve_user
+      delete :approve_user
     end
     resources :discussions do
       member do

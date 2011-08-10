@@ -12,11 +12,6 @@ describe Comment do
       nobody.should_not be_valid
     end
 
-    it "should have a max 512 body length" do
-      bigbody = @todo.comments.new(:body => "aaaaaa"*100)
-      bigbody.should_not be_valid
-    end
-
   end
 end
 

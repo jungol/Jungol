@@ -16,9 +16,9 @@ describe Membership do
 
   describe "validations" do
 
-    it "should have a role" do
-      @mem = Membership.new(@attr.merge(:role => nil))
-      @mem.should_not be_valid
+    it "should default the role" do
+      @mem = Membership.create(@attr.merge(:role => nil))
+      @mem.role.should == 2
     end
 
     it "should have a user_id" do
@@ -35,6 +35,7 @@ describe Membership do
 
 end
 
+
 # == Schema Information
 #
 # Table name: memberships
@@ -45,5 +46,6 @@ end
 #  role       :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  is_pending :boolean         default(TRUE), not null
 #
 

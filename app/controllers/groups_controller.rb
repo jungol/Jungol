@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
 
   def show
     @member = @group.member?(current_user)
+    @pending = @group.pending_member?(current_user)
     @admin = @group.admin?(current_user)
     @title = @group.name
   end
@@ -24,10 +25,10 @@ class GroupsController < ApplicationController
     if request.post?
       if !@group.users.include?(current_user)
         @group.users << current_user
-        flash[:success] = "Congrats! You joined #{@group.name}."
+        flash[:success] = "Thanks! Your membership must now be approved by an admin of #{@group.name}."
         redirect_to @group
       else
-        flash[:error] = "Error joining #{@group.name}. Please try again."
+        flash[:error] = "Error requesting to join #{@group.name}. Please try again."
         redirect_to @group
       end
     else #it fell back to GET (no js)
@@ -55,11 +56,12 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = current_user.created_groups.create(params[:group])
-    if current_user.groups.exists?(@group.id) #success
+    @group = current_user.created_groups.new(params[:group])
+    if @group.save #success
       flash[:success] = "Group Created."
       redirect_to @group
     else
+      flash.now[:error] = "Error creating group"
       @title = "Create Group"
       render :new
     end
@@ -87,6 +89,24 @@ class GroupsController < ApplicationController
       end
       redirect_to @group
     end
+  end
+
+  #Approve/Deny pending memberships
+  def approve_user
+    if params[:u].present?
+      if request.post? #Approve
+        mem = Membership.find_by_user_id_and_group_id(params[:u], @group.id)
+        if mem.update_attributes(:is_pending => false)
+          flash[:success] = "Membership approved."
+        end
+      elsif request.delete? #DENY
+        mem = Membership.find_by_user_id_and_group_id(params[:u], @group.id)
+        if mem.destroy
+          flash[:success] = "Membership denied."
+        end
+      end
+    end
+    redirect_to @group
   end
 
   def find_group
