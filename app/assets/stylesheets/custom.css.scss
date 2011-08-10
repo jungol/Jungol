@@ -50,6 +50,10 @@ span.underlineme {
 	text-decoration: underline;
 }
 
+.no-left {
+	margin-left: 10px !important;
+}
+
 
 /*** Header ***/
 header {
@@ -141,6 +145,8 @@ section {
     background: #cbe3c5;
     border-top: 1px solid #b1d9bd;
     padding: 20px 0 30px 0;
+		overflow: auto;
+		height: 100%;
     a.group-connect {
       background: #8eac4b;
       border: 0;
@@ -306,25 +312,30 @@ section {
   }
 
   .secondary-left {
-    margin: 10px 0 0 0;
+    margin: 10px 0 0 0 !important;
     z-index: 5;
     opacity: 0.5;
-    height: 95%;
+		//height: inherit;
+		float: left;
+		height: 100%;
   }
 
   .secondary-left-over {
-    margin: 10px 0 0 0;
-    position:absolute;
-    z-index:6;
-    width:260px;
+    margin: 10px 0 0 0 !important;
+    position: absolute;
+    z-index: 6 !important;
+    width: 260px;
   }
   .secondary-left-over:hover {
-    cursor:pointer;
+    cursor: pointer;
   }
   .main-left {
     z-index: 10;
-    position: absolute;
-    height: 87.2%;
+		float: left;
+		//position: absolute;
+		//height: inherit;
+		margin-left: -215px;
+		height: 100%;
   }
   #user {
     div.group-cont {
@@ -701,7 +712,7 @@ section {
         top: -38px;
       }
 			span.comment-fix input[type="submit"] {
-				left: 265px !important;
+				left: 267px !important;
 			}
     }
     #todo-comments,
@@ -798,16 +809,16 @@ section {
       clear: left;
       float: left;
     }
-    /*.select {
-      position: absolute;
-      width: 158px; // With the padding included, the width is 190 pixels: the actual width of the image.
-      height: 21px;
-      padding: 0 24px 0 8px;
-      color: #fff;
-      font: 12px/21px arial,sans-serif;
-      background: url(select.gif) no-repeat;
-      overflow: hidden;
-    }*/
+    // .select {
+    //       position: absolute;
+    //       width: 158px;
+    //       height: 21px;
+    //       padding: 0 24px 0 8px;
+    //       color: #fff;
+    //       font: 12px/21px arial,sans-serif;
+    //       background: url(select.gif) no-repeat;
+    //       overflow: hidden;
+    //     }
 
     #add-task-form{
       form {

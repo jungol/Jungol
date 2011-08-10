@@ -1,7 +1,7 @@
 <div class="content-bg">
   <div id="filter-wrapper">
     <div id="my-groups-over" class="secondary-left-over"></div>
-    <div id="my-groups" class="main-left">
+    <div id="my-groups" class="main-left no-left">
       <h1>My Groups</h1>
       <ul class="filter-con my_group_ul">
         <% @groups.each do |gr| %>
@@ -75,6 +75,13 @@
 
     <div id="main-welcome" class="main-right">
       <div class="item">
+        <form>
+          <input type="checkbox" class="checkme styled" /><br />
+          <input type="radio" class="completed-radio styled" /><br />
+          <input type="radio" class="progress-radio styled" />
+        </form>
+      </div>
+      <div class="item">
         <div class="item-head">
           <h2>Add to My Groups</h2>
         </div>
@@ -100,14 +107,7 @@
 
     <div class="clearall"></div>
 
-    <!-- <div id="groups" style="float:left; width:200px;">
-      <div class="item">
-        <p>
-          <input type="checkbox" class="checkme styled" /><br />
-          <input type="radio" class="completed-radio styled" /><br />
-          <input type="radio" class="progress-radio styled" />
-        </p>
-      </div> -->
+          
 
   </div>
 </div>
