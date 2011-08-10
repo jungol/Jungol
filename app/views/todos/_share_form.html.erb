@@ -1,6 +1,7 @@
-<li>
+<li class='share-li'>
   <%= form_tag(share_group_todo_path(group, @todo), :method => :post, :remote => true) do %>
     <%= check_box_tag :admins_only %>
+    <label for="admins_only">Admins Only</label>
     <%= content_tag :span, group.name, :class => 'group-share' %>
     <%= submit_tag "Share", :class => 'group-share' %>
   <% end %>
