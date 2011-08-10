@@ -25,7 +25,7 @@
         <% end %>
         <%= link_to_add_fields "New Task", todo_f, :tasks  %>
         <div class = 'actions'>
-          <%= todo_f.submit "Add" %>
+          <span class="add-todo-fix"><%= todo_f.submit "Add" %></span>
         </div>
       <% end %>
     </div>

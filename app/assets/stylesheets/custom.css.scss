@@ -1,4 +1,8 @@
 /*** Global Styles ***/
+html,
+body {
+	height: 100%;
+}
 body {
   background: #fff;
 }
@@ -48,10 +52,6 @@ a:visited {
 
 span.underlineme {
 	text-decoration: underline;
-}
-
-.no-left {
-	margin-left: 10px !important;
 }
 
 
@@ -145,8 +145,6 @@ section {
     background: #cbe3c5;
     border-top: 1px solid #b1d9bd;
     padding: 20px 0 30px 0;
-		overflow: auto;
-		height: 100%;
     a.group-connect {
       background: #8eac4b;
       border: 0;
@@ -312,29 +310,24 @@ section {
   }
 
   .secondary-left {
-    margin: 10px 0 0 0 !important;
+    margin: 10px 0 0 0;
     z-index: 5;
     opacity: 0.5;
-		//height: inherit;
-		float: left;
-		height: 100%;
+		position: relative;
   }
 
   .secondary-left-over {
-    margin: 10px 0 0 0 !important;
-    position: absolute;
-    z-index: 6 !important;
+    margin: 10px 0 0 0;
+    position: relative;
+    z-index: 6;
     width: 260px;
   }
   .secondary-left-over:hover {
-    cursor: pointer;
+    cursor:pointer;
   }
   .main-left {
     z-index: 10;
-		float: left;
-		//position: absolute;
-		//height: inherit;
-		margin-left: -215px;
+    position: relative;
 		height: 100%;
   }
   #user {
@@ -712,7 +705,7 @@ section {
         top: -38px;
       }
 			span.comment-fix input[type="submit"] {
-				left: 267px !important;
+				left: 265px !important;
 			}
     }
     #todo-comments,
