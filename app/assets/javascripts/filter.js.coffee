@@ -9,12 +9,19 @@ $ ->
   todoCount = 0
   discCount = 0
 
+  setHeights = ->
+    hght = $('.content-bg').height()
+    $('#my-groups').height(hght)
+    $('#con-groups').height(hght)
+
   #HIDE SOME STUFF
   $('#con-groups').hide()
   $('#main-items').hide()
   $('#my-groups-over').hide()
+  setHeights()
 
   #SHOW WELCOME HEADER
+
 
   ##--HELPERS
   pluralize = (num, sin, plur = sin + "s") ->
@@ -110,11 +117,12 @@ $ ->
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
         ginfo.stop().fadeTo(500, 1)
+        setHeights()
 
   $('#my-groups-over').click ->
     $(@).unbind('mouseenter mouseleave')
     $(@).hide()
-    $('#con-groups').hide('slide', {direction:'right'}, 300)#SHOW CONNECTED GROUPS
+    $('#con-groups').hide('slide', {direction:'right'}, 300)#HIDE CONNECTED GROUPS
     $('#my-groups').switchClass('secondary-left', 'main-left', 300) #move to right, ungray
 
 
