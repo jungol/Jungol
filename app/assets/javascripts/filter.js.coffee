@@ -11,8 +11,8 @@ $ ->
 
   setHeights = ->
     hght = $('.content-bg').height()
-    $('#my-groups').height(hght)
-    $('#con-groups').height(hght)
+    $('#my-groups').animate({height:hght}, 200 )
+    $('#con-groups').animate({height:hght}, 200 )
 
   #HIDE SOME STUFF
   $('#con-groups').hide()
