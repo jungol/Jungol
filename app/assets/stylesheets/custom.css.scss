@@ -53,7 +53,9 @@ a:visited {
 span.underlineme {
 	text-decoration: underline;
 }
-
+.main-left-fix {
+	margin-left: 10px !important;
+}
 
 /*** Header ***/
 header {
@@ -329,6 +331,7 @@ section {
     z-index: 10;
     position: relative;
 		height: 100%;
+		margin-left: -215px;
   }
   #user {
     div.group-cont {
