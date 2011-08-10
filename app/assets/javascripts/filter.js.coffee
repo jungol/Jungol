@@ -147,7 +147,6 @@ $ ->
       $(@).css {'opacity': 0.5}
 
 
-
   #SELECT SHARED GROUP
   $('.con_group_li').live 'click',  ->
     [todoCount, discCount] = [0, 0]
@@ -180,3 +179,4 @@ $ ->
         if $.isEmptyObject(data.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
+        setHeights()
