@@ -12,7 +12,11 @@
       <h2>Members</h2>
     </div>
     <ul class='group-members-ul'>
-      <%= render 'user', :user => @group.creator %>
+      <% if @group.creator.present? %>
+        <%= render 'user', :user => @group.creator %>
+      <% else %>
+        [Creator Deleted]
+      <% end %>
       <% @group.users_by_role.each do |user| %>
         <%= render 'user', :user => user %>
       <% end %>

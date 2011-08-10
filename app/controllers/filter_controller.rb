@@ -21,7 +21,7 @@ class FilterController < ApplicationController
     @group.shared_todos.each do |td|
       @shown[:items][:todos][i] = td
       @shown[:items][:todos][i][:comments] = td.comments.size
-      @shown[:items][:todos][i][:creator] = td.creator.name
+      @shown[:items][:todos][i][:creator] = td.creator.present? ? td.creator.name : "Creator Deleted"
       @shown[:items][:todos][i][:url] = group_todo_path @group, td
       j=0
       @shown[:items][:todos][i][:shared_groups] = []
@@ -67,7 +67,7 @@ class FilterController < ApplicationController
       if((td.shared_groups | @groups) == td.shared_groups) #union is same as original, i.e. nothing new in @groups
         @shown_items[:todos][i] = td
         @shown_items[:todos][i][:comments] = td.comments.size
-        @shown_items[:todos][i][:creator] = td.creator.name
+        @shown_items[:todos][i][:creator] = td.creator.present? ? td.creator.name : "Creator Deleted"
         @shown_items[:todos][i][:url] = group_todo_path origin_group, td
         j=0
         @shown_items[:todos][i][:shared_groups] = []
