@@ -1204,7 +1204,7 @@ ul.users {
   margin: 0;
   padding-left: 10px;
   width: 74%;
-  li {
+  li.task-item {
     line-height: 25px;
     border-bottom: 1px solid #d8dad8;
     border-top: 1px solid #d8dad8;
@@ -1226,6 +1226,10 @@ ul.users {
         margin-left: 43px;
       }
     }
+  }
+  li:hover .task-desc { 
+    background: url('/assets/sortable-drag.png') right no-repeat;
+    cursor: text;
   }
   li.completed {
     div {
