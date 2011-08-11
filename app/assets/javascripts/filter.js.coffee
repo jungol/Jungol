@@ -67,7 +67,7 @@ $ ->
     discCount++
 
     "<h3 class=\"#{if discCount == 1 then "top" else ""}\">#{linkify disc.title, disc.url, "class='disc_link'"}</h3>
-      <p class=\"greenme\">last post #{timeify disc.last} by #{disc.by.name} |
+      <p class=\"greenme\">last post #{timeify disc.last} by #{if disc.by==null then "[User Deleted]" else disc.by.name} |
       <span>#{linkify pluralize( disc.comments.length, "comment"), disc.url + "#comments", ""}</span>  </p>
                 <p>#{disc.description}</p>
                 <p class=\"greenme\">Shared between  #{shared_groups.join("  |  ")}</p>"
