@@ -2,7 +2,7 @@
 <div class="comment">
   <p class='comment-meta'>
     <span class="comment-user">
-      <%= comment.user.present? ? link_to(comment.user.name, comment.user) : "User Deleted" %></span> |
+      <%= comment.user.present? ? link_to(comment.user.name, comment.user) : "[User Deleted]" %></span> |
     <%= timeago(comment.updated_at, {:class => 'comment-time'}) %>
   </p>
   <p class="comment-body <%= comment_class %>" id="<%= comment_path(comment) %>">
