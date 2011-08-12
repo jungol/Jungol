@@ -101,7 +101,7 @@ header {
       display: block;
       max-width: 125px;
       max-height: 67px;
-      overflow: auto;
+      overflow: hidden;
     }
     img {
           float: left;
@@ -235,6 +235,12 @@ section {
       width: 960px !important;
       float: none !important;
       margin: 0 auto !important;
+    }
+    .modal {
+      width: 478px !important;
+      position: relative;
+      margin: 0 auto;
+      float: none !important;
     }
   }
 
@@ -595,6 +601,9 @@ section {
 
     .headerfull h2 {
       width: 950px !important;
+    }
+    .modalheader h2 {
+      width: 468px !important;
     }
 
     h3 {
