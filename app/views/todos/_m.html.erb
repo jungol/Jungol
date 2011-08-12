@@ -1,12 +1,13 @@
 <div class="content-bg">
-  <div id="main-right" class="main-right full">
-    <div class="alt-item-head headerfull">
+ <div id="main-right" class="main-right modal">
+    <a class="close" href="#"></a>
+    <div class="item-head modalheader">
       <h2>Create New To-Do</h2>
     </div>
-    
+
     <%= form_for [@group, @todo] do |todo_f| %>
       <%= render 'fields', :f => todo_f %>
-    
+
       <%= todo_f.fields_for :tasks, :tasks do |task_f| %>
         <%= render "task_fields", :f => task_f %>
       <% end %>

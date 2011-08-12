@@ -241,6 +241,17 @@ section {
       position: relative;
       margin: 0 auto;
       float: none !important;
+      -moz-box-shadow: 0 2px 3px #777777;
+      -webkit-box-shadow: 0 2px 3px #777777;
+      box-shadow: 0 2px 3px #777777;
+      a.close {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: url('/assets/modal-close.png') top right no-repeat;
+        top: -15px;
+        right: -15px;
+      }
     }
   }
 
@@ -1200,17 +1211,20 @@ div.actions {
 .field_with_errors{
   margin: 10px 0 0 10px;
   padding: 2px;
-  background-color:red;
   display: table;
+  background: none !important;
+  input {
+    border: 2px solid #ff6e68 !important;
+  }
   label{
-    color:#FFF;
+    color: #ff6e68;
   }
 }
 
 #error_explanation {
-  width: 700px;
-  border: 2px solid red;
-  padding: 7px;
+  width: 384px !important;
+  border: 2px solid #ff6e68 !important;
+  padding: 7px !important;
   padding-bottom: 12px;
   margin: 0 0 20px 10px;
   background-color: #f0f0f0;
@@ -1221,7 +1235,7 @@ div.actions {
     font-size: 12px;
     margin: -7px;
     margin-bottom:-5px;
-    background-color: #c00;
+    background-color: #ff6e68 !important;
     color: #fff;
   }
   p {
