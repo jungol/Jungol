@@ -38,6 +38,18 @@ $ ->
   timeify = (time, format = "mm/dd/yy hh:mm") ->
     $.timeago(time)
 
+  b = (text) ->
+    "<b>#{text}</b>"
+
+  getGroups = (item) ->
+    for group in item.shared_groups
+      if group.id == item.group_id then group.name += "*"
+      found = $.inArray("#{group.id}", filterData.selected_groups )
+      if found > -1 or "#{group.id}" == filterData.origin_group ##Group in filter
+        linkify( b(group.name), group.url, "class='group_link'")
+      else #add to list
+        linkify( group.name, group.url, "class='group_link'")
+
   addCon = (_group_id) ->
     "<a href='/groups/#{_group_id}/link'><li class=\"add\">Add a Connection</li></a>"
 
@@ -48,9 +60,7 @@ $ ->
     $('.item#discussions > .item-head a').attr('href', "/groups/#{groupID}/discussions/new")
 
   todoMarkup = (todo) ->
-    shared_groups = for group in todo.shared_groups
-      if group.id == todo.group_id then group.name += "*"
-      linkify( group.name, group.url, "class='group_link'")
+    shared_groups = getGroups(todo)
     todoCount++
 
     "<h3 class=\"#{if todoCount == 1 then "top" else ""}\">#{linkify todo.title, todo.url, "class='todo_link'"}</h3>
@@ -61,10 +71,9 @@ $ ->
                 <p class=\"greenme\">Shared between  #{shared_groups.join("  |  ")}</p>"
 
   discMarkup = (disc) ->
-    shared_groups = for group in disc.shared_groups
-      if group.id == disc.group_id then group.name += "*"
-      linkify( group.name, group.url, "class='group_link'")
+    shared_groups = getGroups(disc)
     discCount++
+
 
     "<h3 class=\"#{if discCount == 1 then "top" else ""}\">#{linkify disc.title, disc.url, "class='disc_link'"}</h3>
       <p class=\"greenme\">last post #{timeify disc.last} by #{if disc.by==null then "[User Deleted]" else disc.by.name} |
@@ -180,5 +189,3 @@ $ ->
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
         setHeights()
-
-
