@@ -78,7 +78,9 @@ $ ->
   groupInfoMarkup = (group) ->
     "<img src='/assets/group-img-default.png' /><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
       <a href=\"/users/invitation/new\" >Invite New User</a></p>
-      <p class=\"blurb\">#{group.about}</p>"
+      <p class=\"blurb\">
+      #{if group.about.length > 150 then group.about.substr(0,150) + "..." else group.about}
+      </p>"
 
   #gets items after group is selected
   getItems = (_group_id) ->
