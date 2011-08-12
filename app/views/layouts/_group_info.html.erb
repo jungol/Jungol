@@ -4,8 +4,13 @@
       <%= image_tag "group-img-default.png", :alt => "#{@group.name} Logo"  %>
     </span>
     <h1><%= @group.name %></h1>
+<<<<<<< HEAD
     <p><%= link_to "Group Info", @group %>| <a href="/users/invitation/new">Invite New User</a></p>
     <p class="blurb"><%= @group.about %></p>
+=======
+    <p><%= link_to "Group Info", @group %> | <a href="/users/invitation/new">Invite New User</a></p>
+    <p class="blurb"><%= truncate @group.about, :length => 150, :separator => ' ' %></p>
+>>>>>>> 669fef10014ff08f00716d3d8d7bd92952657efa
   <% else %>
     <h1><%= @title %></h1><br /><br />
     <p class="blurb noleft">Fusce ut augue quis nisl bibendum tincidunt ut eget diam. Sed urna est, rutrum dignissim. Fusce ut augue quis nisl bibendum tincidunt utnissim.</p>
