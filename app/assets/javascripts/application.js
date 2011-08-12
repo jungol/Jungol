@@ -11,9 +11,9 @@
 
 
 $(document).ready(function(){
-   setTimeout(function(){
-  $("div.flash").fadeOut("slow", function () {
-  $("div.flash").remove();
-      });
-}, 2000);
- });
+  setTimeout(function(){
+    $("div.flash").fadeOut("slow", function () {
+      $("div.flash").remove();
+    });
+  }, 2000);
+});
