@@ -1,8 +1,10 @@
 <div class="group-info">
   <% if @group.present? %>
-    <%= image_tag "group-img-default.png", :alt => "#{@group.name} Logo"  %>
+    <span class="group-img-wrap">
+      <%= image_tag "group-img-default.png", :alt => "#{@group.name} Logo"  %>
+    </span>
     <h1><%= @group.name %></h1>
-    <p><%= link_to "Group Info", @group %> | <a href="/users/invitation/new">Invite New User</a></p>
+    <p><%= link_to "Group Info", @group %>| <a href="/users/invitation/new">Invite New User</a></p>
     <p class="blurb"><%= @group.about %></p>
   <% else %>
     <h1><%= @title %></h1><br /><br />

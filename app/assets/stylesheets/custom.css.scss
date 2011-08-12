@@ -96,10 +96,15 @@ header {
     float: left;
     width: 68%;
     padding-top: 30px;
-    img {
-      float: left;
-      padding-right: 20px;
+    .group-img-wrap {
+      max-width: 125px;
+      max-height: 67px;
+      overflow: auto;
     }
+    img {
+          float: left;
+          padding-right: 20px;
+        }
     h1 {
       font-size: 22px;
       float: left; font-family: 'Cabin', sans-serif;
