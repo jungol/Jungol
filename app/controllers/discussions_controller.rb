@@ -10,6 +10,7 @@ class DiscussionsController < ApplicationController
   def new
     @title = "Create a Discussion"
     @discussion = Discussion.new
+    @privileged = current_user.privileged? @group
   end
 
   def create

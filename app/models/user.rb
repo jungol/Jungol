@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
     self.groups.includes(:memberships).where(:memberships => {:role => 1}).include? group
   end
 
+  def privileged?(group)
+    self.admin_of?(group) || group.creator == self
+  end
+
   def can_view?(current_group, item)  #whether a user can see an item, given the group they're viewing from
     if self.member_of? current_group  # user has to be member of viewing group
       if item.shared_groups.include? current_group  #group has to be shared on this item

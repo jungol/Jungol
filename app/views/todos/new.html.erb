@@ -12,10 +12,12 @@
       <% end %>
       <p><%= link_to_add_fields "Add Task", todo_f, :tasks  %></p>
       <div class='actions'>
-        <span class="admins_only">
-          <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %><br/>
-          <%= check_box_tag :admins_only %>
-        </span>
+        <% if current_user.privileged? @group %>
+          <span class="admins_only">
+            <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %><br/>
+            <%= check_box_tag :admins_only %>
+          </span>
+        <% end %>
         <span class="todo-fix"><%= todo_f.submit "Create List" %></span>
       </div>
     <% end %>

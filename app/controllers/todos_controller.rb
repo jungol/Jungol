@@ -9,6 +9,7 @@ class TodosController < ApplicationController
 
   def new
     @title = "Create a Todo List"
+    @privileged = current_user.privileged? @group
     @todo = Todo.new
     3.times{ @todo.tasks.build }
   end
