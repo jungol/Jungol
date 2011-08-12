@@ -146,7 +146,6 @@ $ ->
       $(@).css {'opacity': 0.5}
 
 
-  #SELECT SHARED GROUP
   $('.con_group_li').live 'click',  ->
     [todoCount, discCount] = [0, 0]
     tbody = $('.item#todos > .item-body')
@@ -179,3 +178,5 @@ $ ->
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
         setHeights()
+
+

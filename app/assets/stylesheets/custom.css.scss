@@ -548,11 +548,8 @@ section {
         padding: 2px;
         font-weight: normal;
         margin-left: 5px;
-        a {
-          text-decoration: none;
-          color: #fff;
-        }
-
+        text-decoration: none;
+        color: #fff;
       }
     }
 
@@ -1212,11 +1209,19 @@ ul.users {
     padding: 5px 0;
     div {
       .task-desc {
+        margin-top: 3px;
+        padding: 2px 0;
         display: inline-block;
         width: 378px;
+        overflow: auto;
+        word-wrap: break-word;
+        line-height: 1.2em;
+        &:hover {
+          background: #ffffcc !important;
+        }
       }
       .task-status {
-        margin-left:70px;
+        margin-left: 70px;
         input {
           margin: 0 43px;
           background: red;
