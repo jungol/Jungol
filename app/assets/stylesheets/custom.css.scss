@@ -605,6 +605,12 @@ section {
       padding: 0 10px;
       margin-top: -5px;
     }
+    p.add-task {
+      padding:0;
+      a.add-task {
+        padding: 0 10px;
+      }
+    }
     p.greenme {
       margin-top: -10px;
     }
@@ -1232,7 +1238,7 @@ ul.users {
       }
     }
   }
-  li:hover .task-desc { 
+  li:hover .task-desc {
     background: url('/assets/sortable-drag.png') right no-repeat;
     cursor: text;
   }
