@@ -67,7 +67,9 @@ $ ->
       <p class=\"greenme\"><span>#{linkify pluralize( todo.tasks_count, "Task"), todo.url + "#tasks", ""}</span>  |
       last update #{timeify todo.updated_at} |
       <span>#{linkify pluralize( todo.comments.length, "comment"), todo.url + "#comments", ""}</span>  </p>
-                <p>#{todo.description}</p>
+                <p>
+                  #{if todo.description.length > 200 then todo.description.substr(0,200) + "..." else todo.description}
+                </p>
                 <p class=\"greenme\">Shared between  #{shared_groups.join("  |  ")}</p>"
 
   discMarkup = (disc) ->
@@ -78,7 +80,9 @@ $ ->
     "<h3 class=\"#{if discCount == 1 then "top" else ""}\">#{linkify disc.title, disc.url, "class='disc_link'"}</h3>
       <p class=\"greenme\">last post #{timeify disc.last} by #{if disc.by==null then "[User Deleted]" else disc.by.name} |
       <span>#{linkify pluralize( disc.comments.length, "comment"), disc.url + "#comments", ""}</span>  </p>
-                <p>#{disc.description}</p>
+                <p>
+                  #{if disc.description.length > 200 then disc.description.substr(0,200) + "..." else disc.description}
+                </p>
                 <p class=\"greenme\">Shared between  #{shared_groups.join("  |  ")}</p>"
 
   conGroupMarkup = (group) ->
