@@ -89,7 +89,7 @@ $ ->
     "<li id='#{group.id}' class='con_group_li'>#{group.name}</li>"
 
   groupInfoMarkup = (group) ->
-    "<img src='/assets/group-img-default.png' /><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
+    "<span class='group-img-wrap'><img src='/assets/group-img-default.png'  alt=\"#{group.name}\"/></span><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
       <a href=\"/users/invitation/new\" >Invite New User</a></p>
       <p class=\"blurb\">
       #{if group.about.length > 150 then group.about.substr(0,150) + "..." else group.about}
