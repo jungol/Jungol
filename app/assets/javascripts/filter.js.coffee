@@ -51,7 +51,7 @@ $ ->
         linkify( group.name, group.url, "class='group_link'")
 
   addCon = (_group_id) ->
-    "<a href='/groups/#{_group_id}/link'><li class=\"add\">Add a Connection</li></a>"
+    "<li class=\"add\"><a href='/groups/#{_group_id}/link'>Add a Connection</a></li>"
 
 ##--/HELPERS
 
