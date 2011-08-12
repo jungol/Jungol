@@ -14,8 +14,8 @@
       <div class='actions'>
         <% if current_user.privileged? @group %>
           <span class="admins_only">
-            <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %><br/>
             <%= check_box_tag :admins_only %>
+            <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %>
           </span>
         <% end %>
         <span class="todo-fix"><%= todo_f.submit "Create List" %></span>

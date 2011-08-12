@@ -660,6 +660,17 @@ section {
         font-size:14px;
       }
     }
+    .agreement {
+      input#group_agreement {
+        position: relative;
+        top: -19px;
+        margin-left: 0;
+      }
+      label[for="group_agreement"] {
+        display: inline-block;
+        width: 200px;
+      }
+    }
     .field {
       padding: 10px 0 0 10px;
       p {
@@ -690,6 +701,18 @@ section {
     }
     .actions {
       padding-left: 10px;
+      span.admins_only {
+        input#admins_only {
+          margin-left: 0;
+          float: left;
+          margin-top: 10px;
+        }
+        label[for="admins_only"] {
+          display: inline-block;
+          width: 200px;
+          margin: 10px 0 0 2px;
+        }
+      }
       input {
         background: #8eac4b;
         display: block;
@@ -713,13 +736,16 @@ section {
       }
       span.todo-fix input[type="submit"] {
         left: 304px !important;
+        // top: -16px !important;
+        top: -30px !important;
       }
       span.disc-fix input[type="submit"]{
         left: 328px !important;
+        top: -30px !important;
       }
       span.group-fix input[type="submit"] {
         left: 288px !important;
-        top: -38px;
+        top: -44px !important;
       }
       span.comment-fix input[type="submit"] {
         left: 266px !important;
