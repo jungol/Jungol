@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110809194505) do
+ActiveRecord::Schema.define(:version => 20110813175238) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -36,10 +36,16 @@ ActiveRecord::Schema.define(:version => 20110809194505) do
   add_index "discussions", ["creator_id"], :name => "index_discussions_on_creator_id"
   add_index "discussions", ["group_id"], :name => "index_discussions_on_group_id"
 
-  create_table "group_groups", :id => false, :force => true do |t|
-    t.integer "group_id"
-    t.integer "group2_id"
+  create_table "group_connections", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "group_b_id"
+    t.integer  "status",     :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "group_connections", ["group_b_id"], :name => "index_group_connections_on_group_b_id"
+  add_index "group_connections", ["group_id"], :name => "index_group_connections_on_group_id"
 
   create_table "groups", :force => true do |t|
     t.string   "name"

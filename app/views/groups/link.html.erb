@@ -12,7 +12,7 @@
         <%= form_tag(link_path(@group), :method => :post) do %>
           <div class="actions">
             <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
-            <%= submit_tag "Connect with #{@group.name}" %>
+            <%= submit_tag "Request connection to #{@group.name}" %>
           </div>
         <% end %>
       </div>

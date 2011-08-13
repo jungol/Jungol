@@ -40,6 +40,19 @@
       <% else %>
         <li>No Groups yet.</li>
       <% end %>
+
+      <% if @group.requested_groups.present? %>
+        <% @group.requested_groups.each do |gr| %>
+          <%= render 'requested_group', :group => gr %>
+        <% end %>
+      <% end %>
+
+      <% if @admin && @group.pending_groups.present? %>
+        <% @group.pending_groups.each do |g| %>
+          <%= render 'pending_group', :group => g %>
+        <% end %>
+      <% end %>
+
       <div class="clearall"></div>
     </ul>
 
