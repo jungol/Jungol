@@ -201,18 +201,18 @@ describe GroupsController do
       end
 
       describe "success" do
-        it "should connect group A to group B" do
+        it "should request connection from group A to group B" do
           lambda do
             test_sign_in(@user)
             post :link, :id => @group, :group => {:id => @group2}
-          end.should change(@group.groups, :count)
+          end.should change(@group.requested_groups, :count)
         end
 
-        it "should connect group B to group A" do
+        it "should make a pending connection from group B to group A" do
           lambda do
             test_sign_in(@user)
             post :link, :id => @group2, :group => {:id => @group}
-          end.should change(@group.groups, :count)
+          end.should change(@group.pending_groups, :count)
         end
 
         it "should redirect to the group page" do

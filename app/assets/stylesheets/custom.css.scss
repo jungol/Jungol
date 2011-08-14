@@ -104,8 +104,8 @@ header {
       overflow: hidden;
     }
     img {
-          float: left;
-        }
+      float: left;
+    }
     h1 {
       margin-left: 10px;
       font-size: 22px;
@@ -511,6 +511,26 @@ section {
           float: left;
           margin-right: 10px;
           margin-left: 0;
+        }
+        span.status {
+          font-weight:bold;
+          display:block;
+        }
+        .user-role {
+          margin-top: 0;
+          span.links a {
+            padding-right: 4px;
+          }
+        }
+        .group-status {
+          margin-top: 0;
+          span.links {
+            padding-left:38px;
+            a {
+              padding: 0px 4px;
+            }
+          }
+
         }
       }
     }
