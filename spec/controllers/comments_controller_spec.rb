@@ -44,7 +44,7 @@ describe CommentsController do
       it "should not create a comment if not logged in" do
         sign_out @user
         expect {
-          post :create, :comment => valid_attributes, :todo => @todo, :group => @group
+          post :create, :comment => valid_attributes, :todo => {:id => @todo.id}, :group => {:id => @group.id}
         }.to_not change(Comment, :count).by(1)
       end
 
@@ -52,7 +52,7 @@ describe CommentsController do
         @user = Factory(:confirmed_user)
         test_sign_in @user
         expect {
-          post :create, :comment => valid_attributes, :todo => @todo, :group => @group
+          post :create, :comment => valid_attributes, :todo => {:id => @todo.id}, :group => {:id => @group.id}
         }.to_not change(Comment, :count).by(1)
       end
     end
@@ -60,18 +60,18 @@ describe CommentsController do
     describe "with valid params" do
       it "creates a new Comment" do
         expect {
-          post :create, :comment => valid_attributes, :todo => @todo, :group => @group
+          post :create, :comment => valid_attributes, :todo => {:id => @todo.id}, :group => {:id => @group.id}
         }.to change(Comment, :count).by(1)
       end
 
       it "assigns a newly created comment as @comment" do
-        post :create, :comment => valid_attributes, :todo => @todo, :group => @group
+        post :create, :comment => valid_attributes, :todo => {:id => @todo.id}, :group => {:id => @group.id}
         assigns(:comment).should be_a(Comment)
         assigns(:comment).should be_persisted
       end
 
       it "redirects to the todo" do
-        post :create, :comment => valid_attributes, :todo => @todo, :group => @group
+        post :create, :comment => valid_attributes, :todo => {:id => @todo.id}, :group => {:id => @group.id}
         response.should redirect_to(group_todo_path @group, @todo )
       end
     end
@@ -80,14 +80,14 @@ describe CommentsController do
       it "assigns a newly created but unsaved comment as @comment" do
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
-        post :create, :comment => {}, :todo => @todo, :group => @group
+        post :create, :comment => valid_attributes, :todo => {:id => @todo.id}, :group => {:id => @group.id}
         assigns(:comment).should be_a_new(Comment)
       end
 
       it "re-renders the todos/show template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Comment.any_instance.stub(:save).and_return(false)
-        post :create, :comment => {}, :todo => @todo, :group => @group
+        post :create, :comment => valid_attributes, :todo => {:id => @todo.id}, :group => {:id => @group.id}
         response.should render_template('todos/show')
       end
     end
