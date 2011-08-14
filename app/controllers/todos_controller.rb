@@ -9,6 +9,7 @@ class TodosController < ApplicationController
 
   def new
     @title = "Create a Todo List"
+    @privileged = current_user.privileged? @group
     @todo = Todo.new
     3.times{ @todo.tasks.build }
   end
@@ -27,7 +28,7 @@ class TodosController < ApplicationController
       @group.todos << @todo
 
       #create share with original group
-      current_user.share @group, @todo
+      current_user.share @group, @todo, (params[:admins_only].present?)
 
       flash[:success] = "Todo Created."
       redirect_to group_todo_path(@group, @todo)
@@ -41,6 +42,7 @@ class TodosController < ApplicationController
     if request.post? #AJAX update - description
       if @todo.update_attributes(params[:todo])
         render :text => params[:todo][:description]
+        return
       end
     else
       if params[:todo][:tasks_attributes] #adding tasks to todo
@@ -60,17 +62,47 @@ class TodosController < ApplicationController
   end
 
   def share
-    if request.post? #CREATE SHARE
+    if request.get? # SHARE PAGE
+      @title = "Share #{@todo.title}"
+      @unshared = @group.unshared_groups(@todo)
+      render :share
+      return
+    elsif request.xhr? #CREATE SHARE
+      response_text = {:flash => {}, :text => {}}
       new_share = current_user.created_shares.new()
+      #DID THEY CHECK THE BOX?
+      if params[:admins_only].present?
+        new_share.admins_only = true
+      end
+
       if new_share.save
         @todo = Todo.find(params[:id])
         @todo.item_shares << new_share
         @shared_group.item_shares << new_share
-        flash[:success] = "Todo #{@todo.title} is now shared with #{@shared_group.name}."
+        response_text[:flash] = "'#{@todo.title}' has been shared with #{@shared_group.name}."
+      else
+        response_text[:flash] = "Problem sharing todo.  Please try again."
+      end
+      render :json => response_text
+      return
+    elsif request.post? #CREATE SHARE
+      new_share = current_user.created_shares.new()
+      #DID THEY CHECK THE BOX?
+      if params[:admins_only].present?
+        new_share.admins_only = true
+      end
+
+      if new_share.save
+        @todo = Todo.find(params[:id])
+        @todo.item_shares << new_share
+        @shared_group.item_shares << new_share
+        flash[:success] = "'#{@todo.title}' has been shared with #{@shared_group.name}."
       else
         flash[:error] = "Problem sharing todo.  Please try again."
       end
     elsif request.put? #UPDATE SHARE
+
+    elsif request.delete? #REMOVE SHARE
 
     else #UNKNOWN
 

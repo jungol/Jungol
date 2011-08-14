@@ -16,8 +16,16 @@ Jungola::Application.routes.draw do
 
   resources :users, :only => :show
   resources :groups do
+    member do
+      post :administer
+      post :approve_user
+      delete :approve_user
+      post :approve_group
+      delete :approve_group
+    end
     resources :discussions do
       member do
+        get :share
         post :share
         put :share
         post :update
@@ -25,6 +33,7 @@ Jungola::Application.routes.draw do
     end
     resources :todos do
       member do
+        get :share
         post :share
         post :update
         put :share

@@ -1,12 +1,25 @@
-<h1>Create a Todo List</h1>
-<%= form_for [@group, @todo] do |todo_f| %>
-  <%= render 'fields', :f => todo_f %>
-
-  <%= todo_f.fields_for :tasks, :tasks do |task_f| %>
-    <%= render "task_fields", :f => task_f %>
-  <% end %>
-  <p><%= link_to_add_fields "Add Task", todo_f, :tasks  %></p>
-  <div class = 'actions'>
-    <%= todo_f.submit "Create List" %>
+<div class="content-bg">
+  <div id="main-right" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Create New To-Do</h2>
+    </div>
+    
+    <%= form_for [@group, @todo] do |todo_f| %>
+      <%= render 'fields', :f => todo_f %>
+    
+      <%= todo_f.fields_for :tasks, :tasks do |task_f| %>
+        <%= render "task_fields", :f => task_f %>
+      <% end %>
+      <p class='add-task'><%= link_to_add_fields "Add Task", todo_f, :tasks  %></p>
+      <div class='actions'>
+        <% if current_user.privileged? @group %>
+          <span class="admins_only">
+            <%= check_box_tag :admins_only %>
+            <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %>
+          </span>
+        <% end %>
+        <span class="todo-fix"><%= todo_f.submit "Create List" %></span>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

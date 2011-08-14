@@ -20,7 +20,7 @@ describe FilterController do
       @group = @user.created_groups.create(@attr)
     end
     it "should be successful" do
-      post :filter, "origin_group" => "1", "selected_groups" => {"1" => {"group_id"=> @group}}
+      post :filter, "origin_group" => "1", "selected_groups" => [@group]
       response.should be_success
     end
   end

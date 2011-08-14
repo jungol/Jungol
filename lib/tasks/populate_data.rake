@@ -15,6 +15,7 @@ namespace :db do
     #     # user.skip_confirmation!
     #    end
 
+    puts "Populating Data..."
     #Create users, groups, and items
     30.times do |n|
       name = Faker::Name.name
@@ -52,8 +53,7 @@ namespace :db do
     15.times do |n|   ## make 20 random group connections
       group = Group.find(n+1)
       random_group = Group.find(Random.rand(15) +1)
-      group.groups << random_group
-      random_group.groups << group
+      group.connect(random_group)
 
       #share items between groups: discussion from group A and todo from group B
 
@@ -64,5 +64,16 @@ namespace :db do
       random_group.creator.share group, todo
 
     end
+
+    #FILTERING SHARE
+    group = Group.find(7)
+    random = Group.find(1)
+    disc = group.discussions.first
+    group.creator.share random, disc
+
+    todo = random.todos.first
+    random.creator.share group, todo
+
+    Rake::Task['db:approve_pending'].invoke
   end
 end

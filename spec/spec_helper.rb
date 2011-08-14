@@ -60,12 +60,15 @@ RSpec.configure do |config|
     visit new_group_path
     fill_in 'Name', :with => "Group Name"
     fill_in 'About', :with => "About us: We're a group"
-    check 'Agreement'
+    check 'group_agreement'
     click_button 'Create Group'
+    current_path
   end
 
-  def integration_make_todo
-    click_link 'Add a Todo'
+  def integration_make_todo(url)
+    url += '/todos/new'
+    visit url
+    #click_link 'Add a Todo'
     fill_in 'Title', :with => "Test Todo"
     fill_in 'Task', :with => "Here's a test task"
     click_button 'Create List'

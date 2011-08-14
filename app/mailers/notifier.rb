@@ -3,9 +3,19 @@ class Notifier < ActionMailer::Base
           :return_path => "mailer@jungolhq.com",
           :reply_to => "admin@jungolhq.com"
 
-  def invite(user, email)
+  def pending_user(admin, group, user)
     @user = user
-    mail(:to => email,
-         :subject => "You're invited to join Jungol!")
+    @admin = admin
+    @group = group
+    mail(:to => admin.email,
+         :subject => "Someone has requested to join #{group.name}")
+  end
+
+  def pending_group(admin, group, group_b)
+    @admin = admin
+    @group = group
+    @group_b = group_b
+    mail(:to => admin.email,
+         :subject => "Another group wants to connect with #{group.name}")
   end
 end

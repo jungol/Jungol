@@ -1,44 +1,45 @@
 <div id="land-top">
-	<p class="welcome"><%= image_tag "lander-logo.png", :alt => 'Jungol' %> helps organizations<br />
-	easily connect with one another,<br />
-	share project management tools,<br/ >
-	and achieve common goals.</p>
-	
-	<div id="land-login">
-		<button type="button" name="" value="" class="login-button">beta log in</button>
-		<%= image_tag "facebook-icon.png", :alt => 'Jungol' %>
-		<%= image_tag "twitter-icon.png", :alt => 'Jungol' %>
-	</div>
-	
-	<div id="form-box">
-		<h1>Sign Up for Jungol Updates!<br /><span>We’ll let you know when it’s tame enough for human use.</span></h1>
-		<form>
-			<input class="email" type="text" value="name@emailladdress.com" onfocus="if(this.value=='name@emailladdress.com'){this.value='';}" onblur="if(this.value==''){this.value='name@emailladdress.com';}" />
-			<button type="button" name="" value="" class="land-submit">Submit</button>
-		</form>
-	</div>
+  <p class="welcome"><%= image_tag "lander-logo.png", :alt => 'Jungol' %> helps organizations<br />
+    easily connect with one another,<br />
+    share project management tools,<br/ >
+    and achieve common goals.</p>
+
+  <div id="land-login" class='lander-login'>
+		<div class="monkey"></div>
+    <button type="button" name="" value="" class="login-button round">beta log in</button>
+    <%= link_to image_tag("facebook.png", :alt => 'Jungol on Facebook'), "http://www.facebook.com/pages/Jungol/165527873509459" %>
+    <%= link_to image_tag("twitter.png", :alt => 'Jungol on Twitter'), "http://www.twitter.com/jungolhq" %>
+    <div id="login-window" >
+      <%= render 'signin' %>
+    </div>
+  </div>
+
+
+  <div id="screenshot">
+    <%= image_tag "lander-screen.png", :alt= => 'Preview Screenshot' %>
+  </div>
+
+  <div id="form-box">
+    <h1>Sign Up for Jungol Updates!<br /><span>We'll let you know when it's tame enough for everyday use.</span></h1>
+    <%= render 'updates_request' %>
+  </div>
 </div>
-	
+
 <div id="land-bottom">
-	<div id="land-copy-left">
-		<p>Jungol was developed by college students who were frustrated by the challenges of working together with multiple community groups that had shared aspirations.</p>
+  <div id="land-copy-left">
+    <p>Jungol was developed by college students who were frustrated by the challenges of working together with multiple community groups that had shared aspirations.</p>
 
-		<p>Jungol increases the impact of joint initiatives in the community by making it easy to collaborate online.</p>
-	</div>
-	
-	<div id="land-copy-right">
-		Jungol facilitates sharing  with cooperating groups
-		<ul>
-			<li>Create To-Do Lists</li>
-			<li>Have Discussions</li>
-			<li>Upload &amp; Share Documents</li>
-		</ul>
-	</div>
-	
-	<div class="clearall"></div>
-</div>
+    <p>Jungol increases the impact of joint initiatives in the community by making it easy to collaborate online.</p>
+  </div>
 
-<div style="float:right;">
-  <%= render 'signin' %>
-  <%= render 'updates_request' %>
+  <div id="land-copy-right">
+    Jungol facilitates collaboration by allowing you to:
+    <ul>
+      <li>Create To-Do Lists</li>
+      <li>Have Discussions</li>
+      <li>Upload &amp; Share Documents</li>
+    </ul>
+  </div>
+
+  <div class="clearall"></div>
 </div>

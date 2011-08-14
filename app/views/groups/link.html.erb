@@ -1,16 +1,23 @@
-<div class='group_profile'>
-  <h1>
-    <%= @group.name %>
-  </h1>
+<div class="content-bg">
+  <div id="wrapper">
 
-  <h2>Please select a group to connect with:</h2>
+    <div class="main-right full">
+      <div id='group-connect' class="item">
+        <div class="alt-item-head headerfull">
+          <h2><%= @group.name %></h2><span class="create-button button"><!-- <a href="#">Edit User »</a></span> -->
+        </div>
 
-  <%= form_tag(link_path(@group), :method => :post) do %>
-    <div class='fields'>
-      <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
+        <h2 class="group-select">Select a group to connect with <%= @group.name %>:</h2>
+
+        <%= form_tag(link_path(@group), :method => :post) do %>
+          <div class="actions">
+            <%= collection_select(:group, :id, @groups, :id, :name, :prompt => true) %>
+            <%= submit_tag "Request connection to #{@group.name}" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class='actions'>
-      <%= submit_tag "Connect to Group" %>
-    </div>
-  <% end %>
+
+    <div class="clearall"></div>
+  </div>
 </div>

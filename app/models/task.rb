@@ -34,6 +34,7 @@ class Task < ActiveRecord::Base
 
 end
 
+#STATUS - 1=IN-P, 2=COMPLETE
 
 # == Schema Information
 #

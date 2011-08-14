@@ -12,13 +12,12 @@ Given /^"([^""]*)" is connected to "([^""]*)"$/ do |group, group2|
   And "I follow \"Connect to Groups\""
   And "I select \"#{group2}\" from \"group_id\""
   expect {
-    And "I press \"Connect to Group\""
+    And "I press \"Connect with #{group}\""
   }.to change(Group.find_by_name(group).groups, :count).by(1)
 end
 
 Given /^"([^""]*)" has a Todo$/ do |group|
-  When "I am on #{group}'s page"
-  And "I follow \"Add a Todo\""
+  When "I am on #{group}'s new todo page"
   And "I fill in \"Title\" with \"Something\""
   expect{
     And "I press \"Create List\""

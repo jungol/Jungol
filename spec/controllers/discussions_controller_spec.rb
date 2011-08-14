@@ -70,6 +70,7 @@ describe DiscussionsController do
         @user = Factory(:confirmed_user)
         test_sign_in @user
         @group.users << @user
+        @group.approve_user @user
         delete :destroy, :group_id => @group, :id => @discussion
         response.should redirect_to group_discussion_path(@group, @discussion)
       end

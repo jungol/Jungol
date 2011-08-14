@@ -1,0 +1,15 @@
+<p>Hello, <%= @admin.name %>!</p>
+
+<p>As an administrator of <%= link_to @group.name, group_url(@group) %>, we wanted to let you know that <%= link_to @user.name, user_url(@user) %> has requested to join your group.</p>
+<p>You can accept or deny their request through the following link.</p>
+
+<p><%= link_to 'View pending user(s)', group_url(@group) %></p>
+
+<p>
+  Have a Great Day!
+  <br>
+  <br>
+  --<br>
+  Jungol Team<br>
+  (Sent automatically)
+</p>

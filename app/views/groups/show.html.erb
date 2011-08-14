@@ -1,55 +1,64 @@
-<%= link_to("Join Group", join_path(@group), :method => :post, :class => 'join_button round', :id => 'join_button') unless @member %>
+<div class="content-bg">
+  <div id="show-group" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>About</h2>
+      <%= content_tag(:span, link_to("Request to Join »", join_path(@group), :method => :post), :class => 'join-button button', :id => 'join_button') unless @member || @pending %>
+      <%= content_tag(:span, "Membership Pending", :class => :button) if @pending %>
 
-<div class='group_profile'>
-  <h1>
-    <%= @group.name %>
-  </h1>
+    </div>
+    <p><%= @group.about %></p>
 
-  <h4>Name</h4> <%= @group.name %><br />
-  <h4>About</h4> <%= @group.about %><br />
-
-  Creator: <%= @group.creator.name %><br />
-  <h4>URL</h4> <%= link_to @group.name, @group %><br /><br />
-
-  <h4>Admins</h4> <%= render @group.admins %><br />
-  <h4>Users</h4> <%= render @group.non_admins %><br /><br />
-
-  <h4>Connected Groups</h4>
-  <% if @group.groups.present? %>
-    <%= render @group.groups %><br />
-  <% else %>
-    No Groups yet.<br />
-  <% end %>
-
-
-  <% if @admin %>
-    <%= "You're a admin! Connect!" %><br />
-    <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %><br />
-  <% end %>
-
-  <h4>Discussions</h4>
-  <% if @group.discussions.present? %>
-    <%= render @group.discussions %><br />
-  <% else %>
-    No Discussions yet.<br />
-  <% end %>
-  <%= link_to "Add a Discussion", new_group_discussion_path(@group)  %><br /><br />
-
-  <h4>Todo Lists</h4>
-  <% if @group.todos.present? %>
-    <%= render @group.todos %><br />
-  <% else %>
-    No Todos yet.<br />
-  <% end %>
-  <%= link_to "Add a Todo", new_group_todo_path(@group)  %><br /><br />
-
-  <% if @group.item_shares.present? %>
-    Being Shared On:
-    <ul>
-      <% @group.item_shares.each do |i| %>
-        <%= render('shared_item', :item => i.item) unless i.item.group_id == @group.id %>
+    <div class="alt-item-head headerfull">
+      <h2>Members</h2>
+    </div>
+    <ul class='group-members-ul'>
+      <% if @group.creator.present? %>
+        <%= render 'user', :user => @group.creator %>
+      <% else %>
+        [Creator Deleted]
       <% end %>
-    </ul>
-  <% end %>
+      <% @group.users_by_role.each do |user| %>
+        <%= render 'user', :user => user %>
+      <% end %>
 
+      <% if @admin && @group.pending_members.present? %>
+        <% @group.pending_members.each do |p| %>
+          <%= render 'pending_user', :user => p %>
+        <% end %>
+      <% end %>
+      <div class="clearall"></div>
+    </ul>
+
+    <div class="alt-item-head headerfull">
+      <h2>Connected Groups</h2>
+    </div>
+    <ul class="group-groups-ul">
+      <% if @group.groups.present? %>
+        <% @group.groups.each do |gr| %>
+          <%= render 'layouts/group_list', :group => gr %>
+        <% end %>
+      <% else %>
+        <li>No Groups yet.</li>
+      <% end %>
+
+      <% if @group.requested_groups.present? %>
+        <% @group.requested_groups.each do |gr| %>
+          <%= render 'requested_group', :group => gr %>
+        <% end %>
+      <% end %>
+
+      <% if @admin && @group.pending_groups.present? %>
+        <% @group.pending_groups.each do |g| %>
+          <%= render 'pending_group', :group => g %>
+        <% end %>
+      <% end %>
+
+      <div class="clearall"></div>
+    </ul>
+
+    <% if @admin %>
+      <%= link_to("Connect to Groups", link_path(@group), :class => 'round') %>
+    <% end %>
+
+  </div>
 </div>

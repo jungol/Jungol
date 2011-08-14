@@ -8,3 +8,12 @@
 //= require jquery_ujs
 //= require_tree ../../../vendor/assets/javascripts/
 //= require_tree .
+
+
+$(document).ready(function(){
+  setTimeout(function(){
+    $("div.flash").fadeOut("slow", function () {
+      $("div.flash").remove();
+    });
+  }, 2000);
+});

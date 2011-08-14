@@ -4,11 +4,10 @@ class UpdatesRequestsController < ApplicationController
     @ip = request.remote_ip
     req = UpdatesRequest.new(params[:updates_request])
     req.ip = @ip
-    if req.save
+    req.save!
       render :nothing => true
-    else
-      render :json => {:error => "fail!"}
-    end
+    rescue ActiveRecord::RecordInvalid => e
+      render :text => e.message, :status => 403
 
   end
 

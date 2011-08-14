@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
-  require 'ruby-debug'
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :about, :email, :password, :password_confirmation, :remember_me, :avatar
@@ -15,15 +14,16 @@ class User < ActiveRecord::Base
     :styles => { :medium => "100x100>", :thumb => "50x50>", :small => "30x30>" },
     :whiny => false,
     :s3_credentials => {
-      :access_key_id     => ENV['S3_KEY'],
-      :secret_access_key => ENV['S3_SECRET']
-    }
+    :access_key_id     => ENV['S3_KEY'],
+    :secret_access_key => ENV['S3_SECRET']
+  }
   validates_attachment_size :avatar, :less_than => 1.megabyte, :message => "must be less than 1MB in size"
   validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'file type is not allowed (only jpeg/png/gif images)'
 
   #MEMBERSHIPS
   has_many :memberships, :dependent => :destroy
-  has_many :groups, :through => :memberships
+  has_many :groups, :through => :memberships, :source => :group, :conditions => ['is_pending =?', false]
+  has_many :pending_groups, :through => :memberships, :source => :group, :conditions => ['is_pending = ?', true]
 
   #CREATOR
   has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'
@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   has_many :comments
 
   validates :name, :presence => true,
-            :length => {:maximum => 50}
-            #:uniqueness => { :case_sensitive => false }
+    :length => {:maximum => 50}
+  #:uniqueness => { :case_sensitive => false }
 
   def member_of?(group)
     self.groups.include? group
@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
 
   def admin_of?(group)
     self.groups.includes(:memberships).where(:memberships => {:role => 1}).include? group
+  end
+
+  def privileged?(group)
+    self.admin_of?(group) || group.creator == self
   end
 
   def can_view?(current_group, item)  #whether a user can see an item, given the group they're viewing from
@@ -57,8 +61,8 @@ class User < ActiveRecord::Base
     (admin_of? item.group) || (item.creator == self)
   end
 
-  def share(group, item)
-    share = self.created_shares.create
+  def share(group, item, admins_only = false)
+    share = self.created_shares.create(:admins_only => admins_only)
     item.item_shares << share
     group.item_shares << share
   end

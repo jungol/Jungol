@@ -1,0 +1,7 @@
+<li class='group-list-li'>
+  <%= gravatar_for(group.creator, :size => 30) if group.creator.present? %>
+  <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %><br />
+  <span class="group-mems"><%= pluralize group.users.count, "member"  %></span> |
+  <span class="group-cons"><%= pluralize group.groups.count, "connection"  %></span>
+  <p class='group-status'> <span class="group status">Connection Requested</span> </p>
+</li>

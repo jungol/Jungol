@@ -4,8 +4,8 @@ describe "TasksJs" do
   describe "Task creation form" do
     before(:each) do
       @user = integration_sign_in(Factory(:confirmed_user))
-      integration_make_group
-      click_link 'Add a Todo'
+      x = integration_make_group
+      visit x + '/todos/new'
     end
 
     it "should have 3 default task fields" do
@@ -26,8 +26,7 @@ describe "TasksJs" do
   describe "Task editing" do
     before(:each) do
       @user = integration_sign_in(Factory(:confirmed_user))
-      integration_make_group
-      integration_make_todo
+      integration_make_todo integration_make_group
     end
 
     it "should show an inline editing field after click", :js => true do

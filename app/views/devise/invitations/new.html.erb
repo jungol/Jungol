@@ -1,12 +1,20 @@
-<h2>Send invitation</h2>
+<div class="content-bg">
+  <div id="new-invite" class="main-right full">
+    <div id="item" class="todos">
+      <div class="alt-item-head headerfull">
+        <h2>Send Invitation</h2>
+      </div>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
-  <%= devise_error_messages! %>
+      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
+        <%= devise_error_messages! %>
 
-  <p><%= f.label :email %><br />
-  <%= f.text_field :email %></p>
+        <p><%= f.label :email %><br />
+          <%= f.text_field :email %></p>
 
-  <p><%= f.submit "Send an invitation" %></p>
-<% end %>
+        <p class="sign-in-button"><%= f.submit "Send an invitation" %></p>
+      <% end %>
 
-<%= link_to "Home", after_sign_in_path_for(resource_name) %><br />
+      <div class="clearall"></div>
+    </div>
+  </div>
+</div>

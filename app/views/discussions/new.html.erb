@@ -1,7 +1,21 @@
-<h1>Create a Discussion</h1>
-<%= form_for [@group, @discussion] do |disc_f| %>
-  <%= render 'fields', :f => disc_f %>
-  <div class = 'actions'>
-    <%= disc_f.submit "Create" %>
+<div class="content-bg">
+  <div id="main-right" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Create New Discussion</h2>
+    </div>
+
+    <%= form_for [@group, @discussion] do |disc_f| %>
+      <%= render 'fields', :f => disc_f %>
+      <div class = 'actions'>
+        <% if current_user.privileged? @group %>
+          <span class="admins_only">
+            <%= check_box_tag :admins_only %>
+            <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %>
+          </span>
+        <% end %>
+        <span class="disc-fix"><%= disc_f.submit "Create" %></span>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
+</div>

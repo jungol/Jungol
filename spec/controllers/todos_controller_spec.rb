@@ -80,6 +80,7 @@ describe TodosController do
         @user = Factory(:confirmed_user)
         test_sign_in @user
         @group.users << @user
+        @group.approve_user @user
         delete :destroy, :group_id => @group, :id => @todo
         response.should redirect_to group_todo_path(@group, @todo)
       end

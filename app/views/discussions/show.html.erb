@@ -1,49 +1,44 @@
-<div class='group_discussion'>
-  <h1>
-    <%= "#{@discussion.title} - #{@group.name}" %>
-  </h1>
-
-  <strong>Title</strong> <%= @discussion.title %><br />
-
-  Creator: <%= @discussion.creator.name %><br />
-  <strong>URL</strong> <%= link_to group_discussion_path(@group, @discussion) %><br /><br />
-
-  <strong>Description</strong><br />
-  <div id="<%= @up_path %>" class='edit_disc_desc'><%= @discussion.description %></div>
-
-  <% if current_user.can_delete? @discussion %>
-    <%= link_to "DELETE DISCUSSION", group_discussion_path(@group, @discussion), :method => :delete, :confirm => "You sure?",
-      :title => "Delete #{@discussion.title}" %>
-  <% end %>
-
-  <% if @shared.present? %>
-    <ul>
-      Item Shared With:
-      <% @shared.each do |group| %>
-        <%= render 'share', :group => group %>
-      <% end %>
-    </ul>
-  <% end %>
-  <% if @unshared.present? %>
-    <ul>
-      Share Item With:
-      <% @unshared.each do |group| %>
-        <%= render 'groups', :group => group %>
-      <% end %>
-    </ul>
-  <% end %>
-  <%= form_for @comment do |f| %>
-    <%= render 'shared/error_messages', :object => f.object %>
-    <%= hidden_field(:group, :id) %>
-    <%= hidden_field(:discussion, :id) %>
-    <div class="field">
-      <%= f.label :body, "Post Comment" %><br />
-      <%= f.text_area :body %>
+<div class="content-bg">
+  <div id="main-right" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2><%= @discussion.title %></h2>
+      <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
+      <span id="share-button" class="button"><a href="<%= share_group_discussion_path(@group, @discussion) %>">Share »</a></span>
     </div>
-    <div class="actions">
-      <%= f.submit 'Post' %>
-    </div>
-  <% end %>
-  <%= render @discussion.comments %>
 
+    <p id="<%= @up_path %>" class='edit_disc_desc'><i><%= @discussion.description %></i></p>
+
+    <% if current_user.can_delete? @discussion %>
+      <p><%= link_to "DELETE DISCUSSION", group_discussion_path(@group, @discussion), :method => :delete, :confirm => "You sure?",
+        :title => "Delete #{@discussion.title}" %></p>
+    <% end %>
+
+    <% if @shared.present? %>
+      <ul class="shared-list greenme">
+        <li>Shared between:  </li>
+        <% @shared.each do |group| %>
+          <%= render 'shared_group', :group => group %>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_for @comment do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>
+      <%= hidden_field(:group, :id) %>
+      <%= hidden_field(:discussion, :id) %>
+      <div class="field">
+        <a name="comments"></a>
+        <p>Comments</p>
+        <span><%= f.label :body, "Post Comment..." %></span><br />
+        <%= f.text_area :body %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Post Comment »' %>
+      </div>
+    <% end %>
+    <div id="disc-comments">
+      <%= render @discussion.comments %>
+    </div>
+
+  </div>
 </div>

@@ -1,0 +1,14 @@
+<div class="group-info">
+  <% if @group.present? %>
+    <span class="group-img-wrap">
+      <%= image_tag "group-img-default.png", :alt => "#{@group.name} Logo"  %>
+    </span>
+    <h1><%= @group.name %></h1>
+    <p><%= link_to "Group Info", @group %> | <a href="/users/invitation/new">Invite New User</a></p>
+    <p class="blurb"><%= truncate @group.about, :length => 150, :separator => ' ' %></p>
+  <% else %>
+    <h1><%= @title %></h1><br /><br />
+    <p class="blurb noleft">Fusce ut augue quis nisl bibendum tincidunt ut eget diam. Sed urna est, rutrum dignissim. Fusce ut augue quis nisl bibendum tincidunt utnissim.</p>
+  <% end %>
+  <div class="clearall"></div>
+</div>

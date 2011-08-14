@@ -15,11 +15,16 @@ class Group < ActiveRecord::Base
   after_create :add_creator_as_member
 
   #AFFILIATES
-  has_and_belongs_to_many :groups, :join_table => "group_groups", :association_foreign_key => :group2_id
+  has_many :group_connections, :dependent => :destroy
+  has_many :groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 2]
+  has_many :requested_groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 0]
+  has_many :pending_groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 1]
 
   #MEMBERSHIPS
-  has_many :memberships
+  has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
+  has_many :members, :through => :memberships, :source => :user, :conditions => ['is_pending = ?', false]
+  has_many :pending_members, :through => :memberships, :source => :user, :conditions => ['is_pending = ?', true]
 
   #CREATOR
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
@@ -32,20 +37,34 @@ class Group < ActiveRecord::Base
 
   has_many :discussions, :dependent => :destroy
 
+  def approve_user(user)
+    if pending_members.include?(user)
+      user.memberships.find_by_group_id(self.id).update_attributes(:is_pending => false)
+    end
+  end
+
   def member?(user)
-    users.include?(user)
+    members.include?(user)
+  end
+
+  def pending_member?(user)
+    pending_members.include?(user)
   end
 
   def admin?(user)
     admins.include?(user) if user
   end
 
+  def users_by_role
+    members.all(:conditions => ['users.id not in (?)', self.creator], :include => :memberships, :order => 'memberships.role DESC' )
+  end
+
   def admins
-    users.includes(:memberships).where(:memberships => {:role => 1})
+    members.includes(:memberships).where(:memberships => {:role => 1})
   end
 
   def non_admins
-    users.includes(:memberships).where(:memberships => {:role => 2})
+    members.includes(:memberships).where(:memberships => {:role => 2})
   end
 
   def non_admin?(user)
@@ -57,8 +76,8 @@ class Group < ActiveRecord::Base
   end
 
   def unconnected_groups
-    if self.groups.present?
-      Group.find(:all, :conditions => ['id not in (?) and id not in (?)', self.groups, self.id])
+    if self.group_connections.present?
+      Group.find(:all, :conditions => ['id not in (?) and id not in (?)', self.groups | self.pending_groups | self.requested_groups, self.id])
     else
       Group.find(:all, :conditions => ['id not in (?)', self.id])
     end
@@ -74,6 +93,7 @@ class Group < ActiveRecord::Base
 
   def add_creator_as_member
     self.users << creator
+      approve_user creator
   end
 
   def max_users
@@ -81,6 +101,25 @@ class Group < ActiveRecord::Base
       errors.add :base, "Group cannot have more than 30 users."
     end
   end
+
+  def connect(group)
+    req = self.group_connections.build(:group_b_id => group.id)
+    pend = group.group_connections.build(:group_b_id => self.id, :status => 1)
+    req.save! && pend.save!
+  end
+
+  def approve_group(group)
+    req = self.group_connections.find_by_group_b_id(group.id)
+    pend = group.group_connections.find_by_group_b_id(self.id)
+    req.update_attributes(:status => 2) && pend.update_attributes(:status => 2)
+  end
+
+  def deny_group(group)
+    req = self.group_connections.find_by_group_b_id(group.id)
+    pend = group.group_connections.find_by_group_b_id(self.id)
+    req.destroy && pend.destroy
+  end
+
 end
 
 

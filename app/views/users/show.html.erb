@@ -1,15 +1,39 @@
-<div class='profile'>
-  <h1>
-    <% if @user.avatar.present? %>
-      <%= image_tag @user.avatar.url(:thumb) %>
-    <% else %>
-      <%= gravatar_for @user %>
-    <% end %>
-    <%= @user.name %>
-  </h1>
+<div class="content-bg">
+  <div id="wrapper">
+    <div id="user" class="main-right full">
+      <div class="item">
+        <div class="alt-item-head headerfull">
+          <h2><%= @user.name %>'s Profile</h2><span class="create-button button"><!-- <a href="#">Edit User »</a></span> -->
+        </div>
 
-  <strong>Email</strong> <%= @user.email %><br />
-  <strong>About</strong><%= @user.about %><br />
-  <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-  <strong>Groups</strong><%= render @user.groups %><br />
+        <h1 class="top">
+          <% if @user.avatar.present? %>
+            <%= image_tag @user.avatar.url(:thumb) %>
+          <% else %>
+            <%= gravatar_for @user %>
+          <% end %>
+          <%= @user.name %>
+        </h1>
+
+        <p class="about-user"><span class="user-title">About</span><%= @user.about %></p>
+        <p class="email-user"><span class="user-title">Email</span><%= @user.email %></p>
+        <p class="groups-user">
+          <span class="user-title">Groups</span>
+        </p>
+
+        <div class="group-cont">
+          <ul class="user-groups">
+            <% @user.groups.each do |gr| %>
+              <%= render 'layouts/group_list', :group => gr %>
+            <% end %>
+          </ul>
+
+          <div class="clearall"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="clearall"></div>
+  </div>
 </div>

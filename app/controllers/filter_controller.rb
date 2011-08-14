@@ -2,6 +2,7 @@ class FilterController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @title = "Welcome to Jungol!"
     @groups = current_user.groups #Placeholder
     @current_todos, @current_discussions = [[], []]
     @groups.each do |group|
@@ -15,8 +16,38 @@ class FilterController < ApplicationController
     @group = Group.find(params[:group_id])
     @shown[:main_group] = @group
     @shown[:shared_groups] = @group.groups
-    @shown[:items][:todos] = @group.shared_todos
-    @shown[:items][:discussions] = @group.shared_discussions
+    @shown[:items] = {:todos => {}, :discussions => {}}
+    i=0
+    @group.shared_todos.each do |td|
+      @shown[:items][:todos][i] = td
+      @shown[:items][:todos][i][:comments] = td.comments.size
+      @shown[:items][:todos][i][:creator] = td.creator.present? ? td.creator.name : "Creator Deleted"
+      @shown[:items][:todos][i][:url] = group_todo_path @group, td
+      j=0
+      @shown[:items][:todos][i][:shared_groups] = []
+      td.shared_groups.each do |gr|
+        @shown[:items][:todos][i][:shared_groups][j] = gr
+        @shown[:items][:todos][i][:shared_groups][j][:url] = group_path gr
+        j += 1
+      end
+      i += 1
+    end
+    i=0
+    @group.shared_discussions.each do |dc|
+      @shown[:items][:discussions][i] = dc
+      @shown[:items][:discussions][i][:comments] = dc.comments
+      @shown[:items][:discussions][i][:by] = dc.comments.present? ? dc.comments.last.user : dc.creator
+      @shown[:items][:discussions][i][:url] = group_discussion_path @group, dc
+      @shown[:items][:discussions][i][:last] = dc.comments.present? ? dc.comments.last.updated_at : dc.updated_at
+      j=0
+      @shown[:items][:discussions][i][:shared_groups] = []
+      dc.shared_groups.each do |gr|
+        @shown[:items][:discussions][i][:shared_groups][j] = gr
+        @shown[:items][:discussions][i][:shared_groups][j][:url] = group_path gr
+        j += 1
+      end
+      i += 1
+    end
 
     render :json => @shown
   end
@@ -24,7 +55,9 @@ class FilterController < ApplicationController
   def filter
     @groups = []
     @shown_items = {:todos => {}, :discussions => {}}
-    params["selected_groups"].each {|k,v| @groups << v["group_id"]}
+    if params["selected_groups"].present?
+      params["selected_groups"].each {|val| @groups << val }
+    end
     origin_group = Group.find_by_id(params["origin_group"])
     @groups = Group.find(:all, :conditions => ['id in (?)', @groups])
     @groups << origin_group
@@ -34,7 +67,7 @@ class FilterController < ApplicationController
       if((td.shared_groups | @groups) == td.shared_groups) #union is same as original, i.e. nothing new in @groups
         @shown_items[:todos][i] = td
         @shown_items[:todos][i][:comments] = td.comments.size
-        @shown_items[:todos][i][:creator] = td.creator.name
+        @shown_items[:todos][i][:creator] = td.creator.present? ? td.creator.name : "Creator Deleted"
         @shown_items[:todos][i][:url] = group_todo_path origin_group, td
         j=0
         @shown_items[:todos][i][:shared_groups] = []

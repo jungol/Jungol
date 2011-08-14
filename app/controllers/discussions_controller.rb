@@ -10,6 +10,7 @@ class DiscussionsController < ApplicationController
   def new
     @title = "Create a Discussion"
     @discussion = Discussion.new
+    @privileged = current_user.privileged? @group
   end
 
   def create
@@ -18,7 +19,7 @@ class DiscussionsController < ApplicationController
       @group.discussions << @discussion
 
       #create share with original group
-      current_user.share @group, @discussion
+      current_user.share @group, @discussion, (params[:admins_only].present?)
 
       flash[:success] = "Discussion Created."
       redirect_to group_discussion_path(@group, @discussion)
@@ -40,22 +41,55 @@ class DiscussionsController < ApplicationController
     if request.post? #AJAX update - description
       if @discussion.update_attributes(params[:discussion])
         render :text => params[:discussion][:description]
+        return
       end
     end
+    render :nothing => true
   end
 
   def share
-    if request.post? #CREATE SHARE
+    if request.get? # SHARE PAGE
+      @title = "Share #{@discussion.title}"
+      @unshared = @group.unshared_groups(@discussion)
+      #@share = @current_user.created_shares.new()
+      render :share
+      return
+    elsif request.xhr? #CREATE SHARE (AJAX)
+      response_text = {:flash => {}, :text => {}}
       new_share = current_user.created_shares.new()
+      #DID THEY CHECK THE BOX?
+      if params[:admins_only].present?
+        new_share.admins_only = true
+      end
+
       if new_share.save
         @discussion = Discussion.find(params[:id])
         @discussion.item_shares << new_share
         @shared_group.item_shares << new_share
-        flash[:success] = "Discussion #{@discussion.title} is now shared with #{@shared_group.name}."
+        response_text[:flash] = "'#{@discussion.title}' has been shared with #{@shared_group.name}."
+      else
+        response_text[:flash] = "Problem sharing discussion.  Please try again."
+      end
+      render :json => response_text
+      return
+
+    elsif request.post? #CREATE SHARE
+      new_share = current_user.created_shares.new()
+      if params[:admins_only].present?
+        new_share.admins_only = true
+      end
+
+      if new_share.save
+        @discussion = Discussion.find(params[:id])
+        @discussion.item_shares << new_share
+        @shared_group.item_shares << new_share
+        flash[:success] = "'#{@discussion.title}' has been shared with #{@shared_group.name}."
       else
         flash[:error] = "Problem sharing discussion.  Please try again."
       end
     elsif request.put? #UPDATE SHARE
+
+    elsif request.delete? #DELETE SHARE
 
     else #UNKNOWN
 

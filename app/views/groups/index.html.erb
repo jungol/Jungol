@@ -1,12 +1,18 @@
-<%= link_to "Create Group", 'groups/new', :class => 'create_button round' %>
+<div class="content-bg">
+  <div id="wrapper">
 
-<h1>All groups</h1>
+    <div id="all-groups" class="main-right full">
+      <div class="alt-item-head headerfull">
+        <h2>All Groups</h2>
+      </div>
+      <%= will_paginate %>
 
-<%= will_paginate %>
+      <ul class='all-groups'>
+        <%= render @groups %>
+      </ul>
 
+      <%= will_paginate %>
 
-<ul class='groups'>
-    <%= render @groups %>
-</ul>
-
-<%= will_paginate %>
+      <div class="clearall"></div>
+    </div>
+  </div>

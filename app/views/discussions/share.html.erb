@@ -1,0 +1,15 @@
+<div class="content-bg">
+  <div id="disc-share" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Share <%= @discussion.title %> with:</h2>
+    </div>
+
+    <% if(@unshared.present? && current_user.member_of?(@group)) %>
+      <ul class="share-list">
+        <% @unshared.each do |group| %>
+          <%= render 'share_form', :group => group %>
+        <% end %>
+      </ul>
+    <% end %>
+    <div class="clearall"></div>
+  </div>

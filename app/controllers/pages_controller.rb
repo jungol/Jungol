@@ -8,7 +8,7 @@ class PagesController < ApplicationController
       return
     end
     @updates_request = UpdatesRequest.new
-    @title = "Jungol"
+    @title = "Coming Soon"
     render :lander
   end
 
