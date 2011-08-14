@@ -15,7 +15,7 @@
         <% else %>
           <p><%= image_tag(@user.avatar.url(:medium)) %></p>
         <% end %>
-        <p><%= f.label 'Upload an avatar image' %><br />
+        <p><%= f.label 'Upload a profile image' %><br />
           <%= f.file_field :avatar %> </p>
 
         <p><%= f.label :about %><br />
