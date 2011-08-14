@@ -71,15 +71,20 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: groups
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  about      :text
-#  creator_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  about             :text
+#  creator_id        :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
 #
 

@@ -14,6 +14,15 @@ class Group < ActiveRecord::Base
 
   after_create :add_creator_as_member
 
+  #AVATAR
+  has_attached_file :logo, {
+    :styles => { :medium => "300x300>", :thumb => "50x50>", :small => "30x30>" },
+    :whiny => false
+  }.merge(PAPERCLIP_IMAGE_OPTIONS)
+
+  validates_attachment_size :logo, :less_than => 1.megabyte, :message => "must be less than 1MB in size"
+  validates_attachment_content_type :logo, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'file type is not allowed (only jpeg/png/gif images)'
+
   #AFFILIATES
   has_many :group_connections, :dependent => :destroy
   has_many :groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 2]
@@ -124,15 +133,20 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: groups
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  about      :text
-#  creator_id :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  about             :text
+#  creator_id        :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  logo_file_name    :string(255)
+#  logo_content_type :string(255)
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
 #
 
