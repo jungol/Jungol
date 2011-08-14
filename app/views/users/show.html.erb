@@ -29,9 +29,13 @@
 
         <div class="group-cont">
           <ul class="user-groups">
+            <% if @user.groups.present? %>
             <% @user.groups.each do |gr| %>
               <%= render 'layouts/group_list', :group => gr %>
             <% end %>
+          <% else %>
+            No Groups Yet.
+          <% end %>
           </ul>
 
           <div class="clearall"></div>
