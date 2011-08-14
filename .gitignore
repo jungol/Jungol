@@ -11,3 +11,4 @@ doc/app
 *.log
 .DS_Store
 config/initializers/setup_mail.rb
+public/system

@@ -7,7 +7,11 @@ gem 'rails', '3.1.0.rc4'
 
 gem 'pg'
 
+#Files/Images
 gem 'gravatar_image_tag'
+gem 'paperclip', '~> 2.3'
+gem 'aws-s3'
+
 gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
 gem 'rake', '0.8.7'
 

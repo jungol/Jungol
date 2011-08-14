@@ -6,10 +6,23 @@
           <h2><%= @user.name %>'s Profile</h2><span class="create-button button"><!-- <a href="#">Edit User »</a></span> -->
         </div>
 
-        <h1 class="top"><%= gravatar_for @user %> <%= @user.name %></h1>
+        <h1 class="top">
+          <%= render 'avatar', :user => @user, :size => 50 %>
+          <%= @user.name %>
+        </h1>
 
-        <p class="about-user"><span class="user-title">About</span><%= @user.about %></p>
-        <p class="email-user"><span class="user-title">Email</span><%= @user.email %></p>
+        <p class="about-user">
+          <span class="user-title">
+            About
+          </span>
+          <%= @user.about %>
+        </p>
+        <p class="email-user">
+          <span class="user-title">
+            Email
+          </span>
+          <%= @user.email %>
+        </p>
         <p class="groups-user">
           <span class="user-title">Groups</span>
         </p>
@@ -26,7 +39,5 @@
 
       </div>
     </div>
-
-    <div class="clearall"></div>
   </div>
 </div>

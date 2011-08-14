@@ -2,11 +2,19 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :about, :email, :password, :password_confirmation, :remember_me
-  #attr_accessor :password
+  attr_accessible :name, :about, :email, :password, :password_confirmation, :remember_me, :avatar
+
+  #AVATAR
+  has_attached_file :avatar, {
+    :styles => { :medium => "100x100>", :thumb => "50x50>", :small => "30x30>" },
+    :whiny => false
+  }.merge(PAPERCLIP_IMAGE_OPTIONS)
+
+  validates_attachment_size :avatar, :less_than => 1.megabyte, :message => "must be less than 1MB in size"
+  validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'file type is not allowed (only jpeg/png/gif images)'
 
   #MEMBERSHIPS
   has_many :memberships, :dependent => :destroy
@@ -21,8 +29,8 @@ class User < ActiveRecord::Base
   has_many :comments
 
   validates :name, :presence => true,
-            :length => {:maximum => 50}
-            #:uniqueness => { :case_sensitive => false }
+    :length => {:maximum => 50}
+  #:uniqueness => { :case_sensitive => false }
 
   def member_of?(group)
     self.groups.include? group
@@ -58,6 +66,7 @@ class User < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -85,5 +94,9 @@ end
 #  invitation_limit       :integer
 #  invited_by_id          :integer
 #  invited_by_type        :string(255)
+#  avatar_file_name       :string(255)
+#  avatar_content_type    :string(255)
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 
