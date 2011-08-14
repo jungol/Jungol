@@ -9,14 +9,17 @@
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f| %>
         <%= devise_error_messages! %>
 
-        <%= gravatar_for @user %>
-        <p class="change"><%= link_to "change", "http://en.gravatar.com/emails", :target => "_blank" %></p>
+        <% if !@user.avatar.present? %>
+          <p><%= gravatar_for @user, :size => 100 %><br />
+            <%= link_to "Change Gravatar", "http://en.gravatar.com/emails", :target => "_blank" %></p>
+        <% else %>
+          <p><%= image_tag(@user.avatar.url(:medium)) %></p>
+        <% end %>
+        <p><%= f.label 'Upload an avatar image' %><br />
+          <%= f.file_field :avatar %> </p>
 
         <p><%= f.label :about %><br />
           <%= f.text_area :about %></p>
-
-        <p><%= f.label :avatar %><br />
-          <%= f.file_field :avatar %> </p>
 
         <p><%= f.label :name %><br /><%= f.text_field :name %></p>
 

@@ -12,6 +12,7 @@ class GroupConnection < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: group_connections
@@ -19,7 +20,7 @@ end
 #  id         :integer         not null, primary key
 #  group_id   :integer
 #  group_b_id :integer
-#  is_pending :boolean         default(TRUE), not null
+#  status     :integer         default(0), not null
 #  created_at :datetime
 #  updated_at :datetime
 #

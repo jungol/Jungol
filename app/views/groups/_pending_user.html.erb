@@ -1,6 +1,6 @@
 <% is_creator = current_user==@group.creator %>
 <li class='group-user'>
-  <%= gravatar_for user, :size => 30 %>
+  <%= render 'users/avatar', :user => user, :size => 30 %>
   <%= link_to user.name, user %>
   <p class='user-role'>
     <span class='user status'>Pending</span>

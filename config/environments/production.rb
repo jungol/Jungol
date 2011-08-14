@@ -67,4 +67,18 @@ Jungola::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  PAPERCLIP_IMAGE_OPTIONS = {
+    :storage => :s3,
+    :bucket => 'jungol_images',
+    :s3_credentials => {
+    :access_key_id     => ENV['S3_KEY'],
+    :secret_access_key => ENV['S3_SECRET'] }
+  }
+  PAPERCLIP_DOC_OPTIONS = {
+    :storage => :s3,
+    :bucket => 'jungol_docs',
+    :s3_credentials => {
+    :access_key_id     => ENV['S3_KEY'],
+    :secret_access_key => ENV['S3_SECRET'] }
+  }
 end

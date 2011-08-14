@@ -44,7 +44,7 @@ describe "Users" do
       end
 
       it "should have a profile image" do
-        page.should have_selector( "h1>img", :class => "gravatar")
+        page.should have_selector("h1 > a > img", :class => "gravatar")
       end
 
     end

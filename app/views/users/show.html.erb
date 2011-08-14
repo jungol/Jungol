@@ -7,16 +7,22 @@
         </div>
 
         <h1 class="top">
-          <% if @user.avatar.present? %>
-            <%= image_tag @user.avatar.url(:thumb) %>
-          <% else %>
-            <%= gravatar_for @user %>
-          <% end %>
+          <%= render 'avatar', :user => @user, :size => 50 %>
           <%= @user.name %>
         </h1>
 
-        <p class="about-user"><span class="user-title">About</span><%= @user.about %></p>
-        <p class="email-user"><span class="user-title">Email</span><%= @user.email %></p>
+        <p class="about-user">
+          <span class="user-title">
+            About
+          </span>
+          <%= @user.about %>
+        </p>
+        <p class="email-user">
+          <span class="user-title">
+            Email
+          </span>
+          <%= @user.email %>
+        </p>
         <p class="groups-user">
           <span class="user-title">Groups</span>
         </p>
@@ -33,7 +39,5 @@
 
       </div>
     </div>
-
-    <div class="clearall"></div>
   </div>
 </div>
