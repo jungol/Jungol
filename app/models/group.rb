@@ -93,7 +93,7 @@ class Group < ActiveRecord::Base
 
   def add_creator_as_member
     self.users << creator
-    approve_user(creator)
+    approve_user creator
   end
 
   def max_users

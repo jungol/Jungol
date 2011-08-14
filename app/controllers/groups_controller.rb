@@ -26,6 +26,12 @@ class GroupsController < ApplicationController
       if !@group.users.include?(current_user)
         @group.users << current_user
         flash[:success] = "Thanks! Your membership must now be approved by an admin of #{@group.name}."
+
+        #SEND OUT NOTIFICATION EMAILS
+        @group.admins.each do |admin|
+          Notifier.pending_user(admin, @group, current_user).deliver
+        end
+
         redirect_to @group
       else
         flash[:error] = "Error requesting to join #{@group.name}. Please try again."
@@ -47,6 +53,11 @@ class GroupsController < ApplicationController
       @group2 = Group.find(params[:group][:id])
       if @group.connect(@group2)
         flash[:success] = "Thanks. #{@group2.name} must now approve the connection."
+
+        #SEND OUT NOTIFICATION EMAILS
+        @group2.admins.each do |admin|
+          Notifier.pending_group(admin, @group2, @group).deliver
+        end
       else
         flash[:error] = "Error connecting with #{@group2.name}. Please try again."
       end

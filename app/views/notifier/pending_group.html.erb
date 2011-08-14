@@ -1,0 +1,15 @@
+<p>Hello, <%= @admin.name %>!</p>
+
+<p>As an administrator of <%= link_to @group.name, group_url(@group) %>, we wanted to let you know that <%= link_to @group_b.name, group_url(@group_b) %> has requested to connect with your group.</p>
+<p>Once connected, you can share items (To-Dos, Discussions, Documents) with each other.  You can accept or deny their request through the following link.</p>
+
+<p><%= link_to 'View pending connection(s)', group_url(@group) %></p>
+
+<p>
+  Have a Great Day!
+  <br>
+  <br>
+  --<br>
+  Jungol Team<br>
+  (Sent automatically)
+</p>
