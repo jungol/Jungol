@@ -91,7 +91,7 @@ $ ->
   groupInfoMarkup = (group) ->
     "<div class='group-img>'<span class='group-img-wrap'>"+
       linkify(
-        "<img src=\"#{if group.logo_file_name==null then '/assets/group-img-default.png' else "assets/#{group.logo_file_name}"}\"
+        "<img src=\"#{if group.logo_file_name==null then '/assets/group-img-default.png' else "http://s3.amazonaws.com/jungol_images/app/public/system/logos/#{group.id}/medium/#{group.logo_file_name}"}\"
     alt=\"#{group.name}\"/>"
     ,group.url) +
       "</span></div><div class='group-text'><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
