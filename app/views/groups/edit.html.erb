@@ -1,9 +1,25 @@
-<h1>Edit Group</h1>
+<div class="content-bg">
+  <div id="group-edit" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Edit Group</h2>
+    </div>
 
-<%= form_for(@group) do |f| %>
-  <%= render 'fields', :f => f %>
-   <div class='actions'>
-    <%= f.submit "Update" %>
+    <%= form_for @group, :html => { :multipart => true } do |f| %>
+      <p>
+        <%= render('logo', :group => @group, :size => 300) %>
+      </p>
+      <div class='field'>
+        <%= f.label 'Upload a Group Logo' %><br />
+        <%= f.file_field :logo %>
+      </div>
+      <div class='field'>
+        <%= f.label :about %> <br />
+        <%= f.text_area :about %>
+      </div>
+      <div class='actions submit'>
+        <%= f.submit "Update" %>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
-
+</div>

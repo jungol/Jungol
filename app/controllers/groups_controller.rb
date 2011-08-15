@@ -5,12 +5,14 @@ class GroupsController < ApplicationController
 
   def index
     @title = "All Groups"
+    @blurb = "These are all the groups currently on Jungol."
     @groups = Group.paginate(:page => params[:page])
   end
 
   def new
     @title = "Create Group"
     @group = Group.new
+    @blurb = "Create a new group to share with the world."
   end
 
   def show

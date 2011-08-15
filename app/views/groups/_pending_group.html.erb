@@ -1,6 +1,6 @@
 <% can_approve = current_user.privileged? @group %>
 <li class='group-list-li'>
-  <%= gravatar_for(group.creator, :size => 30) if group.creator.present? %>
+  <%= render 'groups/logo', :group => group, :size => 30 %>
   <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %><br />
   <span class="group-mems"><%= pluralize group.users.count, "member"  %></span> |
   <span class="group-cons"><%= pluralize group.groups.count, "connection"  %></span>

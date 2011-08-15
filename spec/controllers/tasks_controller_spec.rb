@@ -98,7 +98,7 @@ describe TasksController do
         @attr = @attr.merge( :status => 1)
         put :update, :group_id => @group, :todo_id => @todo, :id => @item, :task => @attr
         @item.reload
-        @item.status.should == @attr[:status]
+        @item.status.to_s.should == @attr[:status]
       end
 
       it "should have a confirmation message" do

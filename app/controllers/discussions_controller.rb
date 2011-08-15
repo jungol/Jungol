@@ -11,6 +11,7 @@ class DiscussionsController < ApplicationController
     @title = "Create a Discussion"
     @discussion = Discussion.new
     @privileged = current_user.privileged? @group
+    @blurb = "Create a new Discussion to share with the world."
   end
 
   def create

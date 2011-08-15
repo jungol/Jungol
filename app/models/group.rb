@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
 
   attr_accessor :agreement
-  attr_accessible :name, :about, :agreement
+  attr_accessible :name, :about, :agreement, :logo
 
   validates(:name, :presence => true,
             :length => {:maximum => 50},
@@ -16,7 +16,7 @@ class Group < ActiveRecord::Base
 
   #AVATAR
   has_attached_file :logo, {
-    :styles => { :medium => "300x300>", :thumb => "50x50>", :small => "30x30>" },
+    :styles => { :medium => "300x100>", :thumb => "50x17>", :small => "30x10>" },
     :whiny => false
   }.merge(PAPERCLIP_IMAGE_OPTIONS)
 

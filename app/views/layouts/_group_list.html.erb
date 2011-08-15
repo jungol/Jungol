@@ -1,4 +1,4 @@
 <li class='group-list-li'>
-  <%= gravatar_for(group.creator, :size => 30) if group.creator.present? %>
+  <%= render 'groups/logo', :group => group, :size => 30 %>
   <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %>
 </li>

@@ -1,0 +1,15 @@
+<% if size == 50
+      @size = :thumb
+      @width = 50
+    elsif size==30
+      @size = :small
+      @width = 30
+    else
+      @size = :medium
+      @width = ""
+    end %>
+<% if group.logo.present? %>
+  <%= link_to(image_tag(group.logo.url(@size), :alt => "#{group.name} Logo"), group_path(group)) %>
+<% else %>
+  <%= link_to(image_tag("group-img-default.png", :alt => "#{group.name} Logo", :width => @width), group_path(group)) %>
+<% end %>
