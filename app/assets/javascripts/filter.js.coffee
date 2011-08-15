@@ -115,7 +115,7 @@ $ ->
 
   #gets items after group is selected
   getItems = (_group_id) ->
-    [todoCount, discCount] = [0, 0]
+    [todoCount, discCount, docCount] = [0, 0, 0]
     tbody = $('.item#todos > .item-body')
     dbody = $('.item#discussions > .item-body')
     cbody = $('.item#docs > .item-body')
@@ -186,7 +186,7 @@ $ ->
 
 
   $('.con_group_li').live 'click',  ->
-    [todoCount, discCount] = [0, 0]
+    [todoCount, discCount, docCount] = [0, 0, 0]
     tbody = $('.item#todos > .item-body')
     $(@).toggleClass('selected')
     tbody = $('.item#todos > .item-body')

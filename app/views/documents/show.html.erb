@@ -24,7 +24,7 @@
     </p>
     <div id="doc-link">
       <span class='label'>Download:</span>
-      <%= link_to @document.doc_file_name, @document.doc.url, :class => 'doc-link' %>
+      <%= link_to @document.doc_file_name, @document.doc.url, :target => '_blank', :class => 'doc-link' %>
     </div>
 
     <%= form_for @comment do |f| %>

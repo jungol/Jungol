@@ -11,5 +11,7 @@
         <% end %>
       </ul>
     <% end %>
+    <% else %>
+      <p><%= "#{@todo.title} has been shared with all connected groups." %></p>
     <div class="clearall"></div>
   </div>

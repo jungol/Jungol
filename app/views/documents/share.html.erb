@@ -10,6 +10,8 @@
           <%= render 'share_form', :group => group %>
         <% end %>
       </ul>
+    <% else %>
+      <p><%= "#{@document.title} has been shared with all connected groups." %></p>
     <% end %>
     <div class="clearall"></div>
   </div>
