@@ -113,6 +113,24 @@ $ ->
       #{if group.about.length > 150 then group.about.substr(0,150) + "..." else group.about}
       </p></div>"
 
+  rePopItems = (data, tbody, dbody, cbody) ->
+    tbody.empty()
+    dbody.empty()
+    cbody.empty()
+    $.each data.todos, (k,v)->
+      tbody.append todoMarkup(v)
+    $.each data.discussions, (k,v)->
+      dbody.append discMarkup(v)
+    $.each data.documents, (k,v)->
+      cbody.append docMarkup(v)
+    if $.isEmptyObject(data.discussions) then dbody.append "<p style='opacity:0.6'>No Discussions.</p>"
+    if $.isEmptyObject(data.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
+    if $.isEmptyObject(data.documents) then cbody.append "<p style='opacity:0.6'>No Documents.</p>"
+    tbody.stop().fadeTo(500, 1)
+    dbody.stop().fadeTo(500, 1)
+    cbody.stop().fadeTo(500, 1)
+    setHeights()
+
   #gets items after group is selected
   getItems = (_group_id) ->
     [todoCount, discCount, docCount] = [0, 0, 0]
@@ -122,6 +140,7 @@ $ ->
     ginfo = $('.group-info')
     tbody.fadeTo(900, 0)
     dbody.fadeTo(900, 0)
+    cbody.fadeTo(900, 0)
     ginfo.fadeTo(900, 0)
     filterData.origin_group = _group_id
     createNewLinks(_group_id)
@@ -140,21 +159,7 @@ $ ->
         $('.con_group_ul').append addCon(_group_id)
         ginfo.empty().append groupInfoMarkup(data.main_group)
         #Populate items connected to origin group
-        tbody.empty()
-        dbody.empty()
-        cbody.empty()
-        $.each data.items.todos, (k,v)->
-          tbody.append todoMarkup(v)
-        $.each data.items.discussions, (k,v)->
-          dbody.append discMarkup(v)
-        $.each data.items.documents, (k,v)->
-          cbody.append docMarkup(v)
-        if $.isEmptyObject(data.items.discussions) then dbody.append "<p style='opacity:0.6'>No Discussions.</p>"
-        if $.isEmptyObject(data.items.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
-        if $.isEmptyObject(data.items.documents) then cbody.append "<p style='opacity:0.6'>No Documents.</p>"
-        tbody.stop().fadeTo(500, 1)
-        dbody.stop().fadeTo(500, 1)
-        cbody.stop().fadeTo(500, 1)
+        rePopItems(data.items, tbody, dbody, cbody)
         ginfo.stop().fadeTo(500, 1)
         setHeights()
 
@@ -208,19 +213,4 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
-        tbody.empty()
-        dbody.empty()
-        cbody.empty()
-        $.each data.todos, (k,v)->
-          tbody.append todoMarkup(v)
-        $.each data.discussions, (k,v)->
-          dbody.append discMarkup(v)
-        $.each data.documents, (k,v)->
-          cbody.append docMarkup(v)
-        if $.isEmptyObject(data.discussions) then dbody.append "<p style='opacity:0.6'>No Discussions.</p>"
-        if $.isEmptyObject(data.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
-        if $.isEmptyObject(data.documents) then cbody.append "<p style='opacity:0.6'>No Documents.</p>"
-        tbody.stop().fadeTo(500, 1)
-        dbody.stop().fadeTo(500, 1)
-        cbody.stop().fadeTo(500, 1)
-        setHeights()
+        rePopItems(data, tbody, dbody, cbody)
