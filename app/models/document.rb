@@ -19,6 +19,8 @@ class Document < ActiveRecord::Base
   }.merge(PAPERCLIP_DOC_OPTIONS)
 
   validates_attachment_presence :doc, :message => "must be present. You need to upload a file."
-  validates_attachment_size :doc, :less_than => 2.megabyte, :message => "must be less than 1MB in size"
-  validates_attachment_content_type :doc, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif)$/, :message => 'file type is not allowed (only jpeg/png/gif images)'
+  validates_attachment_size :doc, :less_than => 4.megabyte, :message => "must be less than 4MB in size"
+  validates_attachment_content_type :doc,
+    :content_type => /^(image\/(jpg|jpeg|pjpeg|png|x-png|gif))|(application\/(pdf|msword|vnd\.(ms\-(excel|powerpoint)|openxmlformats\-officedocument\.(wordprocessingml\.document|spreadsheetml\.sheet|presentationml\.(presentation|slideshow)))))$/,
+    :message => 'is not allowed (only images, .pdfs, and MS Office filetypes)'
 end
