@@ -115,9 +115,13 @@ class Group < ActiveRecord::Base
   end
 
   def connect(group)
-    req = self.group_connections.build(:group_b_id => group.id)
-    pend = group.group_connections.build(:group_b_id => self.id, :status => 1)
-    req.save! && pend.save!
+    if self.unconnected_groups.include? group
+      req = self.group_connections.build(:group_b_id => group.id)
+      pend = group.group_connections.build(:group_b_id => self.id, :status => 1)
+      req.save! && pend.save!
+    else
+      return false
+    end
   end
 
   def approve_group(group)

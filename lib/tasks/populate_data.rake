@@ -53,15 +53,15 @@ namespace :db do
     15.times do |n|   ## make 20 random group connections
       group = Group.find(n+1)
       random_group = Group.find(Random.rand(15) +1)
-      group.connect(random_group)
+      if group.connect(random_group)
+        #share items between groups: discussion from group A and todo from group B
 
-      #share items between groups: discussion from group A and todo from group B
+        disc = group.discussions.first
+        group.creator.share random_group, disc
 
-      disc = group.discussions.first
-      group.creator.share random_group, disc
-
-      todo = random_group.todos.first
-      random_group.creator.share group, todo
+        todo = random_group.todos.first
+        random_group.creator.share group, todo
+      end
 
     end
 
