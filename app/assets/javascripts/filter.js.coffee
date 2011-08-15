@@ -8,6 +8,7 @@ $ ->
   }
   todoCount = 0
   discCount = 0
+  docCount = 0
 
   setHeights = ->
     hght = $('.content-bg').height()
@@ -85,6 +86,18 @@ $ ->
                 </p>
                 <p class=\"greenme\">Shared between  #{shared_groups.join("  |  ")}</p>"
 
+  docMarkup = (doc) ->
+    shared_groups = getGroups(doc)
+    docCount++
+
+    "<h3 class=\"#{if docCount == 1 then "top" else ""}\">#{linkify doc.title, doc.url, "class='doc_link'"}</h3>
+      <p class=\"greenme\">last post #{timeify doc.last} by #{if doc.by==null then "[User Deleted]" else doc.by.name} |
+      <span>#{linkify pluralize( doc.comments.length, "comment"), doc.url + "#comments", ""}</span>  </p>
+                <p>
+                  #{if doc.description.length > 200 then doc.description.substr(0,200) + "..." else doc.description}
+                </p>
+                <p class=\"greenme\">Shared between  #{shared_groups.join("  |  ")}</p>"
+
   conGroupMarkup = (group) ->
     "<li id='#{group.id}' class='con_group_li'>#{group.name}</li>"
 
@@ -105,6 +118,7 @@ $ ->
     [todoCount, discCount] = [0, 0]
     tbody = $('.item#todos > .item-body')
     dbody = $('.item#discussions > .item-body')
+    cbody = $('.item#docs > .item-body')
     ginfo = $('.group-info')
     tbody.fadeTo(900, 0)
     dbody.fadeTo(900, 0)
@@ -128,14 +142,19 @@ $ ->
         #Populate items connected to origin group
         tbody.empty()
         dbody.empty()
+        cbody.empty()
         $.each data.items.todos, (k,v)->
           tbody.append todoMarkup(v)
         $.each data.items.discussions, (k,v)->
           dbody.append discMarkup(v)
+        $.each data.items.documents, (k,v)->
+          cbody.append docMarkup(v)
         if $.isEmptyObject(data.items.discussions) then dbody.append "<p style='opacity:0.6'>No Discussions.</p>"
         if $.isEmptyObject(data.items.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
+        if $.isEmptyObject(data.items.documents) then cbody.append "<p style='opacity:0.6'>No Documents.</p>"
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
+        cbody.stop().fadeTo(500, 1)
         ginfo.stop().fadeTo(500, 1)
         setHeights()
 
@@ -172,8 +191,10 @@ $ ->
     $(@).toggleClass('selected')
     tbody = $('.item#todos > .item-body')
     dbody = $('.item#discussions > .item-body')
+    cbody = $('.item#docs > .item-body')
     tbody.fadeTo(900, 0)
     dbody.fadeTo(900, 0)
+    cbody.fadeTo(900, 0)
     found = $.inArray(@.id, filterData.selected_groups)
     if found > -1 ##Group WAS selected, remove it from list
       filterData.selected_groups.splice(found, 1)
@@ -189,12 +210,17 @@ $ ->
       success: (data) ->
         tbody.empty()
         dbody.empty()
+        cbody.empty()
         $.each data.todos, (k,v)->
           tbody.append todoMarkup(v)
         $.each data.discussions, (k,v)->
           dbody.append discMarkup(v)
+        $.each data.documents, (k,v)->
+          cbody.append docMarkup(v)
         if $.isEmptyObject(data.discussions) then dbody.append "<p style='opacity:0.6'>No Discussions.</p>"
         if $.isEmptyObject(data.todos) then tbody.append "<p style='opacity:0.6'>No Todos.</p>"
+        if $.isEmptyObject(data.documents) then cbody.append "<p style='opacity:0.6'>No Documents.</p>"
         tbody.stop().fadeTo(500, 1)
         dbody.stop().fadeTo(500, 1)
+        cbody.stop().fadeTo(500, 1)
         setHeights()

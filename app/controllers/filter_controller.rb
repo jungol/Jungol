@@ -12,14 +12,14 @@ class FilterController < ApplicationController
   end
 
   def select #RECEIVES A SINGLE GROUP FROM THE CURRENT_USERS'S GROUPS
-    @shown = {:main_group => {}, :shared_groups => {}, :items => {:todos => {}, :discussions => {}}}
+    @shown = {:main_group => {}, :shared_groups => {}, :items => {:todos => {}, :discussions => {}, :documents => {}}}
     @group = Group.find(params[:group_id])
     @shown[:main_group] = @group
 
     #link_to(image_tag(group.logo.url(:medium), :alt => "#{@group.name} Logo"), group_path(@group))
     @shown[:main_group][:url] = group_path @group
     @shown[:shared_groups] = @group.groups
-    @shown[:items] = {:todos => {}, :discussions => {}}
+    @shown[:items] = {:todos => {}, :discussions => {}, :documents => {}}
     i=0
     @group.shared_todos.each do |td|
       @shown[:items][:todos][i] = td
@@ -51,13 +51,29 @@ class FilterController < ApplicationController
       end
       i += 1
     end
+    i=0
+    @group.shared_documents.each do |doc|
+      @shown[:items][:documents][i] = doc
+      @shown[:items][:documents][i][:comments] = doc.comments
+      @shown[:items][:documents][i][:by] = doc.comments.present? ? doc.comments.last.user : doc.creator
+      @shown[:items][:documents][i][:url] = group_document_path @group, doc
+      @shown[:items][:documents][i][:last] = doc.comments.present? ? doc.comments.last.updated_at : doc.updated_at
+      j=0
+      @shown[:items][:documents][i][:shared_groups] = []
+      doc.shared_groups.each do |gr|
+        @shown[:items][:documents][i][:shared_groups][j] = gr
+        @shown[:items][:documents][i][:shared_groups][j][:url] = group_path gr
+        j += 1
+      end
+      i += 1
+    end
 
     render :json => @shown
   end
 
   def filter
     @groups = []
-    @shown_items = {:todos => {}, :discussions => {}}
+    @shown_items = {:todos => {}, :discussions => {}, :documents => {}}
     if params["selected_groups"].present?
       params["selected_groups"].each {|val| @groups << val }
     end
@@ -95,6 +111,24 @@ class FilterController < ApplicationController
         dc.shared_groups.each do |gr|
           @shown_items[:discussions][i][:shared_groups][j] = gr
           @shown_items[:discussions][i][:shared_groups][j][:url] = group_path gr
+          j += 1
+        end
+        i += 1
+      end
+    end
+    i=0
+    origin_group.shared_documents.each do |doc| #add this document if it has the other groups listed in its groups
+      if((doc.shared_groups | @groups) == doc.shared_groups) #union is same as original, i.e. nothing new in @groups
+        @shown_items[:documents][i] = doc
+        @shown_items[:documents][i][:comments] = doc.comments
+        @shown_items[:documents][i][:by] = doc.comments.present? ? doc.comments.last.user : doc.creator
+        @shown_items[:documents][i][:url] = group_document_path origin_group, doc
+        @shown_items[:documents][i][:last] = doc.comments.present? ? doc.comments.last.updated_at : doc.updated_at
+        j=0
+        @shown_items[:documents][i][:shared_groups] = []
+        doc.shared_groups.each do |gr|
+          @shown_items[:documents][i][:shared_groups][j] = gr
+          @shown_items[:documents][i][:shared_groups][j][:url] = group_path gr
           j += 1
         end
         i += 1
