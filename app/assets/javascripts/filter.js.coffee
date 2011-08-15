@@ -58,6 +58,7 @@ $ ->
   createNewLinks = (groupID) ->
     $('.item#todos > .item-head a').attr('href', "/groups/#{groupID}/todos/new")
     $('.item#discussions > .item-head a').attr('href', "/groups/#{groupID}/discussions/new")
+    $('.item#docs > .item-head a').attr('href', "/groups/#{groupID}/documents/new")
 
   todoMarkup = (todo) ->
     shared_groups = getGroups(todo)
@@ -75,7 +76,6 @@ $ ->
   discMarkup = (disc) ->
     shared_groups = getGroups(disc)
     discCount++
-
 
     "<h3 class=\"#{if discCount == 1 then "top" else ""}\">#{linkify disc.title, disc.url, "class='disc_link'"}</h3>
       <p class=\"greenme\">last post #{timeify disc.last} by #{if disc.by==null then "[User Deleted]" else disc.by.name} |

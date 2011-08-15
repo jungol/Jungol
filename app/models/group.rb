@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
 
   after_create :add_creator_as_member
 
-  #AVATAR
+  #LOGO
   has_attached_file :logo, {
     :styles => { :medium => "300x100>", :thumb => "50x17>", :small => "30x10>" },
     :whiny => false
@@ -41,10 +41,13 @@ class Group < ActiveRecord::Base
   #ITEMS
   has_many :item_shares, :dependent => :destroy
   has_many :shared_todos, :through => :item_shares, :source => :item, :source_type => 'Todo'
-  has_many :shared_discussions, :through => :item_shares, :source => :item, :source_type => 'Discussion'
   has_many :todos, :dependent => :destroy
 
+  has_many :shared_discussions, :through => :item_shares, :source => :item, :source_type => 'Discussion'
   has_many :discussions, :dependent => :destroy
+
+  has_many :shared_documents, :through => :item_shares, :source => :item, :source_type => 'Document'
+  has_many :documents, :dependent => :destroy
 
   def approve_user(user)
     if pending_members.include?(user)

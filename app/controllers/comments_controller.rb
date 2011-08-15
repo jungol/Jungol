@@ -16,6 +16,10 @@ class CommentsController < ApplicationController
           @discussion.comments << @comment
           format.html { redirect_to group_discussion_path(@group, @discussion), notice: 'Comment was successfully created.' }
           format.json { render json: @comment, status: :created, location: @comment }
+        elsif @document
+          @document.comments << @comment
+          format.html { redirect_to group_document_path(@group, @document), notice: 'Comment was successfully created.' }
+          format.json { render json: @comment, status: :created, location: @comment }
         end
       else
         if @todo
@@ -23,6 +27,9 @@ class CommentsController < ApplicationController
           format.json { render json: @comment.errors, status: :unprocessable_entity }
         elsif @discussion
           format.html { render :template => 'discussions/show' }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        elsif @document
+          format.html { render :template => 'documents/show' }
           format.json { render json: @comment.errors, status: :unprocessable_entity }
         end
       end
@@ -52,6 +59,8 @@ class CommentsController < ApplicationController
         @todo = Todo.find params[:todo][:id]
       elsif params[:discussion]
         @discussion = Discussion.find params[:discussion][:id]
+      elsif params[:document]
+        @document = Document.find params[:document][:id]
       end
     end
 
@@ -60,7 +69,10 @@ class CommentsController < ApplicationController
     end
 
     def require_view
-      unless current_user.can_view?(@group, (@todo.present? ? @todo : @discussion))
+      @item ||= @todo
+      @item ||= @discussion
+      @item ||= @document
+      unless current_user.can_view?(@group, @item)
         flash[:error] = "You don't have permission to comment on that."
         redirect_to @group
       end

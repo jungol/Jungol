@@ -31,6 +31,14 @@ Jungola::Application.routes.draw do
         post :update
       end
     end
+    resources :documents do
+      member do
+        get :share
+        post :share
+        put :share
+        post :update
+      end
+    end
     resources :todos do
       member do
         get :share

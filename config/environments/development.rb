@@ -30,4 +30,5 @@ Jungola::Application.configure do
   #Hook ImageMagick to Paperclip
   Paperclip.options[:command_path] = "/usr/local/bin/"
   PAPERCLIP_IMAGE_OPTIONS = {}
+  PAPERCLIP_DOC_OPTIONS = {}
 end

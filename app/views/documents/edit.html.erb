@@ -1,0 +1,16 @@
+<div class="content-bg">
+  <div id="main-right" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Edit Document</h2>
+    </div>
+
+    <%= form_for @document, :html => { :multipart => true } do |f| %>
+      <p> <%= render('doc', :document => @document) %> </p>
+
+      <%= render 'fields', :f => f %>
+      <div class='actions submit'>
+        <%= f.submit "Update" %>
+      </div>
+    <% end %>
+  </div>
+</div>

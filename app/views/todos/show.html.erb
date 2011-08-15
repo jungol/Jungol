@@ -7,8 +7,6 @@
       <span id="share-button" class="button"><a href="<%= share_group_todo_path(@group, @todo) %>">Share »</a></span>
     </div>
 
-    <p id="<%= @up_path %>" class='edit_todo_desc'><i><%= @todo.description %></i></p>
-
     <% if @shared.present? %>
       <ul class="shared-list greenme">
         <li>Shared between:  </li>
@@ -17,6 +15,13 @@
         <% end %>
       </ul>
     <% end %>
+
+    <% if current_user.can_delete? @todo %>
+      <span class='delete button'><%= link_to "DELETE TODO", group_todo_path(@group, @todo), :method => :delete, :confirm => "You sure?",
+        :title => "Delete #{@todo.title}" %></span>
+    <% end %>
+
+    <p id="<%= @up_path %>" class='item-desc edit_todo_desc'><i><%= @todo.description %></i></p>
 
     <div id="add-task-form">
       <%= form_for [@group, @todo] do |todo_f| %>

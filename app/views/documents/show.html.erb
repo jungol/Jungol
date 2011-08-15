@@ -1,11 +1,10 @@
 <div class="content-bg">
   <div id="main-right" class="main-right full">
     <div class="alt-item-head headerfull">
-      <h2><%= @discussion.title %></h2>
+      <h2><%= @document.title %></h2>
       <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
-      <span id="share-button" class="button"><a href="<%= share_group_discussion_path(@group, @discussion) %>">Share »</a></span>
+      <span id="share-button" class="button"><a href="<%= share_group_document_path(@group, @document) %>">Share »</a></span>
     </div>
-
     <% if @shared.present? %>
       <ul class="shared-list greenme">
         <li>Shared between:  </li>
@@ -15,17 +14,23 @@
       </ul>
     <% end %>
 
-    <% if current_user.can_delete? @discussion %>
-      <%= content_tag(:span, link_to("DELETE DISCUSSION", group_discussion_path(@group, @discussion), :method => :delete, :confirm => "You sure?",
-                      :title => "Delete #{@discussion.title}"), :class => 'delete button') %>
+    <% if current_user.can_delete? @document %>
+      <span class='delete button'><%= link_to "DELETE DOCUMENT", group_document_path(@group, @document), :method => :delete, :confirm => "You sure?",
+        :title => "Delete #{@document.title}" %></span>
     <% end %>
 
-    <p id="<%= @up_path %>" class='item-desc edit_disc_desc'><i><%= @discussion.description %></i></p>
+    <p id="<%= @up_path %>" class='item-desc edit_doc_desc'>
+      <i><%= @document.description %></i>
+    </p>
+    <div id="doc-link">
+      <span class='label'>Download:</span>
+      <%= link_to @document.doc_file_name, @document.doc.url, :class => 'doc-link' %>
+    </div>
 
     <%= form_for @comment do |f| %>
       <%= render 'shared/error_messages', :object => f.object %>
       <%= hidden_field(:group, :id) %>
-      <%= hidden_field(:discussion, :id) %>
+      <%= hidden_field(:document, :id) %>
       <div class="field">
         <a name="comments"></a>
         <p>Comments</p>
@@ -36,8 +41,8 @@
         <%= f.submit 'Post Comment »' %>
       </div>
     <% end %>
-    <div id="disc-comments">
-      <%= render @discussion.comments %>
+    <div id="doc-comments">
+      <%= render @document.comments %>
     </div>
 
   </div>

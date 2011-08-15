@@ -38,4 +38,5 @@ Jungola::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
   PAPERCLIP_IMAGE_OPTIONS = {}
+  PAPERCLIP_DOC_OPTIONS = {}
 end

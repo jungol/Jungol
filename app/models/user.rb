@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'
   has_many :created_todos, :foreign_key => 'creator_id', :class_name => 'Todo'
   has_many :created_discussions, :foreign_key => 'creator_id', :class_name => 'Discussion'
+  has_many :created_documents, :foreign_key => 'creator_id', :class_name => 'Document'
   has_many :created_shares, :foreign_key => 'creator_id', :class_name => 'ItemShare'
   has_many :comments
 

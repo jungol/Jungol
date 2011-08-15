@@ -1,0 +1,10 @@
+<li>
+  <%= link_to document.title, group_document_path(@group, document) %>
+  <% if !document.item_shares.empty? %><br />
+    <ul>
+      <% document.item_shares.each do |i| %>
+        <%= render('documents/share', :group => i.group) unless i.group.id == @group.id %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>

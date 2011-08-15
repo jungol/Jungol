@@ -219,6 +219,29 @@ section {
         box-shadow: inset 0 0 2px #777;
       }
     }
+    .delete {
+      margin-top:-20px;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      float:right;
+      padding: 0 5px;
+      right:30px;
+      background: #FF6E68;
+      a {
+        color: #FDFFFD;
+      }
+      &:hover {
+        background: #FDFFFD;
+        a {
+          color: #FF6E68;
+        }
+        cursor: pointer;
+        -moz-box-shadow: inset 0 0 2px #777;
+        -webkit-box-shadow: inset 0 0 2px #777;
+        box-shadow: inset 0 0 2px #777;
+      }
+    }
     #link-button{
       margin-left: 190px;
     }
@@ -588,6 +611,20 @@ section {
       font-family: 'Verdana', Helvetica, sans-serif;
       font-size: 12px;
     }
+    #doc-link {
+      font-family: 'Verdana', Arial, Helvetica, sans-serif;
+      padding: 5px 10px;
+      text-decoration: none;
+      font-weight: 600;
+      span {
+        font-size: 14px;
+      }
+    }
+    .item-desc{
+      font-family: 'Verdana', Arial, Helvetica, sans-serif;
+      font-size:14px;
+      margin:10px 0px 10px;
+    }
     .item-body {
       p {
         margin-top: -10px;
@@ -673,6 +710,7 @@ section {
     .todo-titles {
       padding-left: 10px;
       list-style: none;
+      margin-top: 15px;
       li {
         display: inline;
         margin-left: 35px;
@@ -805,6 +843,10 @@ section {
         left: 328px !important;
         top: -30px !important;
       }
+      span.doc-fix input[type="submit"]{
+        left: 328px !important;
+        top: -30px !important;
+      }
       span.group-fix input[type="submit"] {
         left: 288px !important;
         top: -44px !important;
@@ -814,7 +856,8 @@ section {
       }
     }
     #todo-comments,
-    #disc-comments {
+    #disc-comments,
+    #doc-comments {
       padding: 0 10px 10px 10px;
       width: 394px;
       overflow: hidden;

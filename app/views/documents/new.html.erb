@@ -1,0 +1,21 @@
+<div class="content-bg">
+  <div id="main-right" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Create New Document</h2>
+    </div>
+
+    <%= form_for [@group, @document] do |doc_f| %>
+      <%= render 'fields', :f => doc_f %>
+      <div class = 'actions'>
+        <% if current_user.privileged? @group %>
+          <span class="admins_only">
+            <%= check_box_tag :admins_only %>
+            <%= label_tag :admins_only, "Only share with admins of #{@group.name}" %>
+          </span>
+        <% end %>
+        <span class="doc-fix"><%= doc_f.submit "Create" %></span>
+      </div>
+    <% end %>
+
+  </div>
+</div>

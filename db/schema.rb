@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110814225103) do
+ActiveRecord::Schema.define(:version => 20110815022335) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(:version => 20110814225103) do
 
   add_index "discussions", ["creator_id"], :name => "index_discussions_on_creator_id"
   add_index "discussions", ["group_id"], :name => "index_discussions_on_group_id"
+
+  create_table "documents", :force => true do |t|
+    t.integer  "creator_id"
+    t.integer  "group_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["creator_id"], :name => "index_documents_on_creator_id"
+  add_index "documents", ["group_id"], :name => "index_documents_on_group_id"
 
   create_table "group_connections", :force => true do |t|
     t.integer  "group_id"

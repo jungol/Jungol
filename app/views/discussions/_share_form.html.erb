@@ -1,7 +1,9 @@
 <li class='share-li'>
   <%= form_tag(share_group_discussion_path(group, @discussion), :method => :post, :remote => true) do %>
-    <%= check_box_tag :admins_only %>
-    <label for="admins_only">Admins Only</label>
+    <% if current_user.privileged? group %>
+      <%= check_box_tag :admins_only %>
+      <label for="admins_only">Admins Only</label>
+    <% end %>
     <%= content_tag :span, group.name, :class => 'group-share' %>
     <%= submit_tag "Share", :class => 'group-share' %>
   <% end %>
