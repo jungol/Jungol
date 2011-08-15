@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_group, :except => [:index, :new, :create]
-  before_filter :require_admin, :only => [:edit, :update, :link, :administer, :approve_user, :approve_group]
+  before_filter :require_admin, :only => [:destroy, :edit, :update, :link, :administer, :approve_user, :approve_group]
 
   def index
     @title = "All Groups"
@@ -140,6 +140,19 @@ class GroupsController < ApplicationController
       end
     end
     redirect_to @group
+  end
+
+  def destroy
+    title = @group.name
+    if current_user == @group.creator
+      if @group.destroy
+        flash[:success] = "Group '#{title}' deleted."
+        redirect_to root_path
+      end
+    else
+      flash[:error] = "Error deleting Group '#{title}.'"
+      redirect_to group_path @group
+    end
   end
 
   def find_group
