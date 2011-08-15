@@ -15,6 +15,9 @@ class FilterController < ApplicationController
     @shown = {:main_group => {}, :shared_groups => {}, :items => {:todos => {}, :discussions => {}}}
     @group = Group.find(params[:group_id])
     @shown[:main_group] = @group
+
+    #link_to(image_tag(group.logo.url(:medium), :alt => "#{@group.name} Logo"), group_path(@group))
+    @shown[:main_group][:url] = group_path @group
     @shown[:shared_groups] = @group.groups
     @shown[:items] = {:todos => {}, :discussions => {}}
     i=0

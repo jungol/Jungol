@@ -89,11 +89,16 @@ $ ->
     "<li id='#{group.id}' class='con_group_li'>#{group.name}</li>"
 
   groupInfoMarkup = (group) ->
-    "<span class='group-img-wrap'><img src='/assets/group-img-default.png'  alt=\"#{group.name}\"/></span><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
+    "<div class='group-img>'<span class='group-img-wrap'>"+
+      linkify(
+        "<img src=\"#{if group.logo_file_name==null then '/assets/group-img-default.png' else "assets/#{group.logo_file_name}"}\"
+    alt=\"#{group.name}\"/>"
+    ,group.url) +
+      "</span></div><div class='group-text'><h1>#{group.name}</h1><p><a href=\"/groups/#{group.id}\">Group Info</a> |
       <a href=\"/users/invitation/new\" >Invite New User</a></p>
       <p class=\"blurb\">
       #{if group.about.length > 150 then group.about.substr(0,150) + "..." else group.about}
-      </p>"
+      </p></div>"
 
   #gets items after group is selected
   getItems = (_group_id) ->
