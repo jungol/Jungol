@@ -611,19 +611,45 @@ section {
       font-family: 'Verdana', Helvetica, sans-serif;
       font-size: 12px;
     }
-    #doc-link {
-      font-family: 'Verdana', Arial, Helvetica, sans-serif;
-      padding: 5px 10px;
-      text-decoration: none;
-      font-weight: 600;
-      span {
-        font-size: 14px;
+    #doc-link
+    {
+      width:400px;
+      padding:10px;
+      a.shiny-button {
+        font-family: 'Cabin', sans-serif;
+        font-size: 16px;
+        color: #fff;
+        padding: 5px 10px;
+        width: 130px;
+        margin-left: 0;
+        cursor: pointer;
+        background: -moz-linear-gradient( top, #83b73b 0%, #6c982e);
+        background: -webkit-gradient( linear, left top, left bottom,  from(#83b73b), to(#6c982e));
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #719f30;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border: 1px solid #719f30;
+        -moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+        -webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+        text-shadow: 0px 1px 0px #000, 0px 1px 0px #000;
+        text-decoration:none;
+      }
+      span.docname {
+        font-size:10px;
       }
     }
     .item-desc{
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
       font-size:14px;
-      margin:10px 0px 10px;
+      margin:10px;
+      width:400px;
+      border-top: 1px solid #D8DAD8;
+      border-bottom: 1px solid #D8DAD8;
     }
     .item-body {
       p {

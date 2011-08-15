@@ -23,8 +23,8 @@
       <i><%= @document.description %></i>
     </p>
     <div id="doc-link">
-      <span class='label'>Download:</span>
-      <%= link_to @document.doc_file_name, @document.doc.url, :target => '_blank', :class => 'doc-link' %>
+      <%= link_to 'Download', @document.doc.url, :target => '_blank', :class => 'shiny-button' %><br />
+      <%= content_tag(:span, @document.doc_file_name, :class => 'docname' ) %>
     </div>
 
     <%= form_for @comment do |f| %>
