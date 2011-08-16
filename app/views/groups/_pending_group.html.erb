@@ -1,16 +1,21 @@
 <% can_approve = current_user.privileged? @group %>
 <li class='group-list-li'>
-  <%= render 'groups/logo', :group => group, :size => 30 %>
-  <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %><br />
-  <span class="group-mems"><%= pluralize group.users.count, "member"  %></span> |
-  <span class="group-cons"><%= pluralize group.groups.count, "connection"  %></span>
-  <p class='group-status'>
-    <span class="group status">Pending Connection</span>
-    <% if can_approve %>
-      <span class="links">
-        <%= link_to("Approve", approve_group_group_path(@group, :g => group.id), :method => 'POST', :class => 'pend') %>
-        <%= link_to("Deny", approve_group_group_path(@group, :g => group.id), :method => 'DELETE', :class => 'pend') %>
-      </span>
-    <% end %>
-  </p>
+  <div class="group-img">
+    <%= render 'groups/logo', :group => group, :size => 50 %>
+  </div>
+  <div class="group-text">
+    <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %><br />
+    <span class="group-mems"><%= pluralize group.users.count, "member"  %></span> |
+    <span class="group-cons"><%= pluralize group.groups.count, "connection"  %></span>
+    <p class='group-status'>
+      <span class="group status">Pending Connection</span>
+      <% if can_approve %>
+        <span class="links">
+          <%= link_to("Approve", approve_group_group_path(@group, :g => group.id), :method => 'POST', :class => 'pend') %>
+          <%= link_to("Deny", approve_group_group_path(@group, :g => group.id), :method => 'DELETE', :class => 'pend') %>
+        </span>
+      <% end %>
+    </p>
+  </div>
+  <div class="clearall"> </div>
 </li>
