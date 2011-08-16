@@ -24,7 +24,7 @@
     </p>
     <div id="doc-link">
       <%= link_to 'Download', @document.doc.url, :target => '_blank', :class => 'shiny-button' %><br />
-      <%= content_tag(:span, @document.doc_file_name, :class => 'docname' ) %>
+      <%= content_tag(:div, @document.doc_file_name, :class => 'docname' ) %>
     </div>
 
     <%= form_for @comment do |f| %>
