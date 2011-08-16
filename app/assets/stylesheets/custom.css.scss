@@ -1249,7 +1249,7 @@ section {
       float: left;
       display: block;
       width: 50px;
-      max-height: 50px;
+      height: 50px;
       overflow: hidden;
     }
     .group-text {
@@ -1257,8 +1257,7 @@ section {
       font-size:10px;
       display: inline-block;
       width: 165px;
-      max-height: 50px;
-      overflow: hidden;
+      height: 50px;
     }
   }
 }

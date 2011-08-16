@@ -16,7 +16,7 @@ class Group < ActiveRecord::Base
 
   #LOGO
   has_attached_file :logo, {
-    :styles => { :medium => "300x100>", :thumb => "50x17>", :small => "30x10>" },
+    :styles => { :medium => "300x100>", :thumb => "50x50>", :small => "30x30>" },
     :whiny => false
   }.merge(PAPERCLIP_IMAGE_OPTIONS)
 
