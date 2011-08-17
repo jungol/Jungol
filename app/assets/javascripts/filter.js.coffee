@@ -11,7 +11,7 @@ $ ->
   docCount = 0
 
   setHeights = ->
-    ht = $('#main-items').height()
+    ht = $('.main-right').height()
     myht = $('.my_group_ul li').length * 62
     conht = $('.con_group_ul li').length * 62
     newht = Math.max(ht, myht, conht)
