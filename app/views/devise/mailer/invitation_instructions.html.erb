@@ -1,8 +1,31 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>
+  <%= @current_inviter.name %> has invited you to join them on Jungol.
+</p>
+<hr />
+<p>
+  <%= link_to 'Join Jungol now.', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %>
+</p>
 
-<p>Someone has invited you to <%= root_url %>, you can accept it through the link below.</p>
+<p>
+  Jungol works for everybody: for individuals who want to join or create a group, and for organizations who want to connect and collaborate with other groups.
+</p>
 
-<p><%= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %></p>
+<p>
+  <h3>Find a group</h3>
+  Jungol makes it easy to find a group that can help you make a difference.  If you don’t see what you’re looking for, start your own group.
+</p>
 
-<p>If you don't want to accept the invitation, please ignore this email.<br />
-Your account won't be created until you access the link above and set your password.</p>
+<p>
+  <h3>Connect group-to-group</h3>
+  The only site that lets your group link directly to other groups.  It’s like a facebook friend request for organizations.
+</p>
+
+<p>
+  <h3>Collaborate on projects and events</h3>
+  Use the power of interactive file-sharing, to-do lists, and discussion boards to make inter-organizational collaboration easy and efficient.
+</p>
+
+<p>
+  <h3>Increase your impact</h3>
+  Achieve your target goals with less time and money by pooling resources and reducing duplication.
+</p>
