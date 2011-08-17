@@ -167,7 +167,6 @@ section {
       display: inline-block;
       font-size:12px;
       margin-top:-5px;
-      margin-bottom:-5px;
       width: 165px;
       line-height:18px;
       vertical-align:top;
@@ -543,12 +542,11 @@ section {
   }
 
   #show-group {
-    ul.group-members-ul,
-    ul.group-groups-ul {
+    ul.group-members,
+    ul.group-groups {
       list-style: none;
       li {
         float: left;
-        width: 220px;
         margin-right: 10px;
         img {
           float: left;
@@ -559,13 +557,7 @@ section {
           font-weight:bold;
           display:block;
         }
-        .user-role {
-          margin-top: 0;
-          span.links a {
-            padding-right: 4px;
-          }
-        }
-        .group-status {
+        .group-status, .user-status {
           margin-top: 0;
           padding: 0;
           span.links {
@@ -1245,6 +1237,7 @@ section {
     margin-bottom: -5px;
   }
   li.group-list-li{
+    width: 220px;
     .group-img{
       padding-right:5px;
       float: left;
@@ -1260,6 +1253,40 @@ section {
       width: 165px;
       height: 50px;
     }
+  }
+
+  ul.group-members{
+    li.group-member{
+      width:180px;
+      .user-img{
+        padding-right:8px;
+        float: left;
+        display: block;
+        width: 30px;
+        height: 40px;
+        overflow: hidden;
+      }
+      .user-text {
+        float: left;
+        line-height:13px;
+        font-size:11px;
+        display: inline-block;
+        width: 142px;
+        height: 40px;
+        span.user-link {
+          font-size:13px;
+        }
+        span.role {
+          display:block;
+          padding:2px 0px;
+        }
+        p.user-status a {
+          padding: 0 2px;
+        }
+      }
+    }
+
+
   }
 }
 

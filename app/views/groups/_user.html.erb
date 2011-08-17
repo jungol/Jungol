@@ -1,16 +1,23 @@
 <% is_creator = current_user==@group.creator %>
-<li class='group-user'>
-  <%= render 'users/avatar', :user => user, :size => 30 %>
-  <%= link_to user.name, user %>
-  <p class='user-role'>
-    <% if user == @group.creator %>
-      Creator
-    <% elsif user.admin_of? @group %>
-      Administrator<br />
-      <%= link_to("Remove Admin", administer_group_path(@group, :u => user.id, :r => 2), :method => 'POST') if is_creator %>
-    <% else %>
-      User<br />
-      <%= link_to("Make Admin", administer_group_path(@group, :u => user.id, :r => 1), :method => 'POST') if is_creator %>
-    <% end %>
-  </p>
+<li class='group-member'>
+  <div class="user-img">
+    <%= render 'users/avatar', :user => user, :size => 30 %>
+  </div>
+  <div class="user-text">
+    <span class="user-link">
+      <%= link_to user.name, user %>
+    </span>
+    <p class="user-status">
+        <% if user == @group.creator %>
+          <%= content_tag :span, 'Creator', :class => 'user role' %>
+        <% elsif user.admin_of? @group %>
+          <%= content_tag :span, 'Administrator', :class => 'user role' %>
+          <%= link_to("Remove Admin", administer_group_path(@group, :u => user.id, :r => 2), :method => 'POST') if is_creator %>
+        <% else %>
+          <%= content_tag :span, 'User', :class => 'user role' %>
+          <%= link_to("Make Admin", administer_group_path(@group, :u => user.id, :r => 1), :method => 'POST') if is_creator %>
+        <% end %>
+    </p>
+  </div>
+  <div class="clearall"></div>
 </li>
