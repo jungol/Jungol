@@ -3,7 +3,6 @@
     <div class="alt-item-head headerfull">
       <h2>Share <%= @discussion.title %> with:</h2>
     </div>
-
     <% if(@unshared.present? && current_user.member_of?(@group)) %>
       <ul class="share-list">
         <% @unshared.each do |group| %>
@@ -15,3 +14,4 @@
     <% end %>
     <div class="clearall"></div>
   </div>
+</div>

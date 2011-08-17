@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def privileged?(group)
-    self.admin_of?(group) || group.creator == self
+    self.admin_of?(group) || (group.creator == self)
   end
 
   def can_view?(current_group, item)  #whether a user can see an item, given the group they're viewing from

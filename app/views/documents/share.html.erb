@@ -4,7 +4,7 @@
       <h2>Share <%= @document.title %> with:</h2>
     </div>
 
-    <% if(@unshared.present? && current_user.member_of?(@group)) %>
+    <% if (@unshared.present? && current_user.member_of?(@group)) %>
       <ul class="share-list">
         <% @unshared.each do |group| %>
           <%= render 'share_form', :group => group %>
@@ -15,3 +15,4 @@
     <% end %>
     <div class="clearall"></div>
   </div>
+</div>
