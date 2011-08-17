@@ -11,9 +11,15 @@ $ ->
   docCount = 0
 
   setHeights = ->
-    hght = $('.content-bg').height()
-    $('#my-groups').animate({height:hght}, 200 )
-    $('#con-groups').animate({height:hght}, 200 )
+    ht = $('#main-items').height()
+    myht = $('.my_group_ul li').length * 62
+    conht = $('.con_group_ul li').length * 62
+    newht = Math.max(ht, myht, conht)
+    $('.content-bg').height(newht)
+    $('#my-groups').animate({height:newht}, 200 )
+    $('#con-groups').animate({height:newht}, 200 )
+    $('#my-groups-over').height(newht)
+
 
   #HIDE SOME STUFF
   $('#con-groups').hide()

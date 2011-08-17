@@ -11,7 +11,7 @@
     <div class="alt-item-head headerfull">
       <h2>Members</h2>
     </div>
-    <ul class='group-members-ul'>
+    <ul class='group-members'>
       <% if @group.creator.present? %>
         <%= render 'user', :user => @group.creator %>
       <% else %>
@@ -33,10 +33,10 @@
       <h2>Connected Groups</h2>
       <%= content_tag(:span, link_to("Connect to Groups", link_path(@group)), :class => 'button', :id => 'link-button') if @admin %>
     </div>
-    <ul class="group-groups-ul">
+    <ul class="group-groups">
       <% if @group.groups.present? %>
         <% @group.groups.each do |gr| %>
-          <%= render 'layouts/group_list', :group => gr %>
+          <%= render 'group', :group => gr %>
         <% end %>
       <% else %>
         <li>No Groups yet.</li>

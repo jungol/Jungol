@@ -31,7 +31,7 @@
           <ul class="user-groups">
             <% if @user.groups.present? %>
             <% @user.groups.each do |gr| %>
-              <%= render 'layouts/group_list', :group => gr %>
+              <%= render 'groups/group', :group => gr %>
             <% end %>
           <% else %>
             No Groups Yet.

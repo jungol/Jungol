@@ -1,14 +1,19 @@
 <% is_creator = current_user==@group.creator %>
-<li class='group-user'>
-  <%= render 'users/avatar', :user => user, :size => 30 %>
-  <%= link_to user.name, user %>
-  <p class='user-role'>
-    <span class='user status'>Pending</span>
-    <% if is_creator %>
-      <span class="links">
-        <%= link_to("Approve", approve_user_group_path(@group, :u => user.id), :method => 'POST', :class => 'pend') %>
-        <%= link_to("Deny", approve_user_group_path(@group, :u => user.id), :method => 'DELETE', :class => 'pend') %>
-      </span>
-    <% end %>
-  </p>
+<li class='group-member'>
+  <div class="user-img">
+    <%= render 'users/avatar', :user => user, :size => 30 %>
+  </div>
+  <div class="user-text">
+    <span class="user-link">
+      <%= link_to user.name, user %>
+    </span>
+    <p class="user-status">
+      <span class='user status role'>Pending</span>
+      <% if is_creator %>
+          <%= link_to("Approve", approve_user_group_path(@group, :u => user.id), :method => 'POST', :class => 'pend') %>
+          <%= link_to("Deny", approve_user_group_path(@group, :u => user.id), :method => 'DELETE', :class => 'pend') %>
+      <% end %>
+    </p>
+  </div>
+  <div class="clearall"> </div>
 </li>

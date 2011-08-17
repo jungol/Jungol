@@ -1,6 +1,6 @@
 <li class='share-li'>
   <%= form_tag(share_group_discussion_path(group, @discussion), :method => :post, :remote => true) do %>
-    <% if current_user.privileged? group %>
+    <% if current_user.privileged? @group %>
       <%= check_box_tag :admins_only %>
       <label for="admins_only">Admins Only</label>
     <% end %>
