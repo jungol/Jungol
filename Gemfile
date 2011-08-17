@@ -25,6 +25,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise_invitable'
 
+gem 'mail'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

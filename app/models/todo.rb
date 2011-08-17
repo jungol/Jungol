@@ -8,6 +8,8 @@ class Todo < ActiveRecord::Base
   has_many :comments, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
   has_many :item_shares, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
   has_many :shared_groups, :through => :item_shares, :source => :group
+  has_many :interactions, :dependent => :destroy, :as => :item
+  has_many :interactors, :through => :interactions, :source => :user, :uniq => true
 
   accepts_nested_attributes_for :tasks, :reject_if => lambda {|t| t[:description].blank? }, :allow_destroy => true
 
@@ -15,8 +17,17 @@ class Todo < ActiveRecord::Base
             :length => {:maximum => 60},
             :uniqueness => { :case_sensitive => false}
 
-  def add_many(_tasks)
-    _tasks.each {|task| self.update_attributes(:tasks_attributes => [task]) }
+  def add_many(user, _tasks)
+    _tasks.each do |task| 
+      self.update_attributes(:tasks_attributes => [task])
+    end
+    
+    self.interactions.create(:user => user, :summary => 'Created Todo Tasks')
+    
+    self.interactors.each do |to_mail|
+      InteractionMailer.new_todo_task(tasks.last(_tasks.count), to_mail, user).deliver unless user == to_mail
+    end
+    
   end
 
   def update_order(_tasks)
@@ -24,6 +35,7 @@ class Todo < ActiveRecord::Base
       task.update_attribute :list_order, _tasks.index(task.id.to_s) + 1
     end
   end
+  
 end
 
 

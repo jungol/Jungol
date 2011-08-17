@@ -31,7 +31,6 @@ class Task < ActiveRecord::Base
       self.task_num = @@count
       self.list_order = @@count
     end
-
 end
 
 #STATUS - 1=IN-P, 2=COMPLETE

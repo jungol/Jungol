@@ -6,6 +6,13 @@ class ItemShare < ActiveRecord::Base
   belongs_to :group
 
   belongs_to :creator, :foreign_key => 'creator_id', :class_name => 'User'
+  
+  def notify_users
+    user_list = (admins_only ? group.admins : group.members)
+    user_list.each do |user|
+      InteractionMailer.new_share(user, self).deliver unless user == creator
+    end
+  end
 
 end
 

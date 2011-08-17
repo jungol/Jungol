@@ -17,6 +17,7 @@ class DocumentsController < ApplicationController
   def create
     @document = current_user.created_documents.build(params[:document])
     if @document.save #success
+      @document.interactions.create(:user => current_user, :summary => 'Created Document')
       @group.documents << @document
 
       #create share with original group
@@ -74,8 +75,10 @@ class DocumentsController < ApplicationController
 
       if new_share.save
         @document = Document.find(params[:id])
+        @disccusion.interactions.create(:user => current_user, :summary => 'Shared Document')
         @document.item_shares << new_share
         @shared_group.item_shares << new_share
+        new_share.notify_users
         response_text[:flash] = "'#{@document.title}' has been shared with #{@shared_group.name}."
       else
         response_text[:flash] = "Problem sharing document.  Please try again."
@@ -91,8 +94,10 @@ class DocumentsController < ApplicationController
 
       if new_share.save
         @document = Document.find(params[:id])
+        @disccusion.interactions.create(:user => current_user, :summary => 'Shared Document')
         @document.item_shares << new_share
         @shared_group.item_shares << new_share
+        new_share.notify_users
         flash[:success] = "'#{@document.title}' has been shared with #{@shared_group.name}."
       else
         flash[:error] = "Problem sharing document.  Please try again."

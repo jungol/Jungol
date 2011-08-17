@@ -233,6 +233,7 @@ DEPENDENCIES
   gravatar_image_tag
   jquery-rails
   launchy
+  mail
   paperclip (~> 2.3)
   pg
   populator

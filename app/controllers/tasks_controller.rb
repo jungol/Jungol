@@ -6,12 +6,16 @@ class TasksController < ApplicationController
 
   def new
     @title = "New Task for #{@group.name}"
-    @task = @todo.tasks.new
+    @task = @todo.tasks.new()
   end
 
   def create
     @task = @todo.tasks.build(params[:task])
     if @task.save
+      @task.todo.interactions.create(:user => current_user, :summary => 'Created Todo Task')
+      @task.todo.interactors.each do |user|
+        InteractionMailer.new_todo_task([@task], user, current_user).deliver unless user == current_user
+      end
       flash.now[:success] = "Task added."
     elsif
       flash.now[:error] = "Error adding task. Please try again."
@@ -28,6 +32,7 @@ class TasksController < ApplicationController
     end
     if params['task']['description'] #UPDATING DESCRIPTION
       if(@task.update_attribute(:description, params['task']['description']))
+        @task.todo.interactions.create(:user => current_user, :summary => 'Edited Todo Task')
         flash.now[:success] = "Task updated."
       else
         flash.now[:error] = "Error updating task. Please try again."
@@ -35,6 +40,7 @@ class TasksController < ApplicationController
     end
     if params['task']['status'] #UPDATING STATUS
       if(@task.update_attribute(:status, params['task']['status']))
+        @task.todo.interactions.create(:user => current_user, :summary => 'Updated Task Status')
         flash.now[:success] = "Task updated."
       else
         flash.now[:error] = "Error updating task. Please try again."

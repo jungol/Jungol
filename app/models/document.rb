@@ -7,6 +7,8 @@ class Document < ActiveRecord::Base
   has_many :item_shares, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
   has_many :shared_groups, :through => :item_shares, :source => :group
   has_many :comments, :dependent => :destroy, :as => :item, :order => 'created_at ASC'
+  has_many :interactions, :dependent => :destroy, :as => :item
+  has_many :interactors, :through => :interactions, :source => :user, :uniq => true
 
   validates( :title, :presence => true,
                       :length => {:maximum => 60},

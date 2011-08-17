@@ -10,14 +10,29 @@ class CommentsController < ApplicationController
       if @comment.save #SUCCESS
         if(@todo)
           @todo.comments << @comment
+          @todo.interactions.create(:user => current_user, :summary => 'Commented on item')
+          @todo.interactors.each do |user|
+            @user = user
+            InteractionMailer.new_comment(@comment, user, @todo).deliver unless user == @comment.user
+          end
           format.html { redirect_to group_todo_path(@group, @todo), notice: 'Comment was successfully created.' }
           format.json { render json: @comment, status: :created, location: @comment }
         elsif @discussion
           @discussion.comments << @comment
+          @discussion.interactions.create(:user => current_user, :summary => 'Commented on item')
+          @discussion.interactors.each do |user|
+            @user = user
+            InteractionMailer.new_comment(@comment, user, @discussion).deliver unless user == @comment.user
+          end
           format.html { redirect_to group_discussion_path(@group, @discussion), notice: 'Comment was successfully created.' }
           format.json { render json: @comment, status: :created, location: @comment }
         elsif @document
           @document.comments << @comment
+          @document.interactions.create(:user => current_user, :summary => 'Commented on item')
+          @document.interactors.each do |user|
+            @user = user
+            InteractionMailer.new_comment(@comment, user, @document).deliver unless user == @comment.user
+          end
           format.html { redirect_to group_document_path(@group, @document), notice: 'Comment was successfully created.' }
           format.json { render json: @comment, status: :created, location: @comment }
         end

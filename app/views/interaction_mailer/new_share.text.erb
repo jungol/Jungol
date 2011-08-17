@@ -1,0 +1,20 @@
+Hey <%= @user.name %>!
+
+<% case @share.item_type %>
+<% when "Todo" %>
+A new to-do list was just added to your group (<%= @share.group.name %>).
+
+<%= @share.item.title %>
+<% when "Discussion" %>
+A new discussion was just added to your group (<%= @share.group.name %>).
+
+<%= @share.item.title %>
+<%= @share.item.creator.name %> says: <%= @share.item.description %>
+<% when "Document" %>
+A new document was just uploaded to your group (<%= @share.group.name %>)
+
+<%= @share.item.title %>
+<% end %>
+
+Sincerely,
+The Jungol Team

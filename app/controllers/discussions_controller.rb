@@ -17,6 +17,7 @@ class DiscussionsController < ApplicationController
   def create
     @discussion = current_user.created_discussions.build(params[:discussion])
     if @discussion.save #success
+      @discussion.interactions.create(:user => current_user, :summary => 'Created Discussion')
       @group.discussions << @discussion
 
       #create share with original group
@@ -65,8 +66,10 @@ class DiscussionsController < ApplicationController
 
       if new_share.save
         @discussion = Discussion.find(params[:id])
+        @disccusion.interactions.create(:user => current_user, :summary => 'Shared Discussion')
         @discussion.item_shares << new_share
         @shared_group.item_shares << new_share
+        new_share.notify_users
         response_text[:flash] = "'#{@discussion.title}' has been shared with #{@shared_group.name}."
       else
         response_text[:flash] = "Problem sharing discussion.  Please try again."
@@ -82,8 +85,10 @@ class DiscussionsController < ApplicationController
 
       if new_share.save
         @discussion = Discussion.find(params[:id])
+        @disccusion.interactions.create(:user => current_user, :summary => 'Shared Discussion')
         @discussion.item_shares << new_share
         @shared_group.item_shares << new_share
+        new_share.notify_users
         flash[:success] = "'#{@discussion.title}' has been shared with #{@shared_group.name}."
       else
         flash[:error] = "Problem sharing discussion.  Please try again."

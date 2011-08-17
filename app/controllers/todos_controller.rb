@@ -26,6 +26,7 @@ class TodosController < ApplicationController
   def create
     @todo = current_user.created_todos.build(params[:todo])
     if @todo.save #success
+      @todo.interactions.create(:user => current_user, :summary => 'Created Todo List')
       @group.todos << @todo
 
       #create share with original group
@@ -47,7 +48,7 @@ class TodosController < ApplicationController
       end
     else
       if params[:todo][:tasks_attributes] #adding tasks to todo
-        @todo.add_many(params[:todo][:tasks_attributes].values)
+        @todo.add_many(current_user, params[:todo][:tasks_attributes].values)
         flash[:success] = "Todo updated."
         redirect_to group_todo_path(@group, @todo)
       else #updating todo through REST form
@@ -79,7 +80,9 @@ class TodosController < ApplicationController
       if new_share.save
         @todo = Todo.find(params[:id])
         @todo.item_shares << new_share
+        @todo.interactions.create(:user => current_user, :summary => 'Shared Todo List')
         @shared_group.item_shares << new_share
+        new_share.notify_users
         response_text[:flash] = "'#{@todo.title}' has been shared with #{@shared_group.name}."
       else
         response_text[:flash] = "Problem sharing todo.  Please try again."
@@ -96,7 +99,9 @@ class TodosController < ApplicationController
       if new_share.save
         @todo = Todo.find(params[:id])
         @todo.item_shares << new_share
+        @todo.interactions.create(:user => current_user, :type => 'Shared Todo List')
         @shared_group.item_shares << new_share
+        new_share.notify_users
         flash[:success] = "'#{@todo.title}' has been shared with #{@shared_group.name}."
       else
         flash[:error] = "Problem sharing todo.  Please try again."

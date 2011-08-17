@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def privileged?(group)
-    self.admin_of?(group) || group.creator == self
+    self.admin_of?(group) || (group.creator == self)
   end
 
   def can_view?(current_group, item)  #whether a user can see an item, given the group they're viewing from
@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
     share = self.created_shares.create(:admins_only => admins_only)
     item.item_shares << share
     group.item_shares << share
+    share.notify_users
   end
 
 end

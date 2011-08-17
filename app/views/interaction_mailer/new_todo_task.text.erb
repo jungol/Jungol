@@ -1,0 +1,14 @@
+Hey <%= @user.name %>!
+
+<% if @tasks.count == 1 %>
+	<%= @creator.name %> added a new task to the to-do list <%= @todo.title %> in your group (<%= @todo.group.name %>).
+<% else %>
+	<%= @creator.name %> added some new tasks to the to-do list <%= @todo.title %> in your group (<%= @todo.group.name %>).
+<% end %>
+
+<% @tasks.each do |task| %>
+ -<%= task.description %>
+<% end %>
+
+Sincerely,
+Jungol Team
