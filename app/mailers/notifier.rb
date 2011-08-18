@@ -1,14 +1,14 @@
 class Notifier < ActionMailer::Base
-  default :from => "no-reply@jungolhq.com",
+  default :from => "Jungol Team <no-reply@jungolhq.com>",
           :return_path => "mailer@jungolhq.com",
-          :reply_to => "admin@jungolhq.com"
+          :reply_to => "no-reply@jungolhq.com"
 
   def pending_user(admin, group, user)
     @user = user
     @admin = admin
     @group = group
     mail(:to => admin.email,
-         :subject => "Someone has requested to join #{group.name}")
+         :subject => "#{user.name} has requested to join #{group.name}")
   end
 
   def pending_group(admin, group, group_b)
