@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :about, :email, :password, :password_confirmation, :remember_me, :avatar
+  attr_writer :invitation_instructions
 
   #AVATAR
   has_attached_file :avatar, {
@@ -63,6 +64,20 @@ class User < ActiveRecord::Base
     item.item_shares << share
     group.item_shares << share
     share.notify_users
+  end
+
+  def deliver_invitation
+    if @invitation_instructions
+      ::Devise.mailer.send(@invitation_instructions, self).deliver
+    else
+      super
+    end
+  end
+
+  def self.invite_member!(attributes={}, invited_by=nil)
+    self.invite!(attributes, invited_by) do |invitable|
+      invitable.invitation_instructions = :member_invitation_instructions
+    end
   end
 
 end

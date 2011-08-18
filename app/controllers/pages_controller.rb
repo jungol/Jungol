@@ -24,7 +24,7 @@ class PagesController < ApplicationController
       @recipients.each do |email|
         email = email.strip
         if email_regex =~ email
-          User.invite!(:email => email)
+          User.invite!({:email => email}, current_user)
           #Notifier.invite(@user, email).deliver
           flash[:success] ||= "<p>Emails delivered:</p><ul>"
           flash[:success] << "<li>"+ email + "</li>"
