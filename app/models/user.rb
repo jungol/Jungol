@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :about, :email, :password, :password_confirmation, :remember_me, :avatar
+  attr_accessible :name, :about, :email, :password, :password_confirmation, :remember_me, :avatar, :filter_state
   attr_writer :invitation_instructions
+
+  serialize :filter_state
 
   #AVATAR
   has_attached_file :avatar, {
@@ -84,6 +86,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -115,5 +118,6 @@ end
 #  avatar_content_type    :string(255)
 #  avatar_file_size       :integer
 #  avatar_updated_at      :datetime
+#  filter_state           :text
 #
 

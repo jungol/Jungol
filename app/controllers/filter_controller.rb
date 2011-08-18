@@ -4,14 +4,11 @@ class FilterController < ApplicationController
   def index
     @title = "Welcome to Jungol!"
     @groups = current_user.groups #Placeholder
-    @current_todos, @current_discussions = [[], []]
-    @groups.each do |group|
-      @current_todos = @current_todos | group.todos
-      @current_discussions = @current_discussions | group.discussions
-    end
+    @state = current_user.filter_state.to_json unless current_user.filter_state.blank?
   end
 
   def select #RECEIVES A SINGLE GROUP FROM THE CURRENT_USERS'S GROUPS
+    current_user.update_attributes(:filter_state => params[:state])
     @shown = {:main_group => {}, :shared_groups => {}, :items => {:todos => {}, :discussions => {}, :documents => {}}}
     @group = Group.find(params[:group_id])
     @shown[:main_group] = @group
@@ -73,11 +70,12 @@ class FilterController < ApplicationController
 
   def filter
     @groups = []
+    current_user.update_attributes(:filter_state => params[:state])
     @shown_items = {:todos => {}, :discussions => {}, :documents => {}}
-    if params["selected_groups"].present?
-      params["selected_groups"].each {|val| @groups << val }
+    if params["state"]["selected_groups"].present?
+      params["state"]["selected_groups"].each {|val| @groups << val }
     end
-    origin_group = Group.find_by_id(params["origin_group"])
+    origin_group = Group.find_by_id(params["state"]["origin_group"])
     @groups = Group.find(:all, :conditions => ['id in (?)', @groups])
     @groups << origin_group
 

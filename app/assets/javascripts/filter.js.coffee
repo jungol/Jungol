@@ -6,19 +6,24 @@ $ ->
     "origin_group": "1",
     "selected_groups": []
   }
-  todoCount = 0
-  discCount = 0
-  docCount = 0
+
+  newData = $.parseJSON($('input#state').val())
+  filterData = $.extend(filterData, newData)
+
+
+
+  [todoCount, discCount, docCount] = [0, 0, 0]
 
   setHeights = ->
     ht = $('.main-right').height()
-    myht = $('.my_group_ul li').length * 62
-    conht = $('.con_group_ul li').length * 62
+    myht = ($('.my_group_ul li').length * 62) + 26
+    conht = ($('.con_group_ul li').length * 62) + 26
     newht = Math.max(ht, myht, conht)
     $('.content-bg').height(newht)
     $('#my-groups').animate({height:newht}, 200 )
     $('#con-groups').animate({height:newht}, 200 )
     $('#my-groups-over').height(newht)
+
 
 
   #HIDE SOME STUFF
@@ -152,7 +157,7 @@ $ ->
     createNewLinks(_group_id)
     $.ajax 'filter/select',
       type: 'POST',
-      data: {"group_id": _group_id},
+      data: {"group_id": _group_id, "state": filterData},
       dataType: 'json',
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
@@ -214,7 +219,7 @@ $ ->
 
     $.ajax 'filter/filter',
       type: 'POST',
-      data: filterData,
+      data: {"state": filterData},
       dataType: 'json',
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
