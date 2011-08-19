@@ -28,6 +28,7 @@ $ ->
     $('#my-groups-over').height(newht)
 
   setState = ->
+    $('#filter-wrapper').css {'opacity':0}
     [todoCount, discCount, docCount] = [0, 0, 0]
     #SET GROUP AS SELECTED
     org = filterData.origin_group
@@ -74,6 +75,7 @@ $ ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
         rePopItems(data)
+        $('#filter-wrapper').fadeTo(500, 1)
 
   if newData.length == 0 #First time visiting the page
     #HIDE SOME STUFF
@@ -89,9 +91,6 @@ $ ->
     $('#main-welcome').hide()
     setState()
     setHeights()
-
-
-  #SHOW WELCOME HEADER
 
 
   ##--HELPERS
