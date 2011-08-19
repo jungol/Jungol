@@ -12,7 +12,7 @@ $ ->
   cbody = $('.item#docs > .item-body')
   ginfo = $('.group-info')
 
-  newData = $.parseJSON($('input#state').val())
+  newData = $.parseJSON($('input#state').val()) || ""
   filterData = $.extend(filterData, newData)
 
   [todoCount, discCount, docCount] = [0, 0, 0]
