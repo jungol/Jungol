@@ -135,6 +135,13 @@ class Group < ActiveRecord::Base
     pend = group.group_connections.find_by_group_b_id(self.id)
     req.destroy && pend.destroy
   end
+  
+  def notify_of_new_connection(group)
+    
+    self.admins.each do |user|
+      Notifier.approved_group(user, self, group).deliver
+    end
+  end
 
 end
 

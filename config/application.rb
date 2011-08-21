@@ -45,5 +45,8 @@ module Jungola
     config.assets.enabled = true
     
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    
+    
+    
   end
 end

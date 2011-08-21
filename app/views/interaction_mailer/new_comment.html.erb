@@ -1,0 +1,11 @@
+Hey <%= link_to @user.name, user_root_url %>!<br />
+<br />
+<%= @comment.user.name %> just commented on the <%= @item_string %> <%=  link_to @item.title, polymorphic_url([@group, @item]) %> in your group (<%= link_to @group.name,  group_url(@group) %>).<br />
+<br />
+<%= @comment.user.name %> said:<br />
+<br />
+"<%= @comment.body %>"<br />
+<br />
+<br />
+Sincerely,<br />
+Jungol Team<br />

@@ -1,0 +1,8 @@
+Hey <%= link_to @user.name, user_root_url %>!<br />
+<br />
+Congratulations!  Your membership has been approved for “<%= link_to @group.name, group_url(@group) %>”.<br/>
+<br/>
+Group members can do a lot on Jungol.  Collaborate with your group members using to-do lists, discussions, and file-sharing.  If multiple organizations are working together, you can share these tools between groups.  <%= link_to "Get started with #{@group.name}.", group_url(@group) %><br/>
+<br/>
+Sincerely,<br />
+Jungol Team

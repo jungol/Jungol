@@ -54,6 +54,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  #Returns a group that a user can view the item from, or nil if none exists
+  def view_group(item)
+    groups.joins(:item_shares).where(:item_shares => {:item_id => item.id, :item_type => item.class}).first
+  end
 
   def can_delete?(item)
     (admin_of? item.group) || (item.creator == self)

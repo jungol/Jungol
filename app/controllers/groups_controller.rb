@@ -113,6 +113,7 @@ class GroupsController < ApplicationController
         mem = Membership.find_by_user_id_and_group_id(params[:u], @group.id)
         if mem.update_attributes(:is_pending => false)
           flash[:success] = "Membership approved."
+          mem.notify_user
         end
       elsif request.delete? #DENY
         mem = Membership.find_by_user_id_and_group_id(params[:u], @group.id)
@@ -131,6 +132,7 @@ class GroupsController < ApplicationController
         @group2 = Group.find(params[:g])
         if @group.approve_group(@group2)
           flash[:success] = "You're now connected to #{@group2.name}."
+          @group.notify_of_new_connection(@group2)
         end
       elsif request.delete? #DENY
         @group2 = Group.find(params[:g])

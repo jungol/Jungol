@@ -18,6 +18,10 @@ class Membership < ActiveRecord::Base
   def change_role(role)
     update_attributes(:role => role)
   end
+  
+  def notify_user
+    Notifier.approved_user(group, user).deliver
+  end
 
   before_validation :add_default_role
 

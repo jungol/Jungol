@@ -1,0 +1,14 @@
+Hey <%= link_to @user.name, user_root_url %>!<br />
+<br />
+<% if @tasks.count == 1 %>
+	<%= @creator.name %> added a new task to the to-do list <%= link_to @todo.title, polymorphic_url([@group, @todo]) %> in your group (<%= link_to @group.name, group_url(@group) %>).<br/>
+<% else %>
+	<%= @creator.name %> added some new tasks to the to-do list <%= link_to @todo.title, polymorphic_url([@group, @todo]) %> in your group (<%= link_to @group.name, group_url(@group) %>).<br/>
+<% end %>
+<br/>
+<% @tasks.each do |task| %>
+ -<%= task.description %><br/>
+<% end %>
+<br/>
+Sincerely,<br/>
+Jungol Team

@@ -1,5 +1,5 @@
 class InteractionMailer < ActionMailer::Base
-  default from: "mailer@jungolhq.com"
+  default :from =>  "mailer@jungolhq.com"
   
   def new_share(user,share)
     @share = share
@@ -21,6 +21,7 @@ class InteractionMailer < ActionMailer::Base
     @todo = @tasks.first.todo
     @user = user
     @creator = creator
+    @group = @user.view_group(@todo)
     if tasks.count == 1
       subject = "A new task has been added to your to-do list on Jungol"
     else
@@ -34,6 +35,7 @@ class InteractionMailer < ActionMailer::Base
     @item = item
     @comment = comment
     @user = user
+    @group = @user.view_group(@item)
     
     case comment.item_type
     when "Todo"

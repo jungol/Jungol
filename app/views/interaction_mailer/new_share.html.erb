@@ -1,0 +1,20 @@
+Hey <%= link_to @user.name, user_root_url %>!<br />
+<br />
+<% case @share.item_type %>
+<% when "Todo" %>
+A new to-do list was just added to your group (<%= link_to @share.group.name, group_url(@share.group) %>).<br />
+<br />
+<%= link_to @share.item.title, polymorphic_url([@share.group, @share.item]) %><br />
+<% when "Discussion" %>
+A new discussion was just added to your group (<%= link_to @share.group.name, group_url(@share.group) %>).<br />
+<br />
+<%= link_to @share.item.title, polymorphic_url([@share.group, @share.item]) %><br />
+<%= @share.item.creator.name %> says: <%= @share.item.description %><br />
+<% when "Document" %>
+A new document was just uploaded to your group (<%=  link_to @share.group.name, group_url(@share.group) %>)<br />
+<br />
+<%= link_to @share.item.title, polymorphic_url([@share.group, @share.item]) %><br />
+<% end %>
+<br />
+Sincerely,<br />
+The Jungol Team<br />
