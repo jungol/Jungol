@@ -24,6 +24,23 @@ class DiscussionsController < ApplicationController
       current_user.share @group, @discussion, (params[:admins_only].present?)
 
       flash[:success] = "Discussion Created."
+
+      #HANDLE SHARING
+      if params['share'].present?
+        params['share'].each do |sh|
+          new_share = current_user.created_shares.new()
+          if sh[1].include? "admin"
+            new_share.admins_only = true
+          end
+          if new_share.save
+            @shared_group = Group.find(sh[0])
+            @discussion.interactions.create(:user => current_user, :summary => 'Shared Discussion')
+            @discussion.item_shares << new_share
+            @shared_group.item_shares << new_share
+            new_share.notify_users
+          end
+        end
+      end
       redirect_to group_discussion_path(@group, @discussion)
     else
       @title = "Create a Discussion"

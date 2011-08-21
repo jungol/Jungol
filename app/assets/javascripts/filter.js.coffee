@@ -6,31 +6,102 @@ $ ->
     "origin_group": "1",
     "selected_groups": []
   }
-  todoCount = 0
-  discCount = 0
-  docCount = 0
+
+  tbody = $('.item#todos > .item-body')
+  dbody = $('.item#discussions > .item-body')
+  cbody = $('.item#docs > .item-body')
+  ginfo = $('.group-info')
+
+  newData = $.parseJSON($('input#state').val()) || ""
+  filterData = $.extend(filterData, newData)
+
+  [todoCount, discCount, docCount] = [0, 0, 0]
+
+
+  addHover = ->
+    $('#my-groups-over').mouseenter ->
+      $('#my-groups').css {'opacity':1}
+    $('#my-groups-over').mouseleave ->
+      $('#my-groups').css {'opacity':0.5}
 
   setHeights = ->
     ht = $('.main-right').height()
-    myht = $('.my_group_ul li').length * 62
-    conht = $('.con_group_ul li').length * 62
+    myht = ($('.my_group_ul li').length * 62) + 26
+    conht = ($('.con_group_ul li').length * 62) + 26
     newht = Math.max(ht, myht, conht)
     $('.content-bg').height(newht)
     $('#my-groups').animate({height:newht}, 200 )
     $('#con-groups').animate({height:newht}, 200 )
     $('#my-groups-over').height(newht)
 
+  setState = ->
+    $('#my-groups').css {'opacity':0}
+    $('#con-groups').css {'opacity':0}
+    [todoCount, discCount, docCount] = [0, 0, 0]
+    #SET GROUP AS SELECTED
+    org = filterData.origin_group
+    $('#my-groups li').each ->
+       if @.id == org
+         $(@).toggleClass('selected')
 
-  #HIDE SOME STUFF
-  $('#con-groups').hide()
-  $('#main-items').hide()
-  $('#my-groups-over').hide()
-  setHeights()
+    $('#my-groups').switchClass 'main-left', 'secondary-left', -> #move to left, gray out
+      $('#my-groups-over').height($('#my-groups').height() + 2).show()
+      $(@).css {'opacity': 0.5}
 
-  #SHOW WELCOME HEADER
+    #GET CONNECTED GROUPS
+    ginfo.fadeTo(900,0)
+    $.ajax 'filter/select',
+      type: 'POST',
+      data: {"group_id": org, "state": filterData},
+      dataType: 'json',
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        #CLEAR SELECTED GROUPS, POPULATE NEW
+        $('.con_group_ul').empty()
+        $.each data.shared_groups, (k,v) ->
+          $('.con_group_ul').append conGroupMarkup(v)
+        $('.con_group_ul').append addCon(org)
+        #SHOW MAIN GROUP HEADER
+        ginfo.empty().append groupInfoMarkup(data.main_group)
+        createNewLinks(data.main_group.id)
+
+        #MARK CONNECTED SELECTED
+        $('.con_group_ul li').each ->
+          if $.inArray("#{@.id}", filterData.selected_groups) > -1
+             $(@).toggleClass('selected')
+
+    #GET ITEMS
+    tbody.fadeTo(900, 0)
+    dbody.fadeTo(900, 0)
+    cbody.fadeTo(900, 0)
+    $.ajax 'filter/filter',
+      type: 'POST',
+      data: {"state": filterData},
+      dataType: 'json',
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data) ->
+        rePopItems(data)
+        $('#my-groups').fadeTo(500, 0.5)
+        $('#con-groups').fadeTo(500, 1)
+        ginfo.fadeTo(500, 1)
+
+  #START
+  if newData.length == 0 #First time visiting the page
+    #HIDE SOME STUFF
+    $('#con-groups').hide()
+    $('#main-items').hide()
+    $('#my-groups-over').hide()
+    setHeights()
+  else
+    addHover()
+    $('#main-welcome').hide()
+    setState()
+    setHeights()
 
 
-  ##--HELPERS
+##--HELPERS
   pluralize = (num, sin, plur = sin + "s") ->
     if num == 1
       num + " " + sin
@@ -119,7 +190,35 @@ $ ->
       #{if group.about.length > 150 then group.about.substr(0,150) + "..." else group.about}
       </p></div>"
 
-  rePopItems = (data, tbody, dbody, cbody) ->
+  #gets items after group is selected
+  getItems = (_group_id) ->
+    [todoCount, discCount, docCount] = [0, 0, 0]
+    tbody.fadeTo(900, 0)
+    dbody.fadeTo(900, 0)
+    cbody.fadeTo(900, 0)
+    ginfo.fadeTo(900, 0)
+    filterData.origin_group = _group_id
+    createNewLinks(_group_id)
+    $.ajax 'filter/select',
+      type: 'POST',
+      data: {"group_id": _group_id, "state": filterData},
+      dataType: 'json',
+      error: (jqXHR, textStatus, errorThrown) ->
+        $('body').append "AJAX Error: #{textStatus}"
+      success: (data, textStatus, jqXHR) ->
+        #Clear selected groups, populate new
+        $('.con_group_ul').empty()
+        filterData.selected_groups = []
+        $.each data.shared_groups, (k,v) ->
+          $('.con_group_ul').append conGroupMarkup(v)
+        $('.con_group_ul').append addCon(_group_id)
+        ginfo.empty().append groupInfoMarkup(data.main_group)
+        #Populate items connected to origin group
+        rePopItems(data.items)
+        ginfo.stop().fadeTo(500, 1)
+        setHeights()
+
+  rePopItems = (data) ->
     tbody.empty()
     dbody.empty()
     cbody.empty()
@@ -137,37 +236,6 @@ $ ->
     cbody.stop().fadeTo(500, 1)
     setHeights()
 
-  #gets items after group is selected
-  getItems = (_group_id) ->
-    [todoCount, discCount, docCount] = [0, 0, 0]
-    tbody = $('.item#todos > .item-body')
-    dbody = $('.item#discussions > .item-body')
-    cbody = $('.item#docs > .item-body')
-    ginfo = $('.group-info')
-    tbody.fadeTo(900, 0)
-    dbody.fadeTo(900, 0)
-    cbody.fadeTo(900, 0)
-    ginfo.fadeTo(900, 0)
-    filterData.origin_group = _group_id
-    createNewLinks(_group_id)
-    $.ajax 'filter/select',
-      type: 'POST',
-      data: {"group_id": _group_id},
-      dataType: 'json',
-      error: (jqXHR, textStatus, errorThrown) ->
-        $('body').append "AJAX Error: #{textStatus}"
-      success: (data, textStatus, jqXHR) ->
-        #Clear selected groups, populate new
-        $('.con_group_ul').empty()
-        filterData.selected_groups = []
-        $.each data.shared_groups, (k,v) ->
-          $('.con_group_ul').append conGroupMarkup(v)
-        $('.con_group_ul').append addCon(_group_id)
-        ginfo.empty().append groupInfoMarkup(data.main_group)
-        #Populate items connected to origin group
-        rePopItems(data.items, tbody, dbody, cbody)
-        ginfo.stop().fadeTo(500, 1)
-        setHeights()
 
   $('#my-groups-over').click ->
     $(@).unbind('mouseenter mouseleave')
@@ -186,10 +254,7 @@ $ ->
 
     $('#con-groups').show('slide', { direction:'right'}, 300 ) #SHOW CONNECTED GROUPS
     #ADD HOVER FUNCTION
-    $('#my-groups-over').mouseenter ->
-      $('#my-groups').css {'opacity':1}
-    $('#my-groups-over').mouseleave ->
-      $('#my-groups').css {'opacity':0.5}
+    addHover()
     #MARK 'MY GROUPS' INACTIVE, SHOW OVER-DIV
     $('#my-groups').switchClass 'main-left', 'secondary-left', 300, -> #move to left, gray out
       $('#my-groups-over').height($('#my-groups').height() + 2).show()
@@ -198,11 +263,7 @@ $ ->
 
   $('.con_group_li').live 'click',  ->
     [todoCount, discCount, docCount] = [0, 0, 0]
-    tbody = $('.item#todos > .item-body')
     $(@).toggleClass('selected')
-    tbody = $('.item#todos > .item-body')
-    dbody = $('.item#discussions > .item-body')
-    cbody = $('.item#docs > .item-body')
     tbody.fadeTo(900, 0)
     dbody.fadeTo(900, 0)
     cbody.fadeTo(900, 0)
@@ -214,9 +275,9 @@ $ ->
 
     $.ajax 'filter/filter',
       type: 'POST',
-      data: filterData,
+      data: {"state": filterData},
       dataType: 'json',
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
-        rePopItems(data, tbody, dbody, cbody)
+        rePopItems(data)

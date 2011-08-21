@@ -15,3 +15,16 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+# == Schema Information
+#
+# Table name: interactions
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  item_type  :string(255)
+#  item_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  summary    :string(255)
+#
+

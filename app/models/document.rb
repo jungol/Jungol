@@ -51,3 +51,21 @@ class Document < ActiveRecord::Base
                         application/vnd.ms-powerpoint.slideshow.macroEnabled.12),
     :message => 'is not allowed (only images, .pdfs, and MS Office filetypes)'
 end
+
+# == Schema Information
+#
+# Table name: documents
+#
+#  id               :integer         not null, primary key
+#  creator_id       :integer
+#  group_id         :integer
+#  title            :string(255)
+#  description      :text
+#  doc_file_name    :string(255)
+#  doc_content_type :string(255)
+#  doc_file_size    :integer
+#  doc_updated_at   :datetime
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+

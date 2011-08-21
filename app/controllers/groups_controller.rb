@@ -47,10 +47,24 @@ class GroupsController < ApplicationController
 
   #ADD GROUP TO GROUPS
   def link
-    @title = "Request connection to Group"
+    @title = "Group Connections"
     if request.get?
-      @groups = @group.unconnected_groups
       render :link
+    elsif request.xhr? #REQUEST LINK
+      response_text = {:flash => {}, :text => {}}
+      @group2 = Group.find(params[:group][:id])
+      if @group.connect(@group2)
+        response_text[:flash] = "Pending"
+
+        #SEND OUT NOTIFICATION EMAILS
+        @group2.admins.each do |admin|
+          Notifier.pending_group(admin, @group2, @group).deliver
+        end
+      else
+        response_text[:flash] = "Error."
+      end
+      render :json => response_text
+      return
     elsif request.post?
       @group2 = Group.find(params[:group][:id])
       if @group.connect(@group2)
