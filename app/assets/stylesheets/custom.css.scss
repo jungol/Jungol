@@ -542,7 +542,7 @@ section {
     }
   }
 
-  #show-group {
+  #show-group, #connect-group {
     ul.group-members,
     ul.group-groups {
       list-style: none;
@@ -1253,6 +1253,20 @@ section {
       display: inline-block;
       width: 165px;
       height: 50px;
+    }
+  }
+
+  #group-connect li.group-list-li{
+    @extend li.group-list-li;
+    width:280px;
+    .group-text{
+      width:130px;
+    }
+    .group-status{
+      width:40px;
+      float:left;
+      display:block;
+
     }
   }
 

@@ -1,0 +1,23 @@
+<li class='group-list-li'>
+  <div class="group-img">
+    <%= render 'groups/logo', :group => group, :size => 50 %>
+  </div>
+  <div class="group-text">
+    <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %><br />
+    <span class="group-mems"><%= pluralize group.members.count, "member"  %></span> |
+    <span class="group-cons"><%= pluralize group.groups.count, "connection"  %></span>
+  </div>
+  <div class = "group-status">
+    <% if conn==0 %>
+      <%= form_tag(link_path(@group), :method => :post, :remote => true) do %>
+        <%= hidden_field(:group, :id, :value => group.id) %>
+        <%= submit_tag "Connect", :class => 'group-share' %>
+      <% end %>
+    <% elsif conn==1 %>
+      <span class='status'>Pending</span>
+    <% elsif conn==2 %>
+      <span class='status'>Connected!</span>
+    <% end %>
+  </div>
+  <div class="clearall"></div>
+</li>
