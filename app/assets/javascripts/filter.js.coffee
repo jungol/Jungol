@@ -17,6 +17,13 @@ $ ->
 
   [todoCount, discCount, docCount] = [0, 0, 0]
 
+
+  addHover = ->
+    $('#my-groups-over').mouseenter ->
+      $('#my-groups').css {'opacity':1}
+    $('#my-groups-over').mouseleave ->
+      $('#my-groups').css {'opacity':0.5}
+
   setHeights = ->
     ht = $('.main-right').height()
     myht = ($('.my_group_ul li').length * 62) + 26
@@ -28,7 +35,8 @@ $ ->
     $('#my-groups-over').height(newht)
 
   setState = ->
-    $('#filter-wrapper').css {'opacity':0}
+    $('#my-groups').css {'opacity':0}
+    $('#con-groups').css {'opacity':0}
     [todoCount, discCount, docCount] = [0, 0, 0]
     #SET GROUP AS SELECTED
     org = filterData.origin_group
@@ -41,6 +49,7 @@ $ ->
       $(@).css {'opacity': 0.5}
 
     #GET CONNECTED GROUPS
+    ginfo.fadeTo(900,0)
     $.ajax 'filter/select',
       type: 'POST',
       data: {"group_id": org, "state": filterData},
@@ -48,20 +57,18 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data, textStatus, jqXHR) ->
-        #Clear selected groups, populate new
+        #CLEAR SELECTED GROUPS, POPULATE NEW
         $('.con_group_ul').empty()
         $.each data.shared_groups, (k,v) ->
           $('.con_group_ul').append conGroupMarkup(v)
         $('.con_group_ul').append addCon(org)
-        #show main group header
+        #SHOW MAIN GROUP HEADER
         ginfo.empty().append groupInfoMarkup(data.main_group)
 
         #MARK CONNECTED SELECTED
-
         $('.con_group_ul li').each ->
           if $.inArray("#{@.id}", filterData.selected_groups) > -1
              $(@).toggleClass('selected')
-
 
     #GET ITEMS
     tbody.fadeTo(900, 0)
@@ -75,8 +82,11 @@ $ ->
         $('body').append "AJAX Error: #{textStatus}"
       success: (data) ->
         rePopItems(data)
-        $('#filter-wrapper').fadeTo(500, 1)
+        $('#my-groups').fadeTo(500, 0.5)
+        $('#con-groups').fadeTo(500, 1)
+        ginfo.fadeTo(500, 1)
 
+  #START
   if newData.length == 0 #First time visiting the page
     #HIDE SOME STUFF
     $('#con-groups').hide()
@@ -84,16 +94,13 @@ $ ->
     $('#my-groups-over').hide()
     setHeights()
   else
-    $('#my-groups-over').mouseenter ->
-      $('#my-groups').css {'opacity':1}
-    $('#my-groups-over').mouseleave ->
-      $('#my-groups').css {'opacity':0.5}
+    addHover()
     $('#main-welcome').hide()
     setState()
     setHeights()
 
 
-  ##--HELPERS
+##--HELPERS
   pluralize = (num, sin, plur = sin + "s") ->
     if num == 1
       num + " " + sin
@@ -246,10 +253,7 @@ $ ->
 
     $('#con-groups').show('slide', { direction:'right'}, 300 ) #SHOW CONNECTED GROUPS
     #ADD HOVER FUNCTION
-    $('#my-groups-over').mouseenter ->
-      $('#my-groups').css {'opacity':1}
-    $('#my-groups-over').mouseleave ->
-      $('#my-groups').css {'opacity':0.5}
+    addHover()
     #MARK 'MY GROUPS' INACTIVE, SHOW OVER-DIV
     $('#my-groups').switchClass 'main-left', 'secondary-left', 300, -> #move to left, gray out
       $('#my-groups-over').height($('#my-groups').height() + 2).show()
