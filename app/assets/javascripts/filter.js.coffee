@@ -64,6 +64,7 @@ $ ->
         $('.con_group_ul').append addCon(org)
         #SHOW MAIN GROUP HEADER
         ginfo.empty().append groupInfoMarkup(data.main_group)
+        createNewLinks(data.main_group.id)
 
         #MARK CONNECTED SELECTED
         $('.con_group_ul li').each ->
