@@ -33,6 +33,22 @@ class TodosController < ApplicationController
       current_user.share @group, @todo, (params[:admins_only].present?)
 
       flash[:success] = "Todo Created."
+      #HANDLE SHARING
+      if params['share'].present?
+        params['share'].each do |sh|
+          new_share = current_user.created_shares.new()
+          if sh[1].include? "admin"
+            new_share.admins_only = true
+          end
+          if new_share.save
+            @shared_group = Group.find(sh[0])
+            @todo.interactions.create(:user => current_user, :summary => 'Shared Todo')
+            @todo.item_shares << new_share
+            @shared_group.item_shares << new_share
+            new_share.notify_users
+          end
+        end
+      end
       redirect_to group_todo_path(@group, @todo)
     else
       @title = "Create a Todo List"

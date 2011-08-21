@@ -3,9 +3,32 @@
     <div class="alt-item-head headerfull">
       <h2>Create New Document</h2>
     </div>
-
     <%= form_for [@group, @document] do |doc_f| %>
       <%= render 'fields', :f => doc_f %>
+      <div id="group-share">
+        <h3>Share with:</h3>
+        <p>
+          Share this item with your connections.
+        </p>
+        <p>
+          <%= check_box_tag :select_all %>
+          <%= label_tag :select_all, "Select All" %>
+          <br />
+          <% if current_user.privileged? @group %>
+            <%= check_box_tag :all_admins %>
+            <%= label_tag :all_admins, "Share only with Admins" %>
+            <br />
+          <% end %>
+        </p>
+        <ul class="share-list">
+          <% if @group.groups.present? %>
+            <% @group.groups.each do |g| %>
+              <%= render 'items/group_share', :group => g %>
+            <% end %>
+          <% end %>
+        </ul>
+        <div class="clearall"></div>
+      </div>
       <div class = 'actions'>
         <% if current_user.privileged? @group %>
           <span class="admins_only">
@@ -16,6 +39,5 @@
         <span class="doc-fix"><%= doc_f.submit "Create" %></span>
       </div>
     <% end %>
-
   </div>
 </div>

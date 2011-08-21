@@ -1254,19 +1254,34 @@ section {
       width: 165px;
       height: 50px;
     }
-  }
-
-  #group-connect li.group-list-li{
-    @extend li.group-list-li;
-    width:280px;
-    .group-text{
-      width:130px;
-    }
-    .group-status{
-      width:40px;
+    .group-check{
       float:left;
       display:block;
+      width: 30px;
+    }
+  }
 
+  #group-share {
+    position:relative;
+    right:0px;
+    top:0px;
+    border:1px dotted #cccccc;
+    width:450px;
+  }
+
+  #group-connect, #group-share {
+    li.group-list-li{
+      @extend li.group-list-li;
+      width:280px;
+      .group-text{
+        width:130px;
+      }
+      .group-status{
+        width:40px;
+        float:left;
+        display:block;
+
+      }
     }
   }
 

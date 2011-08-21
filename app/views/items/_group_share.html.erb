@@ -1,0 +1,17 @@
+<li class='group-list-li'>
+  <div class="group-check">
+    <%= check_box_tag "share[#{group.id}]", :id => group.id %>
+  </div>
+  <div class="group-img">
+    <%= render 'groups/logo', :group => group, :size => 50 %>
+  </div>
+  <div class="group-text">
+    <%= content_tag :span, link_to(group.name, group), :class => 'group-link' %><br />
+    <% if current_user.privileged? @group %>
+      <span class="admins-only">
+        <%= check_box_tag "share[#{group.id}]", :admins_only => true %>
+        <%= label_tag "share[#{group.id}]a", "Admins only" %>
+      </span>
+    <% end %>
+  </div>
+</li>
