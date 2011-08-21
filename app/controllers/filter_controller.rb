@@ -19,50 +19,56 @@ class FilterController < ApplicationController
     @shown[:items] = {:todos => {}, :discussions => {}, :documents => {}}
     i=0
     @group.shared_todos.each do |td|
-      @shown[:items][:todos][i] = td
-      @shown[:items][:todos][i][:comments] = td.comments.size
-      @shown[:items][:todos][i][:creator] = td.creator.present? ? td.creator.name : "Creator Deleted"
-      @shown[:items][:todos][i][:url] = group_todo_path @group, td
-      j=0
-      @shown[:items][:todos][i][:shared_groups] = []
-      td.shared_groups.each do |gr|
-        @shown[:items][:todos][i][:shared_groups][j] = gr
-        @shown[:items][:todos][i][:shared_groups][j][:url] = group_path gr
-        j += 1
+      if current_user.can_view? @group, td
+        @shown[:items][:todos][i] = td
+        @shown[:items][:todos][i][:comments] = td.comments.size
+        @shown[:items][:todos][i][:creator] = td.creator.present? ? td.creator.name : "Creator Deleted"
+        @shown[:items][:todos][i][:url] = group_todo_path @group, td
+        j=0
+        @shown[:items][:todos][i][:shared_groups] = []
+        td.shared_groups.each do |gr|
+          @shown[:items][:todos][i][:shared_groups][j] = gr
+          @shown[:items][:todos][i][:shared_groups][j][:url] = group_path gr
+          j += 1
+        end
+        i += 1
       end
-      i += 1
     end
     i=0
     @group.shared_discussions.each do |dc|
-      @shown[:items][:discussions][i] = dc
-      @shown[:items][:discussions][i][:comments] = dc.comments
-      @shown[:items][:discussions][i][:by] = dc.comments.present? ? dc.comments.last.user : dc.creator
-      @shown[:items][:discussions][i][:url] = group_discussion_path @group, dc
-      @shown[:items][:discussions][i][:last] = dc.comments.present? ? dc.comments.last.updated_at : dc.updated_at
-      j=0
-      @shown[:items][:discussions][i][:shared_groups] = []
-      dc.shared_groups.each do |gr|
-        @shown[:items][:discussions][i][:shared_groups][j] = gr
-        @shown[:items][:discussions][i][:shared_groups][j][:url] = group_path gr
-        j += 1
+      if current_user.can_view? @group, dc
+        @shown[:items][:discussions][i] = dc
+        @shown[:items][:discussions][i][:comments] = dc.comments
+        @shown[:items][:discussions][i][:by] = dc.comments.present? ? dc.comments.last.user : dc.creator
+        @shown[:items][:discussions][i][:url] = group_discussion_path @group, dc
+        @shown[:items][:discussions][i][:last] = dc.comments.present? ? dc.comments.last.updated_at : dc.updated_at
+        j=0
+        @shown[:items][:discussions][i][:shared_groups] = []
+        dc.shared_groups.each do |gr|
+          @shown[:items][:discussions][i][:shared_groups][j] = gr
+          @shown[:items][:discussions][i][:shared_groups][j][:url] = group_path gr
+          j += 1
+        end
+        i += 1
       end
-      i += 1
     end
     i=0
     @group.shared_documents.each do |doc|
-      @shown[:items][:documents][i] = doc
-      @shown[:items][:documents][i][:comments] = doc.comments
-      @shown[:items][:documents][i][:by] = doc.comments.present? ? doc.comments.last.user : doc.creator
-      @shown[:items][:documents][i][:url] = group_document_path @group, doc
-      @shown[:items][:documents][i][:last] = doc.comments.present? ? doc.comments.last.updated_at : doc.updated_at
-      j=0
-      @shown[:items][:documents][i][:shared_groups] = []
-      doc.shared_groups.each do |gr|
-        @shown[:items][:documents][i][:shared_groups][j] = gr
-        @shown[:items][:documents][i][:shared_groups][j][:url] = group_path gr
-        j += 1
+      if current_user.can_view? @group, doc
+        @shown[:items][:documents][i] = doc
+        @shown[:items][:documents][i][:comments] = doc.comments
+        @shown[:items][:documents][i][:by] = doc.comments.present? ? doc.comments.last.user : doc.creator
+        @shown[:items][:documents][i][:url] = group_document_path @group, doc
+        @shown[:items][:documents][i][:last] = doc.comments.present? ? doc.comments.last.updated_at : doc.updated_at
+        j=0
+        @shown[:items][:documents][i][:shared_groups] = []
+        doc.shared_groups.each do |gr|
+          @shown[:items][:documents][i][:shared_groups][j] = gr
+          @shown[:items][:documents][i][:shared_groups][j][:url] = group_path gr
+          j += 1
+        end
+        i += 1
       end
-      i += 1
     end
 
     render :json => @shown
@@ -81,7 +87,7 @@ class FilterController < ApplicationController
 
     i=0
     origin_group.shared_todos.each do |td| #add this todo if it has the other groups listed in its groups
-      if((td.shared_groups | @groups) == td.shared_groups) #union is same as original, i.e. nothing new in @groups
+      if((current_user.can_view? origin_group, td) && ((td.shared_groups | @groups) == td.shared_groups))#union is same as original, i.e. nothing new in @groups
         @shown_items[:todos][i] = td
         @shown_items[:todos][i][:comments] = td.comments.size
         @shown_items[:todos][i][:creator] = td.creator.present? ? td.creator.name : "Creator Deleted"
@@ -98,7 +104,7 @@ class FilterController < ApplicationController
     end
     i=0
     origin_group.shared_discussions.each do |dc| #add this discussion if it has the other groups listed in its groups
-      if((dc.shared_groups | @groups) == dc.shared_groups) #union is same as original, i.e. nothing new in @groups
+      if((current_user.can_view? origin_group, dc) && ((dc.shared_groups | @groups) == dc.shared_groups))#union is same as original, i.e. nothing new in @groups
         @shown_items[:discussions][i] = dc
         @shown_items[:discussions][i][:comments] = dc.comments
         @shown_items[:discussions][i][:by] = dc.comments.present? ? dc.comments.last.user : dc.creator
@@ -116,7 +122,7 @@ class FilterController < ApplicationController
     end
     i=0
     origin_group.shared_documents.each do |doc| #add this document if it has the other groups listed in its groups
-      if((doc.shared_groups | @groups) == doc.shared_groups) #union is same as original, i.e. nothing new in @groups
+      if((current_user.can_view? origin_group, doc) && ((doc.shared_groups | @groups) == doc.shared_groups))#union is same as original, i.e. nothing new in @groups
         @shown_items[:documents][i] = doc
         @shown_items[:documents][i][:comments] = doc.comments
         @shown_items[:documents][i][:by] = doc.comments.present? ? doc.comments.last.user : doc.creator
