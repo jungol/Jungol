@@ -163,7 +163,7 @@ class GroupsController < ApplicationController
     if current_user == @group.creator
       if @group.destroy
         flash[:success] = "Group '#{title}' deleted."
-        current_user.filter_state = nil;
+        current_user.update_attributes(:filter_state => nil)
         redirect_to root_path
       end
     else
