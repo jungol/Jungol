@@ -49,7 +49,7 @@ $ ->
       $(@).css {'opacity': 0.5}
 
     #GET CONNECTED GROUPS
-    ginfo.fadeTo(900,0)
+    ginfo.hide()
     $.ajax 'filter/select',
       type: 'POST',
       data: {"group_id": org, "state": filterData},
@@ -196,7 +196,7 @@ $ ->
     tbody.fadeTo(900, 0)
     dbody.fadeTo(900, 0)
     cbody.fadeTo(900, 0)
-    ginfo.fadeTo(900, 0)
+    ginfo.fadeTo(200, 0)
     filterData.origin_group = _group_id
     createNewLinks(_group_id)
     $.ajax 'filter/select',
