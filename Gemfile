@@ -16,7 +16,7 @@ gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch
 gem 'rake', '0.8.7'
 
 # Asset template engines
-gem 'sass-rails', "~> 3.1.0.rc"
+gem 'sass-rails', "~> 3.1.0.rc.6"
 gem 'coffee-script'
 gem 'uglifier'
 

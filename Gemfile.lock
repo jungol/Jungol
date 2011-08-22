@@ -186,11 +186,10 @@ GEM
       archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.4)
     sass (3.1.7)
-    sass-rails (3.1.0.rc.5)
-      actionpack (~> 3.1.0.rc1)
-      railties (~> 3.1.0.rc1)
+    sass-rails (3.1.0.rc.6)
+      actionpack (~> 3.1.0.rc6)
+      railties (~> 3.1.0.rc6)
       sass (>= 3.1.4)
-      sprockets (>= 2.0.0.beta.9)
     selenium-webdriver (2.4.0)
       childprocess (>= 0.2.1)
       ffi (>= 1.0.7)
@@ -241,7 +240,7 @@ DEPENDENCIES
   rake (= 0.8.7)
   rspec-rails
   ruby-debug19
-  sass-rails (~> 3.1.0.rc)
+  sass-rails (~> 3.1.0.rc.6)
   therubyracer!
   uglifier
   will_paginate!
