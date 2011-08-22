@@ -13,17 +13,25 @@
       <p class='add-task'><%= link_to_add_fields "Add Task", todo_f, :tasks  %></p>
       <div id="group-share">
         <h3>Share with:</h3>
-        <p>
+        <div style="padding-left:10px;margin:-12px 0px 10px;">
           Share this item with your connections.
-        </p>
+        </div>
         <p>
-          <%= check_box_tag :select_all %>
-          <%= label_tag :select_all, "Select All" %>
-          <br />
-          <% if current_user.privileged? @group %>
-            <%= check_box_tag :all_admins %>
-            <%= label_tag :all_admins, "Share only with Admins" %>
+          <% if @group.groups.present? %>
+            <%= check_box_tag :select_all %>
+            <%= label_tag :select_all, "Select All" %>
             <br />
+            <% if current_user.privileged? @group %>
+              <%= check_box_tag :all_admins %>
+              <%= label_tag :all_admins, "Share only with Admins" %>
+              <br />
+            <% end %>
+          <% else %>
+            <span class="note" style='color:#696A57;'>Sorry, <%= @group.name %> must be connected with other groups to share.</span>
+            <% if current_user.privileged? @group %>
+              <br />
+              <%= link_to "Connect with Other Groups", link_path(@group), :target => '_blank' %>
+            <% end %>
           <% end %>
         </p>
         <ul class="share-list">
