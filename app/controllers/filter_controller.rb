@@ -3,7 +3,7 @@ class FilterController < ApplicationController
 
   def index
     @title = "Welcome to Jungol!"
-    @groups = current_user.groups #Placeholder
+    @groups = current_user.groups
     @state = current_user.filter_state.to_json unless current_user.filter_state.blank?
   end
 

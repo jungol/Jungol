@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
 
   #MEMBERSHIPS
   has_many :memberships, :dependent => :destroy
-  has_many :groups, :through => :memberships, :source => :group, :conditions => ['is_pending =?', false]
-  has_many :pending_groups, :through => :memberships, :source => :group, :conditions => ['is_pending = ?', true]
+  has_many :groups, :through => :memberships, :source => :group, :conditions => ['is_pending =?', false], :order => 'name DESC'
+  has_many :pending_groups, :through => :memberships, :source => :group, :conditions => ['is_pending = ?', true], :order => 'name DESC'
 
   #CREATOR
   has_many :created_groups, :foreign_key => 'creator_id', :class_name => 'Group'
@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
       end
     end
   end
-  
+
   #Returns a group that a user can view the item from, or nil if none exists
   def view_group(item)
     groups.joins(:item_shares).where(:item_shares => {:item_id => item.id, :item_type => item.class}).first

@@ -25,9 +25,9 @@ class Group < ActiveRecord::Base
 
   #AFFILIATES
   has_many :group_connections, :dependent => :destroy
-  has_many :groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 2]
-  has_many :requested_groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 0]
-  has_many :pending_groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 1]
+  has_many :groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 2], :order => 'name DESC'
+  has_many :requested_groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 0], :order => 'name DESC'
+  has_many :pending_groups, :through => :group_connections, :source => :group_b, :conditions => ['status = ?', 1], :order => 'name DESC'
 
   #MEMBERSHIPS
   has_many :memberships, :dependent => :destroy
@@ -135,9 +135,9 @@ class Group < ActiveRecord::Base
     pend = group.group_connections.find_by_group_b_id(self.id)
     req.destroy && pend.destroy
   end
-  
+
   def notify_of_new_connection(group)
-    
+
     self.admins.each do |user|
       Notifier.approved_group(user, self, group).deliver
     end
