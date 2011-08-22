@@ -91,7 +91,7 @@ class DocumentsController < ApplicationController
 
       if new_share.save
         @document = Document.find(params[:id])
-        @disccusion.interactions.create(:user => current_user, :summary => 'Shared Document')
+        @document.interactions.create(:user => current_user, :summary => 'Shared Document')
         @document.item_shares << new_share
         @shared_group.item_shares << new_share
         new_share.notify_users
@@ -110,7 +110,7 @@ class DocumentsController < ApplicationController
 
       if new_share.save
         @document = Document.find(params[:id])
-        @disccusion.interactions.create(:user => current_user, :summary => 'Shared Document')
+        @document.interactions.create(:user => current_user, :summary => 'Shared Document')
         @document.item_shares << new_share
         @shared_group.item_shares << new_share
         new_share.notify_users

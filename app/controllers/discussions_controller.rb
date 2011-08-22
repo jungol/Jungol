@@ -102,7 +102,7 @@ class DiscussionsController < ApplicationController
 
       if new_share.save
         @discussion = Discussion.find(params[:id])
-        @disccusion.interactions.create(:user => current_user, :summary => 'Shared Discussion')
+        @discussion.interactions.create(:user => current_user, :summary => 'Shared Discussion')
         @discussion.item_shares << new_share
         @shared_group.item_shares << new_share
         new_share.notify_users
