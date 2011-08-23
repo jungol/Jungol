@@ -1,4 +1,8 @@
-<h2>Sign up</h2>
+<div class="content-bg">
+  <div id="main-right" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Sign up</h2>
+    </div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name) :html => { :multipart => true }) do |f| %>
   <%= devise_error_messages! %>
@@ -25,3 +29,7 @@
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
+
+    <div class="clearall">
+  </div>
+</div>

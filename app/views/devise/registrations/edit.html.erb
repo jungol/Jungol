@@ -18,7 +18,7 @@
         <p><%= f.label 'Upload a profile image' %><br />
           <%= f.file_field :avatar %> </p>
 
-        <p><%= f.label :about %><br />
+        <p><%= f.label :"About me" %><br />
           <%= f.text_area :about %></p>
 
         <p><%= f.label :name %><br /><%= f.text_field :name %></p>
@@ -27,9 +27,9 @@
 
         <p><%= f.label :about %><br /><%= f.text_area :about %></p>
 
-        <p><%= f.label :password %> <br /><i>(leave blank if you don't want to change it)</i><br /><%= f.password_field :password %></p>
+        <p><%= f.label :"New password" %> <br /><i>(leave blank if you don't want to change it)</i><br /><%= f.password_field :password %></p>
 
-        <p><%= f.label :password_confirmation %><br /><%= f.password_field :password_confirmation %></p>
+        <p><%= f.label :"Confirm your new password" %><br /><%= f.password_field :password_confirmation %></p>
 
         <p><%= f.label :current_password %> <br /><i>(we need your current password to confirm your changes)</i><br /><%= f.password_field :current_password %></p>
 

@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
 
   def index
     @title = "All Groups"
-    @blurb = "These are all the groups currently on Jungol."
+    @blurb = "Search all the groups on Jungol to find the one for you. If you don't see what you're looking for, why not create a group?"
     @groups = Group.paginate(:page => params[:page])
   end
 
