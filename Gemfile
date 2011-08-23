@@ -17,11 +17,13 @@ gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch
 gem 'rake', '0.8.7'
 
 # Asset template engines
+gem 'sprockets', :git => "https://github.com/sstephenson/sprockets.git"
 gem 'sass-rails', "~> 3.1.0.rc.6"
 gem 'coffee-script'
 gem 'uglifier'
 
 gem 'jquery-rails'
+
 
 gem 'devise'
 gem 'devise_invitable'
