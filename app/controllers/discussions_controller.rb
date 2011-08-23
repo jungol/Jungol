@@ -59,6 +59,7 @@ class DiscussionsController < ApplicationController
   def update
     if request.post? #AJAX update - description
       if @discussion.update_attributes(params[:discussion])
+        @discussion.update_attribute(:updated_at, Time.now)
         render :text => params[:discussion][:description]
         return
       end

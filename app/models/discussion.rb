@@ -16,6 +16,10 @@ class Discussion < ActiveRecord::Base
 
   validates :description, :presence => true
 
+  def admin_share?(group)
+    self.item_shares.find_by_group_id(group.id).admins_only
+  end
+
 end
 
 

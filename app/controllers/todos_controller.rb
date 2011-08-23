@@ -59,16 +59,19 @@ class TodosController < ApplicationController
   def update
     if request.post? #AJAX update - description
       if @todo.update_attributes(params[:todo])
+        @todo.update_attribute(:updated_at, Time.now)
         render :text => params[:todo][:description]
         return
       end
     else
       if params[:todo][:tasks_attributes] #adding tasks to todo
         @todo.add_many(current_user, params[:todo][:tasks_attributes].values)
+        @todo.update_attribute(:updated_at, Time.now)
         flash[:success] = "Todo updated."
         redirect_to group_todo_path(@group, @todo)
       else #updating todo through REST form
         if(@todo.update_attributes(params[:todo]))
+          @todo.update_attribute(:updated_at, Time.now)
           flash[:success] = "Todo updated."
           redirect_to group_todo_path(@group, @todo)
         else

@@ -8,8 +8,9 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(params[:comment])
     respond_to do |format|
       if @comment.save #SUCCESS
-        if(@todo)
+        if @todo
           @todo.comments << @comment
+          @todo.update_attribute(:updated_at, Time.now)
           @todo.interactions.create(:user => current_user, :summary => 'Commented on item')
           @todo.interactors.each do |user|
             @user = user
@@ -19,6 +20,7 @@ class CommentsController < ApplicationController
           format.json { render json: @comment, status: :created, location: @comment }
         elsif @discussion
           @discussion.comments << @comment
+          @discussion.update_attribute(:updated_at, Time.now)
           @discussion.interactions.create(:user => current_user, :summary => 'Commented on item')
           @discussion.interactors.each do |user|
             @user = user
@@ -28,6 +30,7 @@ class CommentsController < ApplicationController
           format.json { render json: @comment, status: :created, location: @comment }
         elsif @document
           @document.comments << @comment
+          @document.update_attribute(:updated_at, Time.now)
           @document.interactions.create(:user => current_user, :summary => 'Commented on item')
           @document.interactors.each do |user|
             @user = user

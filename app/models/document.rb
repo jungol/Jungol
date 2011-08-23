@@ -16,6 +16,10 @@ class Document < ActiveRecord::Base
 
   validates :description, :presence => true
 
+  def admin_share?(group)
+    self.item_shares.find_by_group_id(group.id).admins_only
+  end
+
   has_attached_file :doc, {
     :whiny => false
   }.merge(PAPERCLIP_DOC_OPTIONS)
@@ -51,6 +55,7 @@ class Document < ActiveRecord::Base
                         application/vnd.ms-powerpoint.slideshow.macroEnabled.12),
     :message => 'is not allowed (only images, .pdfs, and MS Office filetypes)'
 end
+
 
 # == Schema Information
 #

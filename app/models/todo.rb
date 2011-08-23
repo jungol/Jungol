@@ -18,16 +18,16 @@ class Todo < ActiveRecord::Base
             :uniqueness => { :case_sensitive => false}
 
   def add_many(user, _tasks)
-    _tasks.each do |task| 
+    _tasks.each do |task|
       self.update_attributes(:tasks_attributes => [task])
     end
-    
+
     self.interactions.create(:user => user, :summary => 'Created Todo Tasks')
-    
+
     self.interactors.each do |to_mail|
       InteractionMailer.new_todo_task(tasks.last(_tasks.count), to_mail, user).deliver unless user == to_mail
     end
-    
+
   end
 
   def update_order(_tasks)
@@ -35,7 +35,11 @@ class Todo < ActiveRecord::Base
       task.update_attribute :list_order, _tasks.index(task.id.to_s) + 1
     end
   end
-  
+
+  def admin_share?(group)
+    self.item_shares.find_by_group_id(group.id).admins_only
+  end
+
 end
 
 

@@ -1,0 +1,4 @@
+<li>
+  <a href="/groups/<%= group.id %>"><%= group.name %><% if item.admin_share? group %><sup>a</sup><% end %><% if item.group==group %>*<% end %>
+  </a>
+</li>
