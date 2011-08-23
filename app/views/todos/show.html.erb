@@ -15,7 +15,7 @@
       <ul class="shared-list greenme">
         <li>Shared between:  </li>
         <% @shared.each do |group| %>
-          <%= render 'shared_group', :group => group %>
+          <%= render 'items/shared_group', :group => group, :item => @todo %>
         <% end %>
       </ul>
     <% end %>

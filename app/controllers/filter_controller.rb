@@ -29,6 +29,7 @@ class FilterController < ApplicationController
         td.shared_groups.each do |gr|
           @shown[:items][:todos][i][:shared_groups][j] = gr
           @shown[:items][:todos][i][:shared_groups][j][:url] = group_path gr
+          @shown[:items][:todos][i][:shared_groups][j][:admin] = td.admin_share? gr
           j += 1
         end
         i += 1
@@ -47,6 +48,7 @@ class FilterController < ApplicationController
         dc.shared_groups.each do |gr|
           @shown[:items][:discussions][i][:shared_groups][j] = gr
           @shown[:items][:discussions][i][:shared_groups][j][:url] = group_path gr
+          @shown[:items][:discussions][i][:shared_groups][j][:admin] = dc.admin_share? gr
           j += 1
         end
         i += 1
@@ -65,6 +67,7 @@ class FilterController < ApplicationController
         doc.shared_groups.each do |gr|
           @shown[:items][:documents][i][:shared_groups][j] = gr
           @shown[:items][:documents][i][:shared_groups][j][:url] = group_path gr
+          @shown[:items][:documents][i][:shared_groups][j][:admin] = doc.admin_share? gr
           j += 1
         end
         i += 1
@@ -97,6 +100,7 @@ class FilterController < ApplicationController
         td.shared_groups.each do |gr|
           @shown_items[:todos][i][:shared_groups][j] = gr
           @shown_items[:todos][i][:shared_groups][j][:url] = group_path gr
+          @shown_items[:todos][i][:shared_groups][j][:admin] = td.admin_share? gr
           j += 1
         end
         i += 1
@@ -115,6 +119,7 @@ class FilterController < ApplicationController
         dc.shared_groups.each do |gr|
           @shown_items[:discussions][i][:shared_groups][j] = gr
           @shown_items[:discussions][i][:shared_groups][j][:url] = group_path gr
+          @shown_items[:discussions][i][:shared_groups][j][:admin] = dc.admin_share? gr
           j += 1
         end
         i += 1
@@ -133,6 +138,7 @@ class FilterController < ApplicationController
         doc.shared_groups.each do |gr|
           @shown_items[:documents][i][:shared_groups][j] = gr
           @shown_items[:documents][i][:shared_groups][j][:url] = group_path gr
+          @shown_items[:documents][i][:shared_groups][j][:admin] = doc.admin_share? gr
           j += 1
         end
         i += 1

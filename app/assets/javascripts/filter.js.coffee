@@ -121,6 +121,7 @@ $ ->
 
   getGroups = (item) ->
     for group in item.shared_groups
+      if group.admin then group.name += "<sup>a</sup>"
       if group.id == item.group_id then group.name += "*"
       found = $.inArray("#{group.id}", filterData.selected_groups )
       if found > -1 or "#{group.id}" == filterData.origin_group ##Group in filter
