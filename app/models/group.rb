@@ -40,13 +40,13 @@ class Group < ActiveRecord::Base
 
   #ITEMS
   has_many :item_shares, :dependent => :destroy
-  has_many :shared_todos, :through => :item_shares, :source => :item, :source_type => 'Todo'
+  has_many :shared_todos, :through => :item_shares, :source => :item, :source_type => 'Todo', :order => 'updated_at DESC'
   has_many :todos, :dependent => :destroy
 
-  has_many :shared_discussions, :through => :item_shares, :source => :item, :source_type => 'Discussion'
+  has_many :shared_discussions, :through => :item_shares, :source => :item, :source_type => 'Discussion', :order => 'updated_at DESC'
   has_many :discussions, :dependent => :destroy
 
-  has_many :shared_documents, :through => :item_shares, :source => :item, :source_type => 'Document'
+  has_many :shared_documents, :through => :item_shares, :source => :item, :source_type => 'Document', :order => 'updated_at DESC'
   has_many :documents, :dependent => :destroy
 
   def approve_user(user)
