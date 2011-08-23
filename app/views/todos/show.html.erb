@@ -5,6 +5,10 @@
       <span id="add-task-button" class="button">Add Task</span>
       <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
       <span id="share-button" class="button"><a href="<%= share_group_todo_path(@group, @todo) %>">Share »</a></span>
+      <div class="creator">
+        Created by:
+        <%= @todo.creator.present? ? link_to(@todo.creator.name, @todo.creator) : "[User Deleted]" %>
+      </div>
     </div>
 
     <% if @shared.present? %>

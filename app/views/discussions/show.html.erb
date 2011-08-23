@@ -4,6 +4,10 @@
       <h2><%= @discussion.title %></h2>
       <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
       <span id="share-button" class="button"><a href="<%= share_group_discussion_path(@group, @discussion) %>">Share »</a></span>
+      <div class="creator">
+        Created by:
+        <%= @discussion.creator.present? ? link_to(@discussion.creator.name, @discussion.creator) : "[User Deleted]" %>
+      </div>
     </div>
 
     <% if @shared.present? %>
@@ -14,6 +18,7 @@
         <% end %>
       </ul>
     <% end %>
+
 
     <% if current_user.can_delete? @discussion %>
       <%= content_tag(:span, link_to("DELETE DISCUSSION", group_discussion_path(@group, @discussion), :method => :delete, :confirm => "You sure?",

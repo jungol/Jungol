@@ -4,6 +4,10 @@
       <h2><%= @document.title %></h2>
       <span id="comment-button" class="button"><a href="#comments">Comment</a></span>
       <span id="share-button" class="button"><a href="<%= share_group_document_path(@group, @document) %>">Share »</a></span>
+      <div class="creator">
+        Created by:
+        <%= @document.creator.present? ? link_to(@document.creator.name, @document.creator) : "[User Deleted]" %>
+      </div>
     </div>
     <% if @shared.present? %>
       <ul class="shared-list greenme">

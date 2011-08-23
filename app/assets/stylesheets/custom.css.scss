@@ -610,6 +610,12 @@ section {
         }
       }
     }
+    div.creator{
+      padding-left:16px;
+      margin:-29px 0 15px;
+      font-size:9px;
+      opacity:0.7;
+    }
     input#admins_only {
       left: 0 !important;
     }
@@ -655,7 +661,7 @@ section {
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
       font-size:14px;
       margin:10px;
-      width:400px;
+      width:600px;
       border-top: 1px solid #D8DAD8;
       border-bottom: 1px solid #D8DAD8;
     }
@@ -705,7 +711,7 @@ section {
         font-family: 'Cabin', sans-serif;
         color: #000;
         width: 660px;
-        padding: 5px 0 5px 10px;
+        padding: 5px 0 10px 10px;
         margin-left: 0;
       }
     }
@@ -793,7 +799,7 @@ section {
       }
       span.group-share {
         float:left;
-        width:100px;
+        width:300px;
         font-size:14px;
       }
     }
