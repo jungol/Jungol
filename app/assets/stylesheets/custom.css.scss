@@ -601,6 +601,16 @@ section {
     width: 670px;
     border: 1px solid #aeae96;
     border-top: none;
+    
+    form#new_todo,
+    form#new_discussion,
+    form#new_document {
+      width: 49%;
+      float: left;
+      border-right: 1px solid #70b139;
+      margin-bottom: 10px;
+    }
+    
     form#new_todo {
       p {
         input[type="text"] {
@@ -836,7 +846,8 @@ section {
       }
       #todo_title,
       #discussion_title,
-      #group_name {
+      #group_name,
+      #document_title {
         background: #f3f4f3;
         border: 1px solid #939587;
         width: 400px;
@@ -1268,11 +1279,31 @@ section {
   }
 
   #group-share {
-    position:relative;
-    right:0px;
-    top:0px;
-    border:1px dotted #cccccc;
-    width:450px;
+    float: left;
+    margin-left: 35px;
+    width: 450px;
+    h3 { 
+      padding-top: 10px;
+    }
+    div.group-share-copy { 
+      padding: 0 10px;
+      margin: -10px 0 10px 0;
+    }
+    p {
+      input#select_all,
+      input#all_admins {
+        float: left;
+        margin-right: 3px;
+      }
+      label[for="select_all"],
+      label[for="all_admins"] {
+        float: left;
+        margin-right: 20px;
+      }
+    }
+    ul.share-list {
+      margin-top: 40px;
+    }
   }
 
   #group-connect, #group-share {
