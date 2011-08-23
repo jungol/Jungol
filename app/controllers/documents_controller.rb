@@ -62,11 +62,13 @@ class DocumentsController < ApplicationController
   def update
     if request.post? #AJAX update - description
       if @document.update_attributes(params[:document])
+        @document.update_attribute(:updated_at, Time.now)
         render :text => params[:document][:description]
         return
       end
     elsif request.put?
       if @document.update_attributes(params[:document])
+        @document.update_attribute(:updated_at, Time.now)
         flash[:success] = "Document updated."
         redirect_to @document
       end
