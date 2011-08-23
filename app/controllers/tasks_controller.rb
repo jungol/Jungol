@@ -27,12 +27,14 @@ class TasksController < ApplicationController
     @task = Task.find(params['id'])
     if params['task'].is_a? Array #WE'RE UPDATING LIST ORDER
       @todo.update_order(params['task'])
+      @todo.update_attribute(:updated_at, Time.now)
       render :nothing => true
       return
     end
     if params['task']['description'] #UPDATING DESCRIPTION
       if(@task.update_attribute(:description, params['task']['description']))
         @task.todo.interactions.create(:user => current_user, :summary => 'Edited Todo Task')
+        @todo.update_attribute(:updated_at, Time.now)
         flash.now[:success] = "Task updated."
       else
         flash.now[:error] = "Error updating task. Please try again."
@@ -41,6 +43,7 @@ class TasksController < ApplicationController
     if params['task']['status'] #UPDATING STATUS
       if(@task.update_attribute(:status, params['task']['status']))
         @task.todo.interactions.create(:user => current_user, :summary => 'Updated Task Status')
+        @todo.update_attribute(:updated_at, Time.now)
         flash.now[:success] = "Task updated."
       else
         flash.now[:error] = "Error updating task. Please try again."
@@ -48,6 +51,7 @@ class TasksController < ApplicationController
     end
     if params['task']['list_order']
       if(@task.update_attribute(:list_order, params['task']['list_order']))
+        @todo.update_attribute(:updated_at, Time.now)
         flash.now[:success] = "Task updated."
       else
         flash.now[:error] = "Error updating task. Please try again."
