@@ -411,8 +411,12 @@ section {
       li {
         float: left;
         width: 220px;
-        margin-right: 10px;
+        margin-right: 80px;
         margin-top: 10px;
+        .group-mems,
+        .group-cons {
+          font-size: 12px;
+        }
       }
       img {
         float: left;
@@ -548,7 +552,7 @@ section {
       list-style: none;
       li {
         float: left;
-        margin-right: 10px;
+        margin: 10px 28px 10px 0;
         img {
           float: left;
           margin-right: 10px;
@@ -557,10 +561,28 @@ section {
         span.status {
           font-weight:bold;
           display:block;
+          margin-top: 7px;
         }
         .group-status, .user-status {
           margin-top: 0;
           padding: 0;
+          input.group-share{
+            display: inline-block;
+            background: #8EAC4B;
+            padding: 5px 5px;
+            font-family: 'Cabin', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            color: #fff;
+            border: 0;
+            a {
+              text-decoration: none;
+            }
+            &:hover {
+              background: #758e3c;
+              cursor: pointer;
+            }
+          }
           span.links {
             padding: 0px 5px;
             a {
@@ -610,7 +632,15 @@ section {
       border-right: 1px solid #70b139;
       margin-bottom: 10px;
     }
-    
+    ol {
+      margin-left: 10px;
+      li {
+        b {
+          color: #8eac45;
+        }
+        margin: 10px 0;
+      }
+    }
     form#new_todo {
       p {
         input[type="text"] {
@@ -669,7 +699,7 @@ section {
     }
     .item-desc{
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
-      font-size: 12px;
+      font-size: 13px;
       margin: 10px;
       width: 690px; //same width as the list, -10px to adjust for margin.
       // border-top: 1px solid #D8DAD8;
@@ -1169,6 +1199,20 @@ section {
           padding: 10px 0 10px 30px;
         }
       }
+    }
+  }
+  #vid-box {
+    position: absolute;
+    top: 355px;
+    left: 40px;
+    img {
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.31, #D9D9D7), color-stop(0.66, #F3F3F1) );
+      background-image: -moz-linear-gradient( center bottom, #D9D9D7 31%, #F3F3F1 66%);
+      -moz-box-shadow: 1px 0px 8px #777777;
+      -webkit-box-shadow: 1px 0px 8px #777777;
+      box-shadow: 1px 0px 8px #777777;
     }
   }
   #form-box {
