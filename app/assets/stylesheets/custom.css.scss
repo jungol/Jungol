@@ -632,6 +632,20 @@ section {
       border-right: 1px solid #70b139;
       margin-bottom: 10px;
     }
+    div.sign-up-left {
+      float: left;
+      width: 45%;
+    }
+    div.sign-up-right {
+      float: left;
+      width: 49%;
+      h1 {
+        font-size: 20px;
+        font-family: 'Cabin', sans-serif;
+        color: #52c239;
+        margin: 0 0 20px 10px;
+      }
+    }
     ol {
       margin-left: 10px;
       li {

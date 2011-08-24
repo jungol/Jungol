@@ -5,23 +5,43 @@
         <h2>Sign in</h2>
       </div>
 
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-        <p><%= f.label :email %><br />
-          <%= f.email_field :email %></p>
+      <div class="sign-up-left">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          <p><%= f.label :email %><br />
+            <%= f.email_field :email %></p>
+        
+          <p><%= f.label :password %><br />
+            <%= f.password_field :password %></p>
+        
+          <% if devise_mapping.rememberable? -%>
+            <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+          <% end -%>
+        
+          <p class="sign-in-button"><%= f.submit "Sign in" %></p>
+        <% end %>
+        
+        <span class="sign-in-links"><%= render :partial => "devise/shared/links" %></span>
+        
+        <div class="clearall"></div>
+      </div>
+      
+      <div class="sign-up-right">
+        <h1>Jungol enables organizations to connect and collaborate to achieve common goals.</h1>
 
-        <p><%= f.label :password %><br />
-          <%= f.password_field :password %></p>
+        <p><b>Find a group</b>
+        Jungol makes it easy to find a group that can help you make a difference.  If you don’t see what you’re looking for, start your own group.  </p>
 
-        <% if devise_mapping.rememberable? -%>
-          <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-        <% end -%>
+        <p><b>Connect group-to-group</b>
+        The only site that lets your group link directly to other groups.  It’s like a facebook friend request for organizations.  </p>
 
-        <p class="sign-in-button"><%= f.submit "Sign in" %></p>
-      <% end %>
+        <p><b>Collaborate on projects and events</b>
+        Use the power of interactive file-sharing, to-do lists, and discussion boards to make inter-organizational collaboration easy and efficient.</p>
 
-      <span class="sign-in-links"><%= render :partial => "devise/shared/links" %></span>
-
-      <div class="clearall"></div>
+        <p><b>Increase your impact</b>
+        Achieve your target goals with less time and money by pooling resources and reducing duplication.”</p>
+      </div>
+      
+      <div class="clearall">
     </div>
   </div>
 </div>
