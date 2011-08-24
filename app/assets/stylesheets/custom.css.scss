@@ -116,7 +116,7 @@ header {
     }
     h1 {
       font-size: 22px;
-      float: left; 
+      float: left;
       font-family: 'Cabin', sans-serif;
       font-weight: 600;
       color: #3f3f3f;
@@ -812,8 +812,11 @@ section {
       margin-top: 15px;
       li {
         display: inline;
-        margin-left: 35px;
+        margin-left: 32px;
         font-weight: bold;
+      }
+      li.refno {
+        margin-left:25px;
       }
       li.todo-first {
         margin: 0 279px 0 0;
@@ -1338,10 +1341,10 @@ section {
     float: left;
     margin-left: 35px;
     width: 450px;
-    h3 { 
+    h3 {
       padding-top: 10px;
     }
-    div.group-share-copy { 
+    div.group-share-copy {
       padding: 0 10px;
       margin: -10px 0 10px 0;
     }
@@ -1548,6 +1551,9 @@ ul.users {
   padding-left: 10px;
   width: 74%;
   li.task-item {
+    span{
+      display:inline-block;
+    }
     line-height: 25px;
     border-bottom: 1px solid #d8dad8;
     border-top: 1px solid #d8dad8;
@@ -1567,13 +1573,16 @@ ul.users {
         }
       }
       .task-status {
-        margin-left: 70px;
+        width:220px;
+        text-align:center;
         input {
           margin: 0 43px;
         }
       }
       .task-number {
-        margin-left: 43px;
+        text-align:center;
+        width:100px;
+        margin:0px 5px 0px -10px;
       }
     }
   }
