@@ -980,40 +980,27 @@ section {
     }
 
     /* Radio button and Checkbox styles */
-    .checkme {
-      width: 21px;
-      height: 20px;
-      background: url('/assets/check.png') no-repeat;
-      display: block;
-      clear: left;
-      float: left;
+    .checkbox,
+    .radio {
+    	width: 21px;
+    	height: 20px;
+      background: url('check.png') no-repeat;
+    	display: block;
+    	clear: left;
     }
-    .completed-radio {
-      width: 13px;
+    .radio {
       height: 14px;
-      background: url('/assets/completed-radio.png') no-repeat;
-      display: block;
-      clear: left;
-      float: left;
+      background: url('completed-radio.png') no-repeat;
     }
-    .progress-radio {
-      width: 13px;
-      height: 14px;
-      background: url('/assets/progress-radio.png') no-repeat;
-      display: block;
-      clear: left;
-      float: left;
+    .select {
+    	position: absolute;
+    	width: 256px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+    	height: 29px;
+    	padding: 5px 20px 5px 10px;
+    	color: #585858;
+    	background: url('select.png') no-repeat;
+    	overflow: hidden;
     }
-    // .select {
-      //       position: absolute;
-      //       width: 158px;
-      //       height: 21px;
-      //       padding: 0 24px 0 8px;
-      //       color: #fff;
-      //       font: 12px/21px arial,sans-serif;
-      //       background: url(select.gif) no-repeat;
-      //       overflow: hidden;
-      //     }
 
     #add-task-form{
       form {
@@ -1514,7 +1501,6 @@ ul.users {
         margin-left: 70px;
         input {
           margin: 0 43px;
-          background: red;
         }
       }
       .task-number {
