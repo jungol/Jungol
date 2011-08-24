@@ -601,7 +601,7 @@ section {
     width: 670px;
     border: 1px solid #aeae96;
     border-top: none;
-    
+    height: 100%;
     form#new_todo,
     form#new_discussion,
     form#new_document {
@@ -669,11 +669,14 @@ section {
     }
     .item-desc{
       font-family: 'Verdana', Arial, Helvetica, sans-serif;
-      font-size:14px;
-      margin:10px;
-      width:600px;
-      border-top: 1px solid #D8DAD8;
-      border-bottom: 1px solid #D8DAD8;
+      font-size: 12px;
+      margin: 10px;
+      width: 690px; //same width as the list, -10px to adjust for margin.
+      // border-top: 1px solid #D8DAD8;
+      // border-bottom: 1px solid #D8DAD8;
+      &:hover {
+        cursor: text;
+      }
     }
     .item-body {
       p {
