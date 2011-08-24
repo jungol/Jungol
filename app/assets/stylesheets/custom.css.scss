@@ -115,9 +115,9 @@ header {
       float: left;
     }
     h1 {
-      margin-left: 10px;
       font-size: 22px;
-      float: left; font-family: 'Cabin', sans-serif;
+      float: left; 
+      font-family: 'Cabin', sans-serif;
       font-weight: 600;
       color: #3f3f3f;
     }
@@ -125,8 +125,7 @@ header {
       font-family: 'Cabin', sans-serif;
       margin-top: 35px;
       color: #8eac45;
-      position: relative;
-      left: 10px;
+      padding-left: 10px;
       a {
         color: #8eac45;
         text-decoration: underline;
@@ -666,8 +665,8 @@ section {
     }
     div.creator{
       padding-left:16px;
-      margin:-29px 0 15px;
-      font-size:9px;
+      margin:-31px 0 15px;
+      font-size:10px;
       opacity:0.7;
     }
     input#admins_only {
