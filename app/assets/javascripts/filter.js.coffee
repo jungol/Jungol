@@ -130,7 +130,7 @@ $ ->
         linkify( group.name, group.url, "class='group_link'")
 
   addCon = (_group_id) ->
-    "<li class=\"add\"><a href='/groups/#{_group_id}/link'>Request Connection</a></li>"
+    "<li class=\"add\"><a href='/groups/#{_group_id}/link'>Connect with Other Groups</a></li>"
 
 ##--/HELPERS
 
