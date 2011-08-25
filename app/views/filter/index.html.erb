@@ -60,7 +60,7 @@
 
           <ol>
             <li><b>Join a group</b><br />
-            Finding groups on Jungol is easy.  Just click the <a href="#">All Groups</a> tab at the top of the page. If you can't find what you're looking for, you can always <a href="#">Create a Group</a>.  Join as many groups as your heart desires.</li>
+            Finding groups on Jungol is easy.  Just click the <%= link_to "All Groups", groups_path %><br /> tab at the top of the page. If you can't find what you're looking for, you can always <%= link_to "Create a Group", new_group_path %>.  Join as many groups as your heart desires.</li>
             <li><b>Connect group-to-group</b><br />
             Administrators can link their group directly with other groups.  This is called a <i>Connection</i>.   It's like a Facebook friend request for organizations.  If you're an admin, you can Add Connections directly from your group page.</li>
             <li><b>Add to-do lists, discussions, and documents</b><br />
@@ -69,7 +69,7 @@
             Are you working on a project or event that involves multiple groups?  It's easy to plan joint initiatives on Jungol.  You can share your project management tools between groups.  Click <i>Share</i> when you're looking at one of your to-do lists, discussions, or documents.</li>
           </ol>
 
-          <p>If you have questions or feedback, send us an <a href="#">email</a>.  We'd love to hear from you.</p>
+          <p>If you have questions or feedback, send us an <%= link_to "email", 'mailto:feedback@jungolhq.com' %>.  We'd love to hear from you.</p>
         </div>
       </div>
 
