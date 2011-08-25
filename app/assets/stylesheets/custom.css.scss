@@ -569,7 +569,7 @@ section {
         .group-status, .user-status {
           margin-top: 0;
           padding: 0;
-          input.group-share{
+          input.group-share {
             display: inline-block;
             background: #8EAC4B;
             padding: 5px 5px;
@@ -1319,6 +1319,7 @@ section {
   }
   li.group-list-li{
     width: 220px;
+    padding-bottom: 20px;
     .group-img{
       padding-right:5px;
       float: left;
