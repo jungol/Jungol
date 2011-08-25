@@ -1,6 +1,7 @@
 Jungola::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations", :invitations => "invitations"}
+
 
   resources :updates_requests, :only => [:create]
 

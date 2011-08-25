@@ -1,7 +1,6 @@
 <div class="content-bg">
   <div id="wrapper">
-
-    <div id="user-items" class="main-right full">
+    <div id="user-edit" class="main-right full">
       <div class="alt-item-head headerfull">
         <h2><%= resource_name.to_s.humanize %>'s Account</h2>
       </div>
@@ -18,21 +17,26 @@
         <p><%= f.label 'Upload a profile image' %><br />
           <%= f.file_field :avatar %> </p>
 
-        <p><%= f.label :name %><br /><%= f.text_field :name %></p>
+        <p><%= f.label :name, "Your First and Last Name" %><br />
+          <%= f.text_field :name %></p>
 
-        <p><%= f.label :email %><br /><%= f.email_field :email %></p>
+        <p><%= f.label :email %><br />
+          <%= f.email_field :email %></p>
 
-        <p><%= f.label :"About me" %><br /><%= f.text_area :about %></p>
+        <p><%= f.label :about, "About Yourself" %><br />
+          <%= f.text_area :about %></p>
 
-        <p><%= f.label :"New password" %> <br /><i>(leave blank if you don't want to change it)</i><br /><%= f.password_field :password %></p>
+        <p><%= f.label :password, "New password" %><br /><i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password %></p>
 
-        <p><%= f.label :"Confirm your new password" %><br /><%= f.password_field :password_confirmation %></p>
+        <p><%= f.label :password_confirmation, "Confirm your new password" %><br />
+          <%= f.password_field :password_confirmation %></p>
 
-        <p><%= f.label :current_password %> <br /><i>(we need your current password to confirm your changes)</i><br /><%= f.password_field :current_password %></p>
+        <p><%= f.label :current_password %><br /><i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password %></p>
 
         <p class="update-button"><%= f.submit "Update" %></p>
       <% end %>
-
       <h3>Cancel my account</h3>
 
       <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>

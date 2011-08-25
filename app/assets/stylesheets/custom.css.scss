@@ -514,7 +514,8 @@ section {
     }
   }
   #new-invite,
-  #invite-activate {
+  #invite-activate,
+  #user-edit {
     .sign-in-button input {
       float: left;
       font-family: 'Cabin', sans-serif;
@@ -635,9 +636,14 @@ section {
       border-right: 1px solid #70b139;
       margin-bottom: 10px;
     }
+    form#user_edit {
+      padding-right:15px;
+      border-right: 1px solid #70b139;
+      margin-bottom: 10px;
+    }
     div.sign-up-left {
       float: left;
-      width: 45%;
+      width: 47%;
     }
     div.sign-up-right {
       float: left;

@@ -1,0 +1,46 @@
+<div class="content-bg">
+  <div id="invite-activate" class="main-right full">
+    <div class="alt-item-head headerfull">
+      <h2>Set your information</h2>
+    </div>
+
+    <div class="sign-up-left">
+      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :invitation_token %>
+
+        <p><%= f.label :name, "Your First and Last Name" %><br />
+          <%= f.text_field :name %></p>
+
+        <p><%= f.label :about, "About Yourself" %> <br />
+          <%= f.text_area :about %></p>
+
+        <p><%= f.label :password %><br />
+          <%= f.password_field :password %></p>
+
+        <p><%= f.label :password_confirmation, "Confirm your password" %><br />
+          <%= f.password_field :password_confirmation %></p>
+
+        <p class="sign-in-button"><%= f.submit "Set my info" %></p>
+      <% end %>
+      <div class="clearall"></div>
+    </div>
+
+    <div class="sign-up-right">
+      <h1>Jungol enables organizations to connect and collaborate to achieve common goals.</h1>
+
+      <p><b>Find a group</b>
+        Jungol makes it easy to find a group that can help you make a difference.  If you don’t see what you’re looking for, start your own group.  </p>
+
+      <p><b>Connect group-to-group</b>
+        The only site that lets your group link directly to other groups.  It’s like a facebook friend request for organizations.  </p>
+
+      <p><b>Collaborate on projects and events</b>
+        Use the power of interactive file-sharing, to-do lists, and discussion boards to make inter-organizational collaboration easy and efficient.</p>
+
+      <p><b>Increase your impact</b>
+        Achieve your target goals with less time and money by pooling resources and reducing duplication.”</p>
+    </div>
+    <div class="clearall"></div>
+  </div>
+</div>
