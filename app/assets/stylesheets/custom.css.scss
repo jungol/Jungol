@@ -1334,6 +1334,11 @@ section {
       display: inline-block;
       width: 165px;
       height: 50px;
+      .admins-only {
+        position: relative;
+        top: -4px;
+        right: 5px;
+      }
     }
     .group-check{
       float:left;

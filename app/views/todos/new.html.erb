@@ -32,7 +32,7 @@
         <% if @group.groups.present? %>
           <%= check_box_tag :select_all %>
           <%= label_tag :select_all, "Select All" %>
-          <!-- <br /> -->
+
           <% if current_user.privileged? @group %>
             <%= check_box_tag :all_admins %>
             <%= label_tag :all_admins, "Share only with Admins" %>
